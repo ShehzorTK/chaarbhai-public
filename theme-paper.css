@@ -353,7 +353,7 @@ html[data-theme="paper"] .pcards{padding:0;background-color:#2A1D0F}
 html[data-theme="paper"] .pcards-stick{position:relative}
 html[data-theme="paper"] .pcards-track{display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
 html[data-theme="paper"] .pcards-track::-webkit-scrollbar{display:none}
-html[data-theme="paper"] .pcard{position:relative;flex:0 0 86vw;scroll-snap-align:center;min-height:min(86svh,680px);display:flex;flex-direction:column;justify-content:flex-end;gap:22px;padding:22px 20px 28px;
+html[data-theme="paper"] .pcard{position:relative;flex:0 0 86vw;scroll-snap-align:center;scroll-snap-stop:always;min-height:min(86svh,680px);display:flex;flex-direction:column;justify-content:flex-end;gap:22px;padding:22px 20px 28px;
   background-color:var(--ink);background-image:var(--grain);background-size:400px;color:var(--paper)}
 html[data-theme="paper"] .pc-1{--ink:#F2EBDE;--paper:#2A1D0F;--dim:rgba(42,29,15,.85);--line:rgba(42,29,15,.3)}
 html[data-theme="paper"] .pc-2{--ink:#484542;--paper:#F2EBDE;--dim:rgba(242,235,222,.9);--line:rgba(242,235,222,.4)}

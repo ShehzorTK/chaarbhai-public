@@ -196,6 +196,7 @@ function paperRails(){
     sec.appendChild(r);
   });
 }
+/* One scroll system for Paper on desktop (see design/experimental-theme-scroll-plan.md). All the numbers live here. */
 function paperCardsPaint(pc){
   const cards=[...pc.querySelectorAll('.pcard')],n=cards.length;
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
@@ -2219,9 +2220,9 @@ addEventListener('scroll',tallyQueue,{passive:true});addEventListener('resize',t
 function paperSmooth(){
   const R=document.documentElement;
   const capability=matchMedia('(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)');
-  let target=scrollY,cur=scrollY,raf=0,last=0,expected=null,rate=.07,cardMove=null;
-  const max=()=>Math.max(0,R.scrollHeight-innerHeight);
+  let target=scrollY,cur=scrollY,raf=0,last=0,expected=null,rate=.16,cardMove=null;
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  const max=()=>Math.max(0,R.scrollHeight-innerHeight);
   const own=el=>{for(;el&&el!==document.body&&el!==R;el=el.parentElement){const o=getComputedStyle(el).overflowY;if((o==='auto'||o==='scroll')&&el.scrollHeight>el.clientHeight+1)return true;if(el.tagName==='IFRAME'||el.tagName==='TEXTAREA')return true}return false};
   const off=()=>document.body.classList.contains('locked')||R.classList.contains('ps-viewing')||R.classList.contains('lb-open')||document.body.classList.contains('vf-in')||document.body.classList.contains('vf-full')||document.getElementById('navlinks').classList.contains('open');
   const curve=t=>{
@@ -2275,8 +2276,8 @@ function paperSmooth(){
       }
     }
     wheelBurst.direction=0;e.preventDefault();
-    cardMove=null;if(!raf)target=cur=scrollY;rate=.07;
-    target=clamp(target+d*.5,0,max());go();
+    cardMove=null;if(!raf)target=cur=scrollY;rate=.16;
+    target=clamp(target+d,0,max());go();
   },{passive:false});
   addEventListener('click',e=>{
     const link=e.target.closest?.('[data-paper-chapter]');if(!link)return;
