@@ -22,11 +22,14 @@ window.cbGlide=(function(){
 /* One slide per wheel gesture. take(dir) returns true when it starts a move (the wheel is then swallowed until the gesture ends:
    220ms with no wheel event), false to let the browser scroll natively (the first or last slide, so the page carries on). */
 window.cbWheel=(el,gate,take)=>{
-  let last=-1e9,own=false;
+  let last=-1e9,own=false,gdir=0;
   el.addEventListener('wheel',e=>{
-    if(e.ctrlKey||Math.abs(e.deltaX)>Math.abs(e.deltaY)||Math.abs(e.deltaY)<2||!window.cbDesk()||!gate())return;
-    const fresh=e.timeStamp-last>220;last=e.timeStamp;
-    if(fresh)own=take(e.deltaY>0?1:-1);
+    if(e.ctrlKey||!window.cbDesk()||!gate())return;
+    const dy=e.deltaY,dir=dy>0?1:-1;
+    /* the tail of a gesture we own (trackpad momentum, any size) is swallowed whole: left native it nudges the page after the settle lands */
+    if(own&&e.timeStamp-last<=220&&!(Math.abs(dy)>=8&&dir!==gdir&&Math.abs(dy)>Math.abs(e.deltaX))){last=e.timeStamp;e.preventDefault();return}
+    if(Math.abs(e.deltaX)>Math.abs(dy)||Math.abs(dy)<2)return;
+    last=e.timeStamp;gdir=dir;own=take(dir);
     if(own)e.preventDefault();
   },{passive:false});
 };
