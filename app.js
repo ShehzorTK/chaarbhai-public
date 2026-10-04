@@ -1734,7 +1734,7 @@ function reel(){
   const updateSound=()=>{sound.innerHTML=HERO_SOUND_ICON(video.muted);sound.setAttribute('aria-pressed',String(!video.muted));sound.setAttribute('aria-label',video.muted?'Unmute background music':'Mute background music');};
   const mute=()=>{video.muted=true;updateSound();};
   const updatePlayback=()=>{playButton.innerHTML=HERO_PLAY_ICON(video.paused);playButton.setAttribute('aria-label',video.error?'Retry film':video.paused?'Play film':'Pause film');playButton.hidden=!manualPlayback;};
-  const visible=()=>{const r=(hero.querySelector('.vhero-media')||hero).getBoundingClientRect();return document.visibilityState==='visible'&&r.bottom>0&&r.top<innerHeight;};
+  const visible=()=>{const r=(PAPER?hero.querySelector('.vhero-media')||hero:hero).getBoundingClientRect();return document.visibilityState==='visible'&&r.bottom>0&&r.top<innerHeight;};
   const reveal=()=>{
     if(!started){started=true;hero.classList.add('is-reel-ready');hero.querySelector('.cb-video-cover')?.remove();sound.hidden=false;}
     if(!promptShown&&!video.paused&&video.muted){promptShown=true;prompt.hidden=false;promptTimer=setTimeout(()=>prompt.hidden=true,4500);}
