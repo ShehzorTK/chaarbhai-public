@@ -78,11 +78,15 @@ html[data-theme="paper"] .paper-contact{display:inline-grid!important;grid-colum
   font-family:var(--f-serif);font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:#F2EBDE;padding:12px 0 3px;min-height:44px;align-content:center;border-bottom:1px solid transparent}
 html[data-theme="paper"] .paper-contact:hover,html[data-theme="paper"] .paper-contact:focus-visible,html[data-theme="paper"] .paper-contact:active{font-style:italic;border-bottom-color:currentColor}
 html[data-theme="paper"] .theme-sw{display:none}
-html[data-theme="paper"] .burger{display:inline-flex;align-items:center;grid-column:3;justify-self:end;margin:0;z-index:951;width:auto;height:auto;min-width:44px;min-height:44px;padding:0;
-  font-family:var(--f-serif);font-style:italic;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:#F2EBDE}
-html[data-theme="paper"] .burger::before,html[data-theme="paper"] .burger i{display:none}
-html[data-theme="paper"] .burger::after{content:'Navigation +';padding:2px 0;border-bottom:1px solid currentColor;border-bottom-color:color-mix(in srgb,currentColor 50%,transparent)}
+html[data-theme="paper"] .burger{display:inline-grid;align-content:center;justify-items:end;grid-column:3;justify-self:end;margin:0;z-index:951;width:auto;height:auto;min-width:44px;min-height:44px;padding:0;
+  font-family:var(--f-serif);font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:#F2EBDE}
+html[data-theme="paper"] .burger i{display:none}
+html[data-theme="paper"] .burger::before{content:'Navigation +';grid-area:1/1;font-style:italic;height:0;overflow:hidden;visibility:hidden;pointer-events:none}
+html[data-theme="paper"] .burger.x::before{content:'Close \00d7'}
+html[data-theme="paper"] .burger::after{content:'Navigation +';grid-area:1/1;padding:2px 0;border-bottom:1px solid currentColor;border-bottom-color:color-mix(in srgb,currentColor 50%,transparent)}
 html[data-theme="paper"] .burger.x::after{content:'Close \00d7';border-bottom-color:currentColor}
+html[data-theme="paper"] .burger:hover,html[data-theme="paper"] .burger:focus-visible,html[data-theme="paper"] .burger:active{font-style:italic}
+html[data-theme="paper"] .burger:hover::after,html[data-theme="paper"] .burger:focus-visible::after,html[data-theme="paper"] .burger:active::after{border-bottom-color:currentColor}
 html[data-theme="paper"] .hdr-sub{grid-column:1/-1}
 /* Home: the bar is a sibling right after the film (app.js moves it there), and sticks to the top once it gets there. Plain CSS sticky, no script. */
 html[data-theme="paper"] .vhero{display:contents}
@@ -104,7 +108,7 @@ html[data-theme="paper"] nav.links a::before{content:attr(data-t);font-style:ita
 html[data-theme="paper"] nav.links a::after{display:block;position:absolute;left:0;top:.5em;width:auto;height:auto;background:none;transform:none;
   content:counter(nl,decimal-leading-zero) ' /';font-family:var(--f-script);font-size:.45em;letter-spacing:.04em;color:#D2B6A1;text-transform:none}
 html[data-theme="paper"] nav.links a.book{display:none!important}
-html[data-theme="paper"] nav.links a.on{font-style:italic;background-size:calc(100% - 2.6em) 1px}
+html[data-theme="paper"] nav.links a.on{background-size:calc(100% - 2.6em) 1px}
 html[data-theme="paper"] nav.links a:hover,html[data-theme="paper"] nav.links a:focus-visible{font-style:italic;background-size:calc(100% - 2.6em) 1px;outline-color:#D2B6A1}
 @media (hover:hover){html[data-theme="paper"] nav.links:has(a:hover) a:not(:hover){opacity:.45}}
 @media(max-width:700px){
