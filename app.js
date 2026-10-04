@@ -174,6 +174,7 @@ P['/']=()=>`
       <span class="quiet mono">Tell us the date and we’ll come back to you</span>
     </div>
   </div>
+  <div class="scroll-cue" aria-hidden="true" style="display:none"><span>Scroll</span><i></i></div>
   <div class="vhero-foot mono">
     <span>Photo and film</span><span>Based in the GTA</span><span>Since 2013</span>
   </div>
@@ -1503,7 +1504,7 @@ function homeLogo(placeholder,firstVisit,reveal){
     const to=small.getBoundingClientRect();
     if(reduceMotion()||!Element.prototype.animate||from.width<1||from.height<1){reveal();placeholder.remove();dispose();return;}
     flight=document.createElement('div');flight.setAttribute('aria-hidden','true');flight.className='cb-logo-flight';
-    flight.innerHTML=`<img src="img/pen-loader-1.png" alt="">`;
+    flight.innerHTML=document.documentElement.dataset.theme==='paper'?`<img src="img/pen-loader-1.png" alt=""><img class="pf-ink" src="img/pen-loader-1-dark.png" alt="" style="opacity:0">`:`<img src="img/pen-loader-1.png" alt="">`;
     Object.assign(flight.style,{left:from.left+'px',top:from.top+'px',width:from.width+'px',height:from.height+'px'});
     document.body.appendChild(flight);
     // One visible mark: the large drawing becomes the small header mark at landing.
@@ -1514,6 +1515,11 @@ function homeLogo(placeholder,firstVisit,reveal){
       {transform:'translate(0,0) scale(1,1)'},
       {transform:`translate(${to.left-from.left}px,${to.top-from.top}px) scale(${to.width/from.width},${to.height/from.height})`}
     ],{duration:700,easing:getComputedStyle(document.documentElement).getPropertyValue('--ease-io').trim(),fill:'forwards'});
+    if(flight.querySelector('.pf-ink')){   // Paper: the beige mark turns into the dark logo on its way to the cream bar
+      const [pale,ink]=flight.querySelectorAll('img');
+      ink.animate([{opacity:0},{opacity:1}],{duration:700,easing:'ease-in-out',fill:'forwards'});
+      pale.animate([{opacity:1},{opacity:0}],{duration:700,easing:'ease-in-out',fill:'forwards'});
+    }
     morph.finished.then(()=>{if(!disposed){finishFlight();disposed=true;}},()=>{});
   };
   // before the flight the pulse is faded back to full opacity (200ms), so the mark is steady when its position is measured
@@ -1764,6 +1770,7 @@ function render(path){
   const sub=document.getElementById('hdrsub');
   document.documentElement.classList.toggle('on-work',path==='/portfolio');
   document.documentElement.classList.toggle('on-contact',path==='/contact');
+  document.documentElement.classList.toggle('on-home',path==='/');
   if(path==='/portfolio'){sub.innerHTML=VF.toggleHTML('photos');sub.hidden=false}else{sub.hidden=true;sub.textContent=''}
   document.getElementById('hdr').classList.remove('hide');heroNav();
   observe();photoWindow();
@@ -2014,8 +2021,9 @@ addEventListener('resize',heroNav,{passive:true});
 let ly=0,navIdle=0;
 addEventListener('scroll',()=>{const y=scrollY,h=document.getElementById('hdr');
   h.classList.toggle('solid',y>36);heroNav();
+  document.documentElement.classList.toggle('paper-popped',y>8);   // Paper: the bar docks under the hero at the top, and pops up to the top edge once you scroll
   clearTimeout(navIdle);
-  const canHide=()=>scrollY>8&&!navlinks.classList.contains('open')&&!document.body.classList.contains('vf-in')&&!document.documentElement.classList.contains('cb-pen-hold');
+  const canHide=()=>scrollY>8&&!(document.documentElement.dataset.theme==='paper'&&document.documentElement.classList.contains('on-home')&&scrollY<innerHeight)&&!navlinks.classList.contains('open')&&!document.body.classList.contains('vf-in')&&!document.documentElement.classList.contains('cb-pen-hold');
   if(Math.abs(y-ly)>=8){
     h.classList.toggle('hide',y>ly&&canHide());ly=y;
   }
