@@ -2140,7 +2140,9 @@ function tallyScene(){
   const e=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;               // power2.inOut
   const z=e(seg(0,.62)),s=Math.exp(Math.log(from)*(1-z));
   mosaic.style.transformOrigin=`${(col+.5)/cols*100}% ${(row+.5)/rows*100}%`;
-  mosaic.style.transform=`scale(${s.toFixed(4)})`;
+  // Paper: lower the zoomed photo so the couple's heads stay in frame (the middle of a tall tile would crop them)
+  const lower=PAPER?Math.max(0,mid.clientHeight*from-vh)*.3*(1-z):0;
+  mosaic.style.transform=`translateY(${lower.toFixed(1)}px) scale(${s.toFixed(4)})`;
   // Keep the central photograph fitted throughout; changing its crop during zoom caused a visible lurch.
 
   mosaic.style.setProperty('--mo-photo-scale','1');

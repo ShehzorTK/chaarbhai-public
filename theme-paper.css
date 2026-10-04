@@ -182,7 +182,7 @@ html[data-theme="paper"] .arch,html[data-theme="paper"] .day-ph,html[data-theme=
 html[data-theme="paper"] .tally{--ink:#F2EBDE;--ink-2:#EBE2D1;--paper:#2A1D0F;--gold:#2A1D0F;--dim:rgba(42,29,15,.8);background-color:#F2EBDE}
 html[data-theme="paper"] .tally-big span,html[data-theme="paper"] .tally-copy,html[data-theme="paper"] .tally-more{color:var(--brown);text-shadow:none}
 html[data-theme="paper"] .tally-pin::after{background:radial-gradient(ellipse 60% 55% at 50% 50%,rgba(242,235,222,.7),rgba(242,235,222,0) 100%)}
-html[data-theme="paper"] .tally-live .mo-t.mo-mid img{object-fit:cover}
+html[data-theme="paper"] .tally-live .mo-t.mo-mid img{object-fit:cover;object-position:60% 50%}
 html[data-theme="paper"] .voices blockquote p,html[data-theme="paper"] .v-more blockquote p{font-family:var(--f-serif);font-style:italic;color:var(--brown);letter-spacing:.02em}
 html[data-theme="paper"] .voices figcaption{font-family:var(--f-serif);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--brown);font-style:normal}
 
