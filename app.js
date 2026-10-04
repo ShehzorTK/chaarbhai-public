@@ -1798,8 +1798,9 @@ function render(path){
   if(window.cbLog)cbLog('render '+path);
   VF.close();
   PS.unmount(); // Restore the Photos-owned header before replacing its DOM.
+  if(PAPER)document.body.insertBefore(document.getElementById('hdr'),main);   // Paper: the bar goes back to the top before the page is swapped
   page.innerHTML=(P[path]||P['/'])();
-  if(PAPER&&path==='/')paperRails();
+  if(PAPER&&path==='/'){const m=document.querySelector('.vhero-media');if(m)m.after(document.getElementById('hdr'));paperRails()}   // Paper Home: the bar sits right under the film and sticks (CSS)
   document.querySelectorAll('nav.links a[data-nav]').forEach(a=>{
     const cur=a.getAttribute('href')==='#'+path;
     a.classList.toggle('on',cur&&!a.classList.contains('book'));
@@ -2067,6 +2068,9 @@ function tallyScene(){
   // Keep the central photograph fitted throughout; changing its crop during zoom caused a visible lurch.
 
   mosaic.style.setProperty('--mo-photo-scale','1');
+  if(PAPER){   // Paper: the centre photo covers the screen when zoomed in, and shrinks to its tile as the wall zooms out
+    const k=1-z;mosaic.style.setProperty('--mo-w',`${(pin.clientWidth/from*k+mid.clientWidth*z).toFixed(1)}px`);mosaic.style.setProperty('--mo-h',`${(vh/from*k+mid.clientHeight*z).toFixed(1)}px`);
+  }
   const dim=seg(.66,.96);
   mosaic.style.setProperty('--mo-dim',(1-.8*dim).toFixed(3));
   mosaic.style.setProperty('--mo-neighbours',(Math.min(1,z*4)*(1-.8*dim)).toFixed(3));
@@ -2085,7 +2089,6 @@ let ly=0,navIdle=0;
 addEventListener('scroll',()=>{const y=scrollY,h=document.getElementById('hdr');
   h.classList.toggle('solid',y>36);heroNav();
   document.documentElement.classList.toggle('paper-scrolled',y>8);
-  document.documentElement.classList.toggle('paper-popped',y>=innerHeight);   // Paper: the bar sits under the hero and scrolls away with it; it pops up to the top edge only once the hero is behind you
   clearTimeout(navIdle);
   const canHide=()=>scrollY>8&&!(document.documentElement.dataset.theme==='paper'&&document.documentElement.classList.contains('on-home')&&scrollY<innerHeight)&&!navlinks.classList.contains('open')&&!document.body.classList.contains('vf-in')&&!document.documentElement.classList.contains('cb-pen-hold');
   if(Math.abs(y-ly)>=8){
