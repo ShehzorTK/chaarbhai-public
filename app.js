@@ -1872,6 +1872,7 @@ let jumpAfter=null;
 function render(path){
   clearTimeout(navIdle);
   if(window.cbLog)cbLog('render '+path);
+  if(PAPER)setMenu(false); // Release menu isolation before moving the header or replacing the page.
   VF.close();
   PS.unmount(); // Restore the Photos-owned header before replacing its DOM.
   if(PAPER)document.body.insertBefore(document.getElementById('hdr'),main);   // Paper: the bar goes back to the top before the page is swapped
@@ -2060,10 +2061,26 @@ document.addEventListener('click',e=>{
 });
 
 const burger=document.getElementById('burger'),navlinks=document.getElementById('navlinks');
+/* Paper Home nests the header in main. Isolate sibling branches, never an
+   ancestor of the menu; retain existing inert state when the overlay closes. */
+let paperMenuInert=[];
+function paperMenuIsolation(open){
+  paperMenuInert.forEach(([el,inert])=>{el.inert=inert});paperMenuInert=[];
+  if(!open)return;
+  let branch=document.getElementById('hdr');
+  while(branch&&branch!==document.body){
+    [...branch.parentElement.children].forEach(el=>{
+      if(el!==branch&&!/^(SCRIPT|STYLE|LINK)$/.test(el.tagName)){
+        paperMenuInert.push([el,el.inert]);el.inert=true;
+      }
+    });
+    branch=branch.parentElement;
+  }
+}
 const setMenu=o=>{navlinks.classList.toggle('open',o);burger.classList.toggle('x',o);
   burger.setAttribute('aria-expanded',o);document.body.classList.toggle('locked',o);
   if(document.documentElement.dataset.theme==='paper'){   // Paper: the overlay is a modal, the page behind is inert
-    ['main','footer'].forEach(q=>{const e=document.querySelector(q);if(e)e.inert=o});
+    paperMenuIsolation(o);
     if(o){const f=navlinks.querySelector('a:not(.book)');if(f)f.focus({preventScroll:true})}
   }};
 burger.addEventListener('click',()=>setMenu(!navlinks.classList.contains('open')));
