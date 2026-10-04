@@ -400,9 +400,10 @@ html[data-theme="paper"] .band:not(.voices) figure{display:none}
 html[data-theme="paper"] .band:not(.voices) h2.d2{font-size:clamp(40px,8vw,120px);line-height:.98}
 html[data-theme="paper"] .band:not(.voices) .lead{margin:clamp(22px,3vw,40px) auto 0;max-width:46ch;font-size:clamp(16px,1.35vw,19px)}
 
-/* ---- inquire screen: big words on aubergine, four small portraits dimmed to 27% like texture ---- */
+/* ---- inquire screen: flat brown, big centred words, no photos (the look "We stay out of the way" had before the swap) ---- */
 html[data-theme="paper"] .cta{position:relative;min-height:100svh;display:grid;align-content:center;justify-items:center;text-align:center;overflow:hidden;padding:calc(var(--paper-nav-h) + 24px) var(--pad) 90px}
-html[data-theme="paper"] .cta h2{font-size:clamp(36px,7vw,104px);line-height:1;position:relative;z-index:1}
+html[data-theme="paper"] .cta h2{font-size:clamp(40px,8vw,120px);line-height:.98;position:relative;z-index:1}
+html[data-theme="paper"] .cta .lead{margin-left:auto;margin-right:auto;max-width:46ch;font-size:clamp(16px,1.35vw,19px)}
 html[data-theme="paper"] .cta .lead,html[data-theme="paper"] .cta .btn{position:relative;z-index:1}
 html[data-theme="paper"] .cta .btn{font-size:16px}
 html[data-theme="paper"] .cta-ph span{position:absolute;width:clamp(90px,15vw,210px);aspect-ratio:4/5;opacity:.27;border:1px solid #F2EBDE;overflow:hidden}
