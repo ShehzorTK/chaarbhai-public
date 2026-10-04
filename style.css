@@ -689,11 +689,25 @@ footer{padding:clamp(48px,6vw,84px) var(--pad) 26px;border-top:1px solid var(--l
   transition:color .3s var(--ease),transform .3s var(--ease)}
 .fbot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;padding-top:24px;
   border-top:1px solid var(--line);color:var(--gold)}
+.fbot-copy{display:contents}
+.credit-link{display:contents;color:inherit}
+.booking-mobile{display:none}
 .fbot .credit-logo{height:15px;width:auto;display:block;opacity:.9}
 @media(max-width:820px){
   .fbot{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px 20px;align-items:start}
   .fbot>span:nth-child(2){text-align:right}
   .fbot .credit-logo{grid-column:1/-1;justify-self:end;height:11px;max-width:120px;object-fit:contain}
+}
+@media(max-width:700px){
+  .fbot{font-size:var(--t-small);line-height:1.35}
+  .fbot-copy{display:flex;flex-direction:column;gap:2px}
+  .fbot-copy>span{font-family:var(--f-serif);font-size:var(--t-small);font-weight:400;letter-spacing:.025em;text-transform:none;line-height:1.6;color:var(--dim)}
+  .fbot>span.fbot-booking{grid-column:1/-1;grid-row:1;text-align:center;padding-bottom:12px;border-bottom:1px solid var(--line)}
+  .fbot-booking .booking-desktop{display:none!important}
+  .fbot-booking .booking-mobile{display:block!important}
+  .fbot-copyright{grid-column:1;grid-row:2;text-align:left}
+  .fbot .credit-link{grid-column:2;grid-row:2;justify-self:end;align-self:end;display:block}
+  .fbot .credit-logo{grid-row:auto}
 }
 
 /* Work: founder portrait and a short introduction. */
