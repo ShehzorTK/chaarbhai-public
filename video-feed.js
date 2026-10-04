@@ -225,6 +225,11 @@ function open(id){
   S.feed.addEventListener('touchstart',drop,{passive:true});
   root.addEventListener('click',onClick);
   S.pro=document.getElementById('vf-pro');
+  reserveEntryLayout(S);
+  S.entryWheel=e=>enterWheel(e);S.entryTouchStart=e=>entryTouchStart(e);S.entryTouchMove=e=>entryTouchMove(e);
+  addEventListener('wheel',S.entryWheel,{capture:true,passive:false});
+  addEventListener('touchstart',S.entryTouchStart,{capture:true,passive:true});
+  addEventListener('touchmove',S.entryTouchMove,{capture:true,passive:false});
   if(S.pro)S.pro.addEventListener('click',e=>{const b=e.target.closest('.pro-row');if(!b)return;jump(+b.dataset.first);alignFeed(true)});
   root.addEventListener('load',onImg,true);
   root.addEventListener('error',onImg,true);
@@ -259,15 +264,68 @@ function open(id){
 
 /* Something above the feed changed size after it was lined up (the web fonts arriving and rewrapping the heading,
    the header changing height, the phone turning): line it up again, if the feed is the thing on screen. */
-function realign(){if(S&&S.aligned&&!document.body.classList.contains('vf-full'))requestAnimationFrame(()=>alignFeed(false))}
+function realign(){if(S&&S.aligned&&!S.entry&&!document.body.classList.contains('vf-full'))requestAnimationFrame(()=>alignFeed(false))}
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(realign);
-{let w=innerWidth;addEventListener('resize',()=>{if(innerWidth!==w){w=innerWidth;setTimeout(realign,250)}},{passive:true})}
+{let w=innerWidth;addEventListener('resize',()=>{if(innerWidth!==w){w=innerWidth;if(S)reserveEntryLayout(S);setTimeout(realign,250)}},{passive:true})}
+
+function reserveEntryLayout(state){
+  if(document.documentElement.dataset.theme!=='paper')return;
+  const h=document.getElementById('hdr');if(!h)return;
+  const solid=h.classList.contains('solid');
+  h.classList.remove('solid');const expanded=h.offsetHeight;
+  h.classList.add('solid');state.headerGap=h.offsetHeight;
+  h.classList.toggle('solid',solid);
+  state.root.style.setProperty('--hh',state.headerGap+'px');
+  if(state.pro)state.pro.style.setProperty('--hh',expanded+'px');
+}
+const entryGap=()=>S.headerGap||(document.getElementById('hdr')?.offsetHeight||0);
+function canEnter(){
+  return S&&!document.body.classList.contains('locked')&&!document.body.classList.contains('vf-full')&&
+    S.root.getBoundingClientRect().top>entryGap()+3;
+}
+function cancelEntry(){
+  if(!S?.entry)return;
+  cancelAnimationFrame(S.entry.frame);S.entry=null;
+  scrollTo({top:scrollY,behavior:'instant'});
+}
+/* The first gesture travels the outer document to the first film. Its tail
+   cannot advance the inner feed until this handoff lands and the input rests. */
+function startEntry(){
+  if(!S||S.entry)return;
+  const state=S,entry=state.entry={frame:0,start:performance.now(),last:performance.now(),stable:0};
+  alignFeed(true);
+  const land=now=>{
+    if(S!==state||state.entry!==entry)return;
+    entry.stable=Math.abs(state.root.getBoundingClientRect().top-entryGap())<=3?entry.stable+1:0;
+    if(entry.stable>=3&&now-entry.last>=180||now-entry.start>=1500){state.entry=null;return}
+    entry.frame=requestAnimationFrame(land);
+  };
+  entry.frame=requestAnimationFrame(land);
+}
+function enterWheel(e){
+  if(!S||e.ctrlKey||e.defaultPrevented||Math.abs(e.deltaX)>Math.abs(e.deltaY))return;
+  if(S.entry&&e.deltaY<0){cancelEntry();return}
+  if(e.deltaY<=0||(!S.entry&&!canEnter()))return;
+  if(!S.entry&&Math.abs(e.deltaY)<8)return;
+  e.preventDefault();startEntry();if(S.entry)S.entry.last=performance.now();
+}
+function entryTouchStart(e){
+  if(!S)return;
+  const t=e.touches[0];S.entryTouch=canEnter()&&e.touches.length===1?{x:t.clientX,y:t.clientY,lastY:t.clientY}:null;
+}
+function entryTouchMove(e){
+  if(!S?.entryTouch||e.touches.length!==1)return;
+  const t=e.touches[0],touch=S.entryTouch,dy=touch.y-t.clientY,dx=touch.x-t.clientX,reverse=t.clientY-touch.lastY;touch.lastY=t.clientY;
+  if(S.entry&&reverse>8){cancelEntry();S.entryTouch=null;return}
+  if(dy<=12||Math.abs(dx)>Math.abs(dy)||(!S.entry&&!canEnter()))return;
+  if(e.cancelable)e.preventDefault();startEntry();if(S.entry)S.entry.last=performance.now();
+}
 
 /* put the feed's top edge just under the site header, so it fills the screen */
 function alignFeed(smooth){
   if(!S)return;
   const hdr=document.getElementById('hdr');
-  const top=S.root.getBoundingClientRect().top+scrollY-(hdr?hdr.offsetHeight:0);
+  const top=S.root.getBoundingClientRect().top+scrollY-(S.headerGap||(hdr?hdr.offsetHeight:0));
   S.aligned=true;
   scrollTo({top:Math.max(0,top),behavior:smooth&&!S.reduce?'smooth':'instant'});
 }
@@ -284,6 +342,8 @@ function close(opts){
   if(!S)return;
   if(isFull())exitFull();
   const s=S; S=null;
+  if(s.entry)cancelAnimationFrame(s.entry.frame);
+  removeEventListener('wheel',s.entryWheel,true);removeEventListener('touchstart',s.entryTouchStart,true);removeEventListener('touchmove',s.entryTouchMove,true);
   clearTimeout(s.deb);clearTimeout(s.flashT);clearTimeout(s.nbT);clearInterval(s.poll);
   s.io.disconnect();s.vio.disconnect();removeEventListener('scroll',s.onScroll);
   s.players.forEach(r=>kill(r));

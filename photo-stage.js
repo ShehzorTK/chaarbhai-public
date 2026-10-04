@@ -132,14 +132,21 @@ function cool(i){
   coolRow(el);
   $('.ps-body',el).textContent='';
 }
-function activate(i){
-  if(!S||i<0||i>=S.data.length||i===S.active)return;
+function activate(i,entrance=true){
+  if(!S||i<0||i>=S.data.length)return;
+  const changed=i!==S.active;
   const pv=S.active;S.active=i;
-  if(pv>=0){S.slides[pv].inert=true;S.slides[pv].classList.remove('is-active')}
-  S.slides[i].inert=false;S.slides[i].classList.add('is-active');
-  /* only the old and new neighbourhoods can hold live strips: warm the new three, cool the rest of the old three */
-  const lo=Math.min(i,pv<0?i:pv)-1,hi=Math.max(i,pv<0?i:pv)+1;
-  for(let k=Math.max(0,lo);k<=Math.min(S.slides.length-1,hi);k++){if(Math.abs(k-i)<=1)warm(k);else cool(k)}
+  if(changed){
+    if(pv>=0){S.slides[pv].inert=true;S.slides[pv].classList.remove('is-active','is-jump')}
+    S.slides[i].inert=false;
+    S.slides[i].classList.toggle('is-jump',!entrance);
+    S.slides[i].classList.add('is-active');
+  }
+  // Release old strips before warming the new neighbourhood. A jump may have
+  // prepared one distant strip; cancellation restores the same three-slot window.
+  S.slides.forEach((el,k)=>{if(el._live&&Math.abs(k-i)>1)cool(k)});
+  for(let k=Math.max(0,i-1);k<=Math.min(S.slides.length-1,i+1);k++)warm(k);
+  if(!changed)return;
   const d=S.data[i];
   S.tintNow=tintOf(d);applyTint();
   VF.markCat(S.root,catIndex(d.c),S.reduce);
@@ -151,6 +158,69 @@ function activate(i){
 const headH=()=>{const h=document.getElementById('hdr');return h?h.offsetHeight:0};
 const slideTop=i=>S.slides[i].getBoundingClientRect().top+scrollY-headH()-S.bar.offsetHeight;
 const feedTop=(state,i)=>state.slides[i].getBoundingClientRect().top-state.feed.getBoundingClientRect().top+state.feed.scrollTop-(state.contained?headH()+state.bar.offsetHeight:0);
+
+/* The header condenses as the document starts moving. Its live --hh must not
+   resize every slide while Safari is travelling to a chapter. Each region
+   reserves the header state it actually appears beneath; the header itself
+   keeps its existing condensed appearance and behaviour. */
+function sizeLayout(state){
+  state.layoutWidth=innerWidth;
+  if(document.documentElement.dataset.theme!=='paper'||state.internal)return;
+  const h=document.getElementById('hdr');if(!h)return;
+  const solid=h.classList.contains('solid');
+  h.classList.remove('solid');const expanded=h.offsetHeight;
+  h.classList.add('solid');const condensed=h.offsetHeight;
+  h.classList.toggle('solid',solid);
+  state.root.style.setProperty('--hh',condensed+'px');
+  const pro=document.getElementById('pro');if(pro)pro.style.setProperty('--hh',expanded+'px');
+}
+
+/* The first couple peeks below an opener. Prepare it at the start of a jump
+   when an offscreen source slot is available, otherwise as it approaches. Never exceed three live
+   strips, or clear the current story while it remains the active selection. */
+function prepareLanding(state,i,early=false){
+  const next=i+1,slide=state.slides[next];
+  if(!slide||slide._live||state.data[next].open)return;
+  const r=state.slides[i].getBoundingClientRect();
+  if(!early&&(r.top>innerHeight*2||r.bottom<-innerHeight))return;
+  const edge=headH()+state.bar.offsetHeight;
+  state.slides.forEach((el,k)=>{
+    if(!el._live||k===state.active||k===next)return;
+    const box=el.getBoundingClientRect();
+    if(box.bottom<=edge||box.top>=innerHeight)cool(k);
+  });
+  if(state.slides.filter(el=>el._live).length<3)warm(next);
+}
+
+/* Decode the landing photos before the journey, rather than creating a strip
+   and starting image decoding during the fastest part of a distant scroll. */
+function decodeLanding(state,i,jump){
+  if(jump.ready)return;
+  const slide=state.slides[i+1];if(!slide||!slide._live)return;
+  const images=[...slide.querySelectorAll('.fr-img img')].slice(0,2);
+  if(!images.length){jump.loaded=true;return}
+  jump.ready=Promise.allSettled(images.map(im=>{
+    if(im.dataset.on!=='1')hydrate(im);
+    if(im.decode)return im.decode();
+    if(im.complete)return Promise.resolve();
+    return new Promise(resolve=>{im.addEventListener('load',resolve,{once:true});im.addEventListener('error',resolve,{once:true})});
+  })).then(()=>{jump.loaded=true});
+}
+function clearVeil(state,immediate=false){
+  const veil=state.veil;if(!veil)return;
+  clearTimeout(veil.wait);clearTimeout(veil.exit);
+  if(immediate){veil.el.remove();state.veil=null;return}
+  veil.el.classList.remove('is-moving');
+  veil.exit=setTimeout(()=>{veil.el.remove();if(state.veil===veil)state.veil=null},180);
+}
+function beginLanding(state,i,jump,smooth){
+  clearVeil(state,true);
+  prepareLanding(state,i,true);decodeLanding(state,i,jump);
+  if(!smooth||state.reduce||state.internal||Math.abs(slideTop(i)-scrollY)<innerHeight*2)return;
+  const el=document.createElement('i');el.className='ps-jump-veil';el.setAttribute('aria-hidden','true');
+  state.root.appendChild(el);state.veil={el,jump,wait:0,exit:0};
+  requestAnimationFrame(()=>{if(state.veil?.jump===jump)el.classList.add('is-moving')});
+}
 
 /* Once entered, the preview has one native vertical scroll owner, including
    gestures on its fixed header and rail. Restore those nodes before hiding or
@@ -173,9 +243,10 @@ function containFeed(state){
 function releaseFeed(){
   if(!S)return;
   S.suspended=true;
+  finishJump(S,false);clearVeil(S,true);
+  document.documentElement.classList.remove('snap-y');
   if(!S.contained)return;
   const state=S;
-  finishJump(state,false);
   state.headerHome.replaceWith(state.header);
   state.root.insertBefore(state.bar,state.feed);
   state.root.classList.remove('ps-contained');
@@ -199,7 +270,8 @@ function goFeed(state,i,smooth){
     if(!shown()){finishJump(state);return}
     const top=Math.min(feedTop(state,i),Math.max(0,state.feed.scrollHeight-state.feed.clientHeight));
     jump.stable=Math.abs(state.feed.scrollTop-top)<=2?jump.stable+1:0;
-    if(jump.stable>=3){activate(i);finishJump(state);return}
+    prepareLanding(state,i);
+    if(jump.stable>=3){activate(i,false);finishJump(state);return}
     if(now-jump.start>=3000){finishJump(state);return}
     jump.frame=requestAnimationFrame(land);
   };
@@ -210,10 +282,19 @@ function goFeed(state,i,smooth){
    keep an old snap target through layout changes and queued observer callbacks. */
 function finishJump(state,resume=true){
   if(!state.jump)return;
-  cancelAnimationFrame(state.jump.frame);state.jump=null;
+  const jump=state.jump;cancelAnimationFrame(jump.frame);state.jump=null;
+  if(!resume)clearVeil(state,true);
+  else if(state.veil?.jump===jump){
+    if(jump.loaded||!jump.ready)clearVeil(state);
+    else{
+      const veil=state.veil,release=()=>{if(state.veil===veil)clearVeil(state)};
+      jump.ready.then(release,release);
+      veil.wait=setTimeout(release,800); // A failed/stalled photo must not leave the scene obscured.
+    }
+  }
   if(resume&&S===state){observe();measure()}
 }
-function cancelJump(){if(S&&S.jump)finishJump(S)}
+function cancelJump(){if(S){clearVeil(S,true);if(S.jump)finishJump(S)}}
 
 /* open on a category, instantly; ordinary Work entry stays on the prologue */
 function go(id,smooth){
@@ -228,6 +309,7 @@ function go(id,smooth){
   if(state.internal){goFeed(state,i,smooth);return}
   const jump=state.jump={frame:0,start:performance.now(),stable:0,scrolled:false,activated:false,activatedAt:0};
   if(state.io){state.io.disconnect();state.io.takeRecords()}
+  beginLanding(state,i,jump,smooth);
   // Openers already exist. Keep the current strips intact until the native
   // scroll has landed, so their replacement cannot re-snap the old destination
   // before the browser has established the requested opener as its destination.
@@ -243,13 +325,15 @@ function go(id,smooth){
     const max=Math.max(0,state.host.scrollHeight-innerHeight);
     const top=Math.max(0,Math.min(max,slideTop(i)));
     const landed=Math.abs(scrollY-top)<=2;
+    prepareLanding(state,i);
+    decodeLanding(state,i,jump);
     jump.stable=landed?jump.stable+1:0;
     if(now-jump.start>=(smooth&&!state.reduce?3000:1200)){finishJump(state);return}
     if(!jump.activated&&jump.stable>=3&&now-jump.start>=180){
       // Only now replace neighbouring strips and update the category marker.
       // Keep observer ownership through a short post-activation landing check.
       jump.activated=true;jump.activatedAt=now;jump.stable=0;
-      activate(i);measure();
+      activate(i,false);measure();
     }else if(jump.activated&&jump.stable>=3&&now-jump.activatedAt>=180){
       finishJump(state);return;
     }
@@ -312,7 +396,7 @@ function observe(){
   S.io=observer;
   S.slides.forEach(el=>S.io.observe(el));
 }
-function onResize(){if(!S)return;if(!S.jump)observe();onScroll()}
+function onResize(){if(!S)return;if(S.layoutWidth!==innerWidth)sizeLayout(S);if(!S.jump)observe();onScroll()}
 
 /* ?notint switches the ground tint off, to find out whether it is what a browser chokes on (read once, at mount) */
 const Q={has:k=>new URLSearchParams(location.search).has(k)};
@@ -324,6 +408,7 @@ function mount(then){
      reduce:matchMedia('(prefers-reduced-motion: reduce)').matches,active:-1,cand:-1,deb:0,
      host:document.documentElement,notint:Q.has('notint')};
   S.slides.forEach(el=>{el.inert=true});
+  sizeLayout(S);
   addEventListener('resize',onResize,{passive:true});
   addEventListener('scroll',onScroll,{passive:true});
   if(S.internal)S.feed.addEventListener('scroll',onScroll,{passive:true});
@@ -362,6 +447,7 @@ function unmount(){
   if(!S)return;
   releaseFeed();
   finishJump(S,false);
+  clearVeil(S,true);
   clearTimeout(S.deb);if(S.io)S.io.disconnect();
   const pro=document.getElementById('pro');if(pro&&S.proClick)pro.removeEventListener('click',S.proClick);
   S.host.style.removeProperty('--tint');S.host.style.removeProperty('--tint-l');

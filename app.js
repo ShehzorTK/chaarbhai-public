@@ -142,6 +142,10 @@ const proof=(cls='')=>`<div class="proof ${cls}">
     </span>
   </a>
 </div>`;
+const paperProof=()=>`<div class="paper-proof" aria-label="Read our reviews">
+  <a data-review-source="google" href="${PROOF.google.url}" target="_blank" rel="noopener" aria-label="Rated ${PROOF.google.rating} out of 5 from ${PROOF.google.count} Google reviews. Read them on Google."><span>Google</span><small>${PROOF.google.rating.toFixed(1)} out of 5 · ${PROOF.google.count} reviews</small></a>
+  <a data-review-source="meta" href="${PROOF.meta.url}" target="_blank" rel="noopener" aria-label="${PROOF.meta.recommend}% recommend, from ${PROOF.meta.count} reviews on Facebook. Read them on Facebook."><span>Facebook</span><small>${PROOF.meta.recommend}% recommend · ${PROOF.meta.count} reviews</small></a>
+</div>`;
 
 const ARROW=d=>`<svg viewBox="0 0 16 16" aria-hidden="true"><path d="${d==='l'?'M13 8H3M7 4 3 8l4 4':'M3 8h10M9 4l4 4-4 4'}" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
@@ -158,12 +162,12 @@ function paperCards(){
   return `<section class="pcards" aria-label="Recent work" style="--pc-n:${list.length}">
   <div class="pcards-stick">
     <div class="pcards-track" tabindex="0" role="group" aria-label="Recent work, ${list.length} chapters">${list.map((c,i)=>`
-      <article class="pcard pc-${i+1}">
+      <article class="pcard pc-${i+1}" id="paper-chapter-${c.id}">
         <figure class="pc-ph">${pic(c.pcover,'(max-width:900px) 80vw, 46vw')}</figure>
         <div class="pc-tx"><span class="pc-no" aria-hidden="true">${c.no}</span><h2>${c.name}</h2><p>${c.desc}</p><span class="pc-tag">${c.alt}</span>
           <button class="btn" data-nav-to="#/portfolio/photos/${c.id}"><span>View the work</span><i></i></button></div>
-        <ol class="pc-dots" aria-hidden="true">${list.map((h,j)=>`<li${j===i?' class="on"':''}>${h.no}</li>`).join('')}</ol>
       </article>`).join('')}</div>
+    <nav class="pc-chapter-nav" aria-label="Recent work chapters"><ol class="pc-dots">${list.map((h,j)=>`<li><a href="#paper-chapter-${h.id}" data-paper-chapter="${j}" aria-label="Go to chapter ${h.no}: ${esc(h.name)}"${j===0?' aria-current="step"':''}>${h.no}</a></li>`).join('')}</ol></nav>
   </div>
 </section>`;
 }
@@ -193,13 +197,18 @@ function paperRails(){
   });
 }
 function paperCardsPaint(pc){
-  const n=pc.querySelectorAll('.pcard').length;
+  const cards=[...pc.querySelectorAll('.pcard')],n=cards.length;
+  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
   if(matchMedia('(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)').matches){
-    // Each card gets a screen of scrolling: it rests, slides across in the middle of that screen, and rests again; the last card holds for another 80% screen before the page moves on.
-    const r=pc.getBoundingClientRect(),y=Math.max(0,-r.top)/innerHeight,k=Math.min(n-1,Math.floor(y)),f=Math.min(1,y-k);
-    const t=Math.max(0,Math.min(1,(f-.3)/.4)),u=y>=n-1?n-1:k+t*t*(3-2*t);
-    pc.style.setProperty('--pc-x',`${-u*100}vw`);
-  }else pc.style.removeProperty('--pc-x');
+    // One viewport of vertical travel maps directly to one chapter destination.
+    const r=pc.getBoundingClientRect(),y=Math.max(0,-r.top)/innerHeight,u=Math.max(0,Math.min(n-1,y));
+    pc.querySelector('.pcards-track').style.transform=`translate3d(${-u*100}vw,0,0)`;
+  }else pc.querySelector('.pcards-track').style.removeProperty('transform');
+  const current=clamp(Math.round(pc.querySelector('.pcards-track').scrollLeft/Math.max(1,cards[0]?.getBoundingClientRect().width||innerWidth)),0,n-1);
+  const desktop=matchMedia('(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)').matches;
+  const index=desktop?clamp(Math.round(Math.max(0,-pc.getBoundingClientRect().top)/Math.max(1,innerHeight)),0,n-1):current;
+  pc.querySelectorAll('[data-paper-chapter]').forEach((a,i)=>{if(i===index)a.setAttribute('aria-current','step');else a.removeAttribute('aria-current')});
+  const nav=pc.querySelector('.pc-chapter-nav');if(nav&&cards[index])nav.style.color=getComputedStyle(cards[index]).getPropertyValue('--paper').trim();
 }
 
 const P={};
@@ -288,7 +297,7 @@ ${PAPER?paperCards():`<section class="day" style="padding-top:0">
   <figure class="v-lead">
     <blockquote>${PAPER?paperWrite('They turned my dream Bollywood wedding into a reality.'):'<p><span class="hang">“</span>They turned my dream Bollywood wedding into a reality.”</p>'}</blockquote>
     <figcaption>Zainab Jafari</figcaption>
-    ${PAPER?`<div class="rv" data-d="2">${proof('proof-s')}</div>`:proof('proof-s')}
+    ${PAPER?`<div class="rv" data-d="2">${paperProof()}</div>`:proof('proof-s')}
   </figure>
   <div class="v-more">
     <figure${PAPER?' class="rv" data-d="1"':''}><blockquote><p>“You guys have literally covered each and every moment.”</p></blockquote><figcaption>Jannat Hashmi</figcaption></figure>
@@ -308,7 +317,8 @@ ${PAPER?paperCards():`<section class="day" style="padding-top:0">
 P['/portfolio']=()=>`
 <div id="wk-videos" hidden></div>
 
-<div id="wk-photos">${PS.html()}</div>`;
+<div id="wk-photos">${PS.html()}</div>
+`;
 
 P['/about']=()=>`
 <section class="hero" style="min-height:70svh;justify-content:flex-end">
@@ -338,6 +348,17 @@ P['/about']=()=>`
         <span class="t">${t}</span>
         <span class="d">${d}</span>
       </div>`).join('')}
+  </div>
+</section>
+
+<section class="work-founder" aria-labelledby="founder-name">
+  <figure class="founder-portrait" aria-label="Space reserved for a portrait of Fahad Raza">
+    <span aria-hidden="true">Fahad Raza</span>
+  </figure>
+  <div class="founder-copy">
+    <span class="mono">Founder</span>
+    <h2 id="founder-name">Fahad Raza</h2>
+    <p class="lead">Originally from Pakistan, Fahad has been taking photographs since 2009. He loves getting to know the people in front of his camera, sharing a laugh, and catching the little moments in between. You’ll usually find him with a camera in his hands and a smile on his face.</p>
   </div>
 </section>
 
@@ -713,7 +734,7 @@ P['/testimonials']=()=>`
 <section class="hero" style="min-height:56svh;justify-content:flex-end">
   <h1 class="d1 rv" data-d="1">What couples<br>have said</h1>
   <p class="lead rv" data-d="2" style="margin-top:24px">${REVIEWS.length} of them below, from Google and Facebook, copied across as written, typos and all. Tap one to read it in full where it was posted.</p>
-  ${proof()}
+  ${PAPER?paperProof():proof()}
 </section>
 
 <section style="padding-top:0">
@@ -788,7 +809,7 @@ themeSw.addEventListener('click',()=>{
 /* clicks worth counting: review badges, the hiring email, social links */
 document.addEventListener('click',e=>{
   const a=e.target.closest('a');if(!a)return;
-  if(a.classList.contains('pb'))track('review_badge_click',{platform:a.classList.contains('pb-g')?'google':'meta'});
+  if(a.dataset.reviewSource||a.classList.contains('pb'))track('review_badge_click',{platform:a.dataset.reviewSource||(a.classList.contains('pb-g')?'google':'meta')});
   else if(a.href.startsWith('mailto:')&&a.closest('.hire'))track('hiring_email_click');
   else if(/instagram\.com|youtube\.com|tiktok\.com|linkedin\.com/.test(a.href))track('social_click',{network:(a.href.match(/(instagram|youtube|tiktok|linkedin)/)||[])[1]});
 });
@@ -986,6 +1007,7 @@ function sequences(seqs){
     };
     strip.addEventListener('scroll',()=>{upd();clearTimeout(settleTimer);settleTimer=setTimeout(()=>target=null,180);},{passive:true});
     strip.addEventListener('scrollend',()=>{target=null;upd();});
+    strip.addEventListener('wheel',()=>{target=null;},{passive:true}); // Trackpad input interrupts an arrow glide; resume from the visible frame.
     strip.addEventListener('pointerdown',()=>target=null,{passive:true});
     strip.addEventListener('touchstart',()=>target=null,{passive:true});
     prev.addEventListener('click',()=>move(-1));next.addEventListener('click',()=>move(1));
@@ -998,7 +1020,7 @@ function sequences(seqs){
    within a strip-width of what's showing in it have a picture at all. Every other strip is overflow:hidden
    (no scroll layer) and all its frames hold the 1px placeholder. Coming back is quick: the browser keeps the files.
    Phones (any orientation) use the 640px copy; bigger screens pick from the full set. The lightbox reads data-*. */
-const stripIO=new Map();
+const stripIO=new Map(),parkTimers=new WeakMap(),pendingParks=[];
 /* background work waits while the page is moving, so a scroll (and the header) never queue behind it */
 let lastScroll=0;addEventListener('scroll',()=>{lastScroll=performance.now()},{passive:true});
 const scrolling=()=>performance.now()-lastScroll<250;
@@ -1015,8 +1037,24 @@ function warmRow(seq){
   strip.classList.remove('cold');
   if(strip._upd){const u=strip._upd,run=()=>scrolling()?setTimeout(run,150):u();setTimeout(run,0)}   // reads layout: not mid-scroll
   const io=new IntersectionObserver(es=>es.forEach(e=>{
-    const im=e.target,on=im.dataset.on==='1';
-    if(e.isIntersecting&&!on)hydrate(im);else if(!e.isIntersecting&&on)park(im);
+    const im=e.target,on=im.dataset.on==='1',pending=parkTimers.get(im);
+    if(e.isIntersecting){
+      if(pending){clearTimeout(pending);parkTimers.delete(im);const i=pendingParks.findIndex(p=>p.im===im);if(i>=0)pendingParks.splice(i,1)}
+      if(!on)hydrate(im);
+    }
+    else if(on&&!pending){
+      // Reversing a trackpad glide often re-enters the prior frame immediately.
+      // Keep at most four recently seen images decoded briefly; coolRow drops them immediately.
+      if(pendingParks.length>=4){
+        const oldest=pendingParks.shift();clearTimeout(oldest.timer);parkTimers.delete(oldest.im);if(oldest.im.dataset.on==='1')park(oldest.im);
+      }
+      const item={im,strip,timer:0};
+      item.timer=setTimeout(()=>{
+        const i=pendingParks.indexOf(item);if(i>=0)pendingParks.splice(i,1);
+        parkTimers.delete(im);if(stripIO.get(strip)===io&&im.dataset.on==='1')park(im);
+      },800);
+      parkTimers.set(im,item.timer);pendingParks.push(item);
+    }
   }),{root:strip,rootMargin:'0px 100%'});
   strip.querySelectorAll('.fr-img img').forEach(im=>io.observe(im));
   stripIO.set(strip,io);
@@ -1024,7 +1062,8 @@ function warmRow(seq){
 function coolRow(seq){
   const strip=seq.querySelector('.seq-strip');if(!strip)return;
   const io=stripIO.get(strip);if(io){io.disconnect();stripIO.delete(strip)}
-  strip.querySelectorAll('.fr-img img[data-on="1"]').forEach(park);
+  for(let i=pendingParks.length-1;i>=0;i--)if(pendingParks[i].strip===strip){const p=pendingParks.splice(i,1)[0];clearTimeout(p.timer);parkTimers.delete(p.im)}
+  strip.querySelectorAll('.fr-img img').forEach(im=>{const timer=parkTimers.get(im);if(timer)clearTimeout(timer);parkTimers.delete(im);if(im.dataset.on==='1')park(im)});
   strip.classList.add('cold');
 }
 function photoWindow(){
@@ -1891,6 +1930,7 @@ function render(path){
   document.documentElement.classList.toggle('on-work',path==='/portfolio');
   document.documentElement.classList.toggle('on-contact',path==='/contact');
   document.documentElement.classList.toggle('on-home',path==='/');
+  document.documentElement.classList.toggle('paper-light-nav',path==='/about'||path==='/testimonials');
   if(path==='/portfolio'){sub.innerHTML=VF.toggleHTML('photos');sub.hidden=false}else{sub.hidden=true;sub.textContent=''}
   document.getElementById('hdr').classList.remove('hide');heroNav();
   observe();photoWindow();
@@ -2090,7 +2130,9 @@ if(document.documentElement.dataset.theme==='paper'){
   /* focus stays inside the overlay: the links, then the Close control */
   addEventListener('keydown',e=>{
     if(e.key!=='Tab'||!navlinks.classList.contains('open'))return;
-    const f=[...navlinks.querySelectorAll('a:not(.book)'),burger],i=f.indexOf(document.activeElement);
+    const visibleLinks=[...navlinks.querySelectorAll('a:not(.book)')];
+    if(document.documentElement.classList.contains('on-work'))visibleLinks.push(navlinks.querySelector('a.book'));
+    const f=[...visibleLinks.filter(Boolean),burger],i=f.indexOf(document.activeElement);
     e.preventDefault();f[(i+(e.shiftKey?-1:1)+f.length)%f.length].focus();
   });
   /* one photo per link, cross-faded when a link is hovered or focused (desktop) */
@@ -2172,44 +2214,84 @@ function tallyScene(){
 const tallyQueue=()=>{if(!tallyRaf)tallyRaf=requestAnimationFrame(tallyScene)};
 addEventListener('scroll',tallyQueue,{passive:true});addEventListener('resize',tallyQueue,{passive:true});
 
-/* Paper, desktop: slow, eased wheel scrolling (a cinematic feel), and the seven cards snap one chapter at a time.
-   Touch, keyboard and reduced motion keep the browser's own scrolling. Anything with a scroll of its own (Work, Films, the menu) is left alone. */
+/* Paper, desktop: keep page wheel easing, with one interruptible destination per Home chapter.
+   Touch, keyboard and reduced motion keep the browser's own scrolling. */
 function paperSmooth(){
   const R=document.documentElement;
-  let target=scrollY,cur=scrollY,raf=0,last=0,idle=0,dir=0,expected=null,rate=.07;
+  const capability=matchMedia('(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)');
+  let target=scrollY,cur=scrollY,raf=0,last=0,expected=null,rate=.07,cardMove=null;
   const max=()=>Math.max(0,R.scrollHeight-innerHeight);
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
   const own=el=>{for(;el&&el!==document.body&&el!==R;el=el.parentElement){const o=getComputedStyle(el).overflowY;if((o==='auto'||o==='scroll')&&el.scrollHeight>el.clientHeight+1)return true;if(el.tagName==='IFRAME'||el.tagName==='TEXTAREA')return true}return false};
   const off=()=>document.body.classList.contains('locked')||R.classList.contains('ps-viewing')||R.classList.contains('lb-open')||document.body.classList.contains('vf-in')||document.body.classList.contains('vf-full')||document.getElementById('navlinks').classList.contains('open');
+  const curve=t=>{
+    const bez=(u,a,b)=>3*(1-u)*(1-u)*u*a+3*(1-u)*u*u*b+u*u*u;
+    let lo=0,hi=1;for(let i=0;i<16;i++){const m=(lo+hi)/2;if(bez(m,.16,.3)<t)lo=m;else hi=m}
+    return bez((lo+hi)/2,1,1);
+  };
   const step=now=>{
     raf=0;const dt=Math.min(64,now-last||16);last=now;
-    if(expected!==null&&Math.abs(scrollY-expected)>3){target=cur=scrollY;expected=null;return}   // something else moved the page (a route change, a link): follow it
-    cur+=(target-cur)*(1-Math.pow(1-rate,dt/16.7));
-    if(Math.abs(target-cur)<.4)cur=target;
-    scrollTo(0,cur);expected=scrollY;
-    if(cur!==target)raf=requestAnimationFrame(step);else expected=null;
+    if(off()){target=cur=scrollY;cardMove=null;expected=null;return}
+    if(expected!==null&&Math.abs(scrollY-expected)>3){target=cur=scrollY;cardMove=null;expected=null;return}
+    if(cardMove){
+      const p=Math.min(1,(now-cardMove.start)/300);cur=cardMove.from+(cardMove.to-cardMove.from)*curve(p);
+      scrollTo(0,p===1?cardMove.to:cur);expected=scrollY;
+      if(p===1){cur=target=cardMove.to;cardMove=null;expected=null}
+    }else{
+      cur+=(target-cur)*(1-Math.pow(1-rate,dt/16.7));if(Math.abs(target-cur)<.4)cur=target;
+      scrollTo(0,cur);expected=scrollY;if(cur===target)expected=null;
+    }
+    if(cardMove||cur!==target)raf=requestAnimationFrame(step);
   };
   const go=()=>{if(!raf){last=performance.now();raf=requestAnimationFrame(step)}};
-  // after the wheel stops, rest on a chapter while the cards are pinned
-  const snap=()=>{
-    const pc=document.querySelector('.pcards');if(!pc||off())return;
-    const n=pc.querySelectorAll('.pcard').length,top=pc.getBoundingClientRect().top+scrollY,y=(scrollY-top)/innerHeight;
-    if(y<=0||y>=n-1)return;
-    const k=Math.floor(y),f=y-k,to=dir>0?(f>.03?k+1:k):(f<.97?k:k+1);
-    target=cur=scrollY;rate=.11;target=clamp(top+to*innerHeight,0,max());go();
+  let wheelBurst={direction:0,peak:0,last:0,lastAt:0,decayed:false};
+  const freshBurst=(direction,magnitude,time)=>{
+    const begin=()=>{wheelBurst={direction,peak:magnitude,last:magnitude,lastAt:time,decayed:false};return true};
+    const gap=time-wheelBurst.lastAt;
+    if(direction!==wheelBurst.direction||gap>110&&magnitude>=wheelBurst.peak*.42)return begin();
+    if(magnitude<wheelBurst.peak*.42)wheelBurst.decayed=true;
+    const renewed=wheelBurst.decayed&&magnitude>=Math.max(wheelBurst.last*1.4,wheelBurst.peak*.35);
+    wheelBurst.peak=Math.max(wheelBurst.peak,magnitude);wheelBurst.last=magnitude;wheelBurst.lastAt=time;
+    return renewed?begin():false;
+  };
+  const moveCard=(pc,fromIndex,toIndex,direction)=>{
+    const top=pc.getBoundingClientRect().top+scrollY,to=clamp(top+toIndex*innerHeight,0,max());
+    cardMove={from:scrollY,to,fromIndex,toIndex,direction,start:performance.now()};target=to;
+    go();
   };
   addEventListener('wheel',e=>{
+    if(!capability.matches){if(raf){cancelAnimationFrame(raf);raf=0;cardMove=null;expected=null;cur=target=scrollY}return}
     if(e.ctrlKey||e.defaultPrevented||off()||Math.abs(e.deltaX)>Math.abs(e.deltaY)||own(e.target))return;
-    e.preventDefault();
     const d=e.deltaMode===1?e.deltaY*16:e.deltaMode===2?e.deltaY*innerHeight:e.deltaY;
-    if(!raf)target=cur=scrollY;
-    dir=d>0?1:-1;rate=.07;
+    const dir=Math.sign(d),magnitude=Math.abs(d);if(!dir)return;
+    const pc=document.querySelector('.pcards');
+    if(pc){
+      const n=pc.querySelectorAll('.pcard').length,top=pc.getBoundingClientRect().top+scrollY,y=(scrollY-top)/innerHeight;
+      if(y>=-.02&&y<=n-1+.02){
+        if(!freshBurst(dir,magnitude,e.timeStamp||performance.now())){e.preventDefault();return}
+        const current=clamp(Math.round(y),0,n-1),source=cardMove?cardMove.toIndex:current;
+        const destination=cardMove&&dir!==cardMove.direction?cardMove.fromIndex:source+dir;
+        if(destination>=0&&destination<n){e.preventDefault();moveCard(pc,source,destination,dir);return}
+      }
+    }
+    wheelBurst.direction=0;e.preventDefault();
+    cardMove=null;if(!raf)target=cur=scrollY;rate=.07;
     target=clamp(target+d*.5,0,max());go();
-    clearTimeout(idle);idle=setTimeout(snap,160);
   },{passive:false});
+  addEventListener('click',e=>{
+    const link=e.target.closest?.('[data-paper-chapter]');if(!link)return;
+    const pc=link.closest('.pcards');if(!pc)return;
+    e.preventDefault();const i=Number(link.dataset.paperChapter),cards=[...pc.querySelectorAll('.pcard')],card=cards[i];if(!card)return;
+    wheelBurst.direction=0;
+    if(capability.matches){const y=(scrollY-(pc.getBoundingClientRect().top+scrollY))/innerHeight,from=cardMove?cardMove.toIndex:clamp(Math.round(y),0,cards.length-1);moveCard(pc,from,i,Math.sign(i-from)||1)}
+    else {card.scrollIntoView({block:'nearest',inline:'center',behavior:'auto'});homeSceneQueue()}
+  });
   addEventListener('scroll',()=>{if(!raf&&expected===null){target=cur=scrollY}},{passive:true});
+  document.addEventListener('scroll',e=>{if(e.target?.closest?.('.pcards-track'))homeSceneQueue()},true);
+  const mediaChanged=()=>{if(!capability.matches){if(raf)cancelAnimationFrame(raf);raf=0;cardMove=null;expected=null;cur=target=scrollY;document.querySelector('.pcards-track')?.style.removeProperty('transform')}homeSceneQueue()};
+  if(capability.addEventListener)capability.addEventListener('change',mediaChanged);else capability.addListener(mediaChanged);
 }
-if(PAPER&&matchMedia('(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)').matches)paperSmooth();
+if(PAPER)paperSmooth();
 
 function heroNav(){
   const h=document.getElementById('hdr'),hero=document.querySelector('.vhero');
@@ -2348,11 +2430,24 @@ function paintHomeScenes(){
   if(ab){
     const ps=[...ab.querySelectorAll('.ab-paras p')],ls=[...ab.querySelectorAll('.ab-l')];
     if(innerWidth>900&&!reduce){
-      const u=ab.offsetHeight/3,step=Math.max(0,Math.min(2,Math.round(-ab.getBoundingClientRect().top/u)));
-      ps.forEach((q,i)=>q.classList.toggle('on',i===step));ls.forEach((l,i)=>l.classList.toggle('lit',i<=step));
-      guidedStops(ab,'about',[0,u,2*u,2.5*u],0,2*u);
+      const u=ab.offsetHeight/3,progress=Math.max(0,Math.min(2,-ab.getBoundingClientRect().top/Math.max(1,u)));
+      if(PAPER){
+        ps.forEach((q,i)=>{
+          const distance=Math.abs(progress-i);
+          const weight=clamp((.48-distance)/.18),fade=weight*weight*(3-2*weight);
+          q.style.opacity=String(fade);
+          q.style.transform=`translateY(${Math.max(-6,Math.min(6,(i-progress)*6))}px)`;
+        });
+        ls.forEach((l,i)=>{l.style.opacity=String(.42+.58*clamp(progress-i+1));});
+        guideOff('about');
+      }else{
+        const step=Math.max(0,Math.min(2,Math.round(progress)));
+        ps.forEach((q,i)=>q.classList.toggle('on',i===step));ls.forEach((l,i)=>l.classList.toggle('lit',i<=step));
+        guidedStops(ab,'about',[0,u,2*u,2.5*u],0,2*u);
+      }
     }else{
-      guideOff('about');ps.forEach(q=>q.classList.remove('on'));
+      guideOff('about');ps.forEach(q=>{q.classList.remove('on');q.style.removeProperty('opacity');q.style.removeProperty('transform');});
+      ls.forEach(l=>l.style.removeProperty('opacity'));
       ps.forEach((q,i)=>ls[i]&&ls[i].classList.toggle('lit',reduce||q.getBoundingClientRect().top<=innerHeight*.55));
     }
   }else guideOff('about');
