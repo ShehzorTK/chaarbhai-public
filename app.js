@@ -168,6 +168,20 @@ function paperCards(){
 </section>`;
 }
 
+/* Paper: the big testimonial is written in as you scroll. Each word wipes in left to right in turn (a soft-edged mask driven by --p),
+   so the line reads as being written in script. The real sentence stays in the page for screen readers. */
+function paperWrite(text){
+  const words=text.split(' ');
+  return `<p class="wi"><span class="sr">“${text}”</span><span aria-hidden="true">${words.map((w,i)=>`<span class="wi-w">${i===0?'“':''}${w}${i===words.length-1?'”':''}</span>`).join(' ')}</span></p>`;
+}
+function paperWritePaint(){
+  const q=document.querySelector('.wi');if(!q)return;
+  const ws=q.querySelectorAll('.wi-w'),n=ws.length;
+  if(reduceMotion()){ws.forEach(w=>w.style.setProperty('--p',1));return}
+  const top=q.getBoundingClientRect().top,P=Math.max(0,Math.min(1,(innerHeight*.85-top)/(innerHeight*.5)));
+  ws.forEach((w,i)=>w.style.setProperty('--p',Math.max(0,Math.min(1,P*n-i)).toFixed(3)));
+}
+
 /* Paper: a small italic "chapter 03 ——— chapter 04" line along the bottom of each Home screen, so the page reads like a book */
 function paperRails(){
   const secs=[...document.querySelectorAll('#page>section')].filter(x=>!x.classList.contains('cta')&&!x.classList.contains('pcards'));
@@ -270,15 +284,15 @@ ${PAPER?paperCards():`<section class="day" style="padding-top:0">
 
 <section class="band voices">
   <figure class="v-lead">
-    <blockquote><p><span class="hang">“</span>They turned my dream Bollywood wedding into a reality.”</p></blockquote>
+    <blockquote>${PAPER?paperWrite('They turned my dream Bollywood wedding into a reality.'):'<p><span class="hang">“</span>They turned my dream Bollywood wedding into a reality.”</p>'}</blockquote>
     <figcaption>Zainab Jafari</figcaption>
-    ${proof('proof-s')}
+    ${PAPER?`<div class="rv" data-d="2">${proof('proof-s')}</div>`:proof('proof-s')}
   </figure>
   <div class="v-more">
-    <figure><blockquote><p>“You guys have literally covered each and every moment.”</p></blockquote><figcaption>Jannat Hashmi</figcaption></figure>
-    <figure><blockquote><p>“They made us feel completely at ease and captured every special moment so naturally.”</p></blockquote><figcaption>Zair Syed</figcaption></figure>
-    <figure><blockquote><p>“Truly mesmerizing, especially the candid shots.”</p></blockquote><figcaption>Zohra Masudi</figcaption></figure>
-    <a href="#/testimonials" data-nav class="btn"><span>Read all ${REVIEWS.length}</span><i></i></a>
+    <figure${PAPER?' class="rv" data-d="1"':''}><blockquote><p>“You guys have literally covered each and every moment.”</p></blockquote><figcaption>Jannat Hashmi</figcaption></figure>
+    <figure${PAPER?' class="rv" data-d="2"':''}><blockquote><p>“They made us feel completely at ease and captured every special moment so naturally.”</p></blockquote><figcaption>Zair Syed</figcaption></figure>
+    <figure${PAPER?' class="rv" data-d="3"':''}><blockquote><p>“Truly mesmerizing, especially the candid shots.”</p></blockquote><figcaption>Zohra Masudi</figcaption></figure>
+    <a href="#/testimonials" data-nav class="btn${PAPER?' rv':''}"${PAPER?' data-d="4"':''}><span>Read all ${REVIEWS.length}</span><i></i></a>
   </div>
 </section>
 
@@ -1860,7 +1874,7 @@ function render(path){
   PS.unmount(); // Restore the Photos-owned header before replacing its DOM.
   if(PAPER)document.body.insertBefore(document.getElementById('hdr'),main);   // Paper: the bar goes back to the top before the page is swapped
   page.innerHTML=(P[path]||P['/'])();
-  if(PAPER&&path==='/'){const m=document.querySelector('.vhero-media');if(m)m.after(document.getElementById('hdr'));paperRails()}   // Paper Home: the bar sits right under the film and sticks (CSS)
+  if(PAPER&&path==='/'){const m=document.querySelector('.vhero-media');if(m)m.after(document.getElementById('hdr'));paperRails();paperWritePaint()}   // Paper Home: the bar sits right under the film and sticks (CSS)
   document.querySelectorAll('nav.links a[data-nav]').forEach(a=>{
     const cur=a.getAttribute('href')==='#'+path;
     a.classList.toggle('on',cur&&!a.classList.contains('book'));
@@ -2269,6 +2283,7 @@ function guideApply(){document.documentElement.classList.toggle('snap-g',Object.
 function homeSceneQueue(){if(!homeSceneFrame)homeSceneFrame=requestAnimationFrame(paintHomeScenes);}
 function paintHomeScenes(){
   homeSceneFrame=0;
+  if(PAPER)paperWritePaint();
   const clamp=v=>Math.max(0,Math.min(1,v)),reduce=reduceMotion();
   const plan=document.querySelector('.plan');
   if(plan){const r=plan.getBoundingClientRect(),words=[...plan.querySelectorAll('.plan-word')],p=reduce?1:clamp((innerHeight*.8-r.top)/Math.max(1,r.height+innerHeight*.2));words.forEach((w,i)=>w.classList.toggle('read',p*words.length>=i+1));}

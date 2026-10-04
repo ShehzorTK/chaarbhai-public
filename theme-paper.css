@@ -318,6 +318,13 @@ html[data-theme="paper"].cb-pen-boot .vhero-in>*,html[data-theme="paper"].cb-pen
 html[data-theme="paper"].cb-pen-hold .vhero-in>*,html[data-theme="paper"].cb-pen-hold .vhero-foot{transform:translateY(14px);filter:none}
 @media (prefers-reduced-motion:reduce){html[data-theme="paper"].cb-pen-boot .vhero-media,html[data-theme="paper"].cb-pen-boot #hdr,html[data-theme="paper"].cb-pen-boot .vhero-in>*,html[data-theme="paper"].cb-pen-boot .vhero-foot{transition:none;transform:none}}
 
+/* ---- Home testimonial: the big quote is written in as you scroll, in script; the rest fades in ---- */
+html[data-theme="paper"] .voices blockquote p.wi{font-family:var(--f-script);font-style:normal;font-weight:400;letter-spacing:0;line-height:1.3;font-size:clamp(46px,6.6vw,96px);max-width:15ch;color:var(--brown);margin:0}
+html[data-theme="paper"] .wi-w{--p:1;display:inline-block;padding:.26em .3em;margin:-.26em -.3em;
+  -webkit-mask-image:linear-gradient(90deg,#000 calc(var(--p)*108% - 8%),transparent calc(var(--p)*108%));mask-image:linear-gradient(90deg,#000 calc(var(--p)*108% - 8%),transparent calc(var(--p)*108%))}
+html[data-theme="paper"] .v-lead .hang{display:none}
+@media (prefers-reduced-motion:reduce){html[data-theme="paper"] .wi-w{-webkit-mask-image:none;mask-image:none}}
+
 /* ---- chapter rail ---- */
 html[data-theme="paper"] #page>section{position:relative}
 html[data-theme="paper"] .rail{position:absolute;left:var(--pad);right:var(--pad);bottom:22px;display:flex;align-items:center;gap:14px;font-family:var(--f-serif);font-style:italic;font-size:13px;letter-spacing:.14em;color:var(--soft);pointer-events:none}
