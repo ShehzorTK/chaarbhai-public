@@ -268,7 +268,7 @@ ${PAPER?paperCards():`<section class="day" style="padding-top:0">
     </div>
     <figure class="arch rv-img" data-d="2" style="aspect-ratio:4/5">${pic(PICKS.stay,'(max-width: 800px) 92vw, 44vw')}</figure>
   </div>
-  ${PAPER?`<div class="cta-ph" aria-hidden="true">${['henna','farewell','before'].map(k=>`<span>${pic(CHAPTERS.find(c=>c.id===k).cover,'20vw')}</span>`).join('')}<span>${pic(PICKS.back,'20vw')}</span></div>`:''}
+  ${PAPER?`<div class="cta-ph" aria-hidden="true">${PICKS.stayOut.map(f=>`<span>${pic(f,'20vw')}</span>`).join('')}</div>`:''}
 </section>
 
 <section class="tally${reduceMotion()?'':' tally-live'}">
@@ -2077,10 +2077,10 @@ if(document.documentElement.dataset.theme==='paper'){
     e.preventDefault();f[(i+(e.shiftKey?-1:1)+f.length)%f.length].focus();
   });
   /* one photo per link, cross-faded when a link is hovered or focused (desktop) */
-  const NP={'#/':'ceremony','#/portfolio':'henna','#/about':'stay','#/services':'reception','#/testimonials':'arrival'};
+  const NP={'#/':'home','#/portfolio':'work','#/about':'about','#/services':'services','#/testimonials':'reviews'};
   const ph=document.createElement('div');ph.className='nav-ph';ph.setAttribute('aria-hidden','true');
   const links=[...navlinks.querySelectorAll('a:not(.book)')];
-  ph.innerHTML=links.map((a,i)=>{const k=NP[a.getAttribute('href')],f=k==='stay'?PICKS.stay:(CHAPTERS.find(c=>c.id===k)||{}).cover;return f?`<span class="${i?'':'on'}">${pic(f,'40vw')}</span>`:'<span></span>'}).join('');
+  ph.innerHTML=links.map((a,i)=>{const k=NP[a.getAttribute('href')],f=(PICKS.nav||{})[k];return f?`<span class="${i?'':'on'}">${pic(f,'40vw')}</span>`:'<span></span>'}).join('');
   navlinks.prepend(ph);
   const show=a=>{const i=links.indexOf(a);ph.querySelectorAll('span').forEach((sp,j)=>sp.classList.toggle('on',j===i))};
   links.forEach(a=>{a.addEventListener('mouseenter',()=>show(a));a.addEventListener('focus',()=>show(a))});
@@ -2093,7 +2093,7 @@ document.getElementById('skip').addEventListener('click',()=>{
    none repeating a photo Home already shows. The middle tile is PICKS.tally: it opens as a complete photograph fitted to the screen. */
 function mosaicTiles(n){
   const mid={...PICKS.tally};
-  const used=new Set([PICKS.hero,PICKS.stay,PICKS.back,mid,...Object.values(PICKS.covers)].map(f=>f.src));
+  const used=new Set([PICKS.hero,PICKS.stay,PICKS.back,mid,...Object.values(PICKS.covers),...Object.values(PICKS.nav),...PICKS.stayOut].map(f=>f.src));
   const byCouple=new Map();
   Object.keys(PORTFOLIO).forEach(id=>(PORTFOLIO[id]||[]).forEach(ev=>ev.frames.forEach(f=>{
     if(used.has(f.src))return;
