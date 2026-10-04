@@ -1545,7 +1545,7 @@ function homeLogo(placeholder,firstVisit,reveal){
     const to=small.getBoundingClientRect();
     if(reduceMotion()||!Element.prototype.animate||from.width<1||from.height<1){reveal();placeholder.remove();dispose();return;}
     flight=document.createElement('div');flight.setAttribute('aria-hidden','true');flight.className='cb-logo-flight';
-    flight.innerHTML=document.documentElement.dataset.theme==='paper'?`<img src="img/pen-loader-1.png" alt=""><img class="pf-ink" src="img/pen-loader-1-dark.png" alt="" style="opacity:0">`:`<img src="img/pen-loader-1.png" alt="">`;
+    flight.innerHTML=`<img src="img/pen-loader-1.png" alt="">`;
     Object.assign(flight.style,{left:from.left+'px',top:from.top+'px',width:from.width+'px',height:from.height+'px'});
     document.body.appendChild(flight);
     // One visible mark: the large drawing becomes the small header mark at landing.
@@ -2084,7 +2084,8 @@ addEventListener('resize',heroNav,{passive:true});
 let ly=0,navIdle=0;
 addEventListener('scroll',()=>{const y=scrollY,h=document.getElementById('hdr');
   h.classList.toggle('solid',y>36);heroNav();
-  document.documentElement.classList.toggle('paper-popped',y>8);   // Paper: the bar docks under the hero at the top, and pops up to the top edge once you scroll
+  document.documentElement.classList.toggle('paper-scrolled',y>8);
+  document.documentElement.classList.toggle('paper-popped',y>=innerHeight);   // Paper: the bar sits under the hero and scrolls away with it; it pops up to the top edge only once the hero is behind you
   clearTimeout(navIdle);
   const canHide=()=>scrollY>8&&!(document.documentElement.dataset.theme==='paper'&&document.documentElement.classList.contains('on-home')&&scrollY<innerHeight)&&!navlinks.classList.contains('open')&&!document.body.classList.contains('vf-in')&&!document.documentElement.classList.contains('cb-pen-hold');
   if(Math.abs(y-ly)>=8){
