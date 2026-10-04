@@ -171,6 +171,17 @@ function paperCards(){
   </div>
 </section>`;
 }
+
+/* Paper: a small italic "chapter 03 ——— chapter 04" line along the bottom of each Home screen, so the page reads like a book */
+function paperRails(){
+  const secs=[...document.querySelectorAll('#page>section')].filter(x=>!x.classList.contains('cta'));
+  const all=[...document.querySelectorAll('#page>section')];
+  secs.forEach(sec=>{
+    const i=all.indexOf(sec)+1,r=document.createElement('div');r.className='rail';r.setAttribute('aria-hidden','true');
+    r.innerHTML=`<span>chapter ${String(i).padStart(2,'0')}</span><i></i><span>chapter ${String(i+1).padStart(2,'0')}</span>`;
+    sec.appendChild(r);
+  });
+}
 function paperCardsPaint(pc){
   const n=pc.querySelectorAll('.pcard').length;
   if(matchMedia('(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)').matches){
@@ -275,6 +286,7 @@ ${PAPER?paperCards():`<section class="day" style="padding-top:0">
 </section>
 
 <section class="cta">
+  ${PAPER?`<div class="cta-ph" aria-hidden="true">${['night','ceremony','reception','arrival'].map(k=>`<span>${pic(CHAPTERS.find(c=>c.id===k).cover,'20vw')}</span>`).join('')}</div>`:''}
   <h2 class="rv">Tell us about<br>your wedding</h2>
   <p class="lead rv" data-d="1" style="margin-top:24px">Send us the date and the venue and we’ll come back to you.</p>
   <div class="rv" data-d="2" style="margin-top:38px"><a href="#/contact" data-nav class="btn"><span>Check your date</span><i></i></a></div>
@@ -1787,6 +1799,7 @@ function render(path){
   VF.close();
   PS.unmount(); // Restore the Photos-owned header before replacing its DOM.
   page.innerHTML=(P[path]||P['/'])();
+  if(PAPER&&path==='/')paperRails();
   document.querySelectorAll('nav.links a[data-nav]').forEach(a=>{
     const cur=a.getAttribute('href')==='#'+path;
     a.classList.toggle('on',cur&&!a.classList.contains('book'));

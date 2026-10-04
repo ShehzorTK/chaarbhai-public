@@ -41,13 +41,11 @@ html[data-theme="paper"] .pr-pkgs,
 html[data-theme="paper"] .tally{
   --ink:#2A1D0F;--ink-2:#34261A;--ink-3:#3E2F21;--paper:#F2EBDE;--dim:#D2B6A1;--soft:#D2B6A1;--faint:rgba(210,182,161,.4);
   --gold:#F2EBDE;--gold-2:#D2B6A1;--gold-hi:#F2EBDE;--line:rgba(210,182,161,.22);--line-2:rgba(210,182,161,.4);--gline:rgba(242,235,222,.5)}
-html[data-theme="paper"] .band:not(.voices),
 html[data-theme="paper"] .cta,
 html[data-theme="paper"] .pr>section:last-of-type,
 html[data-theme="paper"] footer{
   --ink:#552021;--ink-2:#61292A;--ink-3:#6D3233;--paper:#F2EBDE;--dim:rgba(242,235,222,.9);--soft:rgba(242,235,222,.86);--faint:rgba(242,235,222,.4);
   --gold:#F2EBDE;--gold-2:#F2EBDE;--gold-hi:#F2EBDE;--line:rgba(242,235,222,.24);--line-2:rgba(242,235,222,.4);--gline:rgba(242,235,222,.5)}
-html[data-theme="paper"] .band:not(.voices),html[data-theme="paper"] .cta{text-align:left}
 html[data-theme="paper"] .cta{text-align:center}
 html[data-theme="paper"] .cta .lead{margin-inline:auto}
 html[data-theme="paper"] section[aria-labelledby="builder-heading"]{padding-top:clamp(52px,7vw,100px)!important}
@@ -175,7 +173,6 @@ html[data-theme="paper"].paper-popped .scroll-cue,html[data-theme="paper"].cb-pe
 html[data-theme="paper"] .plan h2.d2,html[data-theme="paper"] .band h2.d2{color:var(--paper)}
 html[data-theme="paper"] .day-pin,html[data-theme="paper"] .day{background:none}
 html[data-theme="paper"] .arch,html[data-theme="paper"] .day-ph,html[data-theme="paper"] figure.arch{border:1px solid var(--brown);border-radius:0}
-html[data-theme="paper"] .band:not(.voices) figure.arch{border-color:var(--tan)}
 html[data-theme="paper"] .tally{background-color:#2A1D0F}
 html[data-theme="paper"] .tally-big span,html[data-theme="paper"] .tally-copy,html[data-theme="paper"] .tally-more{color:var(--cream);text-shadow:none}
 html[data-theme="paper"] .voices blockquote p,html[data-theme="paper"] .v-more blockquote p{font-family:var(--f-serif);font-style:italic;color:var(--merlot);letter-spacing:.02em}
@@ -222,7 +219,7 @@ html[data-theme="paper"] .btn:hover,html[data-theme="paper"] .btn:focus-visible,
 html[data-theme="paper"] .paper-contact:hover,html[data-theme="paper"] .paper-contact:focus-visible,
 html[data-theme="paper"] .pr .filter-toggle button.is-active,html[data-theme="paper"] .pr .currency-toggle button.is-active{border-bottom-color:currentColor}
 html[data-theme="paper"] :focus-visible{outline:2px solid #552021;outline-offset:3px}
-html[data-theme="paper"] .plan :focus-visible,html[data-theme="paper"] .pr-pkgs :focus-visible,html[data-theme="paper"] .band:not(.voices) :focus-visible,html[data-theme="paper"] .cta :focus-visible,
+html[data-theme="paper"] .plan :focus-visible,html[data-theme="paper"] .pr-pkgs :focus-visible,html[data-theme="paper"] .cta :focus-visible,
 html[data-theme="paper"] footer :focus-visible,html[data-theme="paper"] .pc-3 :focus-visible,html[data-theme="paper"] .pc-2 :focus-visible{outline-color:#F2EBDE}
 html[data-theme="paper"] .pr .filter-toggle,html[data-theme="paper"] .pr .currency-toggle{flex-wrap:wrap;gap:0 22px;max-width:100%}
 html[data-theme="paper"] .pr .pr-bar,html[data-theme="paper"] .pr .filter-bar{max-width:100%}
@@ -260,6 +257,33 @@ html[data-theme="paper"] .pc-dots li.on{font-style:italic;opacity:1;border-botto
   html[data-theme="paper"] .pc-tx h2{font-size:clamp(40px,5.4vw,84px)}
   html[data-theme="paper"] .pc-dots{position:absolute;top:calc(var(--paper-nav-h) + 8px);right:var(--pad);padding:0}
 }
+
+
+/* ---- quote screen: "We stay out of the way", one flat cream screen, no image ---- */
+html[data-theme="paper"] .band:not(.voices){min-height:100svh;display:grid;align-content:center;justify-items:center;text-align:center;padding-top:calc(var(--paper-nav-h) + 24px);padding-bottom:90px}
+html[data-theme="paper"] .band:not(.voices) .band-in{display:block;max-width:900px}
+html[data-theme="paper"] .band:not(.voices) figure{display:none}
+html[data-theme="paper"] .band:not(.voices) h2.d2{font-size:clamp(40px,8vw,120px);line-height:.98}
+html[data-theme="paper"] .band:not(.voices) .lead{margin:clamp(22px,3vw,40px) auto 0;max-width:46ch;font-size:clamp(16px,1.35vw,19px)}
+
+/* ---- inquire screen: big words on merlot, four small portraits dimmed to 27% like texture ---- */
+html[data-theme="paper"] .cta{position:relative;min-height:100svh;display:grid;align-content:center;justify-items:center;text-align:center;overflow:hidden;padding:calc(var(--paper-nav-h) + 24px) var(--pad) 90px}
+html[data-theme="paper"] .cta h2{font-size:clamp(36px,7vw,104px);line-height:1;position:relative;z-index:1}
+html[data-theme="paper"] .cta .lead,html[data-theme="paper"] .cta .btn{position:relative;z-index:1}
+html[data-theme="paper"] .cta .btn{font-size:16px}
+html[data-theme="paper"] .cta-ph span{position:absolute;width:clamp(90px,15vw,210px);aspect-ratio:4/5;opacity:.27;border:1px solid #F2EBDE;overflow:hidden}
+html[data-theme="paper"] .cta-ph img{width:100%;height:100%;object-fit:cover;display:block}
+html[data-theme="paper"] .cta-ph span:nth-child(1){left:6%;top:16%}
+html[data-theme="paper"] .cta-ph span:nth-child(2){right:7%;top:12%}
+html[data-theme="paper"] .cta-ph span:nth-child(3){left:12%;bottom:12%}
+html[data-theme="paper"] .cta-ph span:nth-child(4){right:11%;bottom:14%}
+@media(max-width:700px){html[data-theme="paper"] .cta-ph span{width:26vw}html[data-theme="paper"] .cta-ph span:nth-child(1){left:-4%;top:9%}html[data-theme="paper"] .cta-ph span:nth-child(2){right:-4%;top:6%}html[data-theme="paper"] .cta-ph span:nth-child(3){left:2%;bottom:8%}html[data-theme="paper"] .cta-ph span:nth-child(4){right:2%;bottom:6%}}
+
+/* ---- chapter rail ---- */
+html[data-theme="paper"] #page>section{position:relative}
+html[data-theme="paper"] .rail{position:absolute;left:var(--pad);right:var(--pad);bottom:22px;display:flex;align-items:center;gap:14px;font-family:var(--f-serif);font-style:italic;font-size:13px;letter-spacing:.14em;color:var(--soft);pointer-events:none}
+html[data-theme="paper"] .rail i{flex:1;height:1px;background:currentColor;opacity:.5;max-width:220px}
+html[data-theme="paper"] .vhero .rail{display:none}
 
 /* ---- calm: no bounce, nothing slides, no hover lift ---- */
 @media (prefers-reduced-motion:reduce){html[data-theme="paper"] *{transition:none!important;animation:none!important}}
