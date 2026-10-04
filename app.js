@@ -715,6 +715,8 @@ function paintLogos(){document.querySelectorAll('img[data-logo]').forEach(el=>{
   if(el.getAttribute('src')!==LOGO)el.setAttribute('src',LOGO);});}
 paintLogos();
 /* the switch: flips the theme, remembers it, and says what it will do next */
+/* Paper theme only: each nav link carries its own text so CSS can reserve the italic width (no shift on hover) */
+if(document.documentElement.dataset.theme==='paper')document.querySelectorAll('nav.links a').forEach(a=>{a.dataset.t=a.textContent.trim()});
 const themeSw=document.getElementById('themesw');
 function syncThemeUI(){
   const light=isLight();
@@ -2165,7 +2167,7 @@ function paintHomeScenes(){
   else{track.style.transform='';const first=panels[0].getBoundingClientRect().top,last=panels[panels.length-1].getBoundingClientRect().top;p=clamp((innerHeight*.4-first)/Math.max(1,last-first));}
   const active=desktop?Math.round(p*(panels.length-1)):Math.max(0,panels.reduce((best,panel,i)=>panel.getBoundingClientRect().top<=innerHeight*.4?i:best,0));day.querySelectorAll('.day-hours li').forEach((el,i)=>{el.classList.toggle('on',i===active);const link=el.querySelector('a');if(i===active)link.setAttribute('aria-current','true');else link.removeAttribute('aria-current');});
   day.querySelector('.day-sun').style.left=`${p*100}%`;
-  const stops=isLight()?['#F6EFE0','#ECE6D9','#DCD3C2','#C9C0AE']:['#1E1A15','#191C26','#141522','#0B0C12'];
+  const stops=document.documentElement.dataset.theme==='paper'?['#F2EBDE','#F2EBDE','#F2EBDE','#F2EBDE']:isLight()?['#F6EFE0','#ECE6D9','#DCD3C2','#C9C0AE']:['#1E1A15','#191C26','#141522','#0B0C12'];
   const segment=p*3,i=Math.min(2,Math.floor(segment)),t=segment-i;
   const rgb=h=>[1,3,5].map(n=>parseInt(h.slice(n,n+2),16)),a=rgb(stops[i]),b=rgb(stops[i+1]);
   const ground=`rgb(${a.map((v,n)=>Math.round(v+(b[n]-v)*t)).join(',')})`;day.style.backgroundColor=ground;day.style.setProperty('--day-ground',ground);
