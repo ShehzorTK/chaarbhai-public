@@ -1,6 +1,6 @@
 /* Paper theme (experimental). Loaded only with ?theme=paper, see index.html.
    Everything is scoped to html[data-theme="paper"], so dark and light are untouched.
-   Cream, dark brown and merlot sections with our own paper grain; links instead of buttons; no motion beyond a fade. */
+   Cream, dark brown and aubergine sections with our own paper grain; links instead of buttons; no motion beyond a fade. */
 
 @font-face{font-family:'Cormorant Garamond';font-weight:500;font-style:normal;font-display:swap;src:url(fonts/cormorant-garamond.woff2) format('woff2')}
 @font-face{font-family:'EB Garamond';font-weight:400;font-style:normal;font-display:swap;src:url(fonts/eb-garamond.woff2) format('woff2')}
@@ -8,7 +8,7 @@
 @font-face{font-family:'Pinyon Script';font-weight:400;font-style:normal;font-display:swap;src:url(fonts/pinyon-script.woff2) format('woff2')}
 
 :root[data-theme="paper"]{
-  --cream:#F2EBDE;--brown:#2A1D0F;--merlot:#552021;--tan:#D2B6A1;
+  --cream:#F2EBDE;--brown:#2A1D0F;--merlot:#2B2530;--paper-accent:#2B2530;--tan:#D2B6A1;
   --f-display:'Cormorant Garamond','Cochin',Georgia,serif;
   --f-serif:'EB Garamond','Sirenne',Georgia,serif;
   --f-sans:'EB Garamond','Sirenne',Georgia,serif;
@@ -26,25 +26,27 @@
   /* default set = cream */
   --ink:#F2EBDE;--ink-2:#EBE2D1;--ink-3:#E2D7C2;--paper:#2A1D0F;
   --dim:rgba(42,29,15,.8);--soft:rgba(42,29,15,.72);--faint:rgba(42,29,15,.32);
-  --gold:#552021;--gold-2:#552021;--gold-hi:#552021;--gold-wash:rgba(85,32,33,.08);
-  --line:rgba(42,29,15,.14);--line-2:rgba(42,29,15,.26);--gline:rgba(85,32,33,.4);
-  --hdr:#F2EBDE;--bar:#F2EBDE;--bar-solid:#F2EBDE;--maple:#552021;
+  --gold:#2A1D0F;--gold-2:#2A1D0F;--gold-hi:#2A1D0F;--gold-wash:rgba(42,29,15,.08);
+  --line:rgba(42,29,15,.14);--line-2:rgba(42,29,15,.26);--gline:rgba(42,29,15,.4);
+  --hdr:#F2EBDE;--bar:#F2EBDE;--bar-solid:#F2EBDE;--maple:#2A1D0F;
 }
-html[data-theme="paper"],html[data-theme="paper"] body{background:var(--cream);color:var(--brown);scrollbar-color:var(--merlot) var(--cream)}
+html[data-theme="paper"],html[data-theme="paper"] body{background:var(--cream);color:var(--brown);scrollbar-color:var(--paper-accent) var(--cream)}
 html[data-theme="paper"] body{font-family:var(--f-serif);font-size:16px;line-height:1.55;letter-spacing:.025em}
 
-/* ---- section colours: cream / dark brown / merlot, each carrying grain ---- */
+/* ---- section colours: cream / dark brown / aubergine, each carrying grain ---- */
 html[data-theme="paper"] main section,html[data-theme="paper"] footer{background-color:var(--ink);background-image:var(--grain);background-size:400px;color:var(--paper);border:0}
 html[data-theme="paper"] .tone-brown,
 html[data-theme="paper"] .plan,
 html[data-theme="paper"] .pr-pkgs{
   --ink:#2A1D0F;--ink-2:#34261A;--ink-3:#3E2F21;--paper:#F2EBDE;--dim:#D2B6A1;--soft:#D2B6A1;--faint:rgba(210,182,161,.4);
   --gold:#F2EBDE;--gold-2:#D2B6A1;--gold-hi:#F2EBDE;--line:rgba(210,182,161,.22);--line-2:rgba(210,182,161,.4);--gline:rgba(242,235,222,.5)}
-html[data-theme="paper"] .cta,
+html[data-theme="paper"] .band:not(.voices),
 html[data-theme="paper"] .pr>section:last-of-type,
 html[data-theme="paper"] footer{
-  --ink:#552021;--ink-2:#61292A;--ink-3:#6D3233;--paper:#F2EBDE;--dim:rgba(242,235,222,.9);--soft:rgba(242,235,222,.86);--faint:rgba(242,235,222,.4);
+  --ink:var(--paper-accent);--ink-2:#362F3C;--ink-3:#403947;--paper:#F2EBDE;--dim:rgba(242,235,222,.9);--soft:rgba(242,235,222,.86);--faint:rgba(242,235,222,.4);
   --gold:#F2EBDE;--gold-2:#F2EBDE;--gold-hi:#F2EBDE;--line:rgba(242,235,222,.24);--line-2:rgba(242,235,222,.4);--gline:rgba(242,235,222,.5)}
+html[data-theme="paper"] .cta{--ink:#2A1D0F;--ink-2:#34261A;--ink-3:#3E2F21;--paper:#F2EBDE;--dim:#D2B6A1;--soft:#D2B6A1;--faint:rgba(210,182,161,.4);
+  --gold:#F2EBDE;--gold-2:#D2B6A1;--gold-hi:#F2EBDE;--line:rgba(210,182,161,.22);--line-2:rgba(210,182,161,.4);--gline:rgba(242,235,222,.5)}
 html[data-theme="paper"] .cta{text-align:center}
 html[data-theme="paper"] .cta .lead{margin-inline:auto}
 html[data-theme="paper"] section[aria-labelledby="builder-heading"]{padding-top:clamp(52px,7vw,100px)!important}
@@ -65,11 +67,11 @@ html[data-theme="paper"] .pkg-price sup{font-size:13px;letter-spacing:.2em;font-
 html[data-theme="paper"]{--paper-nav-h:76px}
 @media(max-width:700px){html[data-theme="paper"]{--paper-nav-h:64px}}
 html[data-theme="paper"] header,html[data-theme="paper"] header.over-hero,html[data-theme="paper"] body:not(.locked) header:not(.over-hero){
-  --paper:#F2EBDE;--dim:#F2EBDE;--gold:#F2EBDE;--gold-hi:#F2EBDE;--line:rgba(242,235,222,.24);--line-2:rgba(242,235,222,.4);--ink:#552021;color:#F2EBDE;
+  --paper:#F2EBDE;--dim:#F2EBDE;--gold:#F2EBDE;--gold-hi:#F2EBDE;--line:rgba(242,235,222,.24);--line-2:rgba(242,235,222,.4);--ink:var(--paper-accent);color:#F2EBDE;
   display:grid;grid-template-columns:1fr auto 1fr;align-items:center;min-height:var(--paper-nav-h);padding:0 var(--pad);flex-wrap:nowrap}
 html[data-theme="paper"] header::before,html[data-theme="paper"] header.solid::before,
 html[data-theme="paper"] header.over-hero::before,html[data-theme="paper"] header.over-hero.solid::before{
-  opacity:1;bottom:0;background-color:#552021;background-image:var(--grain);background-size:400px;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+  opacity:1;bottom:0;background-color:var(--paper-accent);background-image:var(--grain);background-size:400px;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
 html[data-theme="paper"] header.over-hero.hide::before{opacity:1}
 html[data-theme="paper"] .brand{grid-column:2;justify-self:center;margin:0;line-height:0}
 html[data-theme="paper"] .brand img{display:block;height:clamp(30px,3.4vw,40px);content:url(img/logo.png)}
@@ -90,7 +92,7 @@ html[data-theme="paper"] .burger:hover::after,html[data-theme="paper"] .burger:f
 html[data-theme="paper"] .hdr-sub{grid-column:1/-1}
 /* Home: the bar is a sibling right after the film (app.js moves it there), and sticks to the top once it gets there. Plain CSS sticky, no script. */
 html[data-theme="paper"] .vhero{display:contents}
-html[data-theme="paper"].on-home #page{background-color:#552021}
+html[data-theme="paper"].on-home #page{background-color:var(--paper-accent)}
 html[data-theme="paper"].on-home header{position:sticky;top:0}
 /* the menu: a dark brown sheet that fades in (0.9s desktop, 0.5s phone, strong ease-out). Photo left, huge links right. */
 html[data-theme="paper"] nav.links{position:fixed;inset:0;margin:0;background-color:#2A1D0F;background-image:var(--grain);background-size:400px;
@@ -148,8 +150,8 @@ html[data-theme="paper"] .pr .filter-toggle button.is-active,html[data-theme="pa
   background:none;color:var(--gold);font-style:italic;border-bottom-color:currentColor}
 
 /* the hero declares its own dark tokens in style.css; put it back on cream */
-html[data-theme="paper"] .vhero{--ink:#552021;--paper:#F2EBDE;--dim:rgba(242,235,222,.9);--soft:rgba(242,235,222,.82);--gold:#F2EBDE;--gold-hi:#F2EBDE;color:#F2EBDE}
-html[data-theme="paper"].cb-pen-boot body,html[data-theme="paper"].cb-pen-boot{background:#552021}   /* the intro room is merlot; the dark frame holds the pen */
+html[data-theme="paper"] .vhero{--ink:var(--paper-accent);--paper:#F2EBDE;--dim:rgba(242,235,222,.9);--soft:rgba(242,235,222,.82);--gold:#F2EBDE;--gold-hi:#F2EBDE;color:#F2EBDE}
+html[data-theme="paper"].cb-pen-boot body,html[data-theme="paper"].cb-pen-boot{background:var(--paper-accent)}   /* the intro room is aubergine; the dark frame holds the pen */
 /* ---- Home: the film (and, first, the drawn logo) fills the screen above the bar, in a thin frame ---- */
 html[data-theme="paper"] .vhero-media{position:relative;inset:auto;width:auto;max-width:none;height:calc(100svh - var(--paper-nav-h) - 18px);margin:18px var(--pad) 0;aspect-ratio:auto;border:1px solid #D2B6A1;background:#2A1D0F}
 html[data-theme="paper"] .vhero-media::after{display:none}
@@ -175,13 +177,13 @@ html[data-theme="paper"] .plan h2.d2,html[data-theme="paper"] .band h2.d2{color:
 html[data-theme="paper"] .day-pin,html[data-theme="paper"] .day{background:none}
 html[data-theme="paper"] .arch,html[data-theme="paper"] .day-ph,html[data-theme="paper"] figure.arch{border:1px solid var(--brown);border-radius:0}
 /* the photo wall sits on beige paper; the centre photo covers the screen instead of sitting letterboxed (sized in app.js, paperWall) */
-html[data-theme="paper"] .tally{--ink:#F2EBDE;--ink-2:#EBE2D1;--paper:#2A1D0F;--gold:#552021;--dim:rgba(42,29,15,.8);background-color:#F2EBDE}
+html[data-theme="paper"] .tally{--ink:#F2EBDE;--ink-2:#EBE2D1;--paper:#2A1D0F;--gold:#2A1D0F;--dim:rgba(42,29,15,.8);background-color:#F2EBDE}
 html[data-theme="paper"] .tally-big span,html[data-theme="paper"] .tally-copy,html[data-theme="paper"] .tally-more{color:var(--brown);text-shadow:none}
 html[data-theme="paper"] .tally-pin::after{background:radial-gradient(ellipse 60% 55% at 50% 50%,rgba(242,235,222,.7),rgba(242,235,222,0) 100%)}
 html[data-theme="paper"] .tally-live .mo-t.mo-mid{overflow:visible;z-index:2;background:none}
 html[data-theme="paper"] .tally-live .mo-t.mo-mid img{position:absolute;left:50%;top:50%;width:var(--mo-w,100%);height:var(--mo-h,100%);max-width:none;transform:translate(-50%,-50%);object-fit:cover}
-html[data-theme="paper"] .voices blockquote p,html[data-theme="paper"] .v-more blockquote p{font-family:var(--f-serif);font-style:italic;color:var(--merlot);letter-spacing:.02em}
-html[data-theme="paper"] .voices figcaption{font-family:var(--f-serif);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--merlot);font-style:normal}
+html[data-theme="paper"] .voices blockquote p,html[data-theme="paper"] .v-more blockquote p{font-family:var(--f-serif);font-style:italic;color:var(--brown);letter-spacing:.02em}
+html[data-theme="paper"] .voices figcaption{font-family:var(--f-serif);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--brown);font-style:normal}
 
 /* ---- Prices ---- */
 html[data-theme="paper"] .pr .pr-bar,html[data-theme="paper"] .pr .filter-bar-label{color:var(--soft)}
@@ -223,56 +225,63 @@ html[data-theme="paper"] .btn,html[data-theme="paper"] .paper-contact,html[data-
 html[data-theme="paper"] .btn:hover,html[data-theme="paper"] .btn:focus-visible,html[data-theme="paper"] .btn:active,
 html[data-theme="paper"] .paper-contact:hover,html[data-theme="paper"] .paper-contact:focus-visible,
 html[data-theme="paper"] .pr .filter-toggle button.is-active,html[data-theme="paper"] .pr .currency-toggle button.is-active{border-bottom-color:currentColor}
-html[data-theme="paper"] :focus-visible{outline:2px solid #552021;outline-offset:3px}
+html[data-theme="paper"] :focus-visible{outline:2px solid #2A1D0F;outline-offset:3px}
 html[data-theme="paper"] header :focus-visible,html[data-theme="paper"] .vhero :focus-visible{outline-color:#F2EBDE}
 html[data-theme="paper"] .plan :focus-visible,html[data-theme="paper"] .pr-pkgs :focus-visible,html[data-theme="paper"] .cta :focus-visible,
-html[data-theme="paper"] footer :focus-visible,html[data-theme="paper"] .pc-3 :focus-visible,html[data-theme="paper"] .pc-2 :focus-visible{outline-color:#F2EBDE}
+html[data-theme="paper"] footer :focus-visible,html[data-theme="paper"] .band:not(.voices) :focus-visible{outline-color:#F2EBDE}
 html[data-theme="paper"] .pr .filter-toggle,html[data-theme="paper"] .pr .currency-toggle{flex-wrap:wrap;gap:0 22px;max-width:100%}
 html[data-theme="paper"] .pr .pr-bar,html[data-theme="paper"] .pr .filter-bar{max-width:100%}
 
-/* ---- Home: Recent work as three full-screen cards (Paper's own markup, see paperCards() in app.js) ---- */
+/* ---- Home: Recent work as seven full-screen cards, one per chapter (Paper's own markup, see paperCards() in app.js) ---- */
 html[data-theme="paper"] .pcards{padding:0;background-color:#2A1D0F}
 html[data-theme="paper"] .pcards-stick{position:relative}
 html[data-theme="paper"] .pcards-track{display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
 html[data-theme="paper"] .pcards-track::-webkit-scrollbar{display:none}
 html[data-theme="paper"] .pcard{position:relative;flex:0 0 86vw;scroll-snap-align:center;min-height:min(86svh,680px);display:flex;flex-direction:column;justify-content:flex-end;gap:22px;padding:22px 20px 28px;
   background-color:var(--ink);background-image:var(--grain);background-size:400px;color:var(--paper)}
-html[data-theme="paper"] .pc-1{--ink:#D2B6A1;--paper:#2A1D0F;--dim:rgba(42,29,15,.85);--gold:#552021;--line:rgba(42,29,15,.3)}
-html[data-theme="paper"] .pc-2{--ink:#552021;--paper:#F2EBDE;--dim:rgba(242,235,222,.9);--gold:#F2EBDE;--line:rgba(242,235,222,.4)}
-html[data-theme="paper"] .pc-3{--ink:#2A1D0F;--paper:#F2EBDE;--dim:#D2B6A1;--gold:#F2EBDE;--line:rgba(210,182,161,.4)}
+html[data-theme="paper"] .pc-1{--ink:#D2B6A1;--paper:#2A1D0F;--dim:rgba(42,29,15,.85);--line:rgba(42,29,15,.3)}
+html[data-theme="paper"] .pc-2{--ink:#2B2530;--paper:#F2EBDE;--dim:rgba(242,235,222,.9);--line:rgba(242,235,222,.4)}
+html[data-theme="paper"] .pc-3{--ink:#E4D5BC;--paper:#2A1D0F;--dim:rgba(42,29,15,.85);--line:rgba(42,29,15,.3)}
+html[data-theme="paper"] .pc-4{--ink:#2A1D0F;--paper:#F2EBDE;--dim:#D2B6A1;--line:rgba(210,182,161,.4)}
+html[data-theme="paper"] .pc-5{--ink:#4A4F34;--paper:#F2EBDE;--dim:rgba(242,235,222,.9);--line:rgba(242,235,222,.4)}
+html[data-theme="paper"] .pc-6{--ink:#F2EBDE;--paper:#2A1D0F;--dim:rgba(42,29,15,.85);--line:rgba(42,29,15,.3)}
+html[data-theme="paper"] .pc-7{--ink:#5A3E2E;--paper:#F2EBDE;--dim:rgba(242,235,222,.9);--line:rgba(242,235,222,.4)}
+html[data-theme="paper"] .pcard{--gold:var(--paper)}
+html[data-theme="paper"] .pcard :focus-visible{outline-color:var(--paper)}
 html[data-theme="paper"] .pc-ph{order:-1;margin:0;border:1px solid currentColor;aspect-ratio:4/5;overflow:hidden;max-height:52svh}
 html[data-theme="paper"] .pc-ph img{width:100%;height:100%;object-fit:cover;display:block}
 html[data-theme="paper"] .pc-tx h2{font-size:clamp(30px,8vw,44px);color:var(--paper)}
 html[data-theme="paper"] .pc-tx p{margin:14px 0 6px;color:var(--dim);font-style:italic;font-size:17px;max-width:34ch}
+html[data-theme="paper"] .pc-tag{display:block;margin-top:10px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
 html[data-theme="paper"] .pc-no{display:block;font-family:var(--f-script);font-size:42px;line-height:1.1;color:var(--paper);opacity:.75;margin-bottom:4px}
 html[data-theme="paper"] .pc-tx .btn{color:var(--paper)}
-html[data-theme="paper"] .pc-dots{list-style:none;display:flex;justify-content:center;gap:22px;padding:6px 0 0;margin:0;color:var(--paper);font-family:var(--f-serif);font-size:13px;letter-spacing:.2em}
-html[data-theme="paper"] .pc-dots li{opacity:.7}
+html[data-theme="paper"] .pc-dots{list-style:none;display:flex;justify-content:center;gap:12px;padding:6px 0 0;margin:0;color:var(--paper);font-family:var(--f-serif);font-size:13px;letter-spacing:.14em}
+html[data-theme="paper"] .pc-dots li{opacity:.6}
 html[data-theme="paper"] .pc-dots li.on{font-style:italic;opacity:1;border-bottom:1px solid currentColor}
-/* pointer devices without reduced motion: the section pins and vertical scroll moves the cards sideways */
+/* pointer devices without reduced motion: the section pins and vertical scroll moves the cards sideways (about 70svh of scroll per card) */
 @media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
-  html[data-theme="paper"] .pcards{height:300svh}
+  html[data-theme="paper"] .pcards{height:calc(100svh + (var(--pc-n,7) - 1)*70svh)}
   html[data-theme="paper"] .pcards-stick{position:sticky;top:0;height:100svh;overflow:hidden}
-  html[data-theme="paper"] .pcards-track{width:300vw;height:100%;overflow:visible;scroll-snap-type:none;transform:translate3d(var(--pc-x,0),0,0)}
+  html[data-theme="paper"] .pcards-track{width:calc(var(--pc-n,7)*100vw);height:100%;overflow:visible;scroll-snap-type:none;transform:translate3d(var(--pc-x,0),0,0)}
   html[data-theme="paper"] .pcard{flex:0 0 100vw;height:100svh;min-height:0;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:center;gap:clamp(30px,6vw,110px);padding:calc(var(--paper-nav-h) + 20px) var(--pad) 60px}
   html[data-theme="paper"] .pc-ph{order:0;aspect-ratio:auto;height:min(68svh,calc(100svh - 220px));max-height:none;justify-self:end;width:min(100%,640px);grid-column:1}
   html[data-theme="paper"] .pc-tx{grid-column:2}
-  html[data-theme="paper"] .pc-2 .pc-ph{grid-column:2;justify-self:start}
-  html[data-theme="paper"] .pc-2 .pc-tx{grid-column:1;grid-row:1;justify-self:end;text-align:right}
-  html[data-theme="paper"] .pc-2 .pc-tx p{margin-left:auto}
+  html[data-theme="paper"] .pcard:nth-child(even) .pc-ph{grid-column:2;justify-self:start}
+  html[data-theme="paper"] .pcard:nth-child(even) .pc-tx{grid-column:1;grid-row:1;justify-self:end;text-align:right}
+  html[data-theme="paper"] .pcard:nth-child(even) .pc-tx p{margin-left:auto}
   html[data-theme="paper"] .pc-tx h2{font-size:clamp(40px,5.4vw,84px)}
-  html[data-theme="paper"] .pc-dots{position:absolute;top:calc(var(--paper-nav-h) + 8px);right:var(--pad);padding:0}
+  html[data-theme="paper"] .pc-dots{position:absolute;top:calc(var(--paper-nav-h) + 8px);right:var(--pad);padding:0;gap:18px}
 }
 
 
-/* ---- quote screen: "We stay out of the way", one flat cream screen, no image ---- */
-html[data-theme="paper"] .band:not(.voices){min-height:100svh;display:grid;align-content:center;justify-items:center;text-align:center;padding-top:calc(var(--paper-nav-h) + 24px);padding-bottom:90px}
-html[data-theme="paper"] .band:not(.voices) .band-in{display:block;max-width:900px}
+/* ---- "We stay out of the way": one flat aubergine screen, big words over four photos dimmed to 27% ---- */
+html[data-theme="paper"] .band:not(.voices){position:relative;overflow:hidden;min-height:100svh;display:grid;align-content:center;justify-items:center;text-align:center;padding-top:calc(var(--paper-nav-h) + 24px);padding-bottom:90px}
+html[data-theme="paper"] .band:not(.voices) .band-in{display:block;max-width:900px;position:relative;z-index:1}
 html[data-theme="paper"] .band:not(.voices) figure{display:none}
 html[data-theme="paper"] .band:not(.voices) h2.d2{font-size:clamp(40px,8vw,120px);line-height:.98}
 html[data-theme="paper"] .band:not(.voices) .lead{margin:clamp(22px,3vw,40px) auto 0;max-width:46ch;font-size:clamp(16px,1.35vw,19px)}
 
-/* ---- inquire screen: big words on merlot, four small portraits dimmed to 27% like texture ---- */
+/* ---- inquire screen: big words on aubergine, four small portraits dimmed to 27% like texture ---- */
 html[data-theme="paper"] .cta{position:relative;min-height:100svh;display:grid;align-content:center;justify-items:center;text-align:center;overflow:hidden;padding:calc(var(--paper-nav-h) + 24px) var(--pad) 90px}
 html[data-theme="paper"] .cta h2{font-size:clamp(36px,7vw,104px);line-height:1;position:relative;z-index:1}
 html[data-theme="paper"] .cta .lead,html[data-theme="paper"] .cta .btn{position:relative;z-index:1}

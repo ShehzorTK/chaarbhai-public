@@ -154,19 +154,15 @@ const HERO_PLAY_ICON=paused=>`<svg viewBox="0 0 24 24" aria-hidden="true" focusa
 /* Paper theme only: Home's Recent work is three full-screen cards (see theme-paper.css). Photo = the first chapter's cover in each group. */
 const PAPER=document.documentElement.dataset.theme==='paper';
 function paperCards(){
-  const by=id=>CHAPTERS.find(c=>c.id===id);
-  const G=[
-    {no:'01',title:'Before the day',line:'Dholki nights, henna and haldi: the rooms that get loud first.',cover:'henna',first:'night'},
-    {no:'02',title:'The ceremony',line:'The arrival and the vows, usually the quietest hour of the week.',cover:'ceremony',first:'arrival'},
-    {no:'03',title:'The night',line:'The reception and the farewell, when everyone finally exhales.',cover:'reception',first:'reception'}];
-  return `<section class="pcards" aria-label="Recent work">
+  const list=[...CHAPTERS].sort((a,b)=>a.no-b.no).filter(c=>c.cover);
+  return `<section class="pcards" aria-label="Recent work" style="--pc-n:${list.length}">
   <div class="pcards-stick">
-    <div class="pcards-track" tabindex="0" role="group" aria-label="Recent work, three groups">${G.map((g,i)=>`
+    <div class="pcards-track" tabindex="0" role="group" aria-label="Recent work, ${list.length} chapters">${list.map((c,i)=>`
       <article class="pcard pc-${i+1}">
-        <figure class="pc-ph">${pic(by(g.cover).cover,'(max-width:900px) 80vw, 46vw')}</figure>
-        <div class="pc-tx"><span class="pc-no" aria-hidden="true">${g.no}</span><h2>${g.title}</h2><p>${g.line}</p>
-          <button class="btn" data-nav-to="#/portfolio/photos/${g.first}"><span>View the work</span><i></i></button></div>
-        <ol class="pc-dots" aria-hidden="true">${G.map((h,j)=>`<li${j===i?' class="on"':''}>${h.no}</li>`).join('')}</ol>
+        <figure class="pc-ph">${pic(c.cover,'(max-width:900px) 80vw, 46vw')}</figure>
+        <div class="pc-tx"><span class="pc-no" aria-hidden="true">${c.no}</span><h2>${c.name}</h2><p>${c.desc}</p><span class="pc-tag">${c.alt}</span>
+          <button class="btn" data-nav-to="#/portfolio/photos/${c.id}"><span>View the work</span><i></i></button></div>
+        <ol class="pc-dots" aria-hidden="true">${list.map((h,j)=>`<li${j===i?' class="on"':''}>${h.no}</li>`).join('')}</ol>
       </article>`).join('')}</div>
   </div>
 </section>`;
@@ -174,7 +170,7 @@ function paperCards(){
 
 /* Paper: a small italic "chapter 03 ——— chapter 04" line along the bottom of each Home screen, so the page reads like a book */
 function paperRails(){
-  const secs=[...document.querySelectorAll('#page>section')].filter(x=>!x.classList.contains('cta'));
+  const secs=[...document.querySelectorAll('#page>section')].filter(x=>!x.classList.contains('cta')&&!x.classList.contains('pcards'));
   const all=[...document.querySelectorAll('#page>section')];
   secs.forEach(sec=>{
     const i=all.indexOf(sec)+1,r=document.createElement('div');r.className='rail';r.setAttribute('aria-hidden','true');
@@ -256,6 +252,7 @@ ${PAPER?paperCards():`<section class="day" style="padding-top:0">
     </div>
     <figure class="arch rv-img" data-d="2" style="aspect-ratio:4/5">${pic(PICKS.stay,'(max-width: 800px) 92vw, 44vw')}</figure>
   </div>
+  ${PAPER?`<div class="cta-ph" aria-hidden="true">${['henna','farewell','before'].map(k=>`<span>${pic(CHAPTERS.find(c=>c.id===k).cover,'20vw')}</span>`).join('')}<span>${pic(PICKS.back,'20vw')}</span></div>`:''}
 </section>
 
 <section class="tally${reduceMotion()?'':' tally-live'}">
