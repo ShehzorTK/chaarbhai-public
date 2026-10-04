@@ -79,30 +79,53 @@ html[data-theme="paper"] .brand img{display:block;height:clamp(30px,3.4vw,40px);
 html[data-theme="paper"] .fm img{content:url(img/logo.png)}
 html[data-theme="paper"] .paper-contact{display:inline-grid!important;grid-column:1;justify-self:start;position:relative;z-index:951;
   font-family:var(--f-serif);font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:#552021;padding:12px 0 3px;min-height:44px;align-content:center;border-bottom:1px solid transparent}
-html[data-theme="paper"] .paper-contact:hover,html[data-theme="paper"] .paper-contact:focus-visible,html[data-theme="paper"] .paper-contact:active{font-style:italic;border-bottom-color:currentColor;outline:none}
+html[data-theme="paper"] .paper-contact:hover,html[data-theme="paper"] .paper-contact:focus-visible,html[data-theme="paper"] .paper-contact:active{font-style:italic;border-bottom-color:currentColor}
 html[data-theme="paper"] .theme-sw{display:none}
-html[data-theme="paper"] .burger{display:block;grid-column:3;justify-self:end;margin:0;z-index:951}
-html[data-theme="paper"] .burger i{background:#552021}
+html[data-theme="paper"] .burger{display:inline-flex;align-items:center;grid-column:3;justify-self:end;margin:0;z-index:951;width:auto;height:auto;min-width:44px;min-height:44px;padding:0;
+  font-family:var(--f-serif);font-style:italic;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:#552021}
+html[data-theme="paper"] .burger::before,html[data-theme="paper"] .burger i{display:none}
+html[data-theme="paper"] .burger::after{content:'Navigation +';padding:2px 0;border-bottom:1px solid currentColor;border-bottom-color:color-mix(in srgb,currentColor 50%,transparent)}
+html[data-theme="paper"] .burger.x::after{content:'Close \00d7';border-bottom-color:currentColor}
 html[data-theme="paper"] .hdr-sub{grid-column:1/-1}
 /* docked under the hero until the first scroll */
 html[data-theme="paper"].on-home:not(.paper-popped) header{position:absolute;top:calc(100svh - var(--paper-nav-h))}
 html[data-theme="paper"].on-home.paper-popped header{animation:paper-pop .28s var(--ease) backwards}
 @keyframes paper-pop{from{opacity:0;transform:translateY(-14px)}}
-/* the menu: the same full cream sheet at every size */
-html[data-theme="paper"] nav.links{position:fixed;inset:0;background-color:#F2EBDE;background-image:var(--grain);background-size:400px;flex-direction:column;justify-content:center;gap:clamp(10px,2vh,20px);margin:0;
-  clip-path:inset(0 0 100% 0);transition:clip-path .25s var(--ease);text-align:center}
-html[data-theme="paper"] nav.links.open{clip-path:inset(0 0 0 0);transition:clip-path .4s cubic-bezier(.32,.72,0,1)}
-html[data-theme="paper"] nav.links a{font-family:var(--f-display);font-weight:500;font-size:clamp(30px,5vw,48px);letter-spacing:.06em;line-height:1.1;text-transform:uppercase;color:#552021;
-  display:inline-flex;flex-direction:column;align-items:center}
-html[data-theme="paper"] nav.links a::before{content:attr(data-t);font-family:var(--f-serif);font-style:italic;font-weight:400;height:0;overflow:hidden;visibility:hidden;pointer-events:none}
-html[data-theme="paper"] nav.links a::after{display:none}
+/* the menu: a dark brown sheet that fades in (0.9s desktop, 0.5s phone, strong ease-out). Photo left, huge links right. */
+html[data-theme="paper"] nav.links{position:fixed;inset:0;margin:0;background-color:#2A1D0F;background-image:var(--grain);background-size:400px;
+  display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:center;gap:clamp(24px,5vw,90px);padding:calc(var(--paper-nav-h) + 16px) var(--pad) 40px;
+  opacity:0;visibility:hidden;clip-path:none;transition:opacity .9s cubic-bezier(.19,1,.22,1),visibility 0s linear .9s;counter-reset:nl}
+html[data-theme="paper"] nav.links.open{opacity:1;visibility:visible;transition:opacity .9s cubic-bezier(.19,1,.22,1),visibility 0s}
+html[data-theme="paper"] .nav-ph{grid-column:1;grid-row:1/8;position:relative;aspect-ratio:4/5;max-height:70svh;justify-self:end;width:min(100%,460px);border:1px solid #D2B6A1}
+html[data-theme="paper"] .nav-ph span{position:absolute;inset:0;opacity:0;transition:opacity .35s ease}
+html[data-theme="paper"] .nav-ph span.on{opacity:1}
+html[data-theme="paper"] .nav-ph img{width:100%;height:100%;object-fit:cover;display:block}
+html[data-theme="paper"] nav.links a{grid-column:2;position:relative;justify-self:start;font-family:var(--f-display);font-weight:500;font-size:clamp(36px,4.6vw,65px);letter-spacing:.04em;line-height:1.15;text-transform:uppercase;color:#F2EBDE;
+  display:inline-flex;flex-direction:column;padding:2px 0 4px 2.6em;min-height:44px;counter-increment:nl;
+  background:linear-gradient(currentColor,currentColor) 2.6em 100%/0 1px no-repeat;transition:background-size .5s ease,opacity .3s ease}
+html[data-theme="paper"] nav.links a::before{content:attr(data-t);font-style:italic;height:0;overflow:hidden;visibility:hidden;pointer-events:none}
+html[data-theme="paper"] nav.links a::after{display:block;position:absolute;left:0;top:.5em;width:auto;height:auto;background:none;transform:none;
+  content:counter(nl,decimal-leading-zero) ' /';font-family:var(--f-script);font-size:.45em;letter-spacing:.04em;color:#D2B6A1;text-transform:none}
 html[data-theme="paper"] nav.links a.book{display:none!important}
-html[data-theme="paper"] nav.links a.on,html[data-theme="paper"] nav.links a:hover,html[data-theme="paper"] nav.links a:focus-visible,html[data-theme="paper"] nav.links a:active{font-family:var(--f-serif);font-style:italic;font-weight:400;outline:none;text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1px}
+html[data-theme="paper"] nav.links a.on{font-style:italic;background-size:calc(100% - 2.6em) 1px}
+html[data-theme="paper"] nav.links a:hover,html[data-theme="paper"] nav.links a:focus-visible{font-style:italic;background-size:calc(100% - 2.6em) 1px;outline-color:#D2B6A1}
+@media (hover:hover){html[data-theme="paper"] nav.links:has(a:hover) a:not(:hover){opacity:.45}}
+@media(max-width:700px){
+  html[data-theme="paper"] nav.links{grid-template-columns:1fr;align-content:center;gap:4px;padding-top:calc(var(--paper-nav-h) + 8px);opacity:0;transition:opacity .5s cubic-bezier(.19,1,.22,1),visibility 0s linear .5s}
+  html[data-theme="paper"] nav.links.open{transition:opacity .5s cubic-bezier(.19,1,.22,1),visibility 0s}
+  html[data-theme="paper"] .nav-ph{display:none}
+  html[data-theme="paper"] nav.links a{grid-column:1;font-size:36px}
+}
+/* with the overlay open the bar keeps only its Close label, in cream */
+html[data-theme="paper"] header:has(nav.links.open) .paper-contact,html[data-theme="paper"] header:has(nav.links.open) .brand{opacity:0;pointer-events:none}
+html[data-theme="paper"] header:has(nav.links.open) .burger{color:#F2EBDE}
+html[data-theme="paper"] header:has(nav.links.open)::before{opacity:0}
 @media (prefers-reduced-motion:reduce){
-  html[data-theme="paper"] nav.links{clip-path:none;opacity:0;visibility:hidden;transition:opacity .2s,visibility .2s}
-  html[data-theme="paper"] nav.links.open{opacity:1;visibility:visible}
+  html[data-theme="paper"] nav.links,html[data-theme="paper"] nav.links.open{transition:none}
   html[data-theme="paper"].on-home.paper-popped header{animation:none}
 }
+/* the bar stays at the top on larger screens; on phones it hides on scroll down as before */
+@media(min-width:701px){html[data-theme="paper"] header.hide{transform:none}}
 
 /* ---- buttons are links: caps, tracked, italic + underline on hover / focus / press ---- */
 html[data-theme="paper"] .btn,html[data-theme="paper"] .book,html[data-theme="paper"] nav.links a.book{
@@ -113,7 +136,7 @@ html[data-theme="paper"] .btn span,html[data-theme="paper"] .book span{grid-area
 /* the existing wipe layer becomes the hidden italic twin */
 html[data-theme="paper"] .btn i,html[data-theme="paper"] .book i{position:static;grid-area:1/1;background:none;color:inherit;clip-path:none;font-style:italic;visibility:hidden;height:0;overflow:hidden;transition:none}
 html[data-theme="paper"] .btn:hover,html[data-theme="paper"] .btn:focus-visible,html[data-theme="paper"] .btn:active,
-html[data-theme="paper"] .book:hover,html[data-theme="paper"] .book:focus-visible,html[data-theme="paper"] .book:active{font-style:italic;border-bottom-color:currentColor;outline:none;transform:none}
+html[data-theme="paper"] .book:hover,html[data-theme="paper"] .book:focus-visible,html[data-theme="paper"] .book:active{font-style:italic;border-bottom-color:currentColor;transform:none}
 html[data-theme="paper"] .btn:active,html[data-theme="paper"] .book:active{transform:none}
 /* Prices toggles read as links too */
 html[data-theme="paper"] .pr .filter-toggle,html[data-theme="paper"] .pr .currency-toggle{border:0;gap:26px}
@@ -122,7 +145,7 @@ html[data-theme="paper"] .pr .filter-toggle button,html[data-theme="paper"] .pr 
 html[data-theme="paper"] .pr .filter-toggle button:hover,html[data-theme="paper"] .pr .currency-toggle button:hover,
 html[data-theme="paper"] .pr .filter-toggle button:focus-visible,html[data-theme="paper"] .pr .currency-toggle button:focus-visible,
 html[data-theme="paper"] .pr .filter-toggle button.is-active,html[data-theme="paper"] .pr .currency-toggle button.is-active{
-  background:none;color:var(--gold);font-style:italic;border-bottom-color:currentColor;outline:none}
+  background:none;color:var(--gold);font-style:italic;border-bottom-color:currentColor}
 
 /* the hero declares its own dark tokens in style.css; put it back on cream */
 html[data-theme="paper"] .vhero{--ink:#F2EBDE;--paper:#2A1D0F;--dim:rgba(42,29,15,.8);--soft:rgba(42,29,15,.72);--gold:#552021;--gold-hi:#552021;background-color:#F2EBDE;
@@ -185,6 +208,58 @@ html[data-theme="paper"] footer .credit-logo{filter:none;opacity:.7}
 /* ---- subtle warm tone on photos, Paper only. CSS filter, originals untouched. Set --paper-photo:none to switch it off ---- */
 html[data-theme="paper"]{--paper-photo:sepia(.1) saturate(.94) contrast(.96) brightness(1.02)}
 html[data-theme="paper"] main picture img,html[data-theme="paper"] main figure img,html[data-theme="paper"] .mosaic img{filter:var(--paper-photo)}
+
+
+/* ---- footer: no navigation here (it lives in the bar and the overlay). Logo, tagline, Elsewhere, copyright, credit ---- */
+html[data-theme="paper"] .ftop{grid-template-columns:1.3fr 1fr}
+html[data-theme="paper"] .ftop>.fc:nth-child(2){display:none}
+html[data-theme="paper"] footer .fc a{display:block;width:fit-content;min-height:44px;padding:10px 0 0}
+
+/* ---- links look like links at rest; every tap target is at least 44px; visible focus ---- */
+html[data-theme="paper"] .btn,html[data-theme="paper"] .paper-contact,html[data-theme="paper"] .pr .filter-toggle button,html[data-theme="paper"] .pr .currency-toggle button{
+  border-bottom:1px solid currentColor;border-bottom-color:color-mix(in srgb,currentColor 50%,transparent)}
+html[data-theme="paper"] .btn:hover,html[data-theme="paper"] .btn:focus-visible,html[data-theme="paper"] .btn:active,
+html[data-theme="paper"] .paper-contact:hover,html[data-theme="paper"] .paper-contact:focus-visible,
+html[data-theme="paper"] .pr .filter-toggle button.is-active,html[data-theme="paper"] .pr .currency-toggle button.is-active{border-bottom-color:currentColor}
+html[data-theme="paper"] :focus-visible{outline:2px solid #552021;outline-offset:3px}
+html[data-theme="paper"] .plan :focus-visible,html[data-theme="paper"] .pr-pkgs :focus-visible,html[data-theme="paper"] .band:not(.voices) :focus-visible,html[data-theme="paper"] .cta :focus-visible,
+html[data-theme="paper"] footer :focus-visible,html[data-theme="paper"] .pc-3 :focus-visible,html[data-theme="paper"] .pc-2 :focus-visible{outline-color:#F2EBDE}
+html[data-theme="paper"] .pr .filter-toggle,html[data-theme="paper"] .pr .currency-toggle{flex-wrap:wrap;gap:0 22px;max-width:100%}
+html[data-theme="paper"] .pr .pr-bar,html[data-theme="paper"] .pr .filter-bar{max-width:100%}
+
+/* ---- Home: Recent work as three full-screen cards (Paper's own markup, see paperCards() in app.js) ---- */
+html[data-theme="paper"] .pcards{padding:0;background-color:#2A1D0F}
+html[data-theme="paper"] .pcards-stick{position:relative}
+html[data-theme="paper"] .pcards-track{display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+html[data-theme="paper"] .pcards-track::-webkit-scrollbar{display:none}
+html[data-theme="paper"] .pcard{position:relative;flex:0 0 86vw;scroll-snap-align:center;min-height:min(86svh,680px);display:flex;flex-direction:column;justify-content:flex-end;gap:22px;padding:22px 20px 28px;
+  background-color:var(--ink);background-image:var(--grain);background-size:400px;color:var(--paper)}
+html[data-theme="paper"] .pc-1{--ink:#D2B6A1;--paper:#2A1D0F;--dim:rgba(42,29,15,.85);--gold:#552021;--line:rgba(42,29,15,.3)}
+html[data-theme="paper"] .pc-2{--ink:#552021;--paper:#F2EBDE;--dim:rgba(242,235,222,.9);--gold:#F2EBDE;--line:rgba(242,235,222,.4)}
+html[data-theme="paper"] .pc-3{--ink:#2A1D0F;--paper:#F2EBDE;--dim:#D2B6A1;--gold:#F2EBDE;--line:rgba(210,182,161,.4)}
+html[data-theme="paper"] .pc-ph{order:-1;margin:0;border:1px solid currentColor;aspect-ratio:4/5;overflow:hidden;max-height:52svh}
+html[data-theme="paper"] .pc-ph img{width:100%;height:100%;object-fit:cover;display:block}
+html[data-theme="paper"] .pc-tx h2{font-size:clamp(30px,8vw,44px);color:var(--paper)}
+html[data-theme="paper"] .pc-tx p{margin:14px 0 6px;color:var(--dim);font-style:italic;font-size:17px;max-width:34ch}
+html[data-theme="paper"] .pc-no{display:block;font-family:var(--f-script);font-size:42px;line-height:1.1;color:var(--paper);opacity:.75;margin-bottom:4px}
+html[data-theme="paper"] .pc-tx .btn{color:var(--paper)}
+html[data-theme="paper"] .pc-dots{list-style:none;display:flex;justify-content:center;gap:22px;padding:6px 0 0;margin:0;color:var(--paper);font-family:var(--f-serif);font-size:13px;letter-spacing:.2em}
+html[data-theme="paper"] .pc-dots li{opacity:.7}
+html[data-theme="paper"] .pc-dots li.on{font-style:italic;opacity:1;border-bottom:1px solid currentColor}
+/* pointer devices without reduced motion: the section pins and vertical scroll moves the cards sideways */
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  html[data-theme="paper"] .pcards{height:300svh}
+  html[data-theme="paper"] .pcards-stick{position:sticky;top:0;height:100svh;overflow:hidden}
+  html[data-theme="paper"] .pcards-track{width:300vw;height:100%;overflow:visible;scroll-snap-type:none;transform:translate3d(var(--pc-x,0),0,0)}
+  html[data-theme="paper"] .pcard{flex:0 0 100vw;height:100svh;min-height:0;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:center;gap:clamp(30px,6vw,110px);padding:calc(var(--paper-nav-h) + 20px) var(--pad) 60px}
+  html[data-theme="paper"] .pc-ph{order:0;aspect-ratio:auto;height:min(68svh,calc(100svh - 220px));max-height:none;justify-self:end;width:min(100%,640px);grid-column:1}
+  html[data-theme="paper"] .pc-tx{grid-column:2}
+  html[data-theme="paper"] .pc-2 .pc-ph{grid-column:2;justify-self:start}
+  html[data-theme="paper"] .pc-2 .pc-tx{grid-column:1;grid-row:1;justify-self:end;text-align:right}
+  html[data-theme="paper"] .pc-2 .pc-tx p{margin-left:auto}
+  html[data-theme="paper"] .pc-tx h2{font-size:clamp(40px,5.4vw,84px)}
+  html[data-theme="paper"] .pc-dots{position:absolute;top:calc(var(--paper-nav-h) + 8px);right:var(--pad);padding:0}
+}
 
 /* ---- calm: no bounce, nothing slides, no hover lift ---- */
 @media (prefers-reduced-motion:reduce){html[data-theme="paper"] *{transition:none!important;animation:none!important}}

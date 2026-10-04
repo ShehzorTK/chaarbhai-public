@@ -150,6 +150,35 @@ const HERO_SOUND_ICON=muted=>`<svg viewBox="0 0 24 24" aria-hidden="true" focusa
 const HERO_PLAY_ICON=paused=>`<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="${paused?'M8 5.5v13l11-6.5z':'M7 5h3.6v14H7zM13.4 5H17v14h-3.6z'}" fill="currentColor"/></svg>`;
 
 /* ================= PAGES ================= */
+
+/* Paper theme only: Home's Recent work is three full-screen cards (see theme-paper.css). Photo = the first chapter's cover in each group. */
+const PAPER=document.documentElement.dataset.theme==='paper';
+function paperCards(){
+  const by=id=>CHAPTERS.find(c=>c.id===id);
+  const G=[
+    {no:'01',title:'Before the day',line:'Dholki nights, henna and haldi: the rooms that get loud first.',cover:'henna',first:'night'},
+    {no:'02',title:'The ceremony',line:'The arrival and the vows, usually the quietest hour of the week.',cover:'ceremony',first:'arrival'},
+    {no:'03',title:'The night',line:'The reception and the farewell, when everyone finally exhales.',cover:'reception',first:'reception'}];
+  return `<section class="pcards" aria-label="Recent work">
+  <div class="pcards-stick">
+    <div class="pcards-track" tabindex="0" role="group" aria-label="Recent work, three groups">${G.map((g,i)=>`
+      <article class="pcard pc-${i+1}">
+        <figure class="pc-ph">${pic(by(g.cover).cover,'(max-width:900px) 80vw, 46vw')}</figure>
+        <div class="pc-tx"><span class="pc-no" aria-hidden="true">${g.no}</span><h2>${g.title}</h2><p>${g.line}</p>
+          <button class="btn" data-nav-to="#/portfolio/photos/${g.first}"><span>View the work</span><i></i></button></div>
+        <ol class="pc-dots" aria-hidden="true">${G.map((h,j)=>`<li${j===i?' class="on"':''}>${h.no}</li>`).join('')}</ol>
+      </article>`).join('')}</div>
+  </div>
+</section>`;
+}
+function paperCardsPaint(pc){
+  const n=pc.querySelectorAll('.pcard').length;
+  if(matchMedia('(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)').matches){
+    const r=pc.getBoundingClientRect(),p=Math.max(0,Math.min(1,-r.top/Math.max(1,r.height-innerHeight)));
+    pc.style.setProperty('--pc-x',`${-p*(n-1)*100}vw`);
+  }else pc.style.removeProperty('--pc-x');
+}
+
 const P={};
 
 P['/']=()=>`
@@ -193,7 +222,7 @@ P['/']=()=>`
   </div>
 </section>
 
-<section class="day" style="padding-top:0">
+${PAPER?paperCards():`<section class="day" style="padding-top:0">
   <div class="day-pin">
     <h2 class="d2" style="margin-bottom:clamp(26px,3vw,40px)">Recent work</h2>
     <div class="day-sky"><i class="day-sun"></i><ol class="day-hours">${CHAPTERS.map(c=>`<li><a href="#recent-${c.id}" data-day-link="${c.id}">${c.short}</a></li>`).join('')}</ol></div>
@@ -206,7 +235,7 @@ P['/']=()=>`
       </div>`).join('')}</div>
     <div class="day-end" style="margin-top:44px"><a href="#/portfolio" data-nav class="btn"><span>The full archive</span><i></i></a></div>
   </div>
-</section>
+</section>`}
 
 <section class="band">
   <div class="band-in">
@@ -1942,9 +1971,30 @@ document.addEventListener('click',e=>{
 
 const burger=document.getElementById('burger'),navlinks=document.getElementById('navlinks');
 const setMenu=o=>{navlinks.classList.toggle('open',o);burger.classList.toggle('x',o);
-  burger.setAttribute('aria-expanded',o);document.body.classList.toggle('locked',o)};
+  burger.setAttribute('aria-expanded',o);document.body.classList.toggle('locked',o);
+  if(document.documentElement.dataset.theme==='paper'){   // Paper: the overlay is a modal, the page behind is inert
+    ['main','footer'].forEach(q=>{const e=document.querySelector(q);if(e)e.inert=o});
+    if(o){const f=navlinks.querySelector('a:not(.book)');if(f)f.focus({preventScroll:true})}
+  }};
 burger.addEventListener('click',()=>setMenu(!navlinks.classList.contains('open')));
 addEventListener('keydown',e=>{if(e.key==='Escape'&&navlinks.classList.contains('open')){setMenu(false);burger.focus()}});
+if(document.documentElement.dataset.theme==='paper'){
+  burger.setAttribute('aria-label','Navigation');navlinks.setAttribute('role','dialog');navlinks.setAttribute('aria-modal','true');navlinks.setAttribute('aria-label','Navigation');
+  /* focus stays inside the overlay: the links, then the Close control */
+  addEventListener('keydown',e=>{
+    if(e.key!=='Tab'||!navlinks.classList.contains('open'))return;
+    const f=[...navlinks.querySelectorAll('a:not(.book)'),burger],i=f.indexOf(document.activeElement);
+    e.preventDefault();f[(i+(e.shiftKey?-1:1)+f.length)%f.length].focus();
+  });
+  /* one photo per link, cross-faded when a link is hovered or focused (desktop) */
+  const NP={'#/':'ceremony','#/portfolio':'henna','#/about':'stay','#/services':'reception','#/testimonials':'arrival'};
+  const ph=document.createElement('div');ph.className='nav-ph';ph.setAttribute('aria-hidden','true');
+  const links=[...navlinks.querySelectorAll('a:not(.book)')];
+  ph.innerHTML=links.map((a,i)=>{const k=NP[a.getAttribute('href')],f=k==='stay'?PICKS.stay:(CHAPTERS.find(c=>c.id===k)||{}).cover;return f?`<span class="${i?'':'on'}">${pic(f,'40vw')}</span>`:'<span></span>'}).join('');
+  navlinks.prepend(ph);
+  const show=a=>{const i=links.indexOf(a);ph.querySelectorAll('span').forEach((sp,j)=>sp.classList.toggle('on',j===i))};
+  links.forEach(a=>{a.addEventListener('mouseenter',()=>show(a));a.addEventListener('focus',()=>show(a))});
+}
 document.getElementById('skip').addEventListener('click',()=>{
   const h=main.querySelector('h1'); if(h){h.tabIndex=-1;h.focus()}});
 
@@ -2157,6 +2207,7 @@ function paintHomeScenes(){
       ps.forEach((q,i)=>ls[i]&&ls[i].classList.toggle('lit',reduce||q.getBoundingClientRect().top<=innerHeight*.55));
     }
   }else guideOff('about');
+  const pcs=document.querySelector('.pcards');if(pcs){guideOff('home');paperCardsPaint(pcs);return;}
   const day=document.querySelector('.day');if(!day){guideOff('home');return;}
   const track=day.querySelector('.day-track'),pin=day.querySelector('.day-pin'),panels=[...day.querySelectorAll('.day-panel')];
   const desktop=innerWidth>900&&!reduce,step=panels.length>1?panels[1].offsetLeft-panels[0].offsetLeft:0,max=step*(panels.length-1);
