@@ -105,7 +105,7 @@ function lightOf(hex){
   return null;
 }
 function setTint(t){
-  if(!S||S.notint)return;
+  if(!S||S.notint||document.documentElement.dataset.theme==='paper')return;   // Paper: the Work page keeps one colour, no tinted grounds
   const st=S.host.style;
   if(t){st.setProperty('--tint',t.g);const lt=t.lt||(t.lt=lightOf(t.g));if(lt)st.setProperty('--tint-l',lt);else st.removeProperty('--tint-l')}
   else{st.removeProperty('--tint');st.removeProperty('--tint-l')}

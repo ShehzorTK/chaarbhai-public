@@ -90,6 +90,16 @@ html[data-theme="paper"] .burger.x::after{content:'Close \00d7';border-bottom-co
 html[data-theme="paper"] .burger:hover,html[data-theme="paper"] .burger:focus-visible,html[data-theme="paper"] .burger:active{font-style:italic}
 html[data-theme="paper"] .burger:hover::after,html[data-theme="paper"] .burger:focus-visible::after,html[data-theme="paper"] .burger:active::after{border-bottom-color:currentColor}
 html[data-theme="paper"] .hdr-sub{grid-column:1/-1}
+/* phones: the label is too long, so the bar shows a two-line hamburger (turns into a cross when open) */
+@media(max-width:700px){
+  html[data-theme="paper"] .burger{display:block;position:relative;width:44px;height:44px;min-width:44px;padding:0;justify-self:end}
+  html[data-theme="paper"] .burger::before,html[data-theme="paper"] .burger::after,html[data-theme="paper"] .burger.x::before,html[data-theme="paper"] .burger.x::after{content:none;display:none}
+  html[data-theme="paper"] .burger i{display:block;position:absolute;left:11px;right:11px;width:auto;height:1px;background:#F2EBDE;transition:transform .3s var(--ease)}
+  html[data-theme="paper"] .burger i:first-child{top:18px}
+  html[data-theme="paper"] .burger i:last-child{top:25px;bottom:auto}
+  html[data-theme="paper"] .burger.x i:first-child{transform:translateY(3.5px) rotate(45deg)}
+  html[data-theme="paper"] .burger.x i:last-child{transform:translateY(-3.5px) rotate(-45deg)}
+}
 /* Home: the bar is a sibling right after the film (app.js moves it there), and sticks to the top once it gets there. Plain CSS sticky, no script. */
 html[data-theme="paper"] .vhero{display:contents}
 html[data-theme="paper"].on-home #page{background-color:var(--paper-accent);background-image:var(--grain);background-size:400px}
