@@ -378,6 +378,17 @@ function onKey(e){
   if(b&&!b.disabled){e.preventDefault();b.click()}
 }
 function onScroll(){if(S&&!S.tick){S.tick=1;requestAnimationFrame(measure)}}
+/* Desktop: one couple per wheel or trackpad gesture, then one 360ms settle (no CSS snapping there, see style.css). At the first or last
+   couple the wheel is left alone, so the page carries on to the menu above or the footer below. Phones keep native snapping. */
+cbWheel(window,()=>shown()&&S.inStage&&!S.jump&&!document.documentElement.classList.contains('lb-open')&&!document.body.classList.contains('locked')&&
+  (S.internal?S.contained:document.documentElement.classList.contains('snap-y')),dir=>{
+  const st=S,el=st.internal?st.feed:document.scrollingElement;
+  const tops=st.slides.map((_,i)=>st.internal?feedTop(st,i):slideTop(i)),y=el.scrollTop;
+  let cur=0;tops.forEach((t,i)=>{if(Math.abs(t-y)<Math.abs(tops[cur]-y))cur=i});
+  const n=cur+dir;if(n<0||n>=tops.length)return false;
+  const max=Math.max(0,el.scrollHeight-el.clientHeight);
+  cbGlide(el,'y',Math.max(0,Math.min(max,tops[n])),360);return true;
+});
 
 function observe(){
   if(S.io)S.io.disconnect();

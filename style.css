@@ -24,6 +24,8 @@
   --bar:rgba(18,20,28,.92);
   --bar-solid:rgba(18,20,28,.98);
   --ease:cubic-bezier(.16,1,.3,1);
+  --ease-out:cubic-bezier(.23,1,.32,1);   /* Work: strips, stage, films, hover. One settle curve, no bounce */
+  --ease-drawer:cubic-bezier(.32,.72,0,1);
   --quint:cubic-bezier(.22,1,.36,1);   /* ease-out quint: the ground's colour change, 800ms, fast start and a long soft settle */
   --ease-io:cubic-bezier(.74,0,.26,1);
   --pad:clamp(18px,4.6vw,76px);
@@ -1000,7 +1002,7 @@ body.locked .ps-contained header{background:var(--ink)}
   .ps-arrows button:disabled{opacity:.22;pointer-events:none}
   .ps-arrows button:hover{color:var(--gold)}
   /* looking is the product: a photograph answers the mouse (iPhone has no hover, it keeps tap feedback) */
-  .ps .frame .fr-img img{transition:transform .7s var(--ease)}
+  .ps .frame .fr-img img{transition:transform .4s var(--ease-out)}
   .ps .frame .fr-img:hover img{transform:scale(1.02)}
   .ps-body:has(.fr-img:hover) .seq-count{color:var(--gold)}
 }
@@ -1382,3 +1384,10 @@ header .brand img.cb-brand-in-flight{visibility:hidden}
 }
 @media(prefers-reduced-motion:reduce){.cmap-oth,.cmap-grid,.cmap-ca{transition:none}}
 @media(max-width:900px){.gta{grid-template-columns:1fr}.cmap{max-width:480px;margin:8px auto 0}}
+
+/* Work, desktop mouse and trackpad: no CSS snapping. The wheel scrolls natively and JS settles once onto a frame (cbGlide in video-feed.js),
+   so the browser never pulls the strip against the hand. Phones keep native mandatory snapping above. */
+@media (hover:hover) and (pointer:fine){
+  .seq-strip,.vf-feed,.ps-internal .ps-feed{scroll-snap-type:none}
+  html.snap-y{scroll-snap-type:none}
+}

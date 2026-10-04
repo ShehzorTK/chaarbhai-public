@@ -1,3 +1,34 @@
+/* Work scroll helpers, shared by the strips, the Photographs stage and Films (desktop mouse and trackpad only; phones keep native snapping).
+   Input stays native. One interruptible glide settles onto a frame: cubic-bezier(.23,1,.32,1), no bounce, restarts from where it is. */
+window.cbDesk=()=>matchMedia('(hover:hover) and (pointer:fine)').matches;
+window.cbGlide=(function(){
+  const X1=.23,Y1=1,X2=.32,Y2=1,ease=t=>{let u=t;for(let i=0;i<6;i++){const x=3*(1-u)*(1-u)*u*X1+3*(1-u)*u*u*X2+u*u*u-t,d=3*(1-u)*(1-u)*X1+6*(1-u)*u*(X2-X1)+3*u*u*(1-X2);if(Math.abs(d)<1e-6)break;u-=x/d}return 3*(1-u)*(1-u)*u*Y1+3*(1-u)*u*u*Y2+u*u*u};
+  const key=a=>a==='y'?'scrollTop':'scrollLeft';
+  function glide(el,axis,to,ms,done){
+    glide.stop(el);const k=key(axis),from=el[k];
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches||ms<=0||Math.abs(to-from)<1){el[k]=to;done&&done();return}
+    const t0=performance.now(),g=el._cbg={raf:0};
+    const tick=now=>{
+      if(el._cbg!==g)return;
+      const t=Math.min(1,(now-t0)/ms);el[k]=from+(to-from)*ease(t);
+      if(t<1)g.raf=requestAnimationFrame(tick);else{el._cbg=null;el[k]=to;done&&done()}
+    };
+    g.raf=requestAnimationFrame(tick);
+  }
+  glide.stop=el=>{if(el._cbg){cancelAnimationFrame(el._cbg.raf);el._cbg=null}};
+  return glide;
+})();
+/* One slide per wheel gesture. take(dir) returns true when it starts a move (the wheel is then swallowed until the gesture ends:
+   220ms with no wheel event), false to let the browser scroll natively (the first or last slide, so the page carries on). */
+window.cbWheel=(el,gate,take)=>{
+  let last=-1e9,own=false;
+  el.addEventListener('wheel',e=>{
+    if(e.ctrlKey||Math.abs(e.deltaX)>Math.abs(e.deltaY)||Math.abs(e.deltaY)<2||!window.cbDesk()||!gate())return;
+    const fresh=e.timeStamp-last>220;last=e.timeStamp;
+    if(fresh)own=take(e.deltaY>0?1:-1);
+    if(own)e.preventDefault();
+  },{passive:false});
+};
 /* Work page, Films view: a full-screen vertical feed of YouTube films.
    Data: window.VIDEOS (videos.js, built from drafts/videos/videos.json).
    Nothing here touches the network until Films is opened; the YouTube
@@ -226,6 +257,18 @@ function open(id){
   const drop=()=>{if(S)S.target=null};
   S.feed.addEventListener('wheel',drop,{passive:true});
   S.feed.addEventListener('touchstart',drop,{passive:true});
+  /* desktop: one film per wheel or trackpad gesture, then a single settle. At the first or last film the wheel is left alone so the page carries on. */
+  cbWheel(S.feed,()=>S&&!document.body.classList.contains('locked')&&!document.body.classList.contains('vf-full'),dir=>{
+    if(!S.aligned&&S.feed.scrollTop<4){             // the menu is still partly showing: down carries the page to the first film, up carries on to the menu
+      if(dir<0)return false;
+      const hdr=document.getElementById('hdr'),top=S.root.getBoundingClientRect().top+scrollY-(S.headerGap||(hdr?hdr.offsetHeight:0));
+      S.aligned=true;cbGlide(document.scrollingElement,'y',Math.max(0,top),360);return true;
+    }
+    const tops=S.slides.map(el=>el.offsetTop),y=S.feed.scrollTop;
+    let cur=0;tops.forEach((t,i)=>{if(Math.abs(t-y)<Math.abs(tops[cur]-y))cur=i});
+    const n=cur+dir;if(n<0||n>=tops.length)return false;
+    S.target=n;scrollToSlide(n);return true;
+  });
   root.addEventListener('click',onClick);
   S.pro=document.getElementById('vf-pro');
   reserveEntryLayout(S);
@@ -542,14 +585,18 @@ function setHash(){
 }
 
 /* ---------- moving between slides ---------- */
-function scrollToSlide(n){
-  S.feed.scrollTo({top:S.slides[n].offsetTop,behavior:S.reduce?'auto':'smooth'});
+/* instant: keys and chips never animate. Glide (desktop): one interruptible 360ms settle. Phones keep the native smooth scroll and snap. */
+function scrollToSlide(n,instant){
+  const top=S.slides[n].offsetTop;
+  if(instant){cbGlide.stop(S.feed);S.feed.scrollTo({top,behavior:'instant'});return}
+  if(cbDesk())cbGlide(S.feed,'y',top,360);
+  else S.feed.scrollTo({top,behavior:S.reduce?'auto':'smooth'});
 }
-function step(d){
+function step(d,instant){
   const base=S.target!=null?S.target:S.active;
   const n=Math.max(0,Math.min(S.data.length-1,base+d));
   if(n===base)return;
-  S.target=n;scrollToSlide(n);
+  S.target=n;scrollToSlide(n,instant);
 }
 function advance(){
   const n=S.active+1;
@@ -682,7 +729,7 @@ function onClick(e){
   const fb=t.closest('.vf-film');
   if(fb){swapFilm(S.active,fb.dataset.mode);return}
 }
-function scrollTo_(n){ if(n>=0&&n<S.data.length){S.target=n;scrollToSlide(n)} }
+function scrollTo_(n){ if(n>=0&&n<S.data.length){S.target=n;scrollToSlide(n,true)} }
 function onSeekKey(e){
   if(!S||!e.target.closest||!e.target.closest('.vf-seek'))return;
   if(e.key==='ArrowRight'){e.preventDefault();seekBy(5)}
@@ -705,8 +752,8 @@ function onKey(e){
   if((k==='ArrowUp'||k==='PageUp')&&S.active===0&&S.aligned){       // Up on the first film goes back to the menu
     e.preventDefault();scrollTo({top:0,behavior:S.reduce?'instant':'smooth'});S.aligned=false;return;
   }
-  if(k==='ArrowDown'||k==='j'||k==='PageDown'){e.preventDefault();step(1)}
-  else if(k==='ArrowUp'||k==='k'||k==='PageUp'){e.preventDefault();step(-1)}
+  if(k==='ArrowDown'||k==='j'||k==='PageDown'){e.preventDefault();step(1,true)}
+  else if(k==='ArrowUp'||k==='k'||k==='PageUp'){e.preventDefault();step(-1,true)}
   else if(k===' '||k==='Spacebar'){
     if(t&&t.closest&&t.closest('button,a,[role="button"]'))return;   // a focused button keeps its own Space
     e.preventDefault();toggle();

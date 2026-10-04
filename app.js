@@ -867,7 +867,7 @@ function dragScroll(strips){
       if(e.pointerType!=='mouse'||e.button!==0)return;
       e.preventDefault();
       clearTimeout(settle);settle=null;          // grabbing mid-glide stops it where it is
-      t.scrollTo({left:t.scrollLeft,behavior:'auto'});
+      cbGlide.stop(t);
       down=true;sx=e.clientX;sl=t.scrollLeft;samples=[{x:e.clientX,t:e.timeStamp}];
       t.classList.add('drag');
       t.setPointerCapture(e.pointerId);
@@ -882,7 +882,7 @@ function dragScroll(strips){
       if(!down)return;
       down=false;
       if(Math.abs(e.clientX-sx)<6){                // a click, not a drag: open that photo larger
-        release();t.scrollTo({left:sl,behavior:'auto'});
+        release();cbGlide.stop(t);t.scrollLeft=sl;
         const f=document.elementFromPoint(e.clientX,e.clientY);
         if(e.type==='pointerup'&&f&&f.closest('.frame'))lightbox(f.closest('.frame'));
         return;
@@ -897,12 +897,10 @@ function dragScroll(strips){
       i=Math.max(0,Math.min(frames.length-1,Math.max(from-2,Math.min(from+2,i))));
       const left=Math.min(pos[i],max);
       if(Math.abs(left-cur)<1){release();return}
-      t.scrollTo({left,behavior:reduceMotion()?'auto':'smooth'});
-      settle=setTimeout(release,700);             // fallback where scrollend isn't supported
+      cbGlide(t,'x',left,320,release);            // one interruptible settle; the callback ends the drag state, no timer
     };
     t.addEventListener('pointerup',up);
     t.addEventListener('pointercancel',up);
-    t.addEventListener('scrollend',()=>{if(!down&&settle)release()});
   });
 }
 /* Larger view. A click on a frame (Enter or Space from the keyboard) opens it
@@ -995,7 +993,12 @@ function sequences(seqs){
           total=frames.length;
     if(!total)return;
     let shown=0,target=null,settleTimer=0;
-    const positions=()=>{const first=frames[0].offsetLeft,max=Math.max(0,strip.scrollWidth-strip.clientWidth);return frames.map(f=>Math.min(max,f.offsetLeft-first));};
+    let pc=null;                                   // frame positions, rebuilt only when the strip's size changes
+    const positions=()=>{
+      const w=strip.clientWidth,sw=strip.scrollWidth;
+      if(!pc||pc.w!==w||pc.sw!==sw){const first=frames[0].offsetLeft,max=Math.max(0,sw-w);pc={w,sw,p:frames.map(f=>Math.min(max,f.offsetLeft-first))};}
+      return pc.p;
+    };
     const current=()=>{const pos=positions();let best=0;pos.forEach((x,i)=>{if(Math.abs(x-strip.scrollLeft)<Math.abs(pos[best]-strip.scrollLeft)-.5)best=i;});return best;};
     const upd=()=>{
       if(!strip.isConnected||!strip.clientWidth)return;
@@ -1011,11 +1014,38 @@ function sequences(seqs){
     const move=delta=>{
       const pos=positions(),base=target===null?current():target;
       target=Math.max(0,Math.min(total-1,base+delta));
-      strip.scrollTo({left:pos[target],behavior:reduceMotion()?'auto':'smooth'});
+      if(cbDesk())cbGlide(strip,'x',pos[target],300,()=>{target=null});
+      else strip.scrollTo({left:pos[target],behavior:reduceMotion()?'auto':'smooth'});
     };
-    strip.addEventListener('scroll',()=>{upd();clearTimeout(settleTimer);settleTimer=setTimeout(()=>target=null,180);},{passive:true});
+    let updRaf=0;                                  // at most one update per frame while scrolling
+    strip.addEventListener('scroll',()=>{
+      if(!updRaf)updRaf=requestAnimationFrame(()=>{updRaf=0;upd()});
+      clearTimeout(settleTimer);settleTimer=setTimeout(()=>target=null,180);
+    },{passive:true});
     strip.addEventListener('scrollend',()=>{target=null;upd();});
-    strip.addEventListener('wheel',()=>{target=null;},{passive:true}); // Trackpad input interrupts an arrow glide; resume from the visible frame.
+    /* Desktop wheel and trackpad stay native (no CSS snapping there). 140ms after the last horizontal wheel event, glide to the
+       nearest frame in the direction of travel, 320ms. */
+    let wTimer=0,wDir=0,wFrom=null;
+    strip.addEventListener('wheel',e=>{
+      target=null;cbGlide.stop(strip);           // input interrupts an arrow glide; resume from where the strip is
+      if(!cbDesk()||Math.abs(e.deltaX)<=Math.abs(e.deltaY)||e.ctrlKey)return;
+      if(wFrom===null)wFrom=strip.scrollLeft;
+      wDir=e.deltaX>0?1:-1;clearTimeout(wTimer);
+      wTimer=setTimeout(()=>{
+        const pos=positions(),x=strip.scrollLeft,from=wFrom;wFrom=null;
+        const near=v=>pos.reduce((bi,p,k)=>Math.abs(p-v)<Math.abs(pos[bi]-v)?k:bi,0);
+        let i=near(x);
+        if(i===near(from)&&Math.abs(x-from)>=12)i=Math.max(0,Math.min(pos.length-1,i+wDir));   // a real push always moves one frame
+        cbGlide(strip,'x',pos[i],320);
+      },140);
+    },{passive:true});
+    /* Left and Right on a focused strip jump one frame at once: keys never animate. */
+    strip.addEventListener('keydown',e=>{
+      if((e.key!=='ArrowLeft'&&e.key!=='ArrowRight')||e.metaKey||e.ctrlKey||e.altKey||e.shiftKey||!cbDesk())return;
+      e.preventDefault();cbGlide.stop(strip);
+      const pos=positions(),i=Math.max(0,Math.min(total-1,current()+(e.key==='ArrowRight'?1:-1)));
+      strip.scrollLeft=pos[i];target=null;
+    });
     strip.addEventListener('pointerdown',()=>target=null,{passive:true});
     strip.addEventListener('touchstart',()=>target=null,{passive:true});
     prev.addEventListener('click',()=>move(-1));next.addEventListener('click',()=>move(1));
