@@ -2232,26 +2232,28 @@ addEventListener('scroll',tallyQueue,{passive:true});addEventListener('resize',t
 function paperSmooth(){
   const R=document.documentElement;
   const capability=matchMedia('(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)');
-  let target=scrollY,cur=scrollY,raf=0,last=0,expected=null,rate=.07,cardMove=null;
+  /* One place to tune Paper's scroll feel (see design/home-scroll-plan.md). */
+  const CFG={wheel:1,glide:100,notch:40,cardMs:360,gesture:220,trackpadHold:250};
+  let target=scrollY,cur=scrollY,raf=0,last=0,expected=null,cardMove=null,vel=0,padUntil=0;
   const max=()=>Math.max(0,R.scrollHeight-innerHeight);
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
   const own=el=>{for(;el&&el!==document.body&&el!==R;el=el.parentElement){const o=getComputedStyle(el).overflowY;if((o==='auto'||o==='scroll')&&el.scrollHeight>el.clientHeight+1)return true;if(el.tagName==='IFRAME'||el.tagName==='TEXTAREA')return true}return false};
   const off=()=>document.body.classList.contains('locked')||R.classList.contains('ps-viewing')||R.classList.contains('lb-open')||document.body.classList.contains('vf-in')||document.body.classList.contains('vf-full')||document.getElementById('navlinks').classList.contains('open');
-  const curve=t=>{
-    const bez=(u,a,b)=>3*(1-u)*(1-u)*u*a+3*(1-u)*u*u*b+u*u*u;
-    let lo=0,hi=1;for(let i=0;i<16;i++){const m=(lo+hi)/2;if(bez(m,.16,.3)<t)lo=m;else hi=m}
-    return bez((lo+hi)/2,1,1);
-  };
   const step=now=>{
     raf=0;const dt=Math.min(64,now-last||16);last=now;
-    if(off()){target=cur=scrollY;cardMove=null;expected=null;return}
-    if(expected!==null&&Math.abs(scrollY-expected)>3){target=cur=scrollY;cardMove=null;expected=null;return}
+    if(off()){target=cur=scrollY;cardMove=null;vel=0;expected=null;return}
+    if(expected!==null&&Math.abs(scrollY-expected)>3){target=cur=scrollY;cardMove=null;vel=0;expected=null;return}
     if(cardMove){
-      const p=Math.min(1,(now-cardMove.start)/300);cur=cardMove.from+(cardMove.to-cardMove.from)*curve(p);
-      scrollTo(0,p===1?cardMove.to:cur);expected=scrollY;
-      if(p===1){cur=target=cardMove.to;cardMove=null;expected=null}
+      /* Critically damped spring: no bounce, and a new target keeps the current
+         position and velocity instead of restarting. Settles in about cardMs. */
+      const w=6.6/(CFG.cardMs/1000),h=dt/1000,x=cur-cardMove.to;
+      const a=-w*w*x-2*w*vel;vel+=a*h;cur+=vel*h;
+      const done=Math.abs(cur-cardMove.to)<.5&&Math.abs(vel)<8;
+      if(done)cur=cardMove.to;
+      scrollTo(0,cur);expected=scrollY;
+      if(done){target=cardMove.to;cardMove=null;vel=0;expected=null}
     }else{
-      cur+=(target-cur)*(1-Math.pow(1-rate,dt/16.7));if(Math.abs(target-cur)<.4)cur=target;
+      cur+=(target-cur)*(1-Math.exp(-dt/CFG.glide));if(Math.abs(target-cur)<.4)cur=target;
       scrollTo(0,cur);expected=scrollY;if(cur===target)expected=null;
     }
     if(cardMove||cur!==target)raf=requestAnimationFrame(step);
@@ -2264,7 +2266,7 @@ function paperSmooth(){
     /* A long trackpad tail can span more than one frame on a large viewport.
        Keep it in the same gesture window so one physical swipe cannot skip
        several chapters; a clear pause still starts a fresh gesture. */
-    if(direction!==wheelBurst.direction||gap>220&&magnitude>=wheelBurst.peak*.42)return begin();
+    if(direction!==wheelBurst.direction||gap>CFG.gesture&&magnitude>=wheelBurst.peak*.42)return begin();
     if(magnitude<wheelBurst.peak*.42)wheelBurst.decayed=true;
     const renewed=wheelBurst.decayed&&magnitude>=Math.max(wheelBurst.last*1.4,wheelBurst.peak*.35);
     wheelBurst.peak=Math.max(wheelBurst.peak,magnitude);wheelBurst.last=magnitude;wheelBurst.lastAt=time;
@@ -2272,11 +2274,12 @@ function paperSmooth(){
   };
   const moveCard=(pc,fromIndex,toIndex,direction)=>{
     const top=pc.getBoundingClientRect().top+scrollY,to=clamp(top+toIndex*innerHeight,0,max());
-    cardMove={from:scrollY,to,fromIndex,toIndex,direction,start:performance.now()};target=to;
+    if(!cardMove){cur=scrollY;vel=0}
+    cardMove={to,fromIndex,toIndex,direction};target=to;
     go();
   };
   addEventListener('wheel',e=>{
-    if(!capability.matches){if(raf){cancelAnimationFrame(raf);raf=0;cardMove=null;expected=null;cur=target=scrollY}return}
+    if(!capability.matches){if(raf){cancelAnimationFrame(raf);raf=0;cardMove=null;vel=0;expected=null;cur=target=scrollY}return}
     if(e.ctrlKey||e.defaultPrevented||off()||Math.abs(e.deltaX)>Math.abs(e.deltaY)||own(e.target))return;
     const raw=e.deltaMode===1?e.deltaY*16:e.deltaMode===2?e.deltaY*innerHeight:e.deltaY;
     /* Wheel event cadence varies with display refresh rate. Normalize small,
@@ -2285,6 +2288,10 @@ function paperSmooth(){
     const stamp=e.timeStamp||performance.now(),gap=wheelAt?stamp-wheelAt:16.7;wheelAt=stamp;
     const cadence=clamp(16.7/Math.max(4,gap),.75,2.5),d=raw*cadence;
     const dir=Math.sign(d),magnitude=Math.abs(d);if(!dir)return;
+    /* Trackpads and Magic Mice send a stream of small deltas: that is the
+       device's own momentum, so outside the chapter cards it stays native. */
+    const notch=e.deltaMode!==0||Math.abs(raw)>=CFG.notch&&stamp>padUntil;
+    if(!notch)padUntil=stamp+CFG.trackpadHold;
     const pc=document.querySelector('.pcards');
     if(pc){
       const n=pc.querySelectorAll('.pcard').length,top=pc.getBoundingClientRect().top+scrollY,y=(scrollY-top)/innerHeight;
@@ -2295,9 +2302,11 @@ function paperSmooth(){
         if(destination>=0&&destination<n){e.preventDefault();moveCard(pc,source,destination,dir);return}
       }
     }
-    wheelBurst.direction=0;e.preventDefault();
-    cardMove=null;if(!raf)target=cur=scrollY;rate=.07;
-    target=clamp(target+d*.5,0,max());go();
+    wheelBurst.direction=0;
+    if(!notch){if(raf){cancelAnimationFrame(raf);raf=0;cardMove=null;vel=0;expected=null}target=cur=scrollY;return}
+    e.preventDefault();
+    cardMove=null;vel=0;if(!raf)target=cur=scrollY;
+    target=clamp(target+raw*CFG.wheel,0,max());go();
   },{passive:false});
   addEventListener('click',e=>{
     const link=e.target.closest?.('[data-paper-chapter]');if(!link)return;
@@ -2309,7 +2318,7 @@ function paperSmooth(){
   });
   addEventListener('scroll',()=>{if(!raf&&expected===null){target=cur=scrollY}},{passive:true});
   document.addEventListener('scroll',e=>{if(e.target?.closest?.('.pcards-track'))homeSceneQueue()},true);
-  const mediaChanged=()=>{if(!capability.matches){if(raf)cancelAnimationFrame(raf);raf=0;cardMove=null;expected=null;cur=target=scrollY;document.querySelector('.pcards-track')?.style.removeProperty('transform')}homeSceneQueue()};
+  const mediaChanged=()=>{if(!capability.matches){if(raf)cancelAnimationFrame(raf);raf=0;cardMove=null;vel=0;expected=null;cur=target=scrollY;document.querySelector('.pcards-track')?.style.removeProperty('transform')}homeSceneQueue()};
   if(capability.addEventListener)capability.addEventListener('change',mediaChanged);else capability.addListener(mediaChanged);
 }
 if(PAPER)paperSmooth();
