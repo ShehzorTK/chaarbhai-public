@@ -21,18 +21,6 @@ window.cbGlide=(function(){
 })();
 /* One slide per wheel gesture. take(dir) returns true when it starts a move (the wheel is then swallowed until the gesture ends:
    220ms with no wheel event), false to let the browser scroll natively (the first or last slide, so the page carries on). */
-window.cbWheel=(el,gate,take)=>{
-  let last=-1e9,own=false,gdir=0;
-  el.addEventListener('wheel',e=>{
-    if(e.ctrlKey||!window.cbDesk()||!gate())return;
-    const dy=e.deltaY,dir=dy>0?1:-1;
-    /* the tail of a gesture we own (trackpad momentum, any size) is swallowed whole: left native it nudges the page after the settle lands */
-    if(own&&e.timeStamp-last<=220&&!(Math.abs(dy)>=8&&dir!==gdir&&Math.abs(dy)>Math.abs(e.deltaX))){last=e.timeStamp;e.preventDefault();return}
-    if(Math.abs(e.deltaX)>Math.abs(dy)||Math.abs(dy)<2)return;
-    last=e.timeStamp;gdir=dir;own=take(dir);
-    if(own)e.preventDefault();
-  },{passive:false});
-};
 /* Work page, Films view: a full-screen vertical feed of YouTube films.
    Data: window.VIDEOS (videos.js, built from drafts/videos/videos.json).
    Nothing here touches the network until Films is opened; the YouTube
@@ -261,18 +249,6 @@ function open(id){
   const drop=()=>{if(S)S.target=null};
   S.feed.addEventListener('wheel',drop,{passive:true});
   S.feed.addEventListener('touchstart',drop,{passive:true});
-  /* desktop: one film per wheel or trackpad gesture, then a single settle. At the first or last film the wheel is left alone so the page carries on. */
-  cbWheel(S.feed,()=>S&&!document.body.classList.contains('locked')&&!document.body.classList.contains('vf-full'),dir=>{
-    if(!S.aligned&&S.feed.scrollTop<4){             // the menu is still partly showing: down carries the page to the first film, up carries on to the menu
-      if(dir<0)return false;
-      const hdr=document.getElementById('hdr'),top=S.root.getBoundingClientRect().top+scrollY-(S.headerGap||(hdr?hdr.offsetHeight:0));
-      S.aligned=true;cbGlide(document.scrollingElement,'y',Math.max(0,top),360);return true;
-    }
-    const tops=S.slides.map(el=>el.offsetTop),y=S.feed.scrollTop;
-    let cur=0;tops.forEach((t,i)=>{if(Math.abs(t-y)<Math.abs(tops[cur]-y))cur=i});
-    const n=cur+dir;if(n<0||n>=tops.length)return false;
-    S.target=n;scrollToSlide(n);return true;
-  });
   root.addEventListener('click',onClick);
   S.pro=document.getElementById('vf-pro');
   reserveEntryLayout(S);
@@ -589,18 +565,14 @@ function setHash(){
 }
 
 /* ---------- moving between slides ---------- */
-/* instant: keys and chips never animate. Glide (desktop): one interruptible 360ms settle. Phones keep the native smooth scroll and snap. */
-function scrollToSlide(n,instant){
-  const top=S.slides[n].offsetTop;
-  if(instant&&cbPaper()){cbGlide.stop(S.feed);S.feed.scrollTo({top,behavior:'instant'});return}
-  if(cbDesk())cbGlide(S.feed,'y',top,360);
-  else S.feed.scrollTo({top,behavior:S.reduce?'auto':'smooth'});
+function scrollToSlide(n){
+  S.feed.scrollTo({top:S.slides[n].offsetTop,behavior:S.reduce?'auto':'smooth'});
 }
-function step(d,instant){
+function step(d){
   const base=S.target!=null?S.target:S.active;
   const n=Math.max(0,Math.min(S.data.length-1,base+d));
   if(n===base)return;
-  S.target=n;scrollToSlide(n,instant);
+  S.target=n;scrollToSlide(n);
 }
 function advance(){
   const n=S.active+1;
@@ -733,7 +705,7 @@ function onClick(e){
   const fb=t.closest('.vf-film');
   if(fb){swapFilm(S.active,fb.dataset.mode);return}
 }
-function scrollTo_(n){ if(n>=0&&n<S.data.length){S.target=n;scrollToSlide(n,cbPaper())} }
+function scrollTo_(n){ if(n>=0&&n<S.data.length){S.target=n;scrollToSlide(n)} }
 function onSeekKey(e){
   if(!S||!e.target.closest||!e.target.closest('.vf-seek'))return;
   if(e.key==='ArrowRight'){e.preventDefault();seekBy(5)}
@@ -756,8 +728,8 @@ function onKey(e){
   if((k==='ArrowUp'||k==='PageUp')&&S.active===0&&S.aligned){       // Up on the first film goes back to the menu
     e.preventDefault();scrollTo({top:0,behavior:S.reduce?'instant':'smooth'});S.aligned=false;return;
   }
-  if(k==='ArrowDown'||k==='j'||k==='PageDown'){e.preventDefault();step(1,cbPaper())}
-  else if(k==='ArrowUp'||k==='k'||k==='PageUp'){e.preventDefault();step(-1,cbPaper())}
+  if(k==='ArrowDown'||k==='j'||k==='PageDown'){e.preventDefault();step(1)}
+  else if(k==='ArrowUp'||k==='k'||k==='PageUp'){e.preventDefault();step(-1)}
   else if(k===' '||k==='Spacebar'){
     if(t&&t.closest&&t.closest('button,a,[role="button"]'))return;   // a focused button keeps its own Space
     e.preventDefault();toggle();

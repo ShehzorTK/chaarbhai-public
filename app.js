@@ -995,13 +995,7 @@ function sequences(seqs){
           total=frames.length;
     if(!total)return;
     let shown=0,target=null,settleTimer=0;
-    let pc=null;                                   // frame positions, rebuilt only when the strip's size changes
-    const positions=()=>{
-      const w=strip.clientWidth,sw=strip.scrollWidth;
-      if(!cbPaper()){const first=frames[0].offsetLeft,max=Math.max(0,sw-w);return frames.map(f=>Math.min(max,f.offsetLeft-first))}
-      if(!pc||pc.w!==w||pc.sw!==sw){const first=frames[0].offsetLeft,max=Math.max(0,sw-w);pc={w,sw,p:frames.map(f=>Math.min(max,f.offsetLeft-first))};}
-      return pc.p;
-    };
+    const positions=()=>{const first=frames[0].offsetLeft,max=Math.max(0,strip.scrollWidth-strip.clientWidth);return frames.map(f=>Math.min(max,f.offsetLeft-first));};
     const current=()=>{const pos=positions();let best=0;pos.forEach((x,i)=>{if(Math.abs(x-strip.scrollLeft)<Math.abs(pos[best]-strip.scrollLeft)-.5)best=i;});return best;};
     const upd=()=>{
       if(!strip.isConnected||!strip.clientWidth)return;
@@ -1020,9 +1014,8 @@ function sequences(seqs){
       if(cbDesk())cbGlide(strip,'x',pos[target],300,()=>{target=null});
       else strip.scrollTo({left:pos[target],behavior:reduceMotion()?'auto':'smooth'});
     };
-    let updRaf=0;                                  // at most one update per frame while scrolling
     strip.addEventListener('scroll',()=>{
-      if(!cbPaper())upd();else if(!updRaf)updRaf=requestAnimationFrame(()=>{updRaf=0;upd()});
+      upd();
       clearTimeout(settleTimer);settleTimer=setTimeout(()=>target=null,180);
     },{passive:true});
     strip.addEventListener('scrollend',()=>{target=null;upd();});
