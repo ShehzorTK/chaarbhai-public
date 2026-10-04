@@ -1511,6 +1511,68 @@ function firstHeroVisit(){
   heroVisited=true;
   return !seen||document.documentElement.classList.contains('cb-pen-boot');   // a fresh load of Home always draws the pen
 }
+/* Paper only: the pen logo is a full-screen loading screen, drawn by the real buffer progress of the hero film (see theme-paper.css).
+   It releases when the film can play (never before 1.2s, never after 10s), then fades and the site comes up piece by piece. */
+function paperLoader(placeholder,video,reveal){
+  const reduce=reduceMotion(),MIN=1200,MAX=10000;
+  const MSGS=['Welcome to Chaar Bhai','We are getting ready for you','Almost there','Get ready'];
+  const box=document.createElement('div');box.className='paper-loader';box.setAttribute('role','status');box.setAttribute('aria-busy','true');
+  box.innerHTML='<div class="pl-art"></div><div class="pl-meta"><span class="pl-num" aria-hidden="true">0<small>%</small></span><span class="pl-rule" aria-hidden="true"><i></i></span><p class="pl-msg"></p></div>';
+  document.body.appendChild(box);placeholder.remove();
+  const art=box.querySelector('.pl-art'),num=box.querySelector('.pl-num'),bar=box.querySelector('.pl-rule i'),msg=box.querySelector('.pl-msg');
+  let pen=null,frame=0,disposed=false,ready=false,released=false,forced=false,shown=0,msgI=0,msgT=0,leaveT=0;
+  const t0=performance.now();let last=t0;
+  const setMsg=t=>{msg.textContent=t};
+  setMsg(MSGS[0]);
+  if(reduce)art.innerHTML='<img src="img/pen-loader-1.png" alt="">';
+  else{pen=CBPenLoader.mount(art,{manual:true,label:'Chaar Bhai. Film loading.'});heroPen=pen;pen.seek(0);}
+  if(!reduce){
+    msgT=setInterval(()=>{
+      if(msgI>=MSGS.length-1){clearInterval(msgT);return}
+      msgI++;msg.classList.add('out');setTimeout(()=>{if(disposed)return;setMsg(MSGS[msgI]);msg.classList.remove('out')},300);
+    },2300);
+  }
+  const bufEnd=()=>{try{const b=video.buffered;return b.length?b.end(b.length-1):0}catch(e){return 0}};
+  const realTarget=()=>{
+    if(ready||forced)return 1;
+    const d=video.duration,need=isFinite(d)&&d>0?Math.min(d,3):3;
+    return Math.min(.96,bufEnd()/need);
+  };
+  const paint=()=>{
+    const pct=Math.round(shown*100);
+    num.firstChild.nodeValue=String(pct);bar.style.transform=`scaleX(${shown})`;
+    if(pen)pen.seek(shown*pen.drawEnd);
+  };
+  const leave=()=>{
+    if(released||disposed)return;released=true;
+    box.setAttribute('aria-busy','false');
+    box.classList.add('is-leaving');                       // the loader fades (0.7s)
+    leaveT=setTimeout(()=>{if(disposed)return;penRelease();penUnlock();reveal();},reduce?0:450);   // the frame, bar and cue come up and the film starts
+    setTimeout(()=>{box.remove();if(pen){pen.destroy();if(heroPen===pen)heroPen=null;pen=null}},reduce?50:900);
+  };
+  const tick=now=>{
+    if(disposed||released)return;
+    const dt=now-last;last=now;const el=now-t0;
+    if(el>=MAX&&!ready)forced=true;                         // never stuck: reveal anyway, the poster shows
+    const tg=realTarget();
+    if(tg>shown)shown=Math.min(tg,shown+(tg-shown)*(1-Math.pow(.93,dt/16.7))+(tg===1?.004:0));
+    if(tg===1&&shown>.995)shown=1;
+    paint();
+    if(shown>=1&&el>=MIN){leave();return}
+    frame=requestAnimationFrame(tick);
+  };
+  frame=requestAnimationFrame(tick);
+  return {
+    holdsReveal:true,
+    playing(){ready=true;if(released)reveal()},
+    dispose(){
+      if(disposed)return;disposed=true;cancelAnimationFrame(frame);clearInterval(msgT);clearTimeout(leaveT);
+      if(!released){penRelease();penUnlock()}
+      if(pen){pen.destroy();if(heroPen===pen)heroPen=null;pen=null}
+      box.remove();
+    }
+  };
+}
 function homeLogo(placeholder,firstVisit,reveal){
   const hero=placeholder.closest('.vhero'),copy=hero.querySelector('.vhero-in');
   const header=document.getElementById('hdr'),small=header.querySelector('.brand img');
@@ -1670,11 +1732,12 @@ function reel(){
   const sync=()=>{if(!visible())pause();else if(landed&&video.paused&&!userPaused){mute();if(!reduceMotion())play();}};
   // Safari may stop fetching a paused video before two seconds have buffered.
   // HAVE_FUTURE_DATA is its native signal that playback can begin progressively.
-  const logo=heroLogo=homeLogo(placeholder,firstHeroVisit(),()=>{
+  const first=firstHeroVisit(),revealFilm=()=>{
     if(disposed||!ready)return;landed=true;mute();
     if(!video.paused){reveal();updatePlayback();}
     else if(reduceMotion()){manualPlayback=true;reveal();updatePlayback();}else play();
-  });
+  };
+  const logo=heroLogo=PAPER&&first&&document.documentElement.classList.contains('cb-pen-boot')?paperLoader(placeholder,video,revealFilm):homeLogo(placeholder,first,revealFilm);
   const prepare=()=>{
     if(disposed||ready||manualStarting||video.readyState<(reduceMotion()?1:3))return;
     ready=true;video.pause();video.currentTime=0;logo.playing();

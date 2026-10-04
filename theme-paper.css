@@ -294,6 +294,30 @@ html[data-theme="paper"] .cta-ph span:nth-child(3){left:12%;bottom:12%}
 html[data-theme="paper"] .cta-ph span:nth-child(4){right:11%;bottom:14%}
 @media(max-width:700px){html[data-theme="paper"] .cta-ph span{width:26vw}html[data-theme="paper"] .cta-ph span:nth-child(1){left:-4%;top:9%}html[data-theme="paper"] .cta-ph span:nth-child(2){right:-4%;top:6%}html[data-theme="paper"] .cta-ph span:nth-child(3){left:2%;bottom:8%}html[data-theme="paper"] .cta-ph span:nth-child(4){right:2%;bottom:6%}}
 
+/* ---- loader: the pen logo on aubergine, drawn by the film's real buffer progress; numerals, a hairline rule and one italic line ---- */
+html[data-theme="paper"] .paper-loader{position:fixed;inset:0;z-index:2000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(22px,4svh,40px);
+  background-color:var(--paper-accent);background-image:var(--grain);background-size:400px;color:#F2EBDE;padding:0 var(--pad);transition:opacity .7s cubic-bezier(.19,1,.22,1)}
+html[data-theme="paper"] .paper-loader.is-leaving{opacity:0;pointer-events:none}
+html[data-theme="paper"] .pl-art{position:relative;width:min(560px,74vw);aspect-ratio:2048/981}
+html[data-theme="paper"] .pl-art>img{width:100%;height:100%;object-fit:contain;display:block}
+html[data-theme="paper"] .pl-art .cb-loader{--cb-background:transparent;position:absolute;inset:0;animation:none}
+html[data-theme="paper"] .pl-art .cb-loader .cb-art{position:absolute;inset:0;width:100%;aspect-ratio:auto}
+html[data-theme="paper"] .pl-meta{display:flex;flex-direction:column;align-items:center;gap:14px;width:min(260px,64vw);text-align:center}
+html[data-theme="paper"] .pl-num{font-family:var(--f-display);font-weight:500;font-size:28px;line-height:1;letter-spacing:.08em;font-variant-numeric:tabular-nums lining-nums;min-width:4ch}
+html[data-theme="paper"] .pl-num small{font-size:.62em;margin-left:.15em;letter-spacing:0}
+html[data-theme="paper"] .pl-rule{display:block;width:100%;height:1px;background:rgba(242,235,222,.22);overflow:hidden}
+html[data-theme="paper"] .pl-rule i{display:block;height:100%;background:#F2EBDE;transform:scaleX(0);transform-origin:left}
+html[data-theme="paper"] .pl-msg{margin:0;min-height:1.6em;font-style:italic;font-size:17px;letter-spacing:.02em;color:rgba(242,235,222,.8);transition:opacity .3s ease}
+html[data-theme="paper"] .pl-msg.out{opacity:0}
+/* the reveal: frame, bar, then the copy and cue come up with a soft fade and a 14px rise (1s each, staggered 0.25s) */
+html[data-theme="paper"].cb-pen-boot .vhero-media{transition:opacity 1s var(--ease),transform 1s var(--ease)}
+html[data-theme="paper"].cb-pen-hold .vhero-media{opacity:0;transform:translateY(14px)}
+html[data-theme="paper"].cb-pen-boot #hdr{transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:.25s}
+html[data-theme="paper"].cb-pen-hold #hdr{transform:translateY(14px)}
+html[data-theme="paper"].cb-pen-boot .vhero-in>*,html[data-theme="paper"].cb-pen-boot .vhero-foot{transition:opacity 1s var(--ease),transform 1s var(--ease),filter 1s var(--ease);transition-delay:.5s}
+html[data-theme="paper"].cb-pen-hold .vhero-in>*,html[data-theme="paper"].cb-pen-hold .vhero-foot{transform:translateY(14px);filter:none}
+@media (prefers-reduced-motion:reduce){html[data-theme="paper"].cb-pen-boot .vhero-media,html[data-theme="paper"].cb-pen-boot #hdr,html[data-theme="paper"].cb-pen-boot .vhero-in>*,html[data-theme="paper"].cb-pen-boot .vhero-foot{transition:none;transform:none}}
+
 /* ---- chapter rail ---- */
 html[data-theme="paper"] #page>section{position:relative}
 html[data-theme="paper"] .rail{position:absolute;left:var(--pad);right:var(--pad);bottom:22px;display:flex;align-items:center;gap:14px;font-family:var(--f-serif);font-style:italic;font-size:13px;letter-spacing:.14em;color:var(--soft);pointer-events:none}
