@@ -491,3 +491,59 @@ html[data-theme="paper"] #burger:focus-visible{outline:2px solid currentColor;ou
 html[data-theme="paper"] #navlinks.open a:focus-visible{outline:none;font-style:italic;background-size:calc(100% - 2.6em) 2px}
 @media(max-width:700px){html[data-theme="paper"] #burger{justify-content:center}html[data-theme="paper"] #burger::after{display:none}}
 @media (prefers-reduced-motion:reduce){html[data-theme="paper"] *{transition:none!important;animation:none!important}}
+
+/* Optional Paper dark mode is available on Work, About, Prices and Reviews.
+   Home and Contact keep their authored appearance. */
+html[data-theme="paper"].paper-dark main,
+html[data-theme="paper"].paper-dark main section,
+html[data-theme="paper"].paper-dark footer,
+html[data-theme="paper"].paper-dark .pcard,
+html[data-theme="paper"].paper-dark .ps,
+html[data-theme="paper"].paper-dark .ps-contained,
+html[data-theme="paper"].paper-dark .vf,
+html[data-theme="paper"].paper-dark .vf-pro{
+  --ink:#2B2530;--ink-2:#362F3C;--ink-3:#403947;--paper:#F2EBDE;
+  --dim:rgba(242,235,222,.9);--soft:rgba(242,235,222,.86);--faint:rgba(242,235,222,.4);
+  --gold:#F2EBDE;--gold-2:#D2B6A1;--gold-hi:#F2EBDE;--line:rgba(242,235,222,.24);--line-2:rgba(242,235,222,.4);--gline:rgba(242,235,222,.5);
+  background-color:#2B2530;background-image:var(--grain);color:#F2EBDE
+}
+html[data-theme="paper"].paper-dark #hdr,
+html[data-theme="paper"].paper-dark body:not(.locked) #hdr:not(.over-hero),
+html[data-theme="paper"].paper-dark #hdr::before{background-color:#2B2530;color:#F2EBDE}
+html[data-theme="paper"].paper-dark #hdr::before{background-image:var(--grain)}
+html[data-theme="paper"].paper-dark #hdr .brand img{content:url(img/logo.png)}
+html[data-theme="paper"].paper-dark #hdr .paper-contact,
+html[data-theme="paper"].paper-dark #hdr .burger,
+html[data-theme="paper"].paper-dark #hdr .theme-sw{color:#F2EBDE}
+html[data-theme="paper"].paper-dark #hdr .burger i{background:#F2EBDE}
+html[data-theme="paper"].paper-dark #hdr .wk-tog a{color:rgba(242,235,222,.78)}
+html[data-theme="paper"].paper-dark #hdr .wk-tog a[aria-current]{color:#F2EBDE;font-style:italic;background:transparent}
+html[data-theme="paper"].paper-dark #hdr .wk-tog .ul{color:#F2EBDE;background:#F2EBDE}
+html[data-theme="paper"].paper-dark .pro{background-color:#2B2530!important;background-image:var(--grain)!important;color:#F2EBDE}
+/* Work prologues use the Ceremony green in light mode and dark brown in Paper dark mode. */
+html[data-theme="paper"].on-work .pro{--ink:#4A4F34;--paper:#F2EBDE;--dim:rgba(242,235,222,.9);--soft:rgba(242,235,222,.86);background:#4A4F34!important;background-image:var(--grain)!important;color:#F2EBDE}
+html[data-theme="paper"].on-work.paper-dark .pro{--ink:#2A1D0F;--paper:#F2EBDE;--dim:#D2B6A1;--soft:#D2B6A1;background:#2A1D0F!important;background-image:var(--grain)!important;color:#F2EBDE}
+html[data-theme="paper"].paper-dark .theme-sw{border-color:rgba(242,235,222,.4)}
+html[data-theme="paper"]:not(.on-home):not(.on-contact) #hdr .theme-sw{display:grid}
+html[data-theme="paper"]:not(.on-work):not(.on-home):not(.on-contact) #hdr .theme-sw{position:absolute;right:calc(var(--pad) + 52px);top:50%;transform:translateY(-50%);margin:0}
+html[data-theme="paper"]:not(.on-work):not(.on-home):not(.on-contact) #hdr .burger{position:absolute;right:var(--pad);top:50%;transform:translateY(-50%)}
+html[data-theme="paper"].paper-dark .ps-ground,
+html[data-theme="paper"].paper-dark .ps-bar,
+html[data-theme="paper"].paper-dark .ps-groundwrap,
+html[data-theme="paper"].paper-dark .ps-contained,
+html[data-theme="paper"].paper-dark body.ps-viewing{background-color:#2B2530!important;background-image:var(--grain)}
+html[data-theme="paper"].paper-dark .ps-bar{background:#2B2530!important;background-image:var(--grain)!important}
+html[data-theme="paper"].on-work #hdr .theme-sw{order:2;margin-left:auto}
+html[data-theme="paper"].on-work #hdr .burger{order:3;margin-left:0}
+html[data-theme="paper"].paper-dark .paper-light-nav #hdr{color:#F2EBDE}
+@media(max-width:700px){html[data-theme="paper"].on-work #hdr .theme-sw{width:34px;height:34px;margin-left:auto}html[data-theme="paper"].on-work #hdr .burger{margin-left:0}}
+
+/* Small spoken labels, matching the unmute prompt. */
+@media(hover:hover){
+  html[data-theme="paper"] #burger[data-tooltip]::after,
+  html[data-theme="paper"] .paper-contact[data-tooltip]::after{content:attr(data-tooltip);position:absolute;z-index:1200;left:50%;top:calc(100% + 9px);width:max-content;height:auto;padding:0;border:0;background:none;color:currentColor;font:400 12px/16px var(--f-serif);letter-spacing:.02em;text-transform:none;visibility:hidden;opacity:0;transform:translate(-50%,-3px);transition:opacity .16s var(--ease),transform .16s var(--ease);pointer-events:none}
+  html[data-theme="paper"] #burger[data-tooltip]:hover::after,
+  html[data-theme="paper"] #burger[data-tooltip]:focus-visible::after,
+  html[data-theme="paper"] .paper-contact[data-tooltip]:hover::after,
+  html[data-theme="paper"] .paper-contact[data-tooltip]:focus-visible::after{visibility:visible;opacity:1;transform:translate(-50%,0)}
+}

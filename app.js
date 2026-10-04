@@ -196,7 +196,6 @@ function paperRails(){
     sec.appendChild(r);
   });
 }
-/* One scroll system for Paper on desktop (see design/experimental-theme-scroll-plan.md). All the numbers live here. */
 function paperCardsPaint(pc){
   const cards=[...pc.querySelectorAll('.pcard')],n=cards.length;
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
@@ -309,6 +308,7 @@ ${PAPER?paperCards():`<section class="day" style="padding-top:0">
 </section>
 
 <section class="cta">
+  ${PAPER?`<div class="cta-ph" aria-hidden="true">${['night','ceremony','reception','arrival'].map(k=>`<span>${pic(CHAPTERS.find(c=>c.id===k).pcover,'20vw')}</span>`).join('')}</div>`:''}
   <h2 class="rv">Tell us about<br>your wedding</h2>
   <p class="lead rv" data-d="1" style="margin-top:24px">Send us the date and the venue and we’ll come back to you.</p>
   <div class="rv" data-d="2" style="margin-top:38px"><a href="#/contact" data-nav class="btn"><span>Check your date</span><i></i></a></div>
@@ -794,12 +794,20 @@ paintLogos();
 /* Paper theme only: each nav link carries its own text so CSS can reserve the italic width (no shift on hover) */
 if(document.documentElement.dataset.theme==='paper')document.querySelectorAll('nav.links a').forEach(a=>{a.dataset.t=a.textContent.trim()});
 const themeSw=document.getElementById('themesw');
+const paperTogglePage=()=>document.documentElement.dataset.theme==='paper'&&
+  (document.documentElement.classList.contains('on-work')||document.documentElement.classList.contains('on-about')||document.documentElement.classList.contains('on-services')||document.documentElement.classList.contains('on-reviews'));
 function syncThemeUI(){
-  const light=isLight();
-  themeSw.setAttribute('aria-label',light?'Switch to dark mode':'Switch to light mode');
+  const light=isLight(),dark=document.documentElement.classList.contains('paper-dark');
+  themeSw.setAttribute('aria-label',paperTogglePage()?(dark?'Switch to light mode':'Switch to dark mode'):(light?'Switch to dark mode':'Switch to light mode'));
 }
 syncThemeUI();
 themeSw.addEventListener('click',()=>{
+  if(paperTogglePage()){
+    const dark=!document.documentElement.classList.contains('paper-dark');
+    document.documentElement.classList.toggle('paper-dark',dark);
+    try{sessionStorage.setItem('cb-paper-dark',dark?'1':'0')}catch(e){}
+    syncThemeUI();track('paper_theme_switch',{theme:dark?'dark':'light'});return;
+  }
   const root=document.documentElement,light=!isLight();
   if(light)root.dataset.theme='light';else delete root.dataset.theme;
   try{sessionStorage.setItem('cb-theme',light?'light':'dark')}catch(e){}
@@ -1930,7 +1938,12 @@ function render(path){
   document.documentElement.classList.toggle('on-work',path==='/portfolio');
   document.documentElement.classList.toggle('on-contact',path==='/contact');
   document.documentElement.classList.toggle('on-home',path==='/');
+  document.documentElement.classList.toggle('on-about',path==='/about');
+  document.documentElement.classList.toggle('on-services',path==='/services');
+  document.documentElement.classList.toggle('on-reviews',path==='/testimonials');
   document.documentElement.classList.toggle('paper-light-nav',path==='/about'||path==='/testimonials');
+  document.documentElement.classList.toggle('paper-dark',document.documentElement.dataset.theme==='paper'&&sessionStorage.getItem('cb-paper-dark')==='1'&&path!=='/'&&path!=='/contact');
+  syncThemeUI();
   if(path==='/portfolio'){sub.innerHTML=VF.toggleHTML('photos');sub.hidden=false}else{sub.hidden=true;sub.textContent=''}
   document.getElementById('hdr').classList.remove('hide');heroNav();
   observe();photoWindow();
@@ -2219,9 +2232,9 @@ addEventListener('scroll',tallyQueue,{passive:true});addEventListener('resize',t
 function paperSmooth(){
   const R=document.documentElement;
   const capability=matchMedia('(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)');
-  let target=scrollY,cur=scrollY,raf=0,last=0,expected=null,rate=.16,cardMove=null;
-  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  let target=scrollY,cur=scrollY,raf=0,last=0,expected=null,rate=.07,cardMove=null;
   const max=()=>Math.max(0,R.scrollHeight-innerHeight);
+  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
   const own=el=>{for(;el&&el!==document.body&&el!==R;el=el.parentElement){const o=getComputedStyle(el).overflowY;if((o==='auto'||o==='scroll')&&el.scrollHeight>el.clientHeight+1)return true;if(el.tagName==='IFRAME'||el.tagName==='TEXTAREA')return true}return false};
   const off=()=>document.body.classList.contains('locked')||R.classList.contains('ps-viewing')||R.classList.contains('lb-open')||document.body.classList.contains('vf-in')||document.body.classList.contains('vf-full')||document.getElementById('navlinks').classList.contains('open');
   const curve=t=>{
@@ -2244,11 +2257,14 @@ function paperSmooth(){
     if(cardMove||cur!==target)raf=requestAnimationFrame(step);
   };
   const go=()=>{if(!raf){last=performance.now();raf=requestAnimationFrame(step)}};
-  let wheelBurst={direction:0,peak:0,last:0,lastAt:0,decayed:false};
+  let wheelBurst={direction:0,peak:0,last:0,lastAt:0,decayed:false},wheelAt=0;
   const freshBurst=(direction,magnitude,time)=>{
     const begin=()=>{wheelBurst={direction,peak:magnitude,last:magnitude,lastAt:time,decayed:false};return true};
     const gap=time-wheelBurst.lastAt;
-    if(direction!==wheelBurst.direction||gap>110&&magnitude>=wheelBurst.peak*.42)return begin();
+    /* A long trackpad tail can span more than one frame on a large viewport.
+       Keep it in the same gesture window so one physical swipe cannot skip
+       several chapters; a clear pause still starts a fresh gesture. */
+    if(direction!==wheelBurst.direction||gap>220&&magnitude>=wheelBurst.peak*.42)return begin();
     if(magnitude<wheelBurst.peak*.42)wheelBurst.decayed=true;
     const renewed=wheelBurst.decayed&&magnitude>=Math.max(wheelBurst.last*1.4,wheelBurst.peak*.35);
     wheelBurst.peak=Math.max(wheelBurst.peak,magnitude);wheelBurst.last=magnitude;wheelBurst.lastAt=time;
@@ -2262,21 +2278,26 @@ function paperSmooth(){
   addEventListener('wheel',e=>{
     if(!capability.matches){if(raf){cancelAnimationFrame(raf);raf=0;cardMove=null;expected=null;cur=target=scrollY}return}
     if(e.ctrlKey||e.defaultPrevented||off()||Math.abs(e.deltaX)>Math.abs(e.deltaY)||own(e.target))return;
-    const d=e.deltaMode===1?e.deltaY*16:e.deltaMode===2?e.deltaY*innerHeight:e.deltaY;
+    const raw=e.deltaMode===1?e.deltaY*16:e.deltaMode===2?e.deltaY*innerHeight:e.deltaY;
+    /* Wheel event cadence varies with display refresh rate. Normalize small,
+       high-cadence ticks toward a 60Hz-equivalent impulse, with a cap so a
+       240Hz panel cannot make a gesture unexpectedly explosive. */
+    const stamp=e.timeStamp||performance.now(),gap=wheelAt?stamp-wheelAt:16.7;wheelAt=stamp;
+    const cadence=clamp(16.7/Math.max(4,gap),.75,2.5),d=raw*cadence;
     const dir=Math.sign(d),magnitude=Math.abs(d);if(!dir)return;
     const pc=document.querySelector('.pcards');
     if(pc){
       const n=pc.querySelectorAll('.pcard').length,top=pc.getBoundingClientRect().top+scrollY,y=(scrollY-top)/innerHeight;
       if(y>=-.02&&y<=n-1+.02){
-        if(!freshBurst(dir,magnitude,e.timeStamp||performance.now())){e.preventDefault();return}
+        if(!freshBurst(dir,magnitude,stamp)){e.preventDefault();return}
         const current=clamp(Math.round(y),0,n-1),source=cardMove?cardMove.toIndex:current;
         const destination=cardMove&&dir!==cardMove.direction?cardMove.fromIndex:source+dir;
         if(destination>=0&&destination<n){e.preventDefault();moveCard(pc,source,destination,dir);return}
       }
     }
     wheelBurst.direction=0;e.preventDefault();
-    cardMove=null;if(!raf)target=cur=scrollY;rate=.16;
-    target=clamp(target+d,0,max());go();
+    cardMove=null;if(!raf)target=cur=scrollY;rate=.07;
+    target=clamp(target+d*.5,0,max());go();
   },{passive:false});
   addEventListener('click',e=>{
     const link=e.target.closest?.('[data-paper-chapter]');if(!link)return;

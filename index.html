@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Chaar Bhai · Wedding Photography and Film</title>
 <meta name="description" content="Wedding photo and film since 2013. Based in the Greater Toronto Area, and we travel.">
-<meta name="cb-version" content="40.99">
+<meta name="cb-version" content="40.97">
 <meta name="theme-color" content="#12141C" id="themecolor">
 <!-- Google Analytics (GA4, G-X1GHG229CQ). Loads only on the real site:
      chaarbhai.com and the main Netlify address, never on localhost, a file
@@ -66,7 +66,7 @@ if(location.hash===''||location.hash==='#/'){document.documentElement.classList.
    never flashes the other theme. Dark is the house default. */
 try{if(sessionStorage.getItem('cb-theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}   /* every new visit opens in dark; the switch only lasts for the visit */
 </script>
-<link rel="stylesheet" href="style.css?v=40.99">
+<link rel="stylesheet" href="style.css?v=40.97">
 <script>
 /* Paper theme (experimental): only while the URL says ?theme=paper. Never remembered, so removing the parameter returns to dark or light.
    Loads its own stylesheet only when on, so dark and light visitors never download it. */
@@ -78,7 +78,7 @@ try{
     var _d=document.documentElement;
     _d.dataset.theme='paper';
     document.getElementById('themecolor').setAttribute('content','#2B2530');
-    document.head.insertAdjacentHTML('beforeend','<style>html{background:#2B2530}</style><link rel="preload" as="font" type="font/woff2" href="fonts/eb-garamond.woff2" crossorigin><link rel="stylesheet" href="theme-paper.css?v=40.99">');
+    document.head.insertAdjacentHTML('beforeend','<style>html{background:#2B2530}</style><link rel="preload" as="font" type="font/woff2" href="fonts/eb-garamond.woff2" crossorigin><link rel="stylesheet" href="theme-paper.css?v=40.97">');
   }
 }catch(e){}
 </script>
@@ -100,7 +100,7 @@ try{
 
 
 <header id="hdr">
-  <a href="#/contact" data-nav class="paper-contact" style="display:none">Contact</a>   <!-- Paper theme only: Contact sits far left of the bar -->
+  <a href="#/contact" data-nav class="paper-contact" data-tooltip="Get in touch" style="display:none">Contact</a>   <!-- Paper theme only: Contact sits far left of the bar -->
   <a href="#/" class="brand" data-nav aria-label="Chaar Bhai, home">
     <img data-logo src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Chaar Bhai">
   </a>
@@ -116,7 +116,7 @@ try{
     <svg class="i-sun" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3.6"/><path d="M10 1.8v2.4M10 15.8v2.4M1.8 10h2.4M15.8 10h2.4M4.2 4.2l1.7 1.7M14.1 14.1l1.7 1.7M4.2 15.8l1.7-1.7M14.1 5.9l1.7-1.7"/></svg>
     <svg class="i-moon" viewBox="0 0 20 20" aria-hidden="true"><path d="M16.4 12.6A7 7 0 0 1 7.4 3.6a7 7 0 1 0 9 9z"/></svg>
   </button>
-  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="navlinks"><i></i><i></i><svg class="paper-menu-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g class="menu-bars" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"><path class="bar-top" d="M4 6h16"/><path class="bar-middle" d="M8 12h12"/><path class="bar-bottom" d="M4 18h16"/></g><path class="menu-close" d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg></button>
+  <button class="burger" id="burger" data-tooltip="Open navigation" title="Open navigation" aria-label="Menu" aria-expanded="false" aria-controls="navlinks"><i></i><i></i><svg class="paper-menu-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g class="menu-bars" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"><path class="bar-top" d="M4 6h16"/><path class="bar-middle" d="M8 12h12"/><path class="bar-bottom" d="M4 18h16"/></g><path class="menu-close" d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg></button>
   <!-- Work only: the Photos | Films switch rides in the header, so it comes back with the header on any upward scroll -->
   <div class="hdr-sub" id="hdrsub" hidden></div>
 </header>
@@ -152,13 +152,13 @@ try{
 </footer>
 
 <script>if(/[?&]debug\b/.test(location.search))document.write('<script src="debug.js"><\/script>')</script>
-<script src="portfolio.js?v=40.99"></script>
-<script src="videos.js?v=40.99"></script>
-<script src="video-feed.js?v=40.99"></script>
-<script src="photo-stage.js?v=40.99"></script>
-<script src="reviews.js?v=40.99"></script>
-<script src="pen-loader.js?v=40.99"></script>
-<script src="canada-map.js?v=40.99"></script>
-<script src="app.js?v=40.99"></script>
+<script src="portfolio.js?v=40.97"></script>
+<script src="videos.js?v=40.97"></script>
+<script src="video-feed.js?v=40.97"></script>
+<script src="photo-stage.js?v=40.97"></script>
+<script src="reviews.js?v=40.97"></script>
+<script src="pen-loader.js?v=40.97"></script>
+<script src="canada-map.js?v=40.97"></script>
+<script src="app.js?v=40.97"></script>
 </body>
 </html>

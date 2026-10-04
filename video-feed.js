@@ -157,7 +157,8 @@ function slideHTML(d,i){
       <span class="vf-play" aria-hidden="true">${I.play}</span>
       <button class="vf-hit" type="button" aria-label="Play or pause"></button>
       <p class="vf-err" hidden>This one won't play here. <a href="${url}" target="_blank" rel="noopener">Watch it on YouTube</a></p>
-      <button class="vf-sound" type="button" hidden>${I.off}<span>Tap for sound</span></button>
+      <button class="vf-sound" type="button" aria-label="Unmute" hidden>${I.off}</button>
+      <span class="vf-unmute-prompt" hidden>Press here to unmute</span>
       <div class="vf-ctl">
         <button class="vf-mute" type="button" aria-label="Unmute">${I.off}</button>
         <button class="vf-seek" type="button" aria-label="Seek. Use the left and right arrow keys."><i></i></button>
@@ -205,6 +206,8 @@ function open(id){
   const startAt=found?found.i:0;
 
   if(window.PS)PS.suspend();
+  document.body.classList.add('wk-switch-right');
+  setTimeout(()=>document.body.classList.remove('wk-switch-right'),420);
   const root=document.createElement('div');
   root.id='vf';root.className='vf';
   const catsOn=[];data.forEach((d,i)=>{if(!catsOn.some(c=>c[0]===d.cat))catsOn.push([d.cat,i])});
@@ -218,7 +221,7 @@ function open(id){
   S={data,root,feed:$('.vf-feed',root),slides:[...root.querySelectorAll('.vf-slide')],
      live:$('.vf-sr[role=status]',root),
      players:new Map(),active:-1,target:null,soundOn:readSound(),reduce:reduceMotion(),
-     noAuto:reduceMotion()||saveData(),away:true,inView:false,host,lastEv:-1,deb:0,cand:-1,flashT:0};
+     noAuto:reduceMotion()||saveData(),away:true,inView:false,host,lastEv:-1,deb:0,cand:-1,flashT:0,promptT:0};
 
   const drop=()=>{if(S)S.target=null};
   S.feed.addEventListener('wheel',drop,{passive:true});
@@ -226,10 +229,8 @@ function open(id){
   root.addEventListener('click',onClick);
   S.pro=document.getElementById('vf-pro');
   reserveEntryLayout(S);
-  S.entryWheel=e=>enterWheel(e);S.entryTouchStart=e=>entryTouchStart(e);S.entryTouchMove=e=>entryTouchMove(e);
-  addEventListener('wheel',S.entryWheel,{capture:true,passive:false});
-  addEventListener('touchstart',S.entryTouchStart,{capture:true,passive:true});
-  addEventListener('touchmove',S.entryTouchMove,{capture:true,passive:false});
+  // The prologue is an ordinary page section. Let the browser carry the first
+  // gesture into the feed instead of intercepting wheel/touch events globally.
   if(S.pro)S.pro.addEventListener('click',e=>{const b=e.target.closest('.pro-row');if(!b)return;jump(+b.dataset.first);alignFeed(true)});
   root.addEventListener('load',onImg,true);
   root.addEventListener('error',onImg,true);
@@ -341,9 +342,10 @@ function jump(i,mode){
 function close(opts){
   if(!S)return;
   if(isFull())exitFull();
+  document.body.classList.add('wk-switch-left');
+  setTimeout(()=>document.body.classList.remove('wk-switch-left'),420);
   const s=S; S=null;
   if(s.entry)cancelAnimationFrame(s.entry.frame);
-  removeEventListener('wheel',s.entryWheel,true);removeEventListener('touchstart',s.entryTouchStart,true);removeEventListener('touchmove',s.entryTouchMove,true);
   clearTimeout(s.deb);clearTimeout(s.flashT);clearTimeout(s.nbT);clearInterval(s.poll);
   s.io.disconnect();s.vio.disconnect();removeEventListener('scroll',s.onScroll);
   s.players.forEach(r=>kill(r));
@@ -589,9 +591,12 @@ function updateSound(){
     const pill=$('.vf-sound',el),mute=$('.vf-mute',el);
     const show=k===S.active&&!S.soundOn&&!(S.noAuto&&!(r&&r.user));
     pill.hidden=!show;
+    pill.setAttribute('aria-label',S.soundOn?'Mute':'Unmute');
+    const prompt=$('.vf-unmute-prompt',el);if(prompt)prompt.hidden=!show;
     mute.innerHTML=S.soundOn?I.on:I.off;
     mute.setAttribute('aria-label',S.soundOn?'Mute':'Unmute');
   });
+  clearTimeout(S.promptT);if(r&&!S.soundOn){S.promptT=setTimeout(()=>{const p=frameOf(S.active)?.querySelector('.vf-unmute-prompt');if(p)p.hidden=true},3200)}
 }
 function swapFilm(k,mode){
   const d=S.data[k]; if(!(d.it.highlight&&d.it.fullFilm))return;
