@@ -2153,6 +2153,45 @@ function tallyScene(){
 const tallyQueue=()=>{if(!tallyRaf)tallyRaf=requestAnimationFrame(tallyScene)};
 addEventListener('scroll',tallyQueue,{passive:true});addEventListener('resize',tallyQueue,{passive:true});
 
+/* Paper, desktop: slow, eased wheel scrolling (a cinematic feel), and the seven cards snap one chapter at a time.
+   Touch, keyboard and reduced motion keep the browser's own scrolling. Anything with a scroll of its own (Work, Films, the menu) is left alone. */
+function paperSmooth(){
+  const R=document.documentElement;
+  let target=scrollY,cur=scrollY,raf=0,last=0,idle=0,dir=0,expected=null,rate=.07;
+  const max=()=>Math.max(0,R.scrollHeight-innerHeight);
+  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  const own=el=>{for(;el&&el!==document.body&&el!==R;el=el.parentElement){const o=getComputedStyle(el).overflowY;if((o==='auto'||o==='scroll')&&el.scrollHeight>el.clientHeight+1)return true;if(el.tagName==='IFRAME'||el.tagName==='TEXTAREA')return true}return false};
+  const off=()=>document.body.classList.contains('locked')||R.classList.contains('ps-viewing')||R.classList.contains('lb-open')||document.body.classList.contains('vf-in')||document.body.classList.contains('vf-full')||document.getElementById('navlinks').classList.contains('open');
+  const step=now=>{
+    raf=0;const dt=Math.min(64,now-last||16);last=now;
+    if(expected!==null&&Math.abs(scrollY-expected)>3){target=cur=scrollY;expected=null;return}   // something else moved the page (a route change, a link): follow it
+    cur+=(target-cur)*(1-Math.pow(1-rate,dt/16.7));
+    if(Math.abs(target-cur)<.4)cur=target;
+    scrollTo(0,cur);expected=scrollY;
+    if(cur!==target)raf=requestAnimationFrame(step);else expected=null;
+  };
+  const go=()=>{if(!raf){last=performance.now();raf=requestAnimationFrame(step)}};
+  // after the wheel stops, rest on a chapter while the cards are pinned
+  const snap=()=>{
+    const pc=document.querySelector('.pcards');if(!pc||off())return;
+    const n=pc.querySelectorAll('.pcard').length,top=pc.getBoundingClientRect().top+scrollY,y=(scrollY-top)/innerHeight;
+    if(y<=0||y>=n-1)return;
+    const k=Math.floor(y),f=y-k,to=dir>0?(f>.03?k+1:k):(f<.97?k:k+1);
+    target=cur=scrollY;rate=.11;target=clamp(top+to*innerHeight,0,max());go();
+  };
+  addEventListener('wheel',e=>{
+    if(e.ctrlKey||e.defaultPrevented||off()||Math.abs(e.deltaX)>Math.abs(e.deltaY)||own(e.target))return;
+    e.preventDefault();
+    const d=e.deltaMode===1?e.deltaY*16:e.deltaMode===2?e.deltaY*innerHeight:e.deltaY;
+    if(!raf)target=cur=scrollY;
+    dir=d>0?1:-1;rate=.07;
+    target=clamp(target+d*.5,0,max());go();
+    clearTimeout(idle);idle=setTimeout(snap,160);
+  },{passive:false});
+  addEventListener('scroll',()=>{if(!raf&&expected===null){target=cur=scrollY}},{passive:true});
+}
+if(PAPER&&matchMedia('(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)').matches)paperSmooth();
+
 function heroNav(){
   const h=document.getElementById('hdr'),hero=document.querySelector('.vhero');
   h.classList.toggle('over-hero',!!hero&&hero.getBoundingClientRect().bottom>h.offsetHeight);
