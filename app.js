@@ -67,7 +67,7 @@ const CHAPTERS=[
 /* Each chapter shows the real weddings in PORTFOLIO, one slide per couple on Work. A couple with 3 frames or fewer
    gets no slide (the photos stay in portfolio.json, and drafts/portfolio/build_portfolio.py lists who is hidden), and a
    chapter with no slides yet stays hidden until one is added. Keep HIDE_MAX in step with the script. */
- .map(c=>({...c,seqs:(PORTFOLIO[c.id]||[]).filter(q=>q.frames.length>HIDE_MAX),cover:PICKS.covers[c.id],tint:(PICKS.tints||{})[c.id]}))
+ .map(c=>({...c,seqs:(PORTFOLIO[c.id]||[]).filter(q=>q.frames.length>HIDE_MAX),cover:PICKS.covers[c.id],pcover:(PICKS.paperCovers||PICKS.covers)[c.id],tint:(PICKS.tints||{})[c.id]}))
  .filter(c=>c.seqs.length)
  .map((c,i)=>({...c,no:String(i+1).padStart(2,'0'),frames:c.seqs.reduce((n,q)=>n+q.frames.length,0)}));
 
@@ -154,12 +154,12 @@ const HERO_PLAY_ICON=paused=>`<svg viewBox="0 0 24 24" aria-hidden="true" focusa
 /* Paper theme only: Home's Recent work is three full-screen cards (see theme-paper.css). Photo = the first chapter's cover in each group. */
 const PAPER=document.documentElement.dataset.theme==='paper';
 function paperCards(){
-  const list=[...CHAPTERS].sort((a,b)=>a.no-b.no).filter(c=>c.cover);
+  const list=[...CHAPTERS].sort((a,b)=>a.no-b.no).filter(c=>c.pcover);
   return `<section class="pcards" aria-label="Recent work" style="--pc-n:${list.length}">
   <div class="pcards-stick">
     <div class="pcards-track" tabindex="0" role="group" aria-label="Recent work, ${list.length} chapters">${list.map((c,i)=>`
       <article class="pcard pc-${i+1}">
-        <figure class="pc-ph">${pic(c.cover,'(max-width:900px) 80vw, 46vw')}</figure>
+        <figure class="pc-ph">${pic(c.pcover,'(max-width:900px) 80vw, 46vw')}</figure>
         <div class="pc-tx"><span class="pc-no" aria-hidden="true">${c.no}</span><h2>${c.name}</h2><p>${c.desc}</p><span class="pc-tag">${c.alt}</span>
           <button class="btn" data-nav-to="#/portfolio/photos/${c.id}"><span>View the work</span><i></i></button></div>
         <ol class="pc-dots" aria-hidden="true">${list.map((h,j)=>`<li${j===i?' class="on"':''}>${h.no}</li>`).join('')}</ol>
@@ -299,7 +299,7 @@ ${PAPER?paperCards():`<section class="day" style="padding-top:0">
 </section>
 
 <section class="cta">
-  ${PAPER?`<div class="cta-ph" aria-hidden="true">${['night','ceremony','reception','arrival'].map(k=>`<span>${pic(CHAPTERS.find(c=>c.id===k).cover,'20vw')}</span>`).join('')}</div>`:''}
+  ${PAPER?`<div class="cta-ph" aria-hidden="true">${['night','ceremony','reception','arrival'].map(k=>`<span>${pic(CHAPTERS.find(c=>c.id===k).pcover,'20vw')}</span>`).join('')}</div>`:''}
   <h2 class="rv">Tell us about<br>your wedding</h2>
   <p class="lead rv" data-d="1" style="margin-top:24px">Send us the date and the venue and we’ll come back to you.</p>
   <div class="rv" data-d="2" style="margin-top:38px"><a href="#/contact" data-nav class="btn"><span>Check your date</span><i></i></a></div>
@@ -2093,7 +2093,7 @@ document.getElementById('skip').addEventListener('click',()=>{
    none repeating a photo Home already shows. The middle tile is PICKS.tally: it opens as a complete photograph fitted to the screen. */
 function mosaicTiles(n){
   const mid={...PICKS.tally};
-  const used=new Set([PICKS.hero,PICKS.stay,PICKS.back,mid,...Object.values(PICKS.covers),...Object.values(PICKS.nav),...PICKS.stayOut].map(f=>f.src));
+  const used=new Set([PICKS.hero,PICKS.stay,PICKS.back,mid,...Object.values(PICKS.covers),...(PAPER?[...Object.values(PICKS.paperCovers),...Object.values(PICKS.nav),...PICKS.stayOut]:[])].map(f=>f.src));
   const byCouple=new Map();
   Object.keys(PORTFOLIO).forEach(id=>(PORTFOLIO[id]||[]).forEach(ev=>ev.frames.forEach(f=>{
     if(used.has(f.src))return;
