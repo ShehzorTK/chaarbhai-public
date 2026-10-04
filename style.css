@@ -1002,7 +1002,8 @@ body.locked .ps-contained header{background:var(--ink)}
   .ps-arrows button:disabled{opacity:.22;pointer-events:none}
   .ps-arrows button:hover{color:var(--gold)}
   /* looking is the product: a photograph answers the mouse (iPhone has no hover, it keeps tap feedback) */
-  .ps .frame .fr-img img{transition:transform .4s var(--ease-out)}
+  .ps .frame .fr-img img{transition:transform .7s var(--ease)}
+  html[data-theme="paper"] .ps .frame .fr-img img{transition:transform .4s var(--ease-out)}
   .ps .frame .fr-img:hover img{transform:scale(1.02)}
   .ps-body:has(.fr-img:hover) .seq-count{color:var(--gold)}
 }
@@ -1385,9 +1386,9 @@ header .brand img.cb-brand-in-flight{visibility:hidden}
 @media(prefers-reduced-motion:reduce){.cmap-oth,.cmap-grid,.cmap-ca{transition:none}}
 @media(max-width:900px){.gta{grid-template-columns:1fr}.cmap{max-width:480px;margin:8px auto 0}}
 
-/* Work, desktop mouse and trackpad: no CSS snapping. The wheel scrolls natively and JS settles once onto a frame (cbGlide in video-feed.js),
+/* Work, Paper only, desktop mouse and trackpad: no CSS snapping. The wheel scrolls natively and JS settles once onto a frame (cbGlide in video-feed.js),
    so the browser never pulls the strip against the hand. Phones keep native mandatory snapping above. */
 @media (hover:hover) and (pointer:fine){
-  .seq-strip,.vf-feed,.ps-internal .ps-feed{scroll-snap-type:none}
-  html.snap-y{scroll-snap-type:none}
+  html[data-theme="paper"] .seq-strip,html[data-theme="paper"] .vf-feed,html[data-theme="paper"] .ps-internal .ps-feed{scroll-snap-type:none}
+  html[data-theme="paper"].snap-y{scroll-snap-type:none}
 }

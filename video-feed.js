@@ -1,6 +1,7 @@
 /* Work scroll helpers, shared by the strips, the Photographs stage and Films (desktop mouse and trackpad only; phones keep native snapping).
    Input stays native. One interruptible glide settles onto a frame: cubic-bezier(.23,1,.32,1), no bounce, restarts from where it is. */
-window.cbDesk=()=>matchMedia('(hover:hover) and (pointer:fine)').matches;
+window.cbPaper=()=>document.documentElement.dataset.theme==='paper';   // Paper only: dark and light Work keep their original scrolling
+window.cbDesk=()=>cbPaper()&&matchMedia('(hover:hover) and (pointer:fine)').matches;
 window.cbGlide=(function(){
   const X1=.23,Y1=1,X2=.32,Y2=1,ease=t=>{let u=t;for(let i=0;i<6;i++){const x=3*(1-u)*(1-u)*u*X1+3*(1-u)*u*u*X2+u*u*u-t,d=3*(1-u)*(1-u)*X1+6*(1-u)*u*(X2-X1)+3*u*u*(1-X2);if(Math.abs(d)<1e-6)break;u-=x/d}return 3*(1-u)*(1-u)*u*Y1+3*(1-u)*u*u*Y2+u*u*u};
   const key=a=>a==='y'?'scrollTop':'scrollLeft';
@@ -588,7 +589,7 @@ function setHash(){
 /* instant: keys and chips never animate. Glide (desktop): one interruptible 360ms settle. Phones keep the native smooth scroll and snap. */
 function scrollToSlide(n,instant){
   const top=S.slides[n].offsetTop;
-  if(instant){cbGlide.stop(S.feed);S.feed.scrollTo({top,behavior:'instant'});return}
+  if(instant&&cbPaper()){cbGlide.stop(S.feed);S.feed.scrollTo({top,behavior:'instant'});return}
   if(cbDesk())cbGlide(S.feed,'y',top,360);
   else S.feed.scrollTo({top,behavior:S.reduce?'auto':'smooth'});
 }
@@ -729,7 +730,7 @@ function onClick(e){
   const fb=t.closest('.vf-film');
   if(fb){swapFilm(S.active,fb.dataset.mode);return}
 }
-function scrollTo_(n){ if(n>=0&&n<S.data.length){S.target=n;scrollToSlide(n,true)} }
+function scrollTo_(n){ if(n>=0&&n<S.data.length){S.target=n;scrollToSlide(n,cbPaper())} }
 function onSeekKey(e){
   if(!S||!e.target.closest||!e.target.closest('.vf-seek'))return;
   if(e.key==='ArrowRight'){e.preventDefault();seekBy(5)}
@@ -752,8 +753,8 @@ function onKey(e){
   if((k==='ArrowUp'||k==='PageUp')&&S.active===0&&S.aligned){       // Up on the first film goes back to the menu
     e.preventDefault();scrollTo({top:0,behavior:S.reduce?'instant':'smooth'});S.aligned=false;return;
   }
-  if(k==='ArrowDown'||k==='j'||k==='PageDown'){e.preventDefault();step(1,true)}
-  else if(k==='ArrowUp'||k==='k'||k==='PageUp'){e.preventDefault();step(-1,true)}
+  if(k==='ArrowDown'||k==='j'||k==='PageDown'){e.preventDefault();step(1,cbPaper())}
+  else if(k==='ArrowUp'||k==='k'||k==='PageUp'){e.preventDefault();step(-1,cbPaper())}
   else if(k===' '||k==='Spacebar'){
     if(t&&t.closest&&t.closest('button,a,[role="button"]'))return;   // a focused button keeps its own Space
     e.preventDefault();toggle();

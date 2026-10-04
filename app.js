@@ -867,7 +867,7 @@ function dragScroll(strips){
       if(e.pointerType!=='mouse'||e.button!==0)return;
       e.preventDefault();
       clearTimeout(settle);settle=null;          // grabbing mid-glide stops it where it is
-      cbGlide.stop(t);
+      if(cbPaper())cbGlide.stop(t);else t.scrollTo({left:t.scrollLeft,behavior:'auto'});
       down=true;sx=e.clientX;sl=t.scrollLeft;samples=[{x:e.clientX,t:e.timeStamp}];
       t.classList.add('drag');
       t.setPointerCapture(e.pointerId);
@@ -882,7 +882,7 @@ function dragScroll(strips){
       if(!down)return;
       down=false;
       if(Math.abs(e.clientX-sx)<6){                // a click, not a drag: open that photo larger
-        release();cbGlide.stop(t);t.scrollLeft=sl;
+        release();if(cbPaper()){cbGlide.stop(t);t.scrollLeft=sl}else t.scrollTo({left:sl,behavior:'auto'});
         const f=document.elementFromPoint(e.clientX,e.clientY);
         if(e.type==='pointerup'&&f&&f.closest('.frame'))lightbox(f.closest('.frame'));
         return;
@@ -897,10 +897,12 @@ function dragScroll(strips){
       i=Math.max(0,Math.min(frames.length-1,Math.max(from-2,Math.min(from+2,i))));
       const left=Math.min(pos[i],max);
       if(Math.abs(left-cur)<1){release();return}
-      cbGlide(t,'x',left,320,release);            // one interruptible settle; the callback ends the drag state, no timer
+      if(cbPaper())cbGlide(t,'x',left,320,release);   // Paper: one interruptible settle; the callback ends the drag state, no timer
+      else{t.scrollTo({left,behavior:reduceMotion()?'auto':'smooth'});settle=setTimeout(release,700)}   // dark and light: unchanged
     };
     t.addEventListener('pointerup',up);
     t.addEventListener('pointercancel',up);
+    t.addEventListener('scrollend',()=>{if(!down&&settle)release()});
   });
 }
 /* Larger view. A click on a frame (Enter or Space from the keyboard) opens it
@@ -996,6 +998,7 @@ function sequences(seqs){
     let pc=null;                                   // frame positions, rebuilt only when the strip's size changes
     const positions=()=>{
       const w=strip.clientWidth,sw=strip.scrollWidth;
+      if(!cbPaper()){const first=frames[0].offsetLeft,max=Math.max(0,sw-w);return frames.map(f=>Math.min(max,f.offsetLeft-first))}
       if(!pc||pc.w!==w||pc.sw!==sw){const first=frames[0].offsetLeft,max=Math.max(0,sw-w);pc={w,sw,p:frames.map(f=>Math.min(max,f.offsetLeft-first))};}
       return pc.p;
     };
@@ -1019,7 +1022,7 @@ function sequences(seqs){
     };
     let updRaf=0;                                  // at most one update per frame while scrolling
     strip.addEventListener('scroll',()=>{
-      if(!updRaf)updRaf=requestAnimationFrame(()=>{updRaf=0;upd()});
+      if(!cbPaper())upd();else if(!updRaf)updRaf=requestAnimationFrame(()=>{updRaf=0;upd()});
       clearTimeout(settleTimer);settleTimer=setTimeout(()=>target=null,180);
     },{passive:true});
     strip.addEventListener('scrollend',()=>{target=null;upd();});
