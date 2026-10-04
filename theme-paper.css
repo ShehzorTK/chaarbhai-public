@@ -583,3 +583,26 @@ html[data-theme="paper"].paper-dark .paper-light-nav #hdr{color:#F2EBDE}
   html[data-theme="paper"] .paper-contact[data-tooltip]:hover::after,
   html[data-theme="paper"] .paper-contact[data-tooltip]:focus-visible::after{visibility:visible;opacity:1;transform:translate(-50%,0)}
 }
+
+/* ---- Work layout pass (Paper only): sizing and white space, from design/work-layout-critique.md ---- */
+/* 1. the chapter opener is a short intro, so the first couple's photographs are on screen on arrival */
+html[data-theme="paper"] .ps-open{min-height:0;justify-content:flex-start;padding-top:clamp(28px,3.5svh,40px);padding-bottom:12px}
+html[data-theme="paper"] .ps-odesc{font-size:28px;max-width:46ch}
+@media(max-width:700px){
+  html[data-theme="paper"] .ps-open{padding-top:40px;padding-bottom:12px}
+  html[data-theme="paper"] .ps-odesc{font-size:18px;max-width:none}
+  /* 2. a landscape photo sits in the middle of the band, so the blank above and below reads as matting */
+  html[data-theme="paper"] .ps .seq-strip{align-items:center}
+  /* 3. the next photograph peeks about 32px, enough to say "swipe" */
+  html[data-theme="paper"] .ps .frame{width:min(calc(var(--fh) * var(--ar,.75)),calc(100vw - 2 * var(--pad) - 34px))}
+}
+/* 4. the menu shares the header's left edge */
+html[data-theme="paper"] .pro-in{max-width:none;margin:0}
+/* 5. and sits in the middle of its block */
+@media(min-width:900px){
+  html[data-theme="paper"] .pro{display:flex;flex-direction:column;justify-content:center}
+  /* 6. a larger couple stage on desktop; the next couple still peeks */
+  html[data-theme="paper"] .ps{--ps-sh:calc((var(--ps-h0) - var(--psb)) * .9)}
+}
+/* 7. the theme switch keeps its small mark and gets a 44px touch area */
+html[data-theme="paper"] .theme-sw::after{content:'';position:absolute;inset:-5px}
