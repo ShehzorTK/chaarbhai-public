@@ -92,7 +92,8 @@ html[data-theme="paper"] .burger:hover::after,html[data-theme="paper"] .burger:f
 html[data-theme="paper"] .hdr-sub{grid-column:1/-1}
 /* Home: the bar is a sibling right after the film (app.js moves it there), and sticks to the top once it gets there. Plain CSS sticky, no script. */
 html[data-theme="paper"] .vhero{display:contents}
-html[data-theme="paper"].on-home #page{background-color:var(--paper-accent)}
+html[data-theme="paper"].on-home #page{background-color:var(--paper-accent);background-image:var(--grain);background-size:400px}
+html[data-theme="paper"].on-home,html[data-theme="paper"].on-home body{background:var(--paper-accent)}   /* no cream strip at the top or on overscroll */
 html[data-theme="paper"].on-home header{position:sticky;top:0}
 /* the menu: a dark brown sheet that fades in (0.9s desktop, 0.5s phone, strong ease-out). Photo left, huge links right. */
 html[data-theme="paper"] nav.links{position:fixed;inset:0;margin:0;background-color:#2A1D0F;background-image:var(--grain);background-size:400px;
@@ -153,7 +154,8 @@ html[data-theme="paper"] .pr .filter-toggle button.is-active,html[data-theme="pa
 html[data-theme="paper"] .vhero{--ink:var(--paper-accent);--paper:#F2EBDE;--dim:rgba(242,235,222,.9);--soft:rgba(242,235,222,.82);--gold:#F2EBDE;--gold-hi:#F2EBDE;color:#F2EBDE}
 html[data-theme="paper"].cb-pen-boot body,html[data-theme="paper"].cb-pen-boot{background:var(--paper-accent)}   /* the intro room is aubergine; the dark frame holds the pen */
 /* ---- Home: the film (and, first, the drawn logo) fills the screen above the bar, in a thin frame ---- */
-html[data-theme="paper"] .vhero-media{position:relative;inset:auto;width:auto;max-width:none;height:calc(100svh - var(--paper-nav-h) - 18px);margin:18px var(--pad) 0;aspect-ratio:auto;border:1px solid #D2B6A1;background:#2A1D0F}
+html[data-theme="paper"] .vhero-media{position:relative;inset:auto;width:auto;max-width:none;height:calc(100svh - var(--paper-nav-h) - 18px);margin:18px var(--pad) 0;aspect-ratio:auto;border:1px solid #D2B6A1;background-color:var(--paper-accent);background-image:var(--grain);background-size:400px}
+html[data-theme="paper"] .vhero .cb-video-cover{background:none}
 html[data-theme="paper"] .vhero-media::after{display:none}
 html[data-theme="paper"] .vhero .cb-hero-placeholder{inset:0}
 html[data-theme="paper"] .vhero-in{position:static;padding:0 var(--pad);text-align:center;max-width:820px;margin:clamp(40px,5vw,72px) auto 0;color:#F2EBDE;background:none}
@@ -180,8 +182,7 @@ html[data-theme="paper"] .arch,html[data-theme="paper"] .day-ph,html[data-theme=
 html[data-theme="paper"] .tally{--ink:#F2EBDE;--ink-2:#EBE2D1;--paper:#2A1D0F;--gold:#2A1D0F;--dim:rgba(42,29,15,.8);background-color:#F2EBDE}
 html[data-theme="paper"] .tally-big span,html[data-theme="paper"] .tally-copy,html[data-theme="paper"] .tally-more{color:var(--brown);text-shadow:none}
 html[data-theme="paper"] .tally-pin::after{background:radial-gradient(ellipse 60% 55% at 50% 50%,rgba(242,235,222,.7),rgba(242,235,222,0) 100%)}
-html[data-theme="paper"] .tally-live .mo-t.mo-mid{overflow:visible;z-index:2;background:none}
-html[data-theme="paper"] .tally-live .mo-t.mo-mid img{position:absolute;left:50%;top:50%;width:var(--mo-w,100%);height:var(--mo-h,100%);max-width:none;transform:translate(-50%,-50%);object-fit:cover}
+html[data-theme="paper"] .tally-live .mo-t.mo-mid img{object-fit:cover}
 html[data-theme="paper"] .voices blockquote p,html[data-theme="paper"] .v-more blockquote p{font-family:var(--f-serif);font-style:italic;color:var(--brown);letter-spacing:.02em}
 html[data-theme="paper"] .voices figcaption{font-family:var(--f-serif);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--brown);font-style:normal}
 
@@ -258,9 +259,9 @@ html[data-theme="paper"] .pc-tx .btn{color:var(--paper)}
 html[data-theme="paper"] .pc-dots{list-style:none;display:flex;justify-content:center;gap:12px;padding:6px 0 0;margin:0;color:var(--paper);font-family:var(--f-serif);font-size:13px;letter-spacing:.14em}
 html[data-theme="paper"] .pc-dots li{opacity:.6}
 html[data-theme="paper"] .pc-dots li.on{font-style:italic;opacity:1;border-bottom:1px solid currentColor}
-/* pointer devices without reduced motion: the section pins and vertical scroll moves the cards sideways (about 70svh of scroll per card) */
+/* pointer devices without reduced motion: the section pins and vertical scroll moves the cards sideways (100svh of scroll per card, then a hold on the last one) */
 @media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
-  html[data-theme="paper"] .pcards{height:calc(100svh + (var(--pc-n,7) - 1)*70svh)}
+  html[data-theme="paper"] .pcards{height:calc(100svh + (var(--pc-n,7) - 1)*100svh + 80svh)}
   html[data-theme="paper"] .pcards-stick{position:sticky;top:0;height:100svh;overflow:hidden}
   html[data-theme="paper"] .pcards-track{width:calc(var(--pc-n,7)*100vw);height:100%;overflow:visible;scroll-snap-type:none;transform:translate3d(var(--pc-x,0),0,0)}
   html[data-theme="paper"] .pcard{flex:0 0 100vw;height:100svh;min-height:0;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:center;gap:clamp(30px,6vw,110px);padding:calc(var(--paper-nav-h) + 20px) var(--pad) 60px}
@@ -319,11 +320,16 @@ html[data-theme="paper"].cb-pen-hold .vhero-in>*,html[data-theme="paper"].cb-pen
 @media (prefers-reduced-motion:reduce){html[data-theme="paper"].cb-pen-boot .vhero-media,html[data-theme="paper"].cb-pen-boot #hdr,html[data-theme="paper"].cb-pen-boot .vhero-in>*,html[data-theme="paper"].cb-pen-boot .vhero-foot{transition:none;transform:none}}
 
 /* ---- Home testimonial: the big quote is written in as you scroll, in script; the rest fades in ---- */
-html[data-theme="paper"] .voices blockquote p.wi{font-family:var(--f-script);font-style:normal;font-weight:400;letter-spacing:0;line-height:1.3;font-size:clamp(46px,6.6vw,96px);max-width:15ch;color:var(--brown);margin:0}
-html[data-theme="paper"] .wi-w{--p:1;display:inline-block;padding:.26em .3em;margin:-.26em -.3em;
+html[data-theme="paper"] .wi-w{--p:1;display:inline-block;padding:.12em .2em;margin:-.12em -.2em;
   -webkit-mask-image:linear-gradient(90deg,#000 calc(var(--p)*108% - 8%),transparent calc(var(--p)*108%));mask-image:linear-gradient(90deg,#000 calc(var(--p)*108% - 8%),transparent calc(var(--p)*108%))}
 html[data-theme="paper"] .v-lead .hang{display:none}
 @media (prefers-reduced-motion:reduce){html[data-theme="paper"] .wi-w{-webkit-mask-image:none;mask-image:none}}
+
+/* ---- "We plan the boring parts": heading smaller, the paragraphs in the display serif and wider ---- */
+html[data-theme="paper"] .plan h2.d2{font-size:clamp(32px,4.2vw,56px);line-height:1.05}
+html[data-theme="paper"] .plan p.lead{font-size:clamp(21px,2.3vw,32px);line-height:1.5;letter-spacing:.01em;max-width:36ch}
+html[data-theme="paper"] .plan p.lead+p.lead{opacity:.78}
+@media(min-width:861px){html[data-theme="paper"] .plan .band-in{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,100px)}}
 
 /* ---- chapter rail ---- */
 html[data-theme="paper"] #page>section{position:relative}

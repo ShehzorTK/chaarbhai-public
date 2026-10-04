@@ -195,8 +195,10 @@ function paperRails(){
 function paperCardsPaint(pc){
   const n=pc.querySelectorAll('.pcard').length;
   if(matchMedia('(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)').matches){
-    const r=pc.getBoundingClientRect(),p=Math.max(0,Math.min(1,-r.top/Math.max(1,r.height-innerHeight)));
-    pc.style.setProperty('--pc-x',`${-p*(n-1)*100}vw`);
+    // Each card gets a screen of scrolling: it rests, slides across in the middle of that screen, and rests again; the last card holds for another 80% screen before the page moves on.
+    const r=pc.getBoundingClientRect(),y=Math.max(0,-r.top)/innerHeight,k=Math.min(n-1,Math.floor(y)),f=Math.min(1,y-k);
+    const t=Math.max(0,Math.min(1,(f-.3)/.4)),u=y>=n-1?n-1:k+t*t*(3-2*t);
+    pc.style.setProperty('--pc-x',`${-u*100}vw`);
   }else pc.style.removeProperty('--pc-x');
 }
 
@@ -1732,7 +1734,7 @@ function reel(){
   const updateSound=()=>{sound.innerHTML=HERO_SOUND_ICON(video.muted);sound.setAttribute('aria-pressed',String(!video.muted));sound.setAttribute('aria-label',video.muted?'Unmute background music':'Mute background music');};
   const mute=()=>{video.muted=true;updateSound();};
   const updatePlayback=()=>{playButton.innerHTML=HERO_PLAY_ICON(video.paused);playButton.setAttribute('aria-label',video.error?'Retry film':video.paused?'Play film':'Pause film');playButton.hidden=!manualPlayback;};
-  const visible=()=>{const r=hero.getBoundingClientRect();return document.visibilityState==='visible'&&r.bottom>0&&r.top<innerHeight;};
+  const visible=()=>{const r=(hero.querySelector('.vhero-media')||hero).getBoundingClientRect();return document.visibilityState==='visible'&&r.bottom>0&&r.top<innerHeight;};
   const reveal=()=>{
     if(!started){started=true;hero.classList.add('is-reel-ready');hero.querySelector('.cb-video-cover')?.remove();sound.hidden=false;}
     if(!promptShown&&!video.paused&&video.muted){promptShown=true;prompt.hidden=false;promptTimer=setTimeout(()=>prompt.hidden=true,4500);}
@@ -2132,7 +2134,7 @@ function tallyScene(){
   const image=mid.querySelector('img'),ar=image.naturalWidth&&image.naturalHeight?image.naturalWidth/image.naturalHeight:Number(image.getAttribute('width'))/Number(image.getAttribute('height'));
   const photoW=Math.min(mid.clientWidth,mid.clientHeight*ar),photoH=photoW/ar;
   const pin=sec.querySelector('.tally-pin');
-  const from=Math.max(1,Math.min(pin.clientWidth*.92/photoW,vh*.86/photoH));
+  const from=PAPER?Math.max(1,pin.clientWidth/mid.clientWidth,vh/mid.clientHeight):Math.max(1,Math.min(pin.clientWidth*.92/photoW,vh*.86/photoH));   // Paper: the centre tile is an ordinary tile, scaled until it covers the screen
   const p=Math.max(0,Math.min(1,-r.top/Math.max(1,r.height-vh)));
   const seg=(a,b)=>Math.max(0,Math.min(1,(p-a)/(b-a)));
   const e=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;               // power2.inOut
@@ -2142,9 +2144,6 @@ function tallyScene(){
   // Keep the central photograph fitted throughout; changing its crop during zoom caused a visible lurch.
 
   mosaic.style.setProperty('--mo-photo-scale','1');
-  if(PAPER){   // Paper: the centre photo covers the screen when zoomed in, and shrinks to its tile as the wall zooms out
-    const k=1-z;mosaic.style.setProperty('--mo-w',`${(pin.clientWidth/from*k+mid.clientWidth*z).toFixed(1)}px`);mosaic.style.setProperty('--mo-h',`${(vh/from*k+mid.clientHeight*z).toFixed(1)}px`);
-  }
   const dim=seg(.66,.96);
   mosaic.style.setProperty('--mo-dim',(1-.8*dim).toFixed(3));
   mosaic.style.setProperty('--mo-neighbours',(Math.min(1,z*4)*(1-.8*dim)).toFixed(3));
