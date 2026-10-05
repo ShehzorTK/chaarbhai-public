@@ -213,6 +213,22 @@ function paperCardsPaint(pc){
 
 const P={};
 
+// Paper only: the questions couples ask, bottom of Prices (native details, so it works without JS)
+const PAPER_FAQ=[
+['How much does wedding photography and film cost?','Our packages are above, with every add-on priced, and the estimate builder adds it up as you choose. Packages start from $3,300 CAD, all prices in Canadian dollars. Add-ons such as rush delivery are listed with their price.'],
+['What is included in every package?','Every package includes your photographer and/or videographer (depending on the package), individual retouching of every photo, and a private online gallery.'],
+['How do I book, and how does payment work?','You can see our packages above. Start with an enquiry and we’ll set up a meeting to get to know you: your wedding, the coverage you need and the kind of photos you’re after. Once we know what you need, we send a contract. Booking takes an initial deposit, and the rest of the amount is paid later, as set out in the contract.'],
+['Do you shoot South Asian and multi-day weddings?','Yes. We shoot South Asian and multi-day weddings, from the mehndi and nikah to the ceremony and reception, and can cover each event.'],
+['Do you travel for weddings?','Yes. We have photographed and filmed weddings in Canada, Pakistan, the UAE, Thailand and the United States, and we’re happy to travel wherever your wedding is. Travel and accommodation are quoted per wedding, in addition to the package price.'],
+['How many photographers and videographers come?','One photographer and one videographer, with lighting and support. If your event is busy, with many things happening at once, extra photographers are available as an add-on.'],
+['Do you offer drone shots?','Yes, all our videographers carry drones. One videographer can’t fly a drone and film at the same time, so drone footage needs an additional videographer, available as an add-on.'],
+['How many photos do we get?','There is no set number. We photograph as much as we can, and before the day we ask you who the important people are, the ones we must not miss. We aim to catch everything that matters: the relevant people and the important moments. The number depends on how much happens at your event, not how many guests come, so we can’t give a figure.'],
+['How long until we get our photos and film?','We don’t use presets or a standard editing system. Every photo is edited individually, and that takes time. Delivery can take up to three months. If you need it sooner, rushed delivery is available as an add-on.'],
+['What if we need to cancel?','We understand that plans can change. Because we reserve your date for you alone, a cancellation by the client is not refundable. Please read our <a href="#/refunds" data-nav>Refunds and Cancellation</a> page for the full details, or get in touch if you have questions before booking.']
+];
+const paperFaq=()=>`<section class="faq" aria-labelledby="faq-h"><h2 id="faq-h" class="rv">Questions couples ask</h2><div class="faq-list rv" data-d="1">${PAPER_FAQ.map(([q,a])=>`<details><summary>${q}</summary><p>${a}</p></details>`).join('')}</div></section>
+`;
+
 P['/']=()=>`
 <section class="vhero">
   <div class="vhero-media">
@@ -723,6 +739,7 @@ P['/services']=()=>`
     </div>
 </section>
 </div>
+${PAPER?paperFaq():''}
 
 <section class="cta">
   <h2 class="rv">Rather talk it through<br>with one of us?</h2>
