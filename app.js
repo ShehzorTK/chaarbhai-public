@@ -352,8 +352,8 @@ P['/about']=()=>`
 </section>
 
 <section class="work-founder" aria-labelledby="founder-name">
-  <figure class="founder-portrait" aria-label="Space reserved for a portrait of Fahad Raza">
-    <span aria-hidden="true">Fahad Raza</span>
+  <figure class="founder-portrait">
+    <img src="img/founder-fahad-raza-800.webp" srcset="img/founder-fahad-raza-480.webp 480w, img/founder-fahad-raza-800.webp 800w, img/founder-fahad-raza-1200.webp 1200w" sizes="(max-width:700px) 300px, 420px" width="800" height="1200" loading="lazy" decoding="async" alt="Black and white portrait of Fahad Raza, wedding photographer and founder of Chaar Bhai, wearing aviator sunglasses, a patterned tie and a tweed jacket">
   </figure>
   <div class="founder-copy">
     <span class="mono">Founder</span>
