@@ -780,8 +780,13 @@ P['/contact']=()=>`
     </div>`:''}
     <div class="sn-slot"><p class="sn-wait">Loading the form…</p></div>
     <p class="sn-fallback">Form not loading? <a href="${SN_FORM}" target="_blank" rel="noopener">Open it in a new tab</a>, or message us on Instagram at <a href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">@chaarbhai</a>.</p>
+  
+    ${PAPER?`<p class="sn-consent">By sending this you agree we may contact you about your enquiry and handle your details as described in our <a href="#/privacy" data-nav>Privacy Policy</a>.</p>`:''}
   </div>
 </section>`;
+
+/* Paper only: Privacy Policy, Terms of Service and Refunds (text in legal.js). Dark and light have no such routes. */
+if(PAPER&&window.CB_LEGAL)Object.keys(CB_LEGAL).forEach(k=>{P[k]=()=>CB_LEGAL[k].html});
 
 /* ================= ENGINE ================= */
 /* Header and footer keep the original studio mark. */
@@ -825,7 +830,8 @@ const main=document.getElementById('main');
 let io;
 /* analytics: a no-op unless the tag loaded (see <head>) */
 const track=(name,params={})=>{if(window.CB_GA)gtag('event',name,params)};
-const GA_PATH={'/':'/','/portfolio':'/work','/about':'/about','/services':'/prices','/testimonials':'/reviews','/contact':'/contact'};
+const GA_PATH={'/':'/','/portfolio':'/work','/about':'/about','/services':'/prices','/testimonials':'/reviews','/contact':'/contact','/privacy':'/privacy','/terms':'/terms','/refunds':'/refunds'};
+window.cbPageView=()=>{if(!window.CB_GA||!document.title)return;const p=routeOf(location.hash),gp=GA_PATH[p]||'/';track('page_view',{page_title:document.title,page_location:location.origin+gp,page_path:gp})};   // Paper: called by index.html after the visitor accepts analytics, so the page they're on is counted
 const reduceMotion=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* resolves once the preloader has fully faded, so the hero reveal is seen */
 let preGoneResolve; const preGone=new Promise(r=>preGoneResolve=r);
@@ -1940,6 +1946,7 @@ function letterForm(){
 
 const TITLES={'/':'Chaar Bhai · Wedding Photography and Film','/portfolio':'Wedding Photo and Film Portfolio · Chaar Bhai',   // keep in step with PAGES in tools/seo-build.cjs
   '/about':'About Chaar Bhai · Wedding Photographers and Filmmakers','/services':'Wedding Photography and Film Prices · Chaar Bhai','/testimonials':'Reviews from Chaar Bhai Couples','/contact':'Contact Chaar Bhai · Check Your Wedding Date'};
+if(PAPER&&window.CB_LEGAL)Object.keys(CB_LEGAL).forEach(k=>{TITLES[k]=CB_LEGAL[k].title});
 /* a chapter picked on Home: Work opens scrolled to it (set by data-then) */
 let jumpAfter=null;
 function render(path){
@@ -2051,7 +2058,7 @@ const wkLoader=(()=>{
     }
   };
 })();
-const ORDER=['/','/portfolio','/about','/services','/testimonials','/contact'];
+const ORDER=['/','/portfolio','/about','/services','/testimonials','/contact','/privacy','/terms','/refunds'];
 let routing=false,pendingPath=null,currentPath=null,hidden=false,wake=null;
 function afterTransition(el,fallbackMs){
   return new Promise(resolve=>{

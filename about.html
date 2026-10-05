@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About Chaar Bhai · Wedding Photographers and Filmmakers</title>
 <meta name="description" content="Chaar Bhai is Urdu for four brothers. Founded by Fahad Raza in 2013, we shoot candid wedding photo and film, based in the Greater Toronto Area.">
-<meta name="cb-version" content="40.107">
+<meta name="cb-version" content="40.108">
 <!--seo:head-->
 <link rel="canonical" href="https://chaarbhai.com/about">
 <meta name="robots" content="index,follow,max-image-preview:large">
@@ -30,14 +30,35 @@ if(!location.hash)try{history.replaceState(null,'',location.pathname+location.se
 (function(){
   var ID='G-X1GHG229CQ', h=location.hostname;
   var live=/(^|\.)chaarbhai\.com$/.test(h)||(/\.netlify\.app$/.test(h)&&h.indexOf('--')<0);
+  var paper=/[?&]theme=paper/.test(location.search);
   window.dataLayer=window.dataLayer||[];
   window.gtag=function(){dataLayer.push(arguments)};
-  window.CB_GA=live?ID:null;
+  window.CB_GA=null;
   if(!live)return;
-  var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+ID;
-  document.head.appendChild(s);
-  gtag('js',new Date());
-  gtag('config',ID,{send_page_view:false});
+  var loaded=false;
+  function load(){
+    window.CB_GA=ID;
+    if(loaded)return;loaded=true;
+    var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+ID;
+    document.head.appendChild(s);
+    gtag('js',new Date());
+    gtag('config',ID,{send_page_view:false});
+  }
+  if(!paper){load();return}
+  /* Paper only: Consent Mode v2 starts denied and Google Analytics isn't downloaded until the visitor accepts (consent.js) */
+  gtag('consent','default',{ad_storage:'denied',analytics_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
+  window.CB_GA_LOAD=function(){
+    gtag('consent','update',{analytics_storage:'granted'});
+    var fresh=!window.CB_GA;load();
+    if(fresh&&window.cbPageView)window.cbPageView();
+  };
+  window.CB_GA_OFF=function(){
+    if(!window.CB_GA)return;
+    gtag('consent','update',{analytics_storage:'denied'});
+    window.CB_GA=null;
+    document.cookie.split(';').forEach(function(c){var n=c.split('=')[0].trim();
+      if(n==='_ga'||n.indexOf('_ga_')===0)['','; domain='+h,'; domain=.'+h.replace(/^www\./,'')].forEach(function(d){document.cookie=n+'=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/'+d})});
+  };
 })();
 </script>
 <!-- Link previews (WhatsApp, iMessage, Instagram, Facebook, LinkedIn).
@@ -61,15 +82,18 @@ if(!location.hash)try{history.replaceState(null,'',location.pathname+location.se
 <meta name="twitter:image" content="https://chaarbhai.com/og-image.jpg">
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="image" href="img/pen-loader-1.png">
 <link rel="preload" as="image" href="img/pen-loader-3.png">
 <link rel="preload" as="image" href="img/pen-loader-4.png">
-<!-- Fonts load without blocking the first paint; the Home intro waits for them (window.CB_FONTS) before it starts. -->
-<link id="cb-fonts" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;1,400&family=Schibsted+Grotesk:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all';window.CB_FONTS_OK&&CB_FONTS_OK()" onerror="window.CB_FONTS_OK&&CB_FONTS_OK()">
-<script>window.CB_FONTS=new Promise(function(r){window.CB_FONTS_OK=r})</script>
-<noscript><link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;1,400&family=Schibsted+Grotesk:wght@400;500&display=swap" rel="stylesheet"></noscript>
+<!-- Fonts load without blocking the first paint; the Home intro waits for them (window.CB_FONTS) before it starts.
+     Paper (?theme=paper) uses only the fonts in fonts/ and never contacts Google Fonts, so the tags below are written only for dark and light. -->
+<script>
+window.CB_FONTS=new Promise(function(r){window.CB_FONTS_OK=r});
+if(/[?&]theme=paper/.test(location.search))window.CB_FONTS_OK();
+else document.write('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+  +'<link id="cb-fonts" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;1,400&family=Schibsted+Grotesk:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media=\'all\';window.CB_FONTS_OK&&CB_FONTS_OK()" onerror="window.CB_FONTS_OK&&CB_FONTS_OK()">'
+  +'<noscript><link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;1,400&family=Schibsted+Grotesk:wght@400;500&display=swap" rel="stylesheet"></noscript>');
+</script>
 <script>
 /* The preloader is a first-visit moment. Once it has played in this tab,
    reloads skip it. Decided here, before the body paints, so it never flashes. */
@@ -81,7 +105,7 @@ if(location.hash===''||location.hash==='#/'){document.documentElement.classList.
    never flashes the other theme. Dark is the house default. */
 try{if(sessionStorage.getItem('cb-theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}   /* every new visit opens in dark; the switch only lasts for the visit */
 </script>
-<link rel="stylesheet" href="style.css?v=40.107">
+<link rel="stylesheet" href="style.css?v=40.108">
 <script>
 /* Paper theme (experimental): only while the URL says ?theme=paper. Never remembered, so removing the parameter returns to dark or light.
    Loads its own stylesheet only when on, so dark and light visitors never download it. */
@@ -93,7 +117,8 @@ try{
     var _d=document.documentElement;
     _d.dataset.theme='paper';
     document.getElementById('themecolor').setAttribute('content','#2B2530');
-    document.head.insertAdjacentHTML('beforeend','<style>html{background:#2B2530}</style><link rel="preload" as="font" type="font/woff2" href="fonts/eb-garamond.woff2" crossorigin><link rel="stylesheet" href="theme-paper.css?v=40.107">');
+    document.head.insertAdjacentHTML('beforeend','<style>html{background:#2B2530}</style><link rel="preload" as="font" type="font/woff2" href="fonts/eb-garamond.woff2" crossorigin><link rel="stylesheet" href="theme-paper.css?v=40.108">');
+    document.write('<script src="legal.js?v=40.108"><\/script><script src="consent.js?v=40.108"><\/script>');   // Paper only: the Privacy, Terms and Refunds text, and the analytics notice
   }
 }catch(e){}
 </script>
@@ -158,6 +183,11 @@ try{
       <a href="https://tiktok.com/@chaar.bhai" target="_blank" rel="noopener">TikTok</a>
       <a href="https://www.linkedin.com/company/chaarbhai" target="_blank" rel="noopener">LinkedIn</a>
     </div>
+    <div class="fc paper-legal" style="display:none">   <!-- Paper theme only (theme-paper.css shows it) -->
+      <h2 class="mono">Legal</h2>
+      <a href="#/privacy" data-nav>Privacy</a><a href="#/terms" data-nav>Terms</a>
+      <a href="#/refunds" data-nav>Refunds</a><a href="#" data-consent-open role="button">Cookie settings</a>
+    </div>
   </div>
   <div class="fbot mono">
     <span class="fbot-copy fbot-copyright"><span>© 2026</span><span>Chaar Bhai Inc.</span></span>
@@ -167,13 +197,13 @@ try{
 </footer>
 
 <script>if(/[?&]debug\b/.test(location.search))document.write('<script src="debug.js"><\/script>')</script>
-<script src="portfolio.js?v=40.107"></script>
-<script src="videos.js?v=40.107"></script>
-<script src="video-feed.js?v=40.107"></script>
-<script src="photo-stage.js?v=40.107"></script>
-<script src="reviews.js?v=40.107"></script>
-<script src="pen-loader.js?v=40.107"></script>
-<script src="canada-map.js?v=40.107"></script>
-<script src="app.js?v=40.107"></script>
+<script src="portfolio.js?v=40.108"></script>
+<script src="videos.js?v=40.108"></script>
+<script src="video-feed.js?v=40.108"></script>
+<script src="photo-stage.js?v=40.108"></script>
+<script src="reviews.js?v=40.108"></script>
+<script src="pen-loader.js?v=40.108"></script>
+<script src="canada-map.js?v=40.108"></script>
+<script src="app.js?v=40.108"></script>
 </body>
 </html>

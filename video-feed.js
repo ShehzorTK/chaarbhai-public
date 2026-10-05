@@ -71,7 +71,7 @@ const writeSound=on=>{try{sessionStorage.setItem(SND_KEY,on?'1':'0')}catch(e){}}
 let warmed=false;
 function warm(){
   if(warmed)return;warmed=true;
-  ['https://www.youtube.com','https://i.ytimg.com'].forEach(h=>{
+  (cbPaper()?['https://www.youtube-nocookie.com','https://i.ytimg.com']:['https://www.youtube.com','https://i.ytimg.com']).forEach(h=>{
     const l=document.createElement('link');l.rel='preconnect';l.href=h;document.head.appendChild(l);
   });
   loadYT().catch(()=>{});
@@ -400,8 +400,10 @@ function mount(k){
     if(r.dead||S!==st)return;
     const pv={autoplay:0,controls:0,rel:0,playsinline:1,iv_load_policy:3,disablekb:1,modestbranding:1};
     if(/^https?:/.test(location.origin))pv.origin=location.origin;
-    r.yt=new YT.Player(div,{videoId:r.vid,width:'100%',height:'100%',playerVars:pv,
-      events:{onReady:()=>onReady(r),onStateChange:e=>onState(r,e.data),onError:()=>onErr(r)}});
+    const opts={videoId:r.vid,width:'100%',height:'100%',playerVars:pv};
+    if(cbPaper())opts.host='https://www.youtube-nocookie.com';   // Paper only: YouTube's privacy-enhanced domain, as the Privacy Policy says
+    r.yt=new YT.Player(div,Object.assign(opts,{
+      events:{onReady:()=>onReady(r),onStateChange:e=>onState(r,e.data),onError:()=>onErr(r)}}));
   }).catch(()=>{if(!r.dead&&S===st)onErr(r)});
   return r;
 }
