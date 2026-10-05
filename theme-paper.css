@@ -689,13 +689,13 @@ html[data-theme="paper"] .promises li::before{content:"";position:absolute;left:
 html[data-theme="paper"] .sn-consent{margin:14px 0 0;font-size:14px;line-height:1.55;color:var(--dim)}
 html[data-theme="paper"] .sn-consent a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 
-html[data-theme="paper"] .consent{position:fixed;z-index:60;left:max(12px,env(safe-area-inset-left));right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));margin-inline:auto;max-width:560px;
-  background:var(--paper-accent);background-image:var(--grain);background-size:400px;color:#F2EBDE;padding:16px 18px;border:1px solid rgba(242,235,222,.3);
-  opacity:0;transform:translateY(8px);transition:opacity .22s var(--ease),transform .22s var(--ease)}
+html[data-theme="paper"] .consent{position:fixed;z-index:60;top:calc(var(--hh,84px) + 12px);left:max(12px,env(safe-area-inset-left));right:auto;bottom:auto;width:min(300px,calc(100vw - 24px));
+  background:var(--paper-accent);background-image:var(--grain);background-size:400px;color:#F2EBDE;padding:12px 14px;border:1px solid rgba(242,235,222,.3);box-shadow:0 6px 20px rgba(0,0,0,.28);
+  opacity:0;transform:translateY(-6px);transition:opacity .22s var(--ease),transform .22s var(--ease)}
 html[data-theme="paper"] .consent.on{opacity:1;transform:none}
-html[data-theme="paper"] .consent p{margin:0 0 12px;font-size:15px;line-height:1.5;color:#F2EBDE}
+html[data-theme="paper"] .consent p{margin:0 0 10px;font-size:13px;line-height:1.45;color:#F2EBDE}
 html[data-theme="paper"] .consent a{color:inherit;text-decoration:underline;text-underline-offset:3px}
-html[data-theme="paper"] .consent-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+html[data-theme="paper"] .consent-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 html[data-theme="paper"] .consent-btns button{min-height:44px;padding:10px 12px;font:inherit;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:#F2EBDE;background:transparent;border:1px solid rgba(242,235,222,.6);cursor:pointer;transition:background-color .2s var(--ease),color .2s var(--ease)}
 html[data-theme="paper"] .consent-btns button:active{background:#F2EBDE;color:var(--paper-accent)}
 @media(hover:hover) and (pointer:fine){html[data-theme="paper"] .consent-btns button:hover{background:#F2EBDE;color:var(--paper-accent)}}
@@ -715,3 +715,22 @@ html[data-theme="paper"] .faq summary:focus-visible{outline:2px solid currentCol
 html[data-theme="paper"] .faq details p{margin:0 0 20px;max-width:62ch;color:var(--dim);font-size:clamp(16px,1.3vw,18px);line-height:1.6}
 html[data-theme="paper"] .faq details p a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 @media (prefers-reduced-motion:reduce){html[data-theme="paper"] .faq summary::after{transition:none}}
+
+/* ---- footer layout B (v40.111): socials 2x2, quiet Legal line, copyright bottom left, Bell Bottoms bottom right, no "Bookings open" ---- */
+html[data-theme="paper"] .fbot-booking{display:none!important}
+@media(max-width:820px){
+  html[data-theme="paper"] footer .ftop>.fc:nth-child(3){display:grid;grid-template-columns:1fr 1fr;column-gap:20px}
+  html[data-theme="paper"] footer .ftop>.fc:nth-child(3) h2{grid-column:1/-1}
+}
+html[data-theme="paper"] footer .paper-legal{display:flex!important;flex-wrap:wrap;gap:0 18px}
+html[data-theme="paper"] footer .paper-legal h2{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+html[data-theme="paper"] footer .paper-legal a{font-size:var(--t-small);color:var(--dim);padding-top:0;display:flex;align-items:center}
+@media(max-width:820px){
+  html[data-theme="paper"] .ftop{gap:28px;padding-bottom:36px}
+  html[data-theme="paper"] .fbot{display:flex;flex-wrap:nowrap;justify-content:space-between;align-items:flex-end}
+  html[data-theme="paper"] .fbot .credit-link{margin-left:auto;align-self:flex-end}
+  html[data-theme="paper"] .fbot-copyright{text-align:left}
+  html[data-theme="paper"] .fbot .credit-logo{height:15px;max-width:none}
+}
+html[data-theme="paper"] .fbot-copyright{display:flex!important;flex-direction:row!important;gap:.35em;flex-wrap:nowrap;white-space:nowrap}
+html[data-theme="paper"] .fbot{justify-content:space-between}
