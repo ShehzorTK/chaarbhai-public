@@ -1938,8 +1938,8 @@ function letterForm(){
   });
 }
 
-const TITLES={'/':'Chaar Bhai · Wedding Photography and Film','/portfolio':'Work · Chaar Bhai',
-  '/about':'About · Chaar Bhai','/services':'Prices · Chaar Bhai','/testimonials':'Reviews · Chaar Bhai','/contact':'Contact · Chaar Bhai'};
+const TITLES={'/':'Chaar Bhai · Wedding Photography and Film','/portfolio':'Wedding Photo and Film Portfolio · Chaar Bhai',   // keep in step with PAGES in tools/seo-build.cjs
+  '/about':'About Chaar Bhai · Wedding Photographers and Filmmakers','/services':'Wedding Photography and Film Prices · Chaar Bhai','/testimonials':'Reviews from Chaar Bhai Couples','/contact':'Contact Chaar Bhai · Check Your Wedding Date'};
 /* a chapter picked on Home: Work opens scrolled to it (set by data-then) */
 let jumpAfter=null;
 function render(path){

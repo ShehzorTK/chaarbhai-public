@@ -1,0 +1,9 @@
+# Everything is open to Googlebot and every other crawler.
+# The review copies on Netlify and GitHub Pages hide themselves with a noindex tag
+# (search the code for "NOINDEX UNTIL LIVE"); on chaarbhai.com that tag never appears.
+User-agent: *
+Allow: /
+Disallow: /experimental/
+Disallow: /type/
+
+Sitemap: https://chaarbhai.com/sitemap.xml
