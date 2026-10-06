@@ -817,14 +817,15 @@ paintLogos();
 if(document.documentElement.dataset.theme==='paper')document.querySelectorAll('nav.links a').forEach(a=>{a.dataset.t=a.textContent.trim()});
 const themeSw=document.getElementById('themesw');
 const paperTogglePage=()=>document.documentElement.dataset.theme==='paper'&&
-  (document.documentElement.classList.contains('on-work')||document.documentElement.classList.contains('on-about')||document.documentElement.classList.contains('on-services')||document.documentElement.classList.contains('on-reviews'));
+  !document.documentElement.classList.contains('on-home')&&!document.documentElement.classList.contains('on-contact');
 function syncThemeUI(){
   const light=isLight(),dark=document.documentElement.classList.contains('paper-dark');
   themeSw.setAttribute('aria-label',paperTogglePage()?(dark?'Switch to light mode':'Switch to dark mode'):(light?'Switch to dark mode':'Switch to light mode'));
 }
 syncThemeUI();
 themeSw.addEventListener('click',()=>{
-  if(paperTogglePage()){
+  if(document.documentElement.dataset.theme==='paper'){
+    if(!paperTogglePage())return; // Home and Contact hide the switch; Paper must never enter the classic theme handler.
     const dark=!document.documentElement.classList.contains('paper-dark');
     document.documentElement.classList.toggle('paper-dark',dark);
     try{sessionStorage.setItem('cb-paper-dark',dark?'1':'0')}catch(e){}
@@ -843,6 +844,7 @@ document.addEventListener('click',e=>{
   else if(a.href.startsWith('mailto:')&&a.closest('.hire'))track('hiring_email_click');
   else if(/instagram\.com|youtube\.com|tiktok\.com|linkedin\.com/.test(a.href))track('social_click',{network:(a.href.match(/(instagram|youtube|tiktok|linkedin)/)||[])[1]});
 });
+let paperHomeTextCleanup=()=>{};
 const main=document.getElementById('main');
 let io;
 /* analytics: a no-op unless the tag loaded (see <head>) */
@@ -1977,7 +1979,7 @@ function render(path){
   if(PAPER&&path==='/'){const m=document.querySelector('.vhero-media');if(m)m.after(document.getElementById('hdr'));paperRails();paperWritePaint()}   // Paper Home: the bar sits right under the film and sticks (CSS)
   document.querySelectorAll('nav.links a[data-nav]').forEach(a=>{
     const cur=a.getAttribute('href')==='#'+path;
-    a.classList.toggle('on',cur&&!a.classList.contains('book'));
+    a.classList.toggle('on',cur&&(PAPER||!a.classList.contains('book')));
     if(cur)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
   });
   document.title=TITLES[path]||TITLES['/'];
@@ -1991,7 +1993,7 @@ function render(path){
   document.documentElement.classList.toggle('on-about',path==='/about');
   document.documentElement.classList.toggle('on-services',path==='/services');
   document.documentElement.classList.toggle('on-reviews',path==='/testimonials');
-  document.documentElement.classList.toggle('paper-light-nav',path==='/about'||path==='/testimonials');
+  document.documentElement.classList.toggle('paper-light-nav',path==='/about'||path==='/testimonials'||path==='/services');
   document.documentElement.classList.toggle('paper-dark',document.documentElement.dataset.theme==='paper'&&sessionStorage.getItem('cb-paper-dark')==='1'&&path!=='/'&&path!=='/contact');
   syncThemeUI();
   if(path==='/portfolio'){sub.innerHTML=VF.toggleHTML('photos');sub.hidden=false}else{sub.hidden=true;sub.textContent=''}
@@ -2193,15 +2195,14 @@ if(document.documentElement.dataset.theme==='paper'){
   /* focus stays inside the overlay: the links, then the Close control */
   addEventListener('keydown',e=>{
     if(e.key!=='Tab'||!navlinks.classList.contains('open'))return;
-    const visibleLinks=[...navlinks.querySelectorAll('a:not(.book)')];
-    if(document.documentElement.classList.contains('on-work'))visibleLinks.push(navlinks.querySelector('a.book'));
+    const visibleLinks=[...navlinks.querySelectorAll('a[data-nav]')];
     const f=[...visibleLinks.filter(Boolean),burger],i=f.indexOf(document.activeElement);
     e.preventDefault();f[(i+(e.shiftKey?-1:1)+f.length)%f.length].focus();
   });
   /* one photo per link, cross-faded when a link is hovered or focused (desktop) */
-  const NP={'#/':'home','#/portfolio':'work','#/about':'about','#/services':'services','#/testimonials':'reviews'};
+  const NP={'#/':'home','#/portfolio':'work','#/about':'about','#/services':'services','#/testimonials':'reviews','#/contact':'contact'};
   const ph=document.createElement('div');ph.className='nav-ph';ph.setAttribute('aria-hidden','true');
-  const links=[...navlinks.querySelectorAll('a:not(.book)')];
+  const links=[...navlinks.querySelectorAll('a[data-nav]')];
   ph.innerHTML=links.map((a,i)=>{const k=NP[a.getAttribute('href')],f=(PICKS.nav||{})[k];return f?`<span class="${i?'':'on'}">${pic(f,'40vw')}</span>`:'<span></span>'}).join('');
   navlinks.prepend(ph);
   const show=a=>{const i=links.indexOf(a);ph.querySelectorAll('span').forEach((sp,j)=>sp.classList.toggle('on',j===i))};
@@ -2460,7 +2461,57 @@ addEventListener('scroll',()=>{const y=scrollY,h=document.getElementById('hdr');
 
 /* Experimental Home chapters and reading highlight, using native sticky scroll. */
 
+function paperHomeTextReveals(){
+  paperHomeTextCleanup();paperHomeTextCleanup=()=>{};
+  if(!PAPER||!document.documentElement.classList.contains('on-home')||reduceMotion()||!('IntersectionObserver' in window))return;
+  const groups=[
+    ['.vhero-in','.rv-l,p,.acts'],
+    ['.vhero-foot','span'],
+    ['.plan .band-in','h2,p.lead,.plan-btn'],
+    ['.band:not(.voices) .band-in','h2,p.lead'],
+    ['.cta h2','h2,p.lead,.rv[data-d="2"]']
+  ].map(([selector,items])=>{
+    const anchor=document.querySelector(selector),scope=selector==='.cta h2'?anchor?.closest('.cta'):anchor;
+    return {anchor,items:scope?[...scope.querySelectorAll(items)]:[]};
+  }).filter(group=>group.anchor&&group.items.length);
+  const motion=matchMedia('(prefers-reduced-motion: reduce)'),timers=new Set();
+  let observer,disposed=false;
+  const clearItem=item=>{item.classList.remove('paper-text-pending','paper-text-fade');item.style.removeProperty('--paper-text-delay')};
+  const cleanup=()=>{
+    disposed=true;observer?.disconnect();timers.forEach(clearTimeout);timers.clear();
+    groups.forEach(group=>group.items.forEach(clearItem));motion.removeEventListener('change',onMotion);
+    document.removeEventListener('focusin',onFocus);
+  };
+  const onMotion=event=>{if(event.matches)cleanup()};
+  const onFocus=event=>{
+    const group=groups.find(group=>group.items.some(item=>item.contains(event.target)));
+    if(group){observer.unobserve(group.anchor);group.items.forEach(clearItem)}
+  };
+  paperHomeTextCleanup=cleanup;
+  try{
+    observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+      if(!entry.isIntersecting)return;
+      const group=groups.find(group=>group.anchor===entry.target);observer.unobserve(entry.target);
+      preGone.then(()=>{
+        if(disposed||!entry.target.isConnected)return;
+        group.items.forEach(item=>item.classList.remove('paper-text-pending'));
+        const timer=setTimeout(()=>{group.items.forEach(clearItem);timers.delete(timer)},280+(group.items.length-1)*60);
+        timers.add(timer);
+      });
+    }),{threshold:.11,rootMargin:'0px 0px -5% 0px'});
+    groups.forEach(group=>observer.observe(group.anchor));
+    // Only a successfully registered observer may hide copy. The markup itself
+    // remains visible when JavaScript or IntersectionObserver is unavailable.
+    groups.forEach(group=>group.items.forEach((item,index)=>{
+      item.style.setProperty('--paper-text-delay',`${index*60}ms`);
+      item.classList.add('paper-text-fade','paper-text-pending');
+    }));
+    motion.addEventListener('change',onMotion);
+    document.addEventListener('focusin',onFocus);
+  }catch(error){cleanup()}
+}
 function homeScenes(){
+  paperHomeTextReveals();
   const plan=document.querySelector('.plan');
   if(plan&&!plan.dataset.words){
     plan.dataset.words='1';
