@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<style>html{background:#12141C;color-scheme:dark}</style>   <!-- dark from the first byte: no white flash before style.css arrives -->
+<style>html{background:#2B2530;color-scheme:light}</style>   <!-- dark from the first byte: no white flash before style.css arrives -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About Chaar Bhai · Wedding Photographers and Filmmakers</title>
 <meta name="description" content="Chaar Bhai is Urdu for four brothers. Founded by Fahad Raza in 2013, we shoot candid wedding photo and film, based in the Greater Toronto Area.">
-<meta name="cb-version" content="40.112">
+<meta name="cb-version" content="40.113">
 <!--seo:head-->
 <link rel="canonical" href="https://chaarbhai.com/about">
 <meta name="robots" content="index,follow,max-image-preview:large">
@@ -18,7 +18,7 @@
 if(!location.hash)try{history.replaceState(null,'',location.pathname+location.search+'#/about')}catch(e){}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Photographer","@id":"https://chaarbhai.com/#business","name":"Chaar Bhai","alternateName":"Chaar Bhai Inc.","url":"https://chaarbhai.com/","logo":"https://chaarbhai.com/img/logo.png","image":"https://chaarbhai.com/og-image.jpg","description":"Wedding photography and film since 2013. Based in the Greater Toronto Area, and we travel.","foundingDate":"2013","email":"info@chaarbhai.com","priceRange":"$$$","areaServed":{"@type":"AdministrativeArea","name":"Greater Toronto Area"},"founder":{"@type":"Person","name":"Fahad Raza","jobTitle":"Founder and photographer","url":"https://chaarbhai.com/about"},"sameAs":["https://instagram.com/chaarbhai","https://www.youtube.com/@chaar.bhai.","https://tiktok.com/@chaar.bhai","https://www.linkedin.com/company/chaarbhai"]},{"@type":"WebSite","@id":"https://chaarbhai.com/#website","url":"https://chaarbhai.com/","name":"Chaar Bhai","publisher":{"@id":"https://chaarbhai.com/#business"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://chaarbhai.com/"},{"@type":"ListItem","position":2,"name":"About","item":"https://chaarbhai.com/about"}]}]}</script>
 <style>.seo-static{position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden}</style>
-<noscript><style>.seo-static{position:static;width:auto;height:auto;overflow:visible;padding:24px;color:#e8e2d8;font:16px/1.6 Georgia,serif}.seo-static a{color:inherit;margin-right:12px}body.locked{overflow:auto}#pre{display:none}</style></noscript><!--/seo:head-->
+<noscript><style>.seo-static{position:static;width:auto;height:auto;overflow:visible;padding:24px;color:#F2EBDE;font:16px/1.6 Georgia,serif}.seo-static a{color:inherit;margin-right:12px}body.locked{overflow:auto}#pre{display:none}</style></noscript><!--/seo:head-->
 <meta name="theme-color" content="#12141C" id="themecolor">
 <!-- Google Analytics (GA4, G-X1GHG229CQ). Loads only on the real site:
      chaarbhai.com and the main Netlify address, never on localhost, a file
@@ -30,7 +30,7 @@ if(!location.hash)try{history.replaceState(null,'',location.pathname+location.se
 (function(){
   var ID='G-X1GHG229CQ', h=location.hostname;
   var live=/(^|\.)chaarbhai\.com$/.test(h)||(/\.netlify\.app$/.test(h)&&h.indexOf('--')<0);
-  var paper=/[?&]theme=paper/.test(location.search);
+  var paper=true;
   window.dataLayer=window.dataLayer||[];
   window.gtag=function(){dataLayer.push(arguments)};
   window.CB_GA=null;
@@ -86,13 +86,10 @@ if(!location.hash)try{history.replaceState(null,'',location.pathname+location.se
 <link rel="preload" as="image" href="img/pen-loader-3.png">
 <link rel="preload" as="image" href="img/pen-loader-4.png">
 <!-- Fonts load without blocking the first paint; the Home intro waits for them (window.CB_FONTS) before it starts.
-     Paper (?theme=paper) uses only the fonts in fonts/ and never contacts Google Fonts, so the tags below are written only for dark and light. -->
+     Paper production uses only self-hosted fonts; third-party font requests are disabled. -->
 <script>
 window.CB_FONTS=new Promise(function(r){window.CB_FONTS_OK=r});
-if(/[?&]theme=paper/.test(location.search))window.CB_FONTS_OK();
-else document.write('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-  +'<link id="cb-fonts" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;1,400&family=Schibsted+Grotesk:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media=\'all\';window.CB_FONTS_OK&&CB_FONTS_OK()" onerror="window.CB_FONTS_OK&&CB_FONTS_OK()">'
-  +'<noscript><link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;1,400&family=Schibsted+Grotesk:wght@400;500&display=swap" rel="stylesheet"></noscript>');
+window.CB_FONTS_OK();
 </script>
 <script>
 /* The preloader is a first-visit moment. Once it has played in this tab,
@@ -103,23 +100,18 @@ try{if(sessionStorage.getItem('cb-loaded')==='1')document.documentElement.classL
 if(location.hash===''||location.hash==='#/'){document.documentElement.classList.add('cb-pen-boot');document.documentElement.classList.add('cb-pen-hold')}   // every load of Home: the pen draws alone first (cb-pen-hold), then the site comes up
 /* Light or dark, as the visitor last chose it. Set before paint so the page
    never flashes the other theme. Dark is the house default. */
-try{if(sessionStorage.getItem('cb-theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}   /* every new visit opens in dark; the switch only lasts for the visit */
+document.documentElement.dataset.theme='paper';
 </script>
-<link rel="stylesheet" href="style.css?v=40.112">
+<link rel="stylesheet" href="style.css?v=40.113">
+<link rel="preload" as="font" type="font/woff2" href="fonts/eb-garamond.woff2" crossorigin>
+<link rel="stylesheet" href="theme-paper.css?v=40.113">
 <script>
-/* Paper theme (experimental): only while the URL says ?theme=paper. Never remembered, so removing the parameter returns to dark or light.
-   Loads its own stylesheet only when on, so dark and light visitors never download it. */
+/* Paper production bundle: Paper is the only public theme. */
 try{
-  var _q=/[?&]theme=(paper|dark|light)/.exec(location.search);
-  if(_q&&_q[1]!=='paper')sessionStorage.setItem('cb-theme',_q[1]);
-  if(sessionStorage.getItem('cb-theme')==='paper')sessionStorage.removeItem('cb-theme');   // Paper is never remembered: it shows only while the URL says ?theme=paper
-  if(_q&&_q[1]==='paper'){
-    var _d=document.documentElement;
-    _d.dataset.theme='paper';
-    document.getElementById('themecolor').setAttribute('content','#2B2530');
-    document.head.insertAdjacentHTML('beforeend','<style>html{background:#2B2530}</style><link rel="preload" as="font" type="font/woff2" href="fonts/eb-garamond.woff2" crossorigin><link rel="stylesheet" href="theme-paper.css?v=40.112">');
-    document.write('<script src="legal.js?v=40.112"><\/script><script src="consent.js?v=40.112"><\/script>');   // Paper only: the Privacy, Terms and Refunds text, and the analytics notice
-  }
+  var _d=document.documentElement;
+  _d.dataset.theme='paper';
+  document.getElementById('themecolor').setAttribute('content','#2B2530');
+  document.write('<script src="legal.js?v=40.113"><\/script><script src="consent.js?v=40.113"><\/script>');
 }catch(e){}
 </script>
 </head>
@@ -196,14 +188,14 @@ try{
   </div>
 </footer>
 
-<script>if(/[?&]debug\b/.test(location.search))document.write('<script src="debug.js"><\/script>')</script>
-<script src="portfolio.js?v=40.112"></script>
-<script src="videos.js?v=40.112"></script>
-<script src="video-feed.js?v=40.112"></script>
-<script src="photo-stage.js?v=40.112"></script>
-<script src="reviews.js?v=40.112"></script>
-<script src="pen-loader.js?v=40.112"></script>
-<script src="canada-map.js?v=40.112"></script>
-<script src="app.js?v=40.112"></script>
+<!-- development-only diagnostics omitted from the public bundle. -->
+<script src="portfolio.js?v=40.113"></script>
+<script src="videos.js?v=40.113"></script>
+<script src="video-feed.js?v=40.113"></script>
+<script src="photo-stage.js?v=40.113"></script>
+<script src="reviews.js?v=40.113"></script>
+<script src="pen-loader.js?v=40.113"></script>
+<script src="canada-map.js?v=40.113"></script>
+<script src="app.js?v=40.113"></script>
 </body>
 </html>

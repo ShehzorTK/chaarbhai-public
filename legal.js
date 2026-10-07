@@ -1,4 +1,4 @@
-/* Paper only (loaded by index.html when the URL says ?theme=paper).
+/* Paper only (loaded by index.html in the Paper production bundle).
    Text of the Privacy Policy, Terms of Service and Refund and Cancellation pages (#/privacy, #/terms, #/refunds).
    Drafts live in the project's compliance folder. Every figure is set; no placeholders remain. */
 (function(){

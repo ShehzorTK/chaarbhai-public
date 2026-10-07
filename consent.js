@@ -1,4 +1,4 @@
-/* Paper only (loaded by index.html when the URL says ?theme=paper).
+/* Paper only (loaded by index.html in the Paper production bundle).
    First-visit notice for Google Analytics. Analytics stays unloaded until Accept; Decline is the same size.
    The choice is kept in localStorage ('cb-consent': granted | denied). A browser sending Global Privacy Control
    or Do Not Track counts as Decline until the visitor chooses otherwise. "Cookie settings" in the footer reopens the notice. */
