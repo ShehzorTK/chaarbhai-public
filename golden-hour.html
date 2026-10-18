@@ -122,6 +122,16 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 .vplay:hover .lk,.vplay:focus-visible .lk{font-style:italic;border-bottom-color:currentColor}
 .vplay:focus-visible{outline:2px solid #F2EBDE;outline-offset:-6px}
 
+
+/* checklist (cream): the questions to ask any studio, and our answers */
+.cmp{margin-top:clamp(28px,4vw,48px);border-top:1px solid var(--line-2)}
+.cmp .row{display:grid;grid-template-columns:1.1fr 1.3fr .6fr;gap:0 clamp(14px,3vw,40px);padding:16px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.cmp .hd{padding:12px 0;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
+.cmp .q{color:var(--dim)}
+.cmp .us{font-size:var(--t-lead)}
+.cmp .them{font-style:italic;color:var(--soft)}
+@media (min-width:900px){.cmp .row{grid-template-columns:1.2fr 1.6fr .8fr}}
+
 /* what happens next (maroon) */
 .steps{list-style:none;padding:0;display:grid;gap:36px;margin-top:clamp(32px,5vw,56px)}
 .steps li p{max-width:26em;margin-top:8px;color:var(--dim)}
@@ -163,8 +173,8 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 <section class="hero g-aub" aria-labelledby="h">
   <div class="in">
     <div>
-      <h1 id="h">One crew. Your photos, your film, your whole day.</h1>
-      <p class="tag">A photographer and a videographer for ten hours, from getting ready to the last dance. $5,500 CAD, and nothing else to book. More than 1,800 weddings since 2013.</p>
+      <h1 id="h">Since 2013, 1,800 families have trusted us with their wedding day.</h1>
+      <p class="tag">Golden Hour: a photographer and a videographer from getting ready to the last dance. Every photo retouched, your film delivered. $5,500 CAD.</p>
       <a class="lk" href="#enquire" data-t="Check your date"><span>Check your date</span></a>
     </div>
     <figure>
@@ -177,8 +187,8 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 
 <section class="pad g-cream proof" aria-label="Chaar Bhai in numbers">
   <div class="in">
-    <p class="fig"><b>1,800+</b><span>weddings photographed and filmed since 2013, from nikkahs to anand karajs.</span></p>
-    <figure class="pull" data-review="Haaris 7khan">
+    <p class="fig"><b>336,600+</b><span>photographs delivered to couples and their families since 2013.</span></p>
+    <figure class="pull" data-review="Dania Daanish">
       <blockquote></blockquote>
       <p class="nm"></p>
     </figure>
@@ -364,6 +374,23 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
       </ul>
       <p class="small fine">Prices are in Canadian dollars. Extra hours are $550 each. A deposit holds your date and the rest is paid later, as set out in your contract. Planning a longer weekend? Ask us about our larger packages.</p>
       <a class="lk" href="#enquire" data-t="Check your date"><span>Check your date</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="pad g-cream" aria-labelledby="ch">
+  <div class="in">
+    <h2 id="ch">Seven questions to ask any wedding studio</h2>
+    <p class="lead">Here are our answers. Ask the same of everyone else.</p>
+    <div class="cmp" role="table" aria-label="Questions to ask a wedding studio, with our answers">
+      <div class="row hd" role="row"><span role="columnheader">Ask</span><span role="columnheader">Chaar Bhai</span><span role="columnheader">Any other studio</span></div>
+      <div class="row" role="row"><span class="q" role="cell">How many hours are included?</span><span class="us" role="cell">Ten, from getting ready to the last dance.</span><span class="them" role="cell">Ask them</span></div>
+      <div class="row" role="row"><span class="q" role="cell">Do the photographer and videographer come as one crew?</span><span class="us" role="cell">Yes. One booking, one plan, both for every hour.</span><span class="them" role="cell">Ask them</span></div>
+      <div class="row" role="row"><span class="q" role="cell">Is every photo retouched?</span><span class="us" role="cell">Yes, one by one, in a private online gallery.</span><span class="them" role="cell">Ask them</span></div>
+      <div class="row" role="row"><span class="q" role="cell">Is the film included?</span><span class="us" role="cell">Yes, by private download link, with professional audio and on-camera interviews.</span><span class="them" role="cell">Ask them</span></div>
+      <div class="row" role="row"><span class="q" role="cell">Is a get-ready session included?</span><span class="us" role="cell">Yes.</span><span class="them" role="cell">Ask them</span></div>
+      <div class="row" role="row"><span class="q" role="cell">What does it cost, in writing?</span><span class="us" role="cell">$5,500 CAD. Extra hours are $550.</span><span class="them" role="cell">Ask them</span></div>
+      <div class="row" role="row"><span class="q" role="cell">Have they shot weddings like yours?</span><span class="us" role="cell">More than 1,800 since 2013, including nikkah, anand karaj and multi-day weddings.</span><span class="them" role="cell">Ask them</span></div>
     </div>
   </div>
 </section>
