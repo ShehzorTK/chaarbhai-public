@@ -43,6 +43,7 @@ button{font:inherit;color:inherit;background:none;border:0;border-radius:0;curso
 :focus-visible{outline:2px solid var(--paper);outline-offset:3px}
 h1,h2,h3{font:500 var(--t-headline)/1 var(--f-display);font-variant-numeric:lining-nums;letter-spacing:.02em;text-transform:uppercase;text-wrap:balance}
 h1{font-size:var(--t-display)}
+.hero h1{font-size:clamp(30px,4.4vw,60px);line-height:1.1;max-width:17em}
 h3{font-size:var(--t-headline-s)}
 p{text-wrap:pretty}
 .lead{font-size:var(--t-lead);line-height:1.55;color:var(--dim);max-width:34em;margin-top:22px}
@@ -60,7 +61,7 @@ p{text-wrap:pretty}
 .inl{color:inherit;text-decoration:underline;text-underline-offset:3px}
 
 /* photograph atom: original, warm tone, 1px square frame */
-.ph{display:block;filter:var(--tone);border:1px solid var(--paper)}
+.ph{display:block;filter:var(--tone)}
 figcaption{font-style:italic;font-size:14px;line-height:1.5;color:var(--dim);margin-top:8px}
 
 /* bar and hero (aubergine) */
@@ -68,7 +69,7 @@ figcaption{font-style:italic;font-size:14px;line-height:1.5;color:var(--dim);mar
 .bar img{height:40px;width:auto}
 .hero{padding:clamp(28px,5vw,64px) var(--pad) clamp(56px,8vw,112px)}
 .hero .in{display:grid;gap:36px}
-.hero .ph{width:100%;height:auto;border:0}
+.hero .ph{width:100%;height:auto}
 .hero figure{perspective:900px;touch-action:pan-y}
 .hero .ph{transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .5s cubic-bezier(.22,1,.36,1);will-change:transform}
 .hero figure.tilt .ph{transition:transform .12s linear}
