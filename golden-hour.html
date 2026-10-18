@@ -431,14 +431,14 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
     });
   }
 
-  /* Highlight films. Swap these five for the newest on the channel (YouTube id, event, length in seconds). */
-  var FILMS=[['0QcPElUhqpw','Nikkah',584],['Pn6QjqCDdrM','Anand Karaj',230],['AuAUEnnftNY','Garden wedding',246],['1stefCrhx4A','Nikkah',306],['iEVeFvWKZpU','Nikkah',210]];
+  /* Highlight films: the five newest highlight films on the channel (YouTube id, title, length in seconds). */
+  var FILMS=[['U9SuNGU2KP0','Lakeside ceremony and reception',411],['fn4257lIuU0','Vintage car baraat and mandap',251],['x5eZb65Ne1E','Outdoor haldi',209],['NjDgSJSYF78','Coptic Orthodox wedding',393],['MNpA7jO35Ew','Hindu wedding',266]];
   var vt=document.getElementById('vtrack');
   function mmss(s){return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2)}
   FILMS.forEach(function(f){
     var d=document.createElement('div');d.className='v';
     var fr=document.createElement('div');fr.className='vframe';
-    var im=document.createElement('img');im.loading='lazy';im.decoding='async';im.alt=f[1]+' highlight film';
+    var im=document.createElement('img');im.loading='lazy';im.decoding='async';im.alt=f[1]+', highlight film';
     im.src='https://i.ytimg.com/vi/'+f[0]+'/hqdefault.jpg';
     var b=document.createElement('button');b.type='button';b.className='vplay';b.setAttribute('aria-label','Play the '+f[1]+' highlight film');
     b.innerHTML='<span class="lk" data-t="Play"><span>Play</span></span>';
@@ -449,7 +449,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
       fr.innerHTML='';fr.appendChild(i);
     });
     fr.append(im,b);
-    var c=document.createElement('figcaption');c.textContent=f[1]+' highlight · '+mmss(f[2]);
+    var c=document.createElement('figcaption');c.textContent=f[1]+' · '+mmss(f[2]);
     d.append(fr,c);vt.appendChild(d);
   });
 
