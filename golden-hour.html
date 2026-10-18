@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Golden Hour · One Wedding Day, Photographed and Filmed · Chaar Bhai</title>
-<meta name="description" content="Golden Hour: ten hours of wedding photography and film, from getting ready to the last dance. Chaar Bhai, since 2013, more than 1,800 weddings.">
+<title>Golden Hour · One Team for Your Wedding Photos and Film · Chaar Bhai</title>
+<meta name="description" content="Golden Hour: ten hours of wedding photography and film from one crew, from getting ready to the last dance. Chaar Bhai, since 2013, more than 1,800 weddings.">
 <meta name="robots" content="noindex,nofollow">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#2B2530">
 <link rel="icon" href="img/favicon-32.png">
-<link rel="preload" as="image" href="photos/dania-aamir/ChaarBhai_DASE_0206_resized-1280.webp" imagesrcset="photos/dania-aamir/ChaarBhai_DASE_0206_resized-640.webp 640w, photos/dania-aamir/ChaarBhai_DASE_0206_resized-1280.webp 1280w" imagesizes="(min-width:900px) 40vw, 100vw">
+<link rel="preload" as="image" href="photos/fathema-christian/ChaarBhai_FCNE_0299_resized-1280.webp" imagesrcset="photos/fathema-christian/ChaarBhai_FCNE_0299_resized-640.webp 640w, photos/fathema-christian/ChaarBhai_FCNE_0299_resized-1280.webp 1280w" imagesizes="(min-width:900px) 40vw, 100vw">
 <style>
 /* Tokens and rules copied from the design system (brand/guidelines.html) and site/theme-paper.css. */
 @font-face{font-family:'Cormorant Garamond';font-weight:500;font-style:normal;font-display:swap;src:url(fonts/cormorant-garamond.woff2) format('woff2')}
@@ -17,7 +17,6 @@
 @font-face{font-family:'EB Garamond';font-weight:400;font-style:italic;font-display:swap;src:url(fonts/eb-garamond-italic.woff2) format('woff2')}
 @font-face{font-family:'Pinyon Script';font-weight:400;font-style:normal;font-display:swap;src:url(fonts/pinyon-script.woff2) format('woff2')}
 :root{
-  --cream:#F2EBDE;--brown:#2A1D0F;--aub:#2B2530;--maroon:#4A2530;--tan:#D2B6A1;
   --f-display:'Cormorant Garamond','Cochin',Georgia,serif;
   --f-serif:'EB Garamond','Sirenne',Georgia,serif;
   --f-script:'Pinyon Script','Snell Roundhand',cursive;
@@ -35,15 +34,16 @@
 .g-maroon{--ink:#4A2530;--ink-2:#58313C;--paper:#F2EBDE;--dim:#D2B6A1;--soft:#D2B6A1;--line:rgba(210,182,161,.22);--line-2:rgba(210,182,161,.4)}
 [class*="g-"]{background-color:var(--ink);background-image:var(--grain);background-size:400px;color:var(--paper)}
 *{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;background:var(--cream)}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;background:#F2EBDE}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{background:var(--cream);font:400 16px/1.55 var(--f-serif);letter-spacing:.025em;-webkit-font-smoothing:antialiased;padding-bottom:calc(64px + env(safe-area-inset-bottom))}
-img{display:block;max-width:100%;height:auto}
+body{background:#F2EBDE;font:400 16px/1.55 var(--f-serif);letter-spacing:.025em;-webkit-font-smoothing:antialiased;padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+img{display:block;max-width:100%}
 a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;border-radius:0;cursor:pointer;-webkit-appearance:none;appearance:none}
 :focus-visible{outline:2px solid var(--paper);outline-offset:3px}
 h1,h2,h3{font:500 var(--t-headline)/1 var(--f-display);letter-spacing:.02em;text-transform:uppercase;text-wrap:balance}
 h1{font-size:var(--t-display)}
-h2.s,h3{font-size:var(--t-headline-s)}
+h3{font-size:var(--t-headline-s)}
 p{text-wrap:pretty}
 .lead{font-size:var(--t-lead);line-height:1.55;color:var(--dim);max-width:34em;margin-top:22px}
 .tag{font-style:italic;font-size:var(--t-lead);line-height:1.5;color:var(--dim);max-width:30em;margin-top:22px}
@@ -60,7 +60,7 @@ p{text-wrap:pretty}
 .inl{color:inherit;text-decoration:underline;text-underline-offset:3px}
 
 /* photograph atom: original, warm tone, 1px square frame */
-.ph{display:block;width:100%;filter:var(--tone);border:1px solid var(--paper)}
+.ph{display:block;filter:var(--tone);border:1px solid var(--paper)}
 figcaption{font-style:italic;font-size:14px;line-height:1.5;color:var(--dim);margin-top:8px}
 
 /* bar and hero (aubergine) */
@@ -68,37 +68,61 @@ figcaption{font-style:italic;font-size:14px;line-height:1.5;color:var(--dim);mar
 .bar img{height:40px;width:auto}
 .hero{padding:clamp(28px,5vw,64px) var(--pad) clamp(56px,8vw,112px)}
 .hero .in{display:grid;gap:36px}
+.hero .ph{width:100%;height:auto}
 .hero figure{max-width:560px}
-.hero .lk{margin-top:18px}
+.hero .lk{margin-top:14px}
 @media (min-width:900px){
-  .hero .in{grid-template-columns:5fr 7fr;align-items:center;gap:clamp(40px,6vw,96px)}
+  .hero .in{grid-template-columns:7fr 5fr;align-items:center;gap:clamp(40px,6vw,96px)}
   .hero figure{justify-self:end;width:min(100%,calc((100vh - 200px)*.667));max-width:560px}
 }
 @media (max-width:899px){.hero figure{order:-1;max-width:none}}
 
-/* figures (cream) */
-.figs{display:grid;gap:40px}
-.fig b{display:block;font:500 clamp(46px,6vw,84px)/1 var(--f-display);letter-spacing:.02em}
-.fig span{display:block;margin-top:8px;color:var(--dim);max-width:22em}
-@media (min-width:760px){.figs{grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,96px)}}
-.statement{margin-top:clamp(40px,6vw,72px);padding-top:28px;border-top:1px solid var(--line);max-width:34em}
+/* proof (cream): a true number beside a review that says what it was like */
+.proof .in{display:grid;gap:clamp(36px,6vw,80px);align-items:center}
+.fig b{display:block;font:500 clamp(64px,9vw,128px)/.95 var(--f-display);letter-spacing:.02em}
+.fig span{display:block;margin-top:14px;font-size:var(--t-lead);color:var(--dim);max-width:20em}
+.pull{border-top:1px solid var(--line);padding-top:26px}
+.pull blockquote{font-style:italic;font-size:clamp(20px,2.2vw,30px);line-height:1.4;letter-spacing:.02em;text-wrap:pretty}
+.pull .nm{margin-top:16px;font-size:15px;font-variant:small-caps;letter-spacing:.08em;color:var(--soft)}
+@media (min-width:900px){.proof .in{grid-template-columns:5fr 7fr}.pull{border-top:0;border-left:1px solid var(--line);padding:6px 0 6px clamp(28px,4vw,64px)}}
 
-/* gallery (brown): framed photographs in the order the week ran, never cropped */
-.wall{display:grid;gap:28px 16px;margin-top:clamp(32px,5vw,56px);grid-template-columns:1fr 1fr;align-items:start}
-@media (min-width:900px){.wall{grid-template-columns:repeat(3,1fr);gap:40px 24px}}
-.more{margin-top:clamp(28px,4vw,48px)}
+/* galleries: one couple per chapter, never cropped */
+.sl-sec{padding-block:clamp(44px,7vw,96px)}
+.head{margin-bottom:clamp(32px,5vw,56px)}
+.sl-top{display:flex;flex-wrap:wrap;gap:6px 24px;align-items:flex-end;justify-content:space-between;margin-bottom:22px}
+.loc{font-style:italic;color:var(--dim);margin-top:8px}
+.ctl{display:flex;align-items:flex-end;gap:26px}
+.cnt{font-style:italic;color:var(--dim);font-size:14px;padding-bottom:3px;min-width:5.5em}
+.track{display:flex;align-items:center;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;overscroll-behavior-x:contain;padding-bottom:4px}
+.track::-webkit-scrollbar{display:none}
+.slide{flex:none;scroll-snap-align:start;max-width:92vw}
+.slide{--h:clamp(280px,58vh,620px)}
+.slide .ph{width:min(92vw,calc(var(--h) * var(--ar)));height:auto;aspect-ratio:var(--ar)}
 
-/* offer (cream) */
+/* offer (aubergine) */
 .offer .in{display:grid;gap:40px}
 .price{font:italic 400 clamp(34px,4vw,52px)/1.1 var(--f-serif);letter-spacing:.02em;margin-top:22px}
-ul.r{list-style:none;padding:0;margin:28px 0 8px;max-width:36em}
+ul.r{list-style:none;padding:0;margin:0 0 8px;max-width:36em}
 ul.r li{padding:12px 0 12px 22px;border-top:1px solid var(--line);position:relative}
 ul.r li:last-child{border-bottom:1px solid var(--line)}
 ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1px;background:var(--paper)}
-.fine{max-width:36em;margin-top:14px}
+.fine{max-width:36em;margin:14px 0 6px}
 @media (min-width:900px){.offer .in{grid-template-columns:5fr 7fr;gap:clamp(40px,6vw,96px)}}
 
-/* how it works (maroon) */
+/* films (cream): looping carousel, the player loads on tap */
+.films .head{margin-bottom:clamp(28px,4vw,48px)}
+.vtrack{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;overscroll-behavior-x:contain}
+.vtrack::-webkit-scrollbar{display:none}
+.v{flex:none;scroll-snap-align:start;width:min(86vw,720px)}
+.vframe{position:relative;aspect-ratio:16/9;border:1px solid var(--paper);background:#2B2530;overflow:hidden}
+.vframe img,.vframe iframe{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover;filter:var(--tone)}
+.vframe iframe{filter:none}
+.vplay{position:absolute;inset:0;width:100%;text-align:left;display:flex;align-items:flex-end;padding:0 18px 12px;background:linear-gradient(transparent 55%,rgba(43,37,48,.92));color:#F2EBDE}
+.vplay .lk{min-height:44px}
+.vplay:hover .lk,.vplay:focus-visible .lk{font-style:italic;border-bottom-color:currentColor}
+.vplay:focus-visible{outline:2px solid #F2EBDE;outline-offset:-6px}
+
+/* what happens next (maroon) */
 .steps{list-style:none;padding:0;display:grid;gap:36px;margin-top:clamp(32px,5vw,56px)}
 .steps li p{max-width:26em;margin-top:8px;color:var(--dim)}
 .steps h3{font-size:clamp(22px,2.4vw,30px)}
@@ -112,18 +136,19 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 @media (min-width:760px){.revs{columns:2}}
 @media (min-width:1080px){.revs{columns:3}}
 
-/* enquiry (aubergine): the form is Studio Ninja's, transparent on the paper */
-.form-wrap{max-width:760px;margin-top:clamp(28px,4vw,48px)}
+/* enquiry (aubergine), centred; the form is Studio Ninja's, transparent on the paper */
+.enq{text-align:center}
+.enq .lead{margin-inline:auto}
+.form-wrap{max-width:760px;margin:clamp(28px,4vw,48px) auto 0;text-align:left}
 .form-wrap iframe{display:block;width:1px;min-width:100%;height:1363px;border:0;background:transparent;color-scheme:light}
 .alt{margin-top:22px}
-.foot{display:flex;flex-wrap:wrap;gap:20px 40px;align-items:center;justify-content:space-between;margin-top:clamp(48px,7vw,96px);padding-top:28px;border-top:1px solid var(--line)}
+.foot{display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:clamp(48px,7vw,96px);padding-top:32px;border-top:1px solid var(--line)}
 .foot img{height:44px;width:auto}
 
-/* sticky link on phones and desktop: one primary link per screen */
-.sticky{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;align-items:center;justify-content:center;gap:28px;height:calc(60px + env(safe-area-inset-bottom));padding:0 var(--pad) env(safe-area-inset-bottom);border-top:1px solid var(--line);transition:opacity .28s cubic-bezier(.16,1,.3,1)}
+/* sticky link: price left, one link right */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:20px;height:calc(60px + env(safe-area-inset-bottom));padding:0 var(--pad) env(safe-area-inset-bottom);border-top:1px solid var(--line);transition:opacity .28s cubic-bezier(.16,1,.3,1)}
 .sticky.hide{opacity:0;pointer-events:none}
 .sticky .p{font-style:italic;color:var(--dim)}
-@media (max-width:520px){.sticky .p{display:none}}
 @media (prefers-reduced-motion:reduce){.sticky{transition:none}}
 </style>
 </head>
@@ -138,62 +163,206 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 <section class="hero g-aub" aria-labelledby="h">
   <div class="in">
     <div>
-      <h1 id="h">One wedding day, photographed and filmed</h1>
-      <p class="tag">Golden Hour is ten hours with a photographer and a videographer, from getting ready to the last dance. Every photo retouched, and your film delivered.</p>
+      <h1 id="h">One crew. Your photos, your film, your whole day.</h1>
+      <p class="tag">A photographer and a videographer for ten hours, from getting ready to the last dance. $5,500 CAD, and nothing else to book. More than 1,800 weddings since 2013.</p>
       <a class="lk" href="#enquire" data-t="Check your date"><span>Check your date</span></a>
-      <p class="small" style="margin-top:14px">Booking 2026 and 2027. Fill in the form and we’ll come back to you.</p>
     </div>
     <figure>
-      <img class="ph" src="photos/dania-aamir/ChaarBhai_DASE_0206_resized-1280.webp"
-           srcset="photos/dania-aamir/ChaarBhai_DASE_0206_resized-640.webp 640w, photos/dania-aamir/ChaarBhai_DASE_0206_resized-1280.webp 1280w"
-           sizes="(min-width:900px) 40vw, 100vw" width="1280" height="1920" fetchpriority="high" alt="A bride in an ivory gown and veil stands in warm light inside a dark, wood-panelled room">
-      <figcaption>Dania &amp; Aamir · Nikkah portraits</figcaption>
+      <img class="ph" src="photos/fathema-christian/ChaarBhai_FCNE_0299_resized-1280.webp"
+           srcset="photos/fathema-christian/ChaarBhai_FCNE_0299_resized-640.webp 640w, photos/fathema-christian/ChaarBhai_FCNE_0299_resized-1280.webp 1280w"
+           sizes="(min-width:900px) 40vw, 100vw" width="1280" height="1920" fetchpriority="high" alt="A bride in a red lehenga stands in a doorway lit by a chandelier">
     </figure>
   </div>
 </section>
 
-<section class="pad g-cream" aria-label="Who we are">
+<section class="pad g-cream proof" aria-label="Chaar Bhai in numbers">
   <div class="in">
-    <div class="figs">
-      <p class="fig"><b>1,800+</b><span>weddings photographed and filmed since 2013.</span></p>
-      <p class="fig"><b>336,600+</b><span>photographs delivered to couples and their families.</span></p>
-    </div>
-    <p class="statement lead" style="color:inherit">Most couples book a photographer, then a videographer, then spend a month getting the two to agree on the day. Golden Hour is one team and one plan. We shoot South Asian and multi-day weddings in Canada, and we have travelled to Pakistan, the UAE, Thailand and the United States.</p>
+    <p class="fig"><b>1,800+</b><span>weddings photographed and filmed since 2013, from nikkahs to anand karajs.</span></p>
+    <figure class="pull" data-review="Haaris 7khan">
+      <blockquote></blockquote>
+      <p class="nm"></p>
+    </figure>
   </div>
 </section>
 
-<section class="pad g-brown" aria-labelledby="gh">
+<section class="pad g-brown sl-sec" aria-label="The e-shoot, R.C. Harris Water Treatment Plant, Toronto">
   <div class="in">
-    <h2 id="gh">Sangeet to rukhsati</h2>
-    <p class="lead">One frame each from six weddings, in the order the week ran.</p>
-    <div class="wall">
-      <figure><img class="ph" loading="lazy" src="photos/darmant-harpal/0B0A1715-640.webp" srcset="photos/darmant-harpal/0B0A1715-640.webp 640w, photos/darmant-harpal/0B0A1715-1280.webp 1280w" sizes="(min-width:900px) 33vw, 50vw" width="1280" height="853" alt="A bride in a pale blue lehenga lifts her henna-covered hands in front of fairy lights at night"><figcaption>The night before · Darmant &amp; Harpal</figcaption></figure>
-      <figure><img class="ph" loading="lazy" src="photos/neelima-vignesh/ChaarBhai_NVME_0006_resized-640.webp" srcset="photos/neelima-vignesh/ChaarBhai_NVME_0006_resized-640.webp 640w, photos/neelima-vignesh/ChaarBhai_NVME_0006_resized-1280.webp 1280w" sizes="(min-width:900px) 33vw, 50vw" width="1280" height="854" alt="A laughing bride in red having her mehndi applied while a relative leans in"><figcaption>Henna · Neelima &amp; Vignesh</figcaption></figure>
-      <figure><img class="ph" loading="lazy" src="photos/haleema-hassaan/_FR_1152_resized-640.webp" srcset="photos/haleema-hassaan/_FR_1152_resized-640.webp 640w, photos/haleema-hassaan/_FR_1152_resized-1280.webp 1280w" sizes="(min-width:900px) 33vw, 50vw" width="1280" height="854" alt="A groom's baraat arrives by sports car as guests look on"><figcaption>The arrival · Haleema &amp; Hassaan</figcaption></figure>
-      <figure><img class="ph" loading="lazy" src="photos/mahrukh-mohsan/ChaarBhai_MMNE_0022-640.webp" srcset="photos/mahrukh-mohsan/ChaarBhai_MMNE_0022-640.webp 640w, photos/mahrukh-mohsan/ChaarBhai_MMNE_0022-1280.webp 1280w" sizes="(min-width:900px) 33vw, 50vw" width="1280" height="1419" alt="A bride in a red veil holds a gold-edged dupatta before her nikkah"><figcaption>The ceremony · Mahrukh &amp; Mohsan</figcaption></figure>
-      <figure><img class="ph" loading="lazy" src="photos/khadija-khurram/ChaarBhai_KKRE_1411-640.webp" srcset="photos/khadija-khurram/ChaarBhai_KKRE_1411-640.webp 640w, photos/khadija-khurram/ChaarBhai_KKRE_1411-1280.webp 1280w" sizes="(min-width:900px) 33vw, 50vw" width="1280" height="853" alt="A couple makes their reception entrance through dry-ice fog"><figcaption>The reception · Khadija &amp; Khurram</figcaption></figure>
-      <figure><img class="ph" loading="lazy" src="photos/saman-hassan/ChaarBhai_SHSS_2205-640.webp" srcset="photos/saman-hassan/ChaarBhai_SHSS_2205-640.webp 640w, photos/saman-hassan/ChaarBhai_SHSS_2205-1280.webp 1280w" sizes="(min-width:900px) 33vw, 50vw" width="1280" height="853" alt="A bride beams beside her groom during the rukhsati, a Quran held over her head"><figcaption>The farewell · Saman &amp; Hassan</figcaption></figure>
+    <div class="head"><h2 id="wh">Real weddings, shot in Ontario</h2><p class="lead">Seven galleries, seven different couples. Swipe through each one.</p></div>
+    <div class="sl" data-sl>
+      <div class="sl-top"><div><h3>The e-shoot</h3><p class="loc">R.C. Harris Water Treatment Plant, Toronto</p></div>
+        <p class="ctl"><span class="cnt" data-cnt aria-live="polite">1 of 10</span><button class="lk" type="button" data-prev data-t="Previous"><span>Previous</span></button><button class="lk" type="button" data-next data-t="Next"><span>Next</span></button></p></div>
+      <div class="track" data-track tabindex="0" role="group" aria-roledescription="carousel" aria-label="The e-shoot">
+        <figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/christel-sid/MFR_8170-640.webp" srcset="photos/christel-sid/MFR_8170-640.webp 640w, photos/christel-sid/MFR_8170-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="The long way round."><figcaption>The long way round.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:0.6667" loading="lazy" decoding="async" src="photos/christel-sid/MFR_8343-640.webp" srcset="photos/christel-sid/MFR_8343-640.webp 640w, photos/christel-sid/MFR_8343-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="960" alt="First frame, both laughing."><figcaption>First frame, both laughing.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/christel-sid/MFR_8704-640.webp" srcset="photos/christel-sid/MFR_8704-640.webp 640w, photos/christel-sid/MFR_8704-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Her ring, and her look."><figcaption>Her ring, and her look.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/christel-sid/MFR_9085-640.webp" srcset="photos/christel-sid/MFR_9085-640.webp 640w, photos/christel-sid/MFR_9085-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Swans, watching."><figcaption>Swans, watching.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/christel-sid/MFR_9391-640.webp" srcset="photos/christel-sid/MFR_9391-640.webp 640w, photos/christel-sid/MFR_9391-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Up the hill, on his back."><figcaption>Up the hill, on his back.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/christel-sid/MFR_9619-640.webp" srcset="photos/christel-sid/MFR_9619-640.webp 640w, photos/christel-sid/MFR_9619-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="The cork goes."><figcaption>The cork goes.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/christel-sid/MFR_9880-640.webp" srcset="photos/christel-sid/MFR_9880-640.webp 640w, photos/christel-sid/MFR_9880-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Love wins."><figcaption>Love wins.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/christel-sid/MFR_9908-640.webp" srcset="photos/christel-sid/MFR_9908-640.webp 640w, photos/christel-sid/MFR_9908-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Sunflowers."><figcaption>Sunflowers.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/christel-sid/MFR_9940-640.webp" srcset="photos/christel-sid/MFR_9940-640.webp 640w, photos/christel-sid/MFR_9940-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="One on each side."><figcaption>One on each side.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/christel-sid/MFR_9963-640.webp" srcset="photos/christel-sid/MFR_9963-640.webp 640w, photos/christel-sid/MFR_9963-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Spadina, rush hour."><figcaption>Spadina, rush hour.</figcaption></figure>
+      </div>
     </div>
-    <p class="more"><a class="lk" href="work.html" data-t="View the work"><span>View the work</span></a></p>
+  </div>
+</section>
+<section class="pad g-aub sl-sec" aria-label="The night before, Brampton">
+  <div class="in">
+    
+    <div class="sl" data-sl>
+      <div class="sl-top"><div><h3>The night before</h3><p class="loc">Brampton</p></div>
+        <p class="ctl"><span class="cnt" data-cnt aria-live="polite">1 of 10</span><button class="lk" type="button" data-prev data-t="Previous"><span>Previous</span></button><button class="lk" type="button" data-next data-t="Next"><span>Next</span></button></p></div>
+      <div class="track" data-track tabindex="0" role="group" aria-roledescription="carousel" aria-label="The night before">
+        <figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/darmant-harpal/0B0A1715-640.webp" srcset="photos/darmant-harpal/0B0A1715-640.webp 640w, photos/darmant-harpal/0B0A1715-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Showing her henna."><figcaption>Showing her henna.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:0.6667" loading="lazy" decoding="async" src="photos/darmant-harpal/USA_6864-640.webp" srcset="photos/darmant-harpal/USA_6864-640.webp 640w, photos/darmant-harpal/USA_6864-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="960" alt="On the marigold backdrop."><figcaption>On the marigold backdrop.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:0.6667" loading="lazy" decoding="async" src="photos/darmant-harpal/USA_7018-640.webp" srcset="photos/darmant-harpal/USA_7018-640.webp 640w, photos/darmant-harpal/USA_7018-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="960" alt="Her hand up."><figcaption>Her hand up.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/darmant-harpal/USA_6990-640.webp" srcset="photos/darmant-harpal/USA_6990-640.webp 640w, photos/darmant-harpal/USA_6990-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Dancing in the tent."><figcaption>Dancing in the tent.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/darmant-harpal/USA_7062-640.webp" srcset="photos/darmant-harpal/USA_7062-640.webp 640w, photos/darmant-harpal/USA_7062-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Carrying the kalash."><figcaption>Carrying the kalash.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/darmant-harpal/USA_7066-640.webp" srcset="photos/darmant-harpal/USA_7066-640.webp 640w, photos/darmant-harpal/USA_7066-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Pots on their heads."><figcaption>Pots on their heads.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/darmant-harpal/USA_7143-640.webp" srcset="photos/darmant-harpal/USA_7143-640.webp 640w, photos/darmant-harpal/USA_7143-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Holding the baton."><figcaption>Holding the baton.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/darmant-harpal/USA_7216-640.webp" srcset="photos/darmant-harpal/USA_7216-640.webp 640w, photos/darmant-harpal/USA_7216-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Pot on her head."><figcaption>Pot on her head.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/darmant-harpal/USA_7228-640.webp" srcset="photos/darmant-harpal/USA_7228-640.webp 640w, photos/darmant-harpal/USA_7228-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Dancing on the street."><figcaption>Dancing on the street.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/darmant-harpal/USA_7244-640.webp" srcset="photos/darmant-harpal/USA_7244-640.webp 640w, photos/darmant-harpal/USA_7244-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Singing at night."><figcaption>Singing at night.</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="pad g-maroon sl-sec" aria-label="Henna, Brampton">
+  <div class="in">
+    
+    <div class="sl" data-sl>
+      <div class="sl-top"><div><h3>Henna</h3><p class="loc">Brampton</p></div>
+        <p class="ctl"><span class="cnt" data-cnt aria-live="polite">1 of 6</span><button class="lk" type="button" data-prev data-t="Previous"><span>Previous</span></button><button class="lk" type="button" data-next data-t="Next"><span>Next</span></button></p></div>
+      <div class="track" data-track tabindex="0" role="group" aria-roledescription="carousel" aria-label="Henna">
+        <figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/neelima-vignesh/ChaarBhai_NVME_0006_resized-640.webp" srcset="photos/neelima-vignesh/ChaarBhai_NVME_0006_resized-640.webp 640w, photos/neelima-vignesh/ChaarBhai_NVME_0006_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Laughing as the henna goes on."><figcaption>Laughing as the henna goes on.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.5023" loading="lazy" decoding="async" src="photos/neelima-vignesh/ChaarBhai_NVME_0043_resized-640.webp" srcset="photos/neelima-vignesh/ChaarBhai_NVME_0043_resized-640.webp 640w, photos/neelima-vignesh/ChaarBhai_NVME_0043_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="426" alt="Smiling, in black and white."><figcaption>Smiling, in black and white.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:0.6674" loading="lazy" decoding="async" src="photos/neelima-vignesh/ChaarBhai_NVME_0292_resized-640.webp" srcset="photos/neelima-vignesh/ChaarBhai_NVME_0292_resized-640.webp 640w, photos/neelima-vignesh/ChaarBhai_NVME_0292_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="959" alt="Henna, to the wrist."><figcaption>Henna, to the wrist.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:0.6674" loading="lazy" decoding="async" src="photos/neelima-vignesh/ChaarBhai_NVME_0296_resized-640.webp" srcset="photos/neelima-vignesh/ChaarBhai_NVME_0296_resized-640.webp 640w, photos/neelima-vignesh/ChaarBhai_NVME_0296_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="959" alt="Arms crossed, pink kurta."><figcaption>Arms crossed, pink kurta.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:0.6674" loading="lazy" decoding="async" src="photos/neelima-vignesh/ChaarBhai_NVME_0310_resized-640.webp" srcset="photos/neelima-vignesh/ChaarBhai_NVME_0310_resized-640.webp 640w, photos/neelima-vignesh/ChaarBhai_NVME_0310_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="959" alt="Pink and red, on the lawn."><figcaption>Pink and red, on the lawn.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:0.6667" loading="lazy" decoding="async" src="photos/neelima-vignesh/ChaarBhai_NVME_0417_resized-640.webp" srcset="photos/neelima-vignesh/ChaarBhai_NVME_0417_resized-640.webp 640w, photos/neelima-vignesh/ChaarBhai_NVME_0417_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="960" alt="On the porch steps."><figcaption>On the porch steps.</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="pad g-brown sl-sec" aria-label="The arrival, Toronto">
+  <div class="in">
+    
+    <div class="sl" data-sl>
+      <div class="sl-top"><div><h3>The arrival</h3><p class="loc">Toronto</p></div>
+        <p class="ctl"><span class="cnt" data-cnt aria-live="polite">1 of 13</span><button class="lk" type="button" data-prev data-t="Previous"><span>Previous</span></button><button class="lk" type="button" data-next data-t="Next"><span>Next</span></button></p></div>
+      <div class="track" data-track tabindex="0" role="group" aria-roledescription="carousel" aria-label="The arrival">
+        <figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/haleema-hassaan/_FR_1152_resized-640.webp" srcset="photos/haleema-hassaan/_FR_1152_resized-640.webp 640w, photos/haleema-hassaan/_FR_1152_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="A red car and a crowd."><figcaption>A red car and a crowd.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/haleema-hassaan/_FR_0484_resized-640.webp" srcset="photos/haleema-hassaan/_FR_0484_resized-640.webp 640w, photos/haleema-hassaan/_FR_0484_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Hands up, dancing."><figcaption>Hands up, dancing.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:0.6667" loading="lazy" decoding="async" src="photos/haleema-hassaan/USA_9952_resized-640.webp" srcset="photos/haleema-hassaan/USA_9952_resized-640.webp 640w, photos/haleema-hassaan/USA_9952_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="960" alt="Playing the dhol."><figcaption>Playing the dhol.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/haleema-hassaan/_FR_0509_resized-640.webp" srcset="photos/haleema-hassaan/_FR_0509_resized-640.webp 640w, photos/haleema-hassaan/_FR_0509_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Dancing into the hall."><figcaption>Dancing into the hall.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/haleema-hassaan/_FR_0594_resized-640.webp" srcset="photos/haleema-hassaan/_FR_0594_resized-640.webp 640w, photos/haleema-hassaan/_FR_0594_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Garland on, all smiles."><figcaption>Garland on, all smiles.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/haleema-hassaan/USA_0403_resized-640.webp" srcset="photos/haleema-hassaan/USA_0403_resized-640.webp 640w, photos/haleema-hassaan/USA_0403_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Walking through the tables."><figcaption>Walking through the tables.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/haleema-hassaan/_FR_1537_resized-640.webp" srcset="photos/haleema-hassaan/_FR_1537_resized-640.webp 640w, photos/haleema-hassaan/_FR_1537_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Into the hall, veiled in red."><figcaption>Into the hall, veiled in red.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/haleema-hassaan/_FR_1560_resized-640.webp" srcset="photos/haleema-hassaan/_FR_1560_resized-640.webp 640w, photos/haleema-hassaan/_FR_1560_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Garland, in the hall."><figcaption>Garland, in the hall.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/haleema-hassaan/_FR_1574_resized-640.webp" srcset="photos/haleema-hassaan/_FR_1574_resized-640.webp 640w, photos/haleema-hassaan/_FR_1574_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Lifting the red veil."><figcaption>Lifting the red veil.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:0.6667" loading="lazy" decoding="async" src="photos/haleema-hassaan/0A9A7798_resized-640.webp" srcset="photos/haleema-hassaan/0A9A7798_resized-640.webp 640w, photos/haleema-hassaan/0A9A7798_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="960" alt="A red veil, close."><figcaption>A red veil, close.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/haleema-hassaan/_FR_1604_resized-640.webp" srcset="photos/haleema-hassaan/_FR_1604_resized-640.webp 640w, photos/haleema-hassaan/_FR_1604_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Hand in hand, in the hall."><figcaption>Hand in hand, in the hall.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/haleema-hassaan/_FR_1606_resized-640.webp" srcset="photos/haleema-hassaan/_FR_1606_resized-640.webp 640w, photos/haleema-hassaan/_FR_1606_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Hands joined, in red."><figcaption>Hands joined, in red.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:0.6667" loading="lazy" decoding="async" src="photos/haleema-hassaan/0A9A7809_resized-640.webp" srcset="photos/haleema-hassaan/0A9A7809_resized-640.webp 640w, photos/haleema-hassaan/0A9A7809_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="960" alt="Garlands and red."><figcaption>Garlands and red.</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="pad g-aub sl-sec" aria-label="The ceremony, Caledon">
+  <div class="in">
+    
+    <div class="sl" data-sl>
+      <div class="sl-top"><div><h3>The ceremony</h3><p class="loc">Caledon</p></div>
+        <p class="ctl"><span class="cnt" data-cnt aria-live="polite">1 of 17</span><button class="lk" type="button" data-prev data-t="Previous"><span>Previous</span></button><button class="lk" type="button" data-next data-t="Next"><span>Next</span></button></p></div>
+      <div class="track" data-track tabindex="0" role="group" aria-roledescription="carousel" aria-label="The ceremony">
+        <figure class="slide"><img class="ph" style="--ar:1.5023" loading="lazy" decoding="async" src="photos/saadman-maariyah/ChaarBhai_SMNE_0841_resized-640.webp" srcset="photos/saadman-maariyah/ChaarBhai_SMNE_0841_resized-640.webp 640w, photos/saadman-maariyah/ChaarBhai_SMNE_0841_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="426" alt="Veil and white flowers."><figcaption>Veil and white flowers.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.5023" loading="lazy" decoding="async" src="photos/saadman-maariyah/ChaarBhai_SMNE_1056_resized-640.webp" srcset="photos/saadman-maariyah/ChaarBhai_SMNE_1056_resized-640.webp 640w, photos/saadman-maariyah/ChaarBhai_SMNE_1056_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="426" alt="The groom, with family."><figcaption>The groom, with family.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:0.6667" loading="lazy" decoding="async" src="photos/saadman-maariyah/ChaarBhai_SMNE_1067_resized-640.webp" srcset="photos/saadman-maariyah/ChaarBhai_SMNE_1067_resized-640.webp 640w, photos/saadman-maariyah/ChaarBhai_SMNE_1067_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="960" alt="Walking in together."><figcaption>Walking in together.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/saadman-maariyah/ChaarBhai_SMNE_1238_resized-640.webp" srcset="photos/saadman-maariyah/ChaarBhai_SMNE_1238_resized-640.webp 640w, photos/saadman-maariyah/ChaarBhai_SMNE_1238_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Seated by the flower pillar."><figcaption>Seated by the flower pillar.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/saadman-maariyah/ChaarBhai_SMNE_1402_resized-640.webp" srcset="photos/saadman-maariyah/ChaarBhai_SMNE_1402_resized-640.webp 640w, photos/saadman-maariyah/ChaarBhai_SMNE_1402_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="The microphone in front of her."><figcaption>The microphone in front of her.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:0.6667" loading="lazy" decoding="async" src="photos/saadman-maariyah/ChaarBhai_SMNE_1437_resized-640.webp" srcset="photos/saadman-maariyah/ChaarBhai_SMNE_1437_resized-640.webp 640w, photos/saadman-maariyah/ChaarBhai_SMNE_1437_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="960" alt="Speaking into the mic."><figcaption>Speaking into the mic.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/saadman-maariyah/ChaarBhai_SMNE_1564_resized-640.webp" srcset="photos/saadman-maariyah/ChaarBhai_SMNE_1564_resized-640.webp 640w, photos/saadman-maariyah/ChaarBhai_SMNE_1564_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Leaning in by the pillar."><figcaption>Leaning in by the pillar.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:0.6667" loading="lazy" decoding="async" src="photos/saadman-maariyah/ChaarBhai_SMNE_1573_resized-640.webp" srcset="photos/saadman-maariyah/ChaarBhai_SMNE_1573_resized-640.webp 640w, photos/saadman-maariyah/ChaarBhai_SMNE_1573_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="960" alt="Lifting the veil, gently."><figcaption>Lifting the veil, gently.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:0.6667" loading="lazy" decoding="async" src="photos/saadman-maariyah/ChaarBhai_SMNE_1576_resized-640.webp" srcset="photos/saadman-maariyah/ChaarBhai_SMNE_1576_resized-640.webp 640w, photos/saadman-maariyah/ChaarBhai_SMNE_1576_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="960" alt="Close, under the veil."><figcaption>Close, under the veil.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.5023" loading="lazy" decoding="async" src="photos/saadman-maariyah/ChaarBhai_SMNE_1843_resized-640.webp" srcset="photos/saadman-maariyah/ChaarBhai_SMNE_1843_resized-640.webp 640w, photos/saadman-maariyah/ChaarBhai_SMNE_1843_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="426" alt="Surrounded by family."><figcaption>Surrounded by family.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.5023" loading="lazy" decoding="async" src="photos/saadman-maariyah/ChaarBhai_SMNE_1976_resized-640.webp" srcset="photos/saadman-maariyah/ChaarBhai_SMNE_1976_resized-640.webp 640w, photos/saadman-maariyah/ChaarBhai_SMNE_1976_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="426" alt="Under the red shawl."><figcaption>Under the red shawl.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:0.6667" loading="lazy" decoding="async" src="photos/saadman-maariyah/ChaarBhai_SMNE_1982_resized-640.webp" srcset="photos/saadman-maariyah/ChaarBhai_SMNE_1982_resized-640.webp 640w, photos/saadman-maariyah/ChaarBhai_SMNE_1982_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="960" alt="Sharing the mirror."><figcaption>Sharing the mirror.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:0.6667" loading="lazy" decoding="async" src="photos/saadman-maariyah/ChaarBhai_SMNE_2816_resized-640.webp" srcset="photos/saadman-maariyah/ChaarBhai_SMNE_2816_resized-640.webp 640w, photos/saadman-maariyah/ChaarBhai_SMNE_2816_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="960" alt="Under the gold arch."><figcaption>Under the gold arch.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.5023" loading="lazy" decoding="async" src="photos/saadman-maariyah/ChaarBhai_SMNE_0350_resized-640.webp" srcset="photos/saadman-maariyah/ChaarBhai_SMNE_0350_resized-640.webp 640w, photos/saadman-maariyah/ChaarBhai_SMNE_0350_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="426" alt="Being dressed by the family."><figcaption>Being dressed by the family.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.5023" loading="lazy" decoding="async" src="photos/saadman-maariyah/ChaarBhai_SMNE_0713_resized-640.webp" srcset="photos/saadman-maariyah/ChaarBhai_SMNE_0713_resized-640.webp 640w, photos/saadman-maariyah/ChaarBhai_SMNE_0713_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="426" alt="Getting ready with the women."><figcaption>Getting ready with the women.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:0.6667" loading="lazy" decoding="async" src="photos/saadman-maariyah/ChaarBhai_SMNE_0878_resized-640.webp" srcset="photos/saadman-maariyah/ChaarBhai_SMNE_0878_resized-640.webp 640w, photos/saadman-maariyah/ChaarBhai_SMNE_0878_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="960" alt="Veiled, in the dark."><figcaption>Veiled, in the dark.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.5023" loading="lazy" decoding="async" src="photos/saadman-maariyah/ChaarBhai_SMNE_1400_resized-640.webp" srcset="photos/saadman-maariyah/ChaarBhai_SMNE_1400_resized-640.webp 640w, photos/saadman-maariyah/ChaarBhai_SMNE_1400_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="426" alt="Words from the imam."><figcaption>Words from the imam.</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="pad g-maroon sl-sec" aria-label="The reception, Oakville">
+  <div class="in">
+    
+    <div class="sl" data-sl>
+      <div class="sl-top"><div><h3>The reception</h3><p class="loc">Oakville</p></div>
+        <p class="ctl"><span class="cnt" data-cnt aria-live="polite">1 of 8</span><button class="lk" type="button" data-prev data-t="Previous"><span>Previous</span></button><button class="lk" type="button" data-next data-t="Next"><span>Next</span></button></p></div>
+      <div class="track" data-track tabindex="0" role="group" aria-roledescription="carousel" aria-label="The reception">
+        <figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/rabia-eldad/ChaarBhai_RERE_3141_resized-640.webp" srcset="photos/rabia-eldad/ChaarBhai_RERE_3141_resized-640.webp 640w, photos/rabia-eldad/ChaarBhai_RERE_3141_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Out through the glass doors."><figcaption>Out through the glass doors.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/rabia-eldad/ChaarBhai_RERE_4577_resized-640.webp" srcset="photos/rabia-eldad/ChaarBhai_RERE_4577_resized-640.webp 640w, photos/rabia-eldad/ChaarBhai_RERE_4577_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Hands joined, guests clapping."><figcaption>Hands joined, guests clapping.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/rabia-eldad/ChaarBhai_RERE_4857_resized-640.webp" srcset="photos/rabia-eldad/ChaarBhai_RERE_4857_resized-640.webp 640w, photos/rabia-eldad/ChaarBhai_RERE_4857_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Dancing, a blur of motion."><figcaption>Dancing, a blur of motion.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/rabia-eldad/ChaarBhai_RERE_4955_resized-640.webp" srcset="photos/rabia-eldad/ChaarBhai_RERE_4955_resized-640.webp 640w, photos/rabia-eldad/ChaarBhai_RERE_4955_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Dancing in white."><figcaption>Dancing in white.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/rabia-eldad/ChaarBhai_RERE_4956_resized-640.webp" srcset="photos/rabia-eldad/ChaarBhai_RERE_4956_resized-640.webp 640w, photos/rabia-eldad/ChaarBhai_RERE_4956_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Dancing with the guests."><figcaption>Dancing with the guests.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/rabia-eldad/ChaarBhai_RERE_5015_resized-640.webp" srcset="photos/rabia-eldad/ChaarBhai_RERE_5015_resized-640.webp 640w, photos/rabia-eldad/ChaarBhai_RERE_5015_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Arms out, a big cheer."><figcaption>Arms out, a big cheer.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/rabia-eldad/ChaarBhai_RERE_5082_resized-640.webp" srcset="photos/rabia-eldad/ChaarBhai_RERE_5082_resized-640.webp 640w, photos/rabia-eldad/ChaarBhai_RERE_5082_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Taking the bride’s hand."><figcaption>Taking the bride’s hand.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/rabia-eldad/ChaarBhai_RERE_5203_resized-640.webp" srcset="photos/rabia-eldad/ChaarBhai_RERE_5203_resized-640.webp 640w, photos/rabia-eldad/ChaarBhai_RERE_5203_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Dancing with the crowd."><figcaption>Dancing with the crowd.</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="pad g-brown sl-sec" aria-label="The farewell, Lionhead Golf Club, Brampton">
+  <div class="in">
+    
+    <div class="sl" data-sl>
+      <div class="sl-top"><div><h3>The farewell</h3><p class="loc">Lionhead Golf Club, Brampton</p></div>
+        <p class="ctl"><span class="cnt" data-cnt aria-live="polite">1 of 9</span><button class="lk" type="button" data-prev data-t="Previous"><span>Previous</span></button><button class="lk" type="button" data-next data-t="Next"><span>Next</span></button></p></div>
+      <div class="track" data-track tabindex="0" role="group" aria-roledescription="carousel" aria-label="The farewell">
+        <figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/zahra-hussam/ChaarBhai_ZHNE_3622_resized-640.webp" srcset="photos/zahra-hussam/ChaarBhai_ZHNE_3622_resized-640.webp 640w, photos/zahra-hussam/ChaarBhai_ZHNE_3622_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Walking through the sparklers."><figcaption>Walking through the sparklers.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/zahra-hussam/ChaarBhai_ZHNE_3655_resized-640.webp" srcset="photos/zahra-hussam/ChaarBhai_ZHNE_3655_resized-640.webp 640w, photos/zahra-hussam/ChaarBhai_ZHNE_3655_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Walking in with the tray."><figcaption>Walking in with the tray.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/zahra-hussam/ChaarBhai_ZHNE_3660_resized-640.webp" srcset="photos/zahra-hussam/ChaarBhai_ZHNE_3660_resized-640.webp 640w, photos/zahra-hussam/ChaarBhai_ZHNE_3660_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="The bouquet, held high."><figcaption>The bouquet, held high.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/zahra-hussam/ChaarBhai_ZHNE_3697_resized-640.webp" srcset="photos/zahra-hussam/ChaarBhai_ZHNE_3697_resized-640.webp 640w, photos/zahra-hussam/ChaarBhai_ZHNE_3697_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="A hug in the hall."><figcaption>A hug in the hall.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/zahra-hussam/ChaarBhai_ZHNE_3702_resized-640.webp" srcset="photos/zahra-hussam/ChaarBhai_ZHNE_3702_resized-640.webp 640w, photos/zahra-hussam/ChaarBhai_ZHNE_3702_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="A close hug."><figcaption>A close hug.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/zahra-hussam/ChaarBhai_ZHNE_3703_resized-640.webp" srcset="photos/zahra-hussam/ChaarBhai_ZHNE_3703_resized-640.webp 640w, photos/zahra-hussam/ChaarBhai_ZHNE_3703_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="In tears, in black and white."><figcaption>In tears, in black and white.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/zahra-hussam/ChaarBhai_ZHNE_3706_resized-640.webp" srcset="photos/zahra-hussam/ChaarBhai_ZHNE_3706_resized-640.webp 640w, photos/zahra-hussam/ChaarBhai_ZHNE_3706_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Walking through the hall."><figcaption>Walking through the hall.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/zahra-hussam/ChaarBhai_ZHNE_3734_resized-640.webp" srcset="photos/zahra-hussam/ChaarBhai_ZHNE_3734_resized-640.webp 640w, photos/zahra-hussam/ChaarBhai_ZHNE_3734_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="A group hug, in black and white."><figcaption>A group hug, in black and white.</figcaption></figure>
+<figure class="slide"><img class="ph" style="--ar:1.4988" loading="lazy" decoding="async" src="photos/zahra-hussam/ChaarBhai_ZHNE_3753_resized-640.webp" srcset="photos/zahra-hussam/ChaarBhai_ZHNE_3753_resized-640.webp 640w, photos/zahra-hussam/ChaarBhai_ZHNE_3753_resized-1280.webp 1280w" sizes="(min-width:900px) 60vh, 80vw" width="640" height="427" alt="Heads bowed together."><figcaption>Heads bowed together.</figcaption></figure>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="pad g-cream offer" id="offer" aria-labelledby="oh">
+<section class="pad g-cream films" aria-labelledby="fh">
+  <div class="in">
+    <div class="head"><h2 id="fh">The films couples keep</h2><p class="lead">Highlight films from our YouTube channel.</p></div>
+    <div class="sl" data-sl data-loop>
+      <div class="sl-top"><p class="loc" style="margin:0"></p>
+        <p class="ctl"><span class="cnt" data-cnt aria-live="polite"></span><button class="lk" type="button" data-prev data-t="Previous"><span>Previous</span></button><button class="lk" type="button" data-next data-t="Next"><span>Next</span></button></p></div>
+      <div class="vtrack" data-track id="vtrack" tabindex="0" role="group" aria-roledescription="carousel" aria-label="Highlight films"></div>
+    </div>
+  </div>
+</section>
+
+<section class="pad g-aub offer" id="offer" aria-labelledby="oh">
   <div class="in">
     <div>
       <h2 id="oh">Golden Hour</h2>
       <p class="price">$5,500 CAD</p>
-      <p class="lead">Ten hours of photo and video coverage for one full day. One photographer and one videographer, with you from getting ready to the last dance.</p>
+      <p class="lead">Your whole wedding day, photographed and filmed by one crew. Book once and the day is covered.</p>
     </div>
     <div>
       <ul class="r">
-        <li>A photographer and a videographer for ten hours.</li>
-        <li>A get-ready session, so the morning is part of the day.</li>
+        <li>A photographer and a videographer for ten full hours.</li>
+        <li>A get-ready session, so the morning makes it into the film.</li>
         <li>Every photo retouched one by one, in a private online gallery.</li>
-        <li>Your wedding film by private download link, recorded with professional audio and on-camera interviews.</li>
-        <li>Experience with South Asian and multi-day weddings: nikkah, baraat, anand karaj, mehndi, reception.</li>
+        <li>Your wedding film by private download link, with professional audio and on-camera interviews.</li>
+        <li>A crew used to nikkah, baraat, anand karaj, mehndi and reception.</li>
       </ul>
-      <p class="small fine">Prices are in Canadian dollars. Extra hours are $550 each. Travel and accommodation are quoted per wedding. Booking takes an initial deposit and the rest is paid later, as set out in your contract. Planning a longer weekend? Ask us about our larger packages in the form.</p>
+      <p class="small fine">Prices are in Canadian dollars. Extra hours are $550 each. A deposit holds your date and the rest is paid later, as set out in your contract. Planning a longer weekend? Ask us about our larger packages.</p>
       <a class="lk" href="#enquire" data-t="Check your date"><span>Check your date</span></a>
     </div>
   </div>
@@ -201,10 +370,10 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 
 <section class="pad g-maroon" aria-labelledby="sh">
   <div class="in">
-    <h2 id="sh">How booking works</h2>
+    <h2 id="sh">What happens next</h2>
     <ol class="steps">
-      <li><span class="num">01 /</span><h3>Send the form</h3><p>Your date, your events and what matters to you. It takes two minutes.</p></li>
-      <li><span class="num">02 /</span><h3>We get in touch</h3><p>We set up a meeting to get to know you: your wedding, the coverage you need and the photos you’re after.</p></li>
+      <li><span class="num">01 /</span><h3>Tell us your date</h3><p>Your date, your venue and the events you want covered.</p></li>
+      <li><span class="num">02 /</span><h3>We meet you</h3><p>We get to know you: your wedding, the coverage you need and the photos you’re after.</p></li>
       <li><span class="num">03 /</span><h3>You get a contract</h3><p>Once we know what you need, the details come to you in writing.</p></li>
       <li><span class="num">04 /</span><h3>A deposit holds the date</h3><p>You enjoy the day. We photograph and film it.</p></li>
     </ol>
@@ -213,16 +382,16 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 
 <section class="pad g-cream" aria-labelledby="rh">
   <div class="in">
-    <h2 id="rh">What couples wrote</h2>
-    <p class="lead">Reviews as written, from Google and Facebook. Each name links to the original.</p>
+    <h2 id="rh">What couples say</h2>
+    <p class="lead">Posted on Google and Facebook, as written.</p>
     <div class="revs" id="revs"></div>
   </div>
 </section>
 
-<section class="pad g-aub" id="enquire" aria-labelledby="eh">
+<section class="pad g-aub enq" id="enquire" aria-labelledby="eh">
   <div class="in">
-    <h2 id="eh">Tell us about your wedding</h2>
-    <p class="lead">Send us the date and the venue and we’ll come back to you, usually within a day or two.</p>
+    <h2 id="eh">Check your date</h2>
+    <p class="lead">Send us your date and venue. We’ll get back to you within a day or two.</p>
     <div class="form-wrap"><iframe id="sn-form-golden" title="Enquiry form" loading="lazy" src="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" allowfullscreen></iframe></div>
     <p class="small alt">Form not loading? <a class="inl" href="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" target="_blank" rel="noopener">Open it in a new tab</a>, message us on Instagram <a class="inl" href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">@chaarbhai</a>, or email <a class="inl" href="mailto:info@chaarbhai.com">info@chaarbhai.com</a>.</p>
     <div class="foot">
@@ -241,20 +410,65 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 <script src="reviews.js"></script>
 <script>
 (function(){
-  /* Every review that links back to its original, except the few that aren't about weddings. */
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  /* Reviews: read from reviews.js so the text stays word for word and every name links to the original. */
   var SKIP=['Humna Bilal','Nashiya Tariq','Omama Javed','Zain Rehman'];
+  function byName(n){return (typeof REVIEWS!=='undefined')?REVIEWS.filter(function(x){return x.n===n})[0]:null}
+  function link(r){var a=document.createElement('a');a.className='inl';a.href=r.l;a.target='_blank';a.rel='noopener';a.textContent=r.n;return a}
+  var pull=document.querySelector('[data-review]');
+  if(pull){var pr=byName(pull.getAttribute('data-review'));
+    if(pr){pull.querySelector('blockquote').textContent='“'+pr.x+'”';var pn=pull.querySelector('.nm');pn.appendChild(link(pr));pn.appendChild(document.createTextNode(' · Google'))}}
   var host=document.getElementById('revs');
   if(host&&typeof REVIEWS!=='undefined'){
     REVIEWS.forEach(function(r){
       if(!r.l||SKIP.indexOf(r.n)>-1)return;
       var art=document.createElement('article');art.className='rv';
       var q=document.createElement('blockquote');q.textContent='“'+r.x+'”';
-      var p=document.createElement('p');p.className='nm';
-      var a=document.createElement('a');a.className='inl';a.href=r.l;a.target='_blank';a.rel='noopener';a.textContent=r.n;
-      p.appendChild(a);p.appendChild(document.createTextNode(' · '+(r.src==='f'?'Facebook':'Google')));
+      var p=document.createElement('p');p.className='nm';p.appendChild(link(r));
+      p.appendChild(document.createTextNode(' · '+(r.src==='f'?'Facebook':'Google')));
       art.append(q,p);host.appendChild(art);
     });
   }
+
+  /* Highlight films. Swap these five for the newest on the channel (YouTube id, event, length in seconds). */
+  var FILMS=[['0QcPElUhqpw','Nikkah',584],['Pn6QjqCDdrM','Anand Karaj',230],['AuAUEnnftNY','Garden wedding',246],['1stefCrhx4A','Nikkah',306],['iEVeFvWKZpU','Nikkah',210]];
+  var vt=document.getElementById('vtrack');
+  function mmss(s){return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2)}
+  FILMS.forEach(function(f){
+    var d=document.createElement('div');d.className='v';
+    var fr=document.createElement('div');fr.className='vframe';
+    var im=document.createElement('img');im.loading='lazy';im.decoding='async';im.alt=f[1]+' highlight film';
+    im.src='https://i.ytimg.com/vi/'+f[0]+'/hqdefault.jpg';
+    var b=document.createElement('button');b.type='button';b.className='vplay';b.setAttribute('aria-label','Play the '+f[1]+' highlight film');
+    b.innerHTML='<span class="lk" data-t="Play"><span>Play</span></span>';
+    b.addEventListener('click',function(){
+      var i=document.createElement('iframe');
+      i.src='https://www.youtube-nocookie.com/embed/'+f[0]+'?autoplay=1&rel=0&playsinline=1';
+      i.title=f[1]+' highlight film';i.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';i.allowFullscreen=true;
+      fr.innerHTML='';fr.appendChild(i);
+    });
+    fr.append(im,b);
+    var c=document.createElement('figcaption');c.textContent=f[1]+' highlight · '+mmss(f[2]);
+    d.append(fr,c);vt.appendChild(d);
+  });
+
+  /* Sliders: swipe or use Previous and Next. They loop: Next on the last slide goes back to the first. */
+  document.querySelectorAll('[data-sl]').forEach(function(sl){
+    var tr=sl.querySelector('[data-track]'),cnt=sl.querySelector('[data-cnt]');
+    var slides=function(){return Array.prototype.slice.call(tr.children)};
+    function idx(){var s=slides(),x=tr.scrollLeft,best=0,bd=1e9,o=s[0].offsetLeft;
+      s.forEach(function(el,i){var dd=Math.abs(el.offsetLeft-o-x);if(dd<bd){bd=dd;best=i}});
+      if(tr.scrollLeft+tr.clientWidth>=tr.scrollWidth-4)best=s.length-1;return best}
+    function go(i){var s=slides();tr.scrollTo({left:s[i].offsetLeft-s[0].offsetLeft,behavior:reduce?'auto':'smooth'})}
+    function upd(){if(cnt)cnt.textContent=(idx()+1)+' of '+slides().length}
+    var t;tr.addEventListener('scroll',function(){clearTimeout(t);t=setTimeout(upd,60)},{passive:true});
+    sl.querySelector('[data-next]').addEventListener('click',function(){var s=slides(),i=idx();go(i>=s.length-1||tr.scrollLeft+tr.clientWidth>=tr.scrollWidth-4?0:i+1)});
+    sl.querySelector('[data-prev]').addEventListener('click',function(){var s=slides(),i=idx();go(i<=0?s.length-1:i-1)});
+    tr.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();sl.querySelector('[data-next]').click()}if(e.key==='ArrowLeft'){e.preventDefault();sl.querySelector('[data-prev]').click()}});
+    window.addEventListener('resize',upd);upd();
+  });
+
   /* Studio Ninja's resizer keeps the form frame as tall as the form. */
   var fr=document.getElementById('sn-form-golden');
   var s=document.createElement('script');s.async=true;
