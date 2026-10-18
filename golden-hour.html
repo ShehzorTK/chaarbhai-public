@@ -36,12 +36,12 @@
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;background:#F2EBDE}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{background:#F2EBDE;font:400 16px/1.55 var(--f-serif);letter-spacing:.025em;-webkit-font-smoothing:antialiased;padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+body{background:#F2EBDE;font:400 16px/1.55 var(--f-serif);font-variant-numeric:lining-nums;letter-spacing:.025em;-webkit-font-smoothing:antialiased;padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 img{display:block;max-width:100%}
 a{color:inherit}
 button{font:inherit;color:inherit;background:none;border:0;border-radius:0;cursor:pointer;-webkit-appearance:none;appearance:none}
 :focus-visible{outline:2px solid var(--paper);outline-offset:3px}
-h1,h2,h3{font:500 var(--t-headline)/1 var(--f-display);letter-spacing:.02em;text-transform:uppercase;text-wrap:balance}
+h1,h2,h3{font:500 var(--t-headline)/1 var(--f-display);font-variant-numeric:lining-nums;letter-spacing:.02em;text-transform:uppercase;text-wrap:balance}
 h1{font-size:var(--t-display)}
 h3{font-size:var(--t-headline-s)}
 p{text-wrap:pretty}
@@ -53,7 +53,7 @@ p{text-wrap:pretty}
 .in{max-width:1280px;margin:0 auto}
 
 /* link atom: caps, tracked, italic + underline on hover/focus/press, no transition */
-.lk{display:inline-grid;align-content:end;min-height:44px;padding:12px 0 3px;border-bottom:1px solid transparent;color:inherit;text-decoration:none;font:400 14px/1.3 var(--f-serif);letter-spacing:.2em;text-transform:uppercase}
+.lk{display:inline-grid;align-content:end;min-height:44px;padding:12px 0 3px;border-bottom:1px solid currentColor;color:inherit;text-decoration:none;font:400 14px/1.3 var(--f-serif);letter-spacing:.2em;text-transform:uppercase}
 .lk>span{grid-area:1/1}
 .lk::before{content:attr(data-t);grid-area:1/1;font-style:italic;height:0;overflow:hidden;visibility:hidden}
 .lk:hover,.lk:focus-visible,.lk:active{font-style:italic;border-bottom-color:currentColor}
@@ -72,14 +72,14 @@ figcaption{font-style:italic;font-size:14px;line-height:1.5;color:var(--dim);mar
 .hero figure{max-width:560px}
 .hero .lk{margin-top:14px}
 @media (min-width:900px){
-  .hero .in{grid-template-columns:7fr 5fr;align-items:center;gap:clamp(40px,6vw,96px)}
-  .hero figure{justify-self:end;width:min(100%,calc((100vh - 200px)*.667));max-width:560px}
+  .hero .in{grid-template-columns:5fr 7fr;align-items:center;gap:clamp(40px,6vw,96px)}
+  .hero figure{order:-1;justify-self:start;width:min(100%,calc((100vh - 200px)*.667));max-width:560px}
 }
 @media (max-width:899px){.hero figure{order:-1;max-width:none}}
 
 /* proof (cream): a true number beside a review that says what it was like */
 .proof .in{display:grid;gap:clamp(36px,6vw,80px);align-items:center}
-.fig b{display:block;font:500 clamp(64px,9vw,128px)/.95 var(--f-display);letter-spacing:.02em}
+.fig b{display:block;font:500 clamp(64px,9vw,128px)/.95 var(--f-display);font-variant-numeric:lining-nums;letter-spacing:.02em}
 .fig span{display:block;margin-top:14px;font-size:var(--t-lead);color:var(--dim);max-width:20em}
 .pull{border-top:1px solid var(--line);padding-top:26px}
 .pull blockquote{font-style:italic;font-size:clamp(20px,2.2vw,30px);line-height:1.4;letter-spacing:.02em;text-wrap:pretty}
@@ -174,7 +174,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
   <div class="in">
     <div>
       <h1 id="h">Since 2013, 1,800 families have trusted us with their wedding day.</h1>
-      <p class="tag">Golden Hour: a photographer and a videographer from getting ready to the last dance. Every photo retouched, your film delivered. $5,500 CAD.</p>
+      <p class="tag">Photo and film coverage from getting ready to the last dance. Every photo retouched, your film delivered. $5,500 CAD.</p>
       <a class="lk" href="#enquire" data-t="Get in touch"><span>Get in touch</span></a>
     </div>
     <figure>
