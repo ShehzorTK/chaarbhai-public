@@ -4,274 +4,267 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Golden Hour · One Wedding Day, Photographed and Filmed · Chaar Bhai</title>
-<meta name="description" content="Golden Hour: ten hours of wedding photography and film, getting ready through the last dance, from Chaar Bhai. Since 2013, more than 1,800 couples.">
+<meta name="description" content="Golden Hour: ten hours of wedding photography and film, from getting ready to the last dance. Chaar Bhai, since 2013, more than 1,800 weddings.">
 <meta name="robots" content="noindex,nofollow">
-<meta name="theme-color" content="#12141C">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#2B2530">
 <link rel="icon" href="img/favicon-32.png">
 <link rel="preload" as="image" href="photos/dania-aamir/ChaarBhai_DASE_0206_resized-1280.webp" imagesrcset="photos/dania-aamir/ChaarBhai_DASE_0206_resized-640.webp 640w, photos/dania-aamir/ChaarBhai_DASE_0206_resized-1280.webp 1280w" imagesizes="(min-width:900px) 40vw, 100vw">
 <style>
+/* Tokens and rules copied from the design system (brand/guidelines.html) and site/theme-paper.css. */
 @font-face{font-family:'Cormorant Garamond';font-weight:500;font-style:normal;font-display:swap;src:url(fonts/cormorant-garamond.woff2) format('woff2')}
 @font-face{font-family:'EB Garamond';font-weight:400;font-style:normal;font-display:swap;src:url(fonts/eb-garamond.woff2) format('woff2')}
 @font-face{font-family:'EB Garamond';font-weight:400;font-style:italic;font-display:swap;src:url(fonts/eb-garamond-italic.woff2) format('woff2')}
+@font-face{font-family:'Pinyon Script';font-weight:400;font-style:normal;font-display:swap;src:url(fonts/pinyon-script.woff2) format('woff2')}
 :root{
-  --ink:#12141C;--ink-2:#191C26;--ink-3:#232735;--paper:#EFEADF;
-  --dim:rgba(239,234,223,.72);--faint:rgba(239,234,223,.5);
-  --gold:#CEC0A3;--gold-hi:#E6D9B8;--line:rgba(239,234,223,.14);
-  --serif:'Cormorant Garamond',Georgia,serif;--body:'EB Garamond',Georgia,serif;
-  --gutter:clamp(20px,5vw,64px);--max:1180px;
+  --cream:#F2EBDE;--brown:#2A1D0F;--aub:#2B2530;--maroon:#4A2530;--tan:#D2B6A1;
+  --f-display:'Cormorant Garamond','Cochin',Georgia,serif;
+  --f-serif:'EB Garamond','Sirenne',Georgia,serif;
+  --f-script:'Pinyon Script','Snell Roundhand',cursive;
+  --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n' x='0' y='0'><feTurbulence type='fractalNoise' baseFrequency='.8 .55' numOctaves='4' seed='4'/><feColorMatrix values='0 0 0 0 .16  0 0 0 0 .11  0 0 0 0 .06  0 0 0 .4 -.14'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  --pad:clamp(18px,4.6vw,76px);
+  --t-display:clamp(34px,6vw,84px);--t-headline:clamp(28px,4vw,56px);--t-headline-s:clamp(26px,3.2vw,44px);
+  --t-lead:clamp(16px,1.35vw,19px);
+  --tone:sepia(.1) saturate(.94) contrast(.96) brightness(1.02);
+  color-scheme:light;
 }
+/* A ground sets all the roles at once. Sections change paper colour instead of using boxes. */
+.g-cream{--ink:#F2EBDE;--ink-2:#EBE2D1;--paper:#2A1D0F;--dim:rgba(42,29,15,.8);--soft:rgba(42,29,15,.72);--line:rgba(42,29,15,.14);--line-2:rgba(42,29,15,.26)}
+.g-brown{--ink:#2A1D0F;--ink-2:#34261A;--paper:#F2EBDE;--dim:#D2B6A1;--soft:#D2B6A1;--line:rgba(210,182,161,.22);--line-2:rgba(210,182,161,.4)}
+.g-aub{--ink:#2B2530;--ink-2:#362F3C;--paper:#F2EBDE;--dim:rgba(242,235,222,.9);--soft:rgba(242,235,222,.86);--line:rgba(242,235,222,.24);--line-2:rgba(242,235,222,.4)}
+.g-maroon{--ink:#4A2530;--ink-2:#58313C;--paper:#F2EBDE;--dim:#D2B6A1;--soft:#D2B6A1;--line:rgba(210,182,161,.22);--line-2:rgba(210,182,161,.4)}
+[class*="g-"]{background-color:var(--ink);background-image:var(--grain);background-size:400px;color:var(--paper)}
 *{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{background:var(--ink);color:var(--paper);font:400 clamp(17px,1.1vw + 13px,20px)/1.6 var(--body);-webkit-tap-highlight-color:transparent;padding-bottom:calc(76px + env(safe-area-inset-bottom))}
-img{display:block;max-width:100%}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;background:var(--cream)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--cream);font:400 16px/1.55 var(--f-serif);letter-spacing:.025em;-webkit-font-smoothing:antialiased;padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+img{display:block;max-width:100%;height:auto}
 a{color:inherit}
-h1,h2,h3{font:500 clamp(34px,5.2vw,64px)/1.05 var(--serif);letter-spacing:.005em;text-wrap:balance}
-h2{font-size:clamp(30px,4vw,48px)}
-h3{font-size:clamp(22px,2.2vw,28px);line-height:1.15}
+:focus-visible{outline:2px solid var(--paper);outline-offset:3px}
+h1,h2,h3{font:500 var(--t-headline)/1 var(--f-display);letter-spacing:.02em;text-transform:uppercase;text-wrap:balance}
+h1{font-size:var(--t-display)}
+h2.s,h3{font-size:var(--t-headline-s)}
 p{text-wrap:pretty}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
-section{padding:clamp(56px,9vw,112px) 0}
-.eyebrow{font:400 13px/1 var(--body);letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
-.lead{color:var(--dim);max-width:34em;margin-top:18px}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 30px;background:var(--gold);color:var(--ink);border:1px solid var(--gold);font:400 16px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:background-color .2s ease-out,color .2s ease-out,transform .16s ease-out}
-.btn:active{transform:scale(.98)}
-.btn.ghost{background:transparent;color:var(--gold)}
-@media (hover:hover){.btn:hover{background:var(--gold-hi);border-color:var(--gold-hi)}.btn.ghost:hover{background:var(--gold);color:var(--ink)}}
-:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
-.top{display:flex;align-items:center;justify-content:space-between;padding:18px var(--gutter);max-width:var(--max);margin:0 auto}
-.top img{height:50px;width:auto}
-.top a.t{font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);text-decoration:none}
+.lead{font-size:var(--t-lead);line-height:1.55;color:var(--dim);max-width:34em;margin-top:22px}
+.tag{font-style:italic;font-size:var(--t-lead);line-height:1.5;color:var(--dim);max-width:30em;margin-top:22px}
+.small{font-size:14px;line-height:1.55;color:var(--dim)}
+.num{font:400 clamp(34px,4vw,52px)/1 var(--f-script);display:block;margin-bottom:10px}
+.pad{padding:clamp(56px,9vw,128px) var(--pad)}
+.in{max-width:1280px;margin:0 auto}
 
-/* hero */
-.hero{padding:8px 0 clamp(40px,6vw,80px)}
-.hero .wrap{display:grid;gap:32px}
-.hero h1 em{font-style:italic;color:var(--gold-hi)}
-.hero .cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
-.hero .meta{margin-top:26px;color:var(--faint);font-size:15px;letter-spacing:.04em}
-.hero figure{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--ink-3)}
-.hero figure img{width:100%;height:100%;object-fit:cover}
-figcaption{font-size:13px;letter-spacing:.06em;color:var(--faint);margin-top:8px}
+/* link atom: caps, tracked, italic + underline on hover/focus/press, no transition */
+.lk{display:inline-grid;align-content:end;min-height:44px;padding:12px 0 3px;border-bottom:1px solid transparent;color:inherit;text-decoration:none;font:400 14px/1.3 var(--f-serif);letter-spacing:.2em;text-transform:uppercase}
+.lk>span{grid-area:1/1}
+.lk::before{content:attr(data-t);grid-area:1/1;font-style:italic;height:0;overflow:hidden;visibility:hidden}
+.lk:hover,.lk:focus-visible,.lk:active{font-style:italic;border-bottom-color:currentColor}
+.inl{color:inherit;text-decoration:underline;text-underline-offset:3px}
+
+/* photograph atom: original, warm tone, 1px square frame */
+.ph{display:block;width:100%;filter:var(--tone);border:1px solid var(--paper)}
+figcaption{font-style:italic;font-size:14px;line-height:1.5;color:var(--dim);margin-top:8px}
+
+/* bar and hero (aubergine) */
+.bar{display:flex;align-items:center;justify-content:space-between;height:76px;padding:0 var(--pad)}
+.bar img{height:40px;width:auto}
+.hero{padding:clamp(28px,5vw,64px) var(--pad) clamp(56px,8vw,112px)}
+.hero .in{display:grid;gap:36px}
+.hero figure{max-width:560px}
+.hero .lk{margin-top:18px}
 @media (min-width:900px){
-  .hero .wrap{grid-template-columns:1.1fr .9fr;gap:clamp(40px,6vw,88px);align-items:center}
-  .hero figure{aspect-ratio:3/4}
+  .hero .in{grid-template-columns:5fr 7fr;align-items:center;gap:clamp(40px,6vw,96px)}
+  .hero figure{justify-self:end;width:min(100%,calc((100vh - 200px)*.667));max-width:560px}
 }
-@media (max-width:899px){.hero figure{order:-1;aspect-ratio:4/4.4}}
+@media (max-width:899px){.hero figure{order:-1;max-width:none}}
 
-/* proof strip */
-.proof{border-block:1px solid var(--line);padding:28px 0}
-.proof ul{list-style:none;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:22px 16px;text-align:center}
-.proof b{display:block;font:500 clamp(28px,4vw,42px)/1 var(--serif);color:var(--gold)}
-.proof span{font-size:14px;letter-spacing:.06em;color:var(--dim)}
-@media (min-width:760px){.proof ul{grid-template-columns:repeat(4,1fr)}}
+/* figures (cream) */
+.figs{display:grid;gap:40px}
+.fig b{display:block;font:500 clamp(46px,6vw,84px)/1 var(--f-display);letter-spacing:.02em}
+.fig span{display:block;margin-top:8px;color:var(--dim);max-width:22em}
+@media (min-width:760px){.figs{grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,96px)}}
+.statement{margin-top:clamp(40px,6vw,72px);padding-top:28px;border-top:1px solid var(--line);max-width:34em}
 
-/* gallery */
-.gal{display:grid;gap:12px;margin-top:36px;grid-template-columns:1fr 1fr}
-.gal figure{position:relative;overflow:hidden;background:var(--ink-3);aspect-ratio:4/5}
-.gal figure.wide{grid-column:span 2;aspect-ratio:3/2}
-.gal figure.wide.sq{aspect-ratio:1/1}
-.gal img{width:100%;height:100%;object-fit:cover}
-.gal figcaption{position:absolute;left:0;right:0;bottom:0;padding:28px 14px 12px;margin:0;color:var(--paper);background:linear-gradient(transparent,rgba(18,20,28,.78))}
-@media (min-width:900px){
-  .gal{grid-template-columns:repeat(6,1fr);gap:16px}
-  .gal figure,.gal figure.wide.sq{grid-column:span 2;aspect-ratio:4/5}
-  .gal figure.wide{grid-column:span 2;aspect-ratio:3/2}
-}
-.more{margin-top:28px;color:var(--dim)}
-.more a{color:var(--gold);text-underline-offset:4px}
+/* gallery (brown): framed photographs in the order the week ran, never cropped */
+.wall{display:grid;gap:28px 16px;margin-top:clamp(32px,5vw,56px);grid-template-columns:1fr 1fr;align-items:start}
+@media (min-width:900px){.wall{grid-template-columns:repeat(3,1fr);gap:40px 24px}}
+.more{margin-top:clamp(28px,4vw,48px)}
 
-/* offer */
-.offer{background:var(--ink-2)}
-.offer .grid{display:grid;gap:40px;margin-top:36px}
-.card{border:1px solid var(--line);padding:clamp(26px,4vw,48px);background:var(--ink)}
-.card .name{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
-.card .price{font:500 clamp(48px,7vw,76px)/1 var(--serif);margin:10px 0 2px;color:var(--gold-hi)}
-.card .price small{font:400 16px var(--body);color:var(--faint);letter-spacing:.06em}
-.card ul{list-style:none;padding:0;margin:26px 0 30px;display:grid;gap:14px}
-.card li{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start}
-.card li svg{width:18px;height:18px;margin-top:6px;color:var(--gold)}
-.card .fine{margin-top:16px;font-size:14px;color:var(--faint)}
-.steps{list-style:none;padding:0;display:grid;gap:26px;counter-reset:s}
-.steps li{counter-increment:s;display:grid;grid-template-columns:44px 1fr;gap:6px 14px}
-.steps li::before{content:counter(s);font:500 34px/1 var(--serif);color:var(--gold)}
-.steps b{font:500 24px/1.2 var(--serif)}
-.steps p{grid-column:2;color:var(--dim);margin-top:2px}
-@media (min-width:900px){.offer .grid{grid-template-columns:1.15fr .85fr;gap:72px;align-items:start}}
+/* offer (cream) */
+.offer .in{display:grid;gap:40px}
+.price{font:italic 400 clamp(34px,4vw,52px)/1.1 var(--f-serif);letter-spacing:.02em;margin-top:22px}
+ul.r{list-style:none;padding:0;margin:28px 0 8px;max-width:36em}
+ul.r li{padding:12px 0 12px 22px;border-top:1px solid var(--line);position:relative}
+ul.r li:last-child{border-bottom:1px solid var(--line)}
+ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1px;background:var(--paper)}
+.fine{max-width:36em;margin-top:14px}
+@media (min-width:900px){.offer .in{grid-template-columns:5fr 7fr;gap:clamp(40px,6vw,96px)}}
 
-/* reviews */
-.revs{columns:1;column-gap:18px;margin-top:36px}
-.rev{break-inside:avoid;margin-bottom:18px;border:1px solid var(--line);padding:26px;display:flex;flex-direction:column;gap:14px}
-.rev .stars{color:var(--gold);letter-spacing:.2em;font-size:15px}
-.rev blockquote{font:italic 400 17px/1.5 var(--body)}
-.rev footer{font-size:14px;letter-spacing:.06em;color:var(--dim)}
-.rev footer a{color:var(--gold);text-underline-offset:4px}
+/* how it works (maroon) */
+.steps{list-style:none;padding:0;display:grid;gap:36px;margin-top:clamp(32px,5vw,56px)}
+.steps li p{max-width:26em;margin-top:8px;color:var(--dim)}
+.steps h3{font-size:clamp(22px,2.4vw,30px)}
+@media (min-width:900px){.steps{grid-template-columns:repeat(4,1fr);gap:32px}}
+
+/* reviews (cream): quote, hairline, name in small caps */
+.revs{columns:1;column-gap:clamp(28px,4vw,56px);margin-top:clamp(32px,5vw,56px)}
+.rv{break-inside:avoid;border-top:1px solid var(--line);padding:22px 0 30px}
+.rv blockquote{font-style:italic;font-size:17px;line-height:1.55;letter-spacing:.02em}
+.rv .nm{margin-top:14px;font-size:15px;font-variant:small-caps;letter-spacing:.08em;color:var(--soft)}
 @media (min-width:760px){.revs{columns:2}}
 @media (min-width:1080px){.revs{columns:3}}
 
-/* form */
-.enq{background:var(--ink-2)}
-.enq .wrap{max-width:860px}
-.form-shell{margin-top:32px;background:#fff;min-height:420px}
-.form-shell iframe{display:block;width:100%;min-height:420px;border:0}
-.alt{margin-top:22px;color:var(--dim);font-size:16px}
-.alt a{color:var(--gold);text-underline-offset:4px}
+/* enquiry (aubergine): the form is Studio Ninja's, transparent on the paper */
+.form-wrap{max-width:760px;margin-top:clamp(28px,4vw,48px)}
+.form-wrap iframe{display:block;width:1px;min-width:100%;height:1363px;border:0;background:transparent;color-scheme:light}
+.alt{margin-top:22px}
+.foot{display:flex;flex-wrap:wrap;gap:20px 40px;align-items:center;justify-content:space-between;margin-top:clamp(48px,7vw,96px);padding-top:28px;border-top:1px solid var(--line)}
+.foot img{height:44px;width:auto}
 
-footer.site{padding:36px 0 24px;color:var(--faint);font-size:14px;text-align:center}
-
-/* sticky bar */
-.bar{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;gap:12px;align-items:center;justify-content:space-between;padding:12px var(--gutter) calc(12px + env(safe-area-inset-bottom));background:rgba(18,20,28,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid var(--line);transform:translateY(0);transition:transform .25s ease-out}
-.bar.hide{transform:translateY(110%)}
-.bar p{font-size:15px;line-height:1.25;color:var(--dim)}
-.bar p b{display:block;font:500 20px/1.1 var(--serif);color:var(--paper)}
-.bar .btn{min-height:46px;padding:0 22px;white-space:nowrap}
-@media (min-width:900px){.bar p{font-size:16px}}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.bar{transition:none}}
+/* sticky link on phones and desktop: one primary link per screen */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;align-items:center;justify-content:center;gap:28px;height:calc(60px + env(safe-area-inset-bottom));padding:0 var(--pad) env(safe-area-inset-bottom);border-top:1px solid var(--line);transition:opacity .28s cubic-bezier(.16,1,.3,1)}
+.sticky.hide{opacity:0;pointer-events:none}
+.sticky .p{font-style:italic;color:var(--dim)}
+@media (max-width:520px){.sticky .p{display:none}}
+@media (prefers-reduced-motion:reduce){.sticky{transition:none}}
 </style>
 </head>
 <body>
 
-<header class="top">
-  <img src="img/logo.png" alt="Chaar Bhai" width="102" height="50">
-  <a class="t" href="#enquire">Enquire</a>
+<header class="bar g-aub">
+  <img src="img/logo.png" alt="Chaar Bhai" width="82" height="40">
+  <a class="lk" href="#enquire" data-t="Check your date"><span>Check your date</span></a>
 </header>
 
 <main>
-<section class="hero" aria-labelledby="h">
-  <div class="wrap">
+<section class="hero g-aub" aria-labelledby="h">
+  <div class="in">
     <div>
-      <p class="eyebrow">Wedding photography and film · Greater Toronto Area, and we travel</p>
-      <h1 id="h">One full wedding day, <em>photographed and filmed</em> by the same team.</h1>
-      <p class="lead">Golden Hour is ten hours with a photographer and a videographer beside you, from getting ready to the last dance. Every photo retouched. Your film, delivered. No stitching together vendors.</p>
-      <div class="cta">
-        <a class="btn" href="#enquire">Check your date</a>
-        <a class="btn ghost" href="#offer">See what's included</a>
-      </div>
-      <p class="meta">Booking 2026 and 2027 · Fill in the form and we'll get in touch</p>
+      <h1 id="h">One wedding day, photographed and filmed</h1>
+      <p class="tag">Golden Hour is ten hours with a photographer and a videographer, from getting ready to the last dance. Every photo retouched, and your film delivered.</p>
+      <a class="lk" href="#enquire" data-t="Check your date"><span>Check your date</span></a>
+      <p class="small" style="margin-top:14px">Booking 2026 and 2027. Fill in the form and we’ll come back to you.</p>
     </div>
     <figure>
-      <img src="photos/dania-aamir/ChaarBhai_DASE_0206_resized-1280.webp"
+      <img class="ph" src="photos/dania-aamir/ChaarBhai_DASE_0206_resized-1280.webp"
            srcset="photos/dania-aamir/ChaarBhai_DASE_0206_resized-640.webp 640w, photos/dania-aamir/ChaarBhai_DASE_0206_resized-1280.webp 1280w"
            sizes="(min-width:900px) 40vw, 100vw" width="1280" height="1920" fetchpriority="high" alt="A bride in an ivory gown and veil stands in warm light inside a dark, wood-panelled room">
+      <figcaption>Dania &amp; Aamir · Nikkah portraits</figcaption>
     </figure>
   </div>
 </section>
 
-<div class="proof">
-  <div class="wrap"><ul>
-    <li><b>2013</b><span>photographing weddings since</span></li>
-    <li><b>1,800+</b><span>couples</span></li>
-    <li><b>43</b><span>five-star Google reviews</span></li>
-    <li><b>5</b><span>countries: Canada, Pakistan, UAE, Thailand, USA</span></li>
-  </ul></div>
-</div>
-
-<section aria-labelledby="gh">
-  <div class="wrap">
-    <p class="eyebrow">Real weddings</p>
-    <h2 id="gh">Every part of the week, from six real couples.</h2>
-    <p class="lead">Sangeet to rukhsati. Each frame below is from a different wedding we photographed and filmed.</p>
-    <div class="gal">
-      <figure><img loading="lazy" src="photos/darmant-harpal/0B0A1715-640.webp" srcset="photos/darmant-harpal/0B0A1715-640.webp 640w, photos/darmant-harpal/0B0A1715-1280.webp 1280w" sizes="(min-width:900px) 380px, 50vw" width="1280" height="853" alt="A bride in a pale blue lehenga lifts her henna-covered hands in front of fairy lights at night"><figcaption>The sangeet · Darmant &amp; Harpal</figcaption></figure>
-      <figure><img loading="lazy" src="photos/neelima-vignesh/ChaarBhai_NVME_0006_resized-640.webp" srcset="photos/neelima-vignesh/ChaarBhai_NVME_0006_resized-640.webp 640w, photos/neelima-vignesh/ChaarBhai_NVME_0006_resized-1280.webp 1280w" sizes="(min-width:900px) 380px, 50vw" width="1280" height="854" alt="A laughing bride in red having her mehndi applied while friends lean in"><figcaption>The mehndi · Neelima &amp; Vignesh</figcaption></figure>
-      <figure class="wide sq"><img loading="lazy" src="photos/mahrukh-mohsan/ChaarBhai_MMNE_0022-640.webp" srcset="photos/mahrukh-mohsan/ChaarBhai_MMNE_0022-640.webp 640w, photos/mahrukh-mohsan/ChaarBhai_MMNE_0022-1280.webp 1280w" sizes="(min-width:900px) 380px, 50vw" width="1280" height="1419" alt="A bride in a red veil holds a gold-edged dupatta before her nikkah"><figcaption>The nikkah · Mahrukh &amp; Mohsan</figcaption></figure>
-      <figure class="wide"><img loading="lazy" src="photos/haleema-hassaan/_FR_1152_resized-1280.webp" srcset="photos/haleema-hassaan/_FR_1152_resized-640.webp 640w, photos/haleema-hassaan/_FR_1152_resized-1280.webp 1280w" sizes="(min-width:900px) 760px, 100vw" width="1280" height="854" alt="A groom's baraat arrives by sports car as guests look on"><figcaption>The baraat · Haleema &amp; Hassaan</figcaption></figure>
-      <figure class="wide"><img loading="lazy" src="photos/khadija-khurram/ChaarBhai_KKRE_1411-640.webp" srcset="photos/khadija-khurram/ChaarBhai_KKRE_1411-640.webp 640w, photos/khadija-khurram/ChaarBhai_KKRE_1411-1280.webp 1280w" sizes="(min-width:900px) 380px, 50vw" width="1280" height="853" alt="A couple makes their reception entrance through dry-ice fog"><figcaption>The reception · Khadija &amp; Khurram</figcaption></figure>
-      <figure class="wide"><img loading="lazy" src="photos/saman-hassan/ChaarBhai_SHSS_2205-640.webp" srcset="photos/saman-hassan/ChaarBhai_SHSS_2205-640.webp 640w, photos/saman-hassan/ChaarBhai_SHSS_2205-1280.webp 1280w" sizes="(min-width:900px) 380px, 50vw" width="1280" height="853" alt="A bride beams beside her groom during the rukhsati, a Quran held over her head"><figcaption>The rukhsati · Saman &amp; Hassan</figcaption></figure>
+<section class="pad g-cream" aria-label="Who we are">
+  <div class="in">
+    <div class="figs">
+      <p class="fig"><b>1,800+</b><span>weddings photographed and filmed since 2013.</span></p>
+      <p class="fig"><b>336,600+</b><span>photographs delivered to couples and their families.</span></p>
     </div>
-    <p class="more">There are 33 weddings in our full archive. <a href="work.html">See all our work</a>.</p>
+    <p class="statement lead" style="color:inherit">Most couples book a photographer, then a videographer, then spend a month getting the two to agree on the day. Golden Hour is one team and one plan. We shoot South Asian and multi-day weddings in Canada, and we have travelled to Pakistan, the UAE, Thailand and the United States.</p>
   </div>
 </section>
 
-<section class="offer" id="offer" aria-labelledby="oh">
-  <div class="wrap">
-    <p class="eyebrow">The offer</p>
-    <h2 id="oh">Golden Hour: your whole wedding day, covered.</h2>
-    <p class="lead">Most couples end up booking a photographer, then a videographer, then trying to make them work together. Golden Hour is one team, one plan, one price, for the day that matters most.</p>
-    <div class="grid">
-      <div class="card">
-        <p class="name">Golden Hour</p>
-        <p class="price">$5,500 <small>CAD</small></p>
-        <p style="color:var(--dim)">Ten hours of photo and video coverage for one full day.</p>
-        <ul>
-          <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.6 6.4 12 13 4.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>A photographer and a videographer</b> with you for ten hours.</span></li>
-          <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.6 6.4 12 13 4.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>A get-ready session</b> so the morning is part of the story.</span></li>
-          <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.6 6.4 12 13 4.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Every photo individually retouched</b>, then delivered in a private online gallery.</span></li>
-          <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.6 6.4 12 13 4.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Your wedding film</b> delivered by private download link, with professional audio and on-camera interviews.</span></li>
-          <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.6 6.4 12 13 4.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Experience with South Asian and multi-day weddings</b>: nikkah, baraat, anand karaj, mehndi, reception.</span></li>
-        </ul>
-        <a class="btn" href="#enquire">Check your date</a>
-        <p class="fine">Prices in Canadian dollars. Extra hours are $550 each. Travel and accommodation are quoted per wedding. Booking takes an initial deposit, with the rest paid later as set out in your contract. Want a bigger weekend? Ask us about our longer packages in the form.</p>
-      </div>
-      <div>
-        <h3 style="margin-bottom:22px">How it works</h3>
-        <ol class="steps">
-          <li><b>Send us the form</b><p>Two minutes: your date, your events, what matters to you.</p></li>
-          <li><b>We get in touch</b><p>We'll set up a meeting to get to know you: your wedding, the coverage you need and the photos you're after.</p></li>
-          <li><b>We send a contract</b><p>Once we know what you need, you get the details in writing.</p></li>
-          <li><b>You book, we show up</b><p>A deposit holds your date. You enjoy the day; we photograph and film it.</p></li>
-        </ol>
-      </div>
+<section class="pad g-brown" aria-labelledby="gh">
+  <div class="in">
+    <h2 id="gh">Sangeet to rukhsati</h2>
+    <p class="lead">One frame each from six weddings, in the order the week ran.</p>
+    <div class="wall">
+      <figure><img class="ph" loading="lazy" src="photos/darmant-harpal/0B0A1715-640.webp" srcset="photos/darmant-harpal/0B0A1715-640.webp 640w, photos/darmant-harpal/0B0A1715-1280.webp 1280w" sizes="(min-width:900px) 33vw, 50vw" width="1280" height="853" alt="A bride in a pale blue lehenga lifts her henna-covered hands in front of fairy lights at night"><figcaption>The night before · Darmant &amp; Harpal</figcaption></figure>
+      <figure><img class="ph" loading="lazy" src="photos/neelima-vignesh/ChaarBhai_NVME_0006_resized-640.webp" srcset="photos/neelima-vignesh/ChaarBhai_NVME_0006_resized-640.webp 640w, photos/neelima-vignesh/ChaarBhai_NVME_0006_resized-1280.webp 1280w" sizes="(min-width:900px) 33vw, 50vw" width="1280" height="854" alt="A laughing bride in red having her mehndi applied while a relative leans in"><figcaption>Henna · Neelima &amp; Vignesh</figcaption></figure>
+      <figure><img class="ph" loading="lazy" src="photos/haleema-hassaan/_FR_1152_resized-640.webp" srcset="photos/haleema-hassaan/_FR_1152_resized-640.webp 640w, photos/haleema-hassaan/_FR_1152_resized-1280.webp 1280w" sizes="(min-width:900px) 33vw, 50vw" width="1280" height="854" alt="A groom's baraat arrives by sports car as guests look on"><figcaption>The arrival · Haleema &amp; Hassaan</figcaption></figure>
+      <figure><img class="ph" loading="lazy" src="photos/mahrukh-mohsan/ChaarBhai_MMNE_0022-640.webp" srcset="photos/mahrukh-mohsan/ChaarBhai_MMNE_0022-640.webp 640w, photos/mahrukh-mohsan/ChaarBhai_MMNE_0022-1280.webp 1280w" sizes="(min-width:900px) 33vw, 50vw" width="1280" height="1419" alt="A bride in a red veil holds a gold-edged dupatta before her nikkah"><figcaption>The ceremony · Mahrukh &amp; Mohsan</figcaption></figure>
+      <figure><img class="ph" loading="lazy" src="photos/khadija-khurram/ChaarBhai_KKRE_1411-640.webp" srcset="photos/khadija-khurram/ChaarBhai_KKRE_1411-640.webp 640w, photos/khadija-khurram/ChaarBhai_KKRE_1411-1280.webp 1280w" sizes="(min-width:900px) 33vw, 50vw" width="1280" height="853" alt="A couple makes their reception entrance through dry-ice fog"><figcaption>The reception · Khadija &amp; Khurram</figcaption></figure>
+      <figure><img class="ph" loading="lazy" src="photos/saman-hassan/ChaarBhai_SHSS_2205-640.webp" srcset="photos/saman-hassan/ChaarBhai_SHSS_2205-640.webp 640w, photos/saman-hassan/ChaarBhai_SHSS_2205-1280.webp 1280w" sizes="(min-width:900px) 33vw, 50vw" width="1280" height="853" alt="A bride beams beside her groom during the rukhsati, a Quran held over her head"><figcaption>The farewell · Saman &amp; Hassan</figcaption></figure>
+    </div>
+    <p class="more"><a class="lk" href="work.html" data-t="View the work"><span>View the work</span></a></p>
+  </div>
+</section>
+
+<section class="pad g-cream offer" id="offer" aria-labelledby="oh">
+  <div class="in">
+    <div>
+      <h2 id="oh">Golden Hour</h2>
+      <p class="price">$5,500 CAD</p>
+      <p class="lead">Ten hours of photo and video coverage for one full day. One photographer and one videographer, with you from getting ready to the last dance.</p>
+    </div>
+    <div>
+      <ul class="r">
+        <li>A photographer and a videographer for ten hours.</li>
+        <li>A get-ready session, so the morning is part of the day.</li>
+        <li>Every photo retouched one by one, in a private online gallery.</li>
+        <li>Your wedding film by private download link, recorded with professional audio and on-camera interviews.</li>
+        <li>Experience with South Asian and multi-day weddings: nikkah, baraat, anand karaj, mehndi, reception.</li>
+      </ul>
+      <p class="small fine">Prices are in Canadian dollars. Extra hours are $550 each. Travel and accommodation are quoted per wedding. Booking takes an initial deposit and the rest is paid later, as set out in your contract. Planning a longer weekend? Ask us about our larger packages in the form.</p>
+      <a class="lk" href="#enquire" data-t="Check your date"><span>Check your date</span></a>
     </div>
   </div>
 </section>
 
-<section aria-labelledby="rh">
-  <div class="wrap">
-    <p class="eyebrow">Reviews</p>
-    <h2 id="rh">What couples say after the wedding.</h2>
-    <p class="lead">Real reviews from Google and Facebook. Every name links to the original.</p>
+<section class="pad g-maroon" aria-labelledby="sh">
+  <div class="in">
+    <h2 id="sh">How booking works</h2>
+    <ol class="steps">
+      <li><span class="num">01 /</span><h3>Send the form</h3><p>Your date, your events and what matters to you. It takes two minutes.</p></li>
+      <li><span class="num">02 /</span><h3>We get in touch</h3><p>We set up a meeting to get to know you: your wedding, the coverage you need and the photos you’re after.</p></li>
+      <li><span class="num">03 /</span><h3>You get a contract</h3><p>Once we know what you need, the details come to you in writing.</p></li>
+      <li><span class="num">04 /</span><h3>A deposit holds the date</h3><p>You enjoy the day. We photograph and film it.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="pad g-cream" aria-labelledby="rh">
+  <div class="in">
+    <h2 id="rh">What couples wrote</h2>
+    <p class="lead">Reviews as written, from Google and Facebook. Each name links to the original.</p>
     <div class="revs" id="revs"></div>
-    <p class="more"><a href="reviews.html">See them on our reviews page</a></p>
   </div>
 </section>
 
-<section class="enq" id="enquire" aria-labelledby="eh">
-  <div class="wrap">
-    <p class="eyebrow">Check your date</p>
-    <h2 id="eh">Tell us about your wedding.</h2>
-    <p class="lead">Fill this in and we'll get in touch, usually within a day or two. No obligation.</p>
-    <div class="form-shell"><iframe id="sn-form-golden" title="Enquiry form" loading="lazy" src="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" allowfullscreen></iframe></div>
-    <p class="alt">Form not loading? <a href="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" target="_blank" rel="noopener">Open it in a new tab</a>, message us on Instagram <a href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">@chaarbhai</a>, or email <a href="mailto:info@chaarbhai.com">info@chaarbhai.com</a>.</p>
+<section class="pad g-aub" id="enquire" aria-labelledby="eh">
+  <div class="in">
+    <h2 id="eh">Tell us about your wedding</h2>
+    <p class="lead">Send us the date and the venue and we’ll come back to you, usually within a day or two.</p>
+    <div class="form-wrap"><iframe id="sn-form-golden" title="Enquiry form" loading="lazy" src="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" allowfullscreen></iframe></div>
+    <p class="small alt">Form not loading? <a class="inl" href="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" target="_blank" rel="noopener">Open it in a new tab</a>, message us on Instagram <a class="inl" href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">@chaarbhai</a>, or email <a class="inl" href="mailto:info@chaarbhai.com">info@chaarbhai.com</a>.</p>
+    <div class="foot">
+      <img src="img/logo.png" alt="Chaar Bhai" width="90" height="44">
+      <p class="small">Wedding photo and film, Greater Toronto Area. Since 2013. © Chaar Bhai</p>
+    </div>
   </div>
 </section>
 </main>
 
-<footer class="site"><div class="wrap">© Chaar Bhai · Wedding photography and film since 2013 · <a href="https://chaarbhai.com/">chaarbhai.com</a></div></footer>
-
-<div class="bar" id="bar">
-  <p><b>Golden Hour</b>10 hours · photo and film</p>
-  <a class="btn" href="#enquire">Check your date</a>
+<div class="sticky g-aub" id="sticky">
+  <span class="p">Golden Hour · $5,500 CAD</span>
+  <a class="lk" href="#enquire" data-t="Check your date"><span>Check your date</span></a>
 </div>
 
 <script src="reviews.js"></script>
 <script>
 (function(){
-  /* Reviews: picked by name from reviews.js so the text stays word for word. */
   /* Every review that links back to its original, except the few that aren't about weddings. */
   var SKIP=['Humna Bilal','Nashiya Tariq','Omama Javed','Zain Rehman'];
   var host=document.getElementById('revs');
   if(host&&typeof REVIEWS!=='undefined'){
     REVIEWS.forEach(function(r){
       if(!r.l||SKIP.indexOf(r.n)>-1)return;
-      var art=document.createElement('article');art.className='rev';
-      if(r.s===5){var st=document.createElement('div');st.className='stars';st.setAttribute('aria-label','5 stars');st.textContent='★★★★★';art.appendChild(st)}
+      var art=document.createElement('article');art.className='rv';
       var q=document.createElement('blockquote');q.textContent='“'+r.x+'”';
-      var f=document.createElement('footer');
-      var a=document.createElement('a');a.href=r.l;a.target='_blank';a.rel='noopener';a.textContent=r.n;f.appendChild(a);
-      f.appendChild(document.createTextNode(r.src==='f'?' · Facebook':' · Google review'));
-      art.append(q,f);
-      host.appendChild(art);
+      var p=document.createElement('p');p.className='nm';
+      var a=document.createElement('a');a.className='inl';a.href=r.l;a.target='_blank';a.rel='noopener';a.textContent=r.n;
+      p.appendChild(a);p.appendChild(document.createTextNode(' · '+(r.src==='f'?'Facebook':'Google')));
+      art.append(q,p);host.appendChild(art);
     });
   }
   /* Studio Ninja's resizer keeps the form frame as tall as the form. */
   var fr=document.getElementById('sn-form-golden');
   var s=document.createElement('script');s.async=true;
   s.src='https://app.studioninja.co/client-assets/form-render/assets/scripts/iframeResizer.js';
-  s.onload=function(){if(window.iFrameResize)iFrameResize({log:false,minHeight:420},fr)};
+  s.onload=function(){if(window.iFrameResize)iFrameResize({log:false,minHeight:320},fr)};
   document.head.appendChild(s);
-  /* The sticky bar steps aside while the form is on screen. */
-  var bar=document.getElementById('bar'),enq=document.getElementById('enquire');
+  /* The sticky link steps aside while the form is on screen. */
+  var st=document.getElementById('sticky'),enq=document.getElementById('enquire');
   if('IntersectionObserver' in window){
-    new IntersectionObserver(function(e){bar.classList.toggle('hide',e[0].isIntersecting)},{threshold:.08}).observe(enq);
+    new IntersectionObserver(function(e){st.classList.toggle('hide',e[0].isIntersecting)},{threshold:.05}).observe(enq);
   }
 })();
 </script>
