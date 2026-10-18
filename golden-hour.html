@@ -68,7 +68,10 @@ figcaption{font-style:italic;font-size:14px;line-height:1.5;color:var(--dim);mar
 .bar img{height:40px;width:auto}
 .hero{padding:clamp(28px,5vw,64px) var(--pad) clamp(56px,8vw,112px)}
 .hero .in{display:grid;gap:36px}
-.hero .ph{width:100%;height:auto}
+.hero .ph{width:100%;height:auto;border:0}
+.hero figure{perspective:900px;touch-action:pan-y}
+.hero .ph{transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .5s cubic-bezier(.22,1,.36,1);will-change:transform}
+.hero figure.tilt .ph{transition:transform .12s linear}
 .hero figure{max-width:560px}
 .hero .lk{margin-top:14px}
 @media (min-width:900px){
@@ -438,6 +441,14 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 <script>
 (function(){
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var hf=document.querySelector('.hero figure');
+  if(hf&&!reduce){var hi=hf.querySelector('.ph'),T=4;
+    function tilt(e){var r=hf.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+      hi.style.setProperty('--ry',(x*2*T).toFixed(2)+'deg');hi.style.setProperty('--rx',(-y*2*T).toFixed(2)+'deg')}
+    function rest(){hf.classList.remove('tilt');hi.style.setProperty('--rx','0deg');hi.style.setProperty('--ry','0deg')}
+    hf.addEventListener('pointerdown',function(e){hf.classList.add('tilt');tilt(e)});
+    hf.addEventListener('pointermove',function(e){if(e.pointerType==='mouse'||e.buttons||hf.classList.contains('tilt')){hf.classList.add('tilt');tilt(e)}});
+    hf.addEventListener('pointerleave',rest);hf.addEventListener('pointerup',function(e){if(e.pointerType!=='mouse')rest()});hf.addEventListener('pointercancel',rest)}
 
   /* Reviews: read from reviews.js so the text stays word for word and every name links to the original. */
   var SKIP=['Humna Bilal','Nashiya Tariq','Omama Javed','Zain Rehman'];
