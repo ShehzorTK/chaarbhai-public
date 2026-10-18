@@ -36,7 +36,7 @@
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;background:#F2EBDE}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{background:#F2EBDE;font:400 16px/1.55 var(--f-serif);font-variant-numeric:lining-nums;letter-spacing:.025em;-webkit-font-smoothing:antialiased;padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+body{background:#F2EBDE;font:400 16px/1.55 var(--f-serif);font-variant-numeric:lining-nums;letter-spacing:.025em;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}
 a{color:inherit}
 button{font:inherit;color:inherit;background:none;border:0;border-radius:0;cursor:pointer;-webkit-appearance:none;appearance:none}
@@ -58,7 +58,11 @@ p{text-wrap:pretty}
 .lk>span{grid-area:1/1}
 .lk::before{content:attr(data-t);grid-area:1/1;font-style:italic;height:0;overflow:hidden;visibility:hidden}
 .lk:hover,.lk:focus-visible,.lk:active{font-style:italic;border-bottom-color:currentColor}
-.inl{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.inl{color:inherit;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;transition:text-decoration-thickness 160ms ease,text-underline-offset 160ms ease,opacity 160ms ease}
+@media (hover:hover){.inl:hover{text-decoration-thickness:2px;text-underline-offset:5px;opacity:.78}}
+.inl:focus-visible{text-decoration-thickness:2px;text-underline-offset:5px}
+.inl:active{opacity:.78}
+@media (prefers-reduced-motion:reduce){.inl{transition:none}}
 
 /* photograph atom: original, warm tone, 1px square frame */
 .ph{display:block;filter:var(--tone)}
@@ -156,8 +160,23 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 .form-wrap{max-width:760px;margin:clamp(28px,4vw,48px) auto 0;text-align:left}
 .form-wrap iframe{display:block;width:1px;min-width:100%;height:1363px;border:0;background:transparent;color-scheme:light}
 .alt{margin-top:22px}
-.foot{display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:clamp(48px,7vw,96px);padding-top:32px;border-top:1px solid var(--line)}
-.foot img{height:44px;width:auto}
+.site-foot{padding:clamp(48px,6vw,84px) var(--pad) calc(26px + 60px + env(safe-area-inset-bottom))}
+.site-foot .ftop{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px;padding-bottom:52px;max-width:1280px;margin:0 auto}
+.site-foot .fm{line-height:0}
+.site-foot .fm img{width:clamp(210px,26vw,320px);height:auto}
+.site-foot .tagline{margin-top:18px;max-width:34ch;font-size:14px;line-height:1.6;color:var(--dim)}
+.site-foot h2{font:500 12px/1.3 var(--f-serif);letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px;color:var(--paper)}
+.site-foot .fc a{display:block;width:fit-content;min-height:44px;padding:10px 0 0;font-size:14px;line-height:1.6;color:var(--dim)}
+.site-foot .fbot{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;padding-top:24px;border-top:1px solid var(--line);max-width:1280px;margin:0 auto;font-size:14px;color:var(--dim)}
+.site-foot .fbot .credit-logo{height:15px;width:auto;display:block;opacity:.7}
+@media (max-width:820px){
+  .site-foot .ftop{grid-template-columns:1fr;gap:28px;padding-bottom:36px}
+  .site-foot .elsewhere{display:grid;grid-template-columns:1fr 1fr;column-gap:20px}
+  .site-foot .elsewhere h2{grid-column:1/-1}
+  .site-foot .legal{display:flex;flex-wrap:wrap;gap:0 18px}
+  .site-foot .legal h2{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .site-foot .legal a{padding-top:0;display:flex;align-items:center}
+}
 
 /* sticky link: price left, one link right */
 .sticky{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:20px;height:calc(60px + env(safe-area-inset-bottom));padding:0 var(--pad) env(safe-area-inset-bottom);border-top:1px solid var(--line);transition:opacity .28s cubic-bezier(.16,1,.3,1)}
@@ -425,13 +444,35 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
     <p class="lead">Send us your date and venue. We’ll get back to you within a day or two.</p>
     <div class="form-wrap"><iframe id="sn-form-golden" title="Enquiry form" loading="lazy" src="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" allowfullscreen></iframe></div>
     <p class="small alt">Form not loading? <a class="inl" href="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" target="_blank" rel="noopener">Open it in a new tab</a>, message us on Instagram <a class="inl" href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">@chaarbhai</a>, or email <a class="inl" href="mailto:info@chaarbhai.com">info@chaarbhai.com</a>.</p>
-    <div class="foot">
-      <img src="img/logo.png" alt="Chaar Bhai" width="90" height="44">
-      <p class="small">Wedding photo and film, Greater Toronto Area. Since 2013. © Chaar Bhai</p>
-    </div>
   </div>
 </section>
 </main>
+
+<footer class="site-foot g-aub" id="foot">
+  <div class="ftop">
+    <div>
+      <div class="fm"><img src="img/logo.png" alt="Chaar Bhai" width="320" height="156"></div>
+      <p class="tagline">Wedding photography and film since 2013. Based in the Greater Toronto Area.</p>
+    </div>
+    <div class="fc elsewhere">
+      <h2>Elsewhere</h2>
+      <a class="inl" href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">Instagram</a>
+      <a class="inl" href="https://www.youtube.com/@chaar.bhai." target="_blank" rel="noopener">YouTube</a>
+      <a class="inl" href="https://tiktok.com/@chaar.bhai" target="_blank" rel="noopener">TikTok</a>
+      <a class="inl" href="https://www.linkedin.com/company/chaarbhai" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="fc legal">
+      <h2>Legal</h2>
+      <a class="inl" href="index.html#/privacy">Privacy</a>
+      <a class="inl" href="index.html#/terms">Terms</a>
+      <a class="inl" href="index.html#/refunds">Refunds</a>
+    </div>
+  </div>
+  <div class="fbot">
+    <span>© 2026 Chaar Bhai Inc.</span>
+    <a href="https://instagram.com/blbtms" target="_blank" rel="noopener" aria-label="Bellbottoms Design Lab on Instagram"><img class="credit-logo" decoding="async" src="img/credit-logo.png" alt="Bellbottoms Design Lab"></a>
+  </div>
+</footer>
 
 <div class="sticky g-aub" id="sticky">
   <span class="p">Golden Hour · $5,500 CAD</span>
@@ -517,7 +558,9 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
   /* The sticky link steps aside while the form is on screen. */
   var st=document.getElementById('sticky'),enq=document.getElementById('enquire');
   if('IntersectionObserver' in window){
-    new IntersectionObserver(function(e){st.classList.toggle('hide',e[0].isIntersecting)},{threshold:.05}).observe(enq);
+    var seen={};
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){seen[e.target.id]=e.isIntersecting});st.classList.toggle('hide',!!(seen.enquire||seen.foot))},{threshold:.05});
+    io.observe(enq);io.observe(document.getElementById('foot'));
   }
 })();
 </script>
