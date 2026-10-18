@@ -433,7 +433,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 <section class="pad g-cream" aria-labelledby="rh">
   <div class="in">
     <h2 id="rh">What couples say</h2>
-    <p class="lead">Posted on Google and Facebook, as written.</p>
+    <p class="lead">Posted on Google, as written.</p>
     <div class="revs" id="revs"></div>
   </div>
 </section>
@@ -493,7 +493,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
     hf.addEventListener('pointerleave',rest);hf.addEventListener('pointerup',function(e){if(e.pointerType!=='mouse')rest()});hf.addEventListener('pointercancel',rest)}
 
   /* Reviews: read from reviews.js so the text stays word for word and every name links to the original. */
-  var SKIP=['Humna Bilal','Nashiya Tariq','Omama Javed','Zain Rehman'];
+  var KEEP=['Haaris 7khan','Zee S','Ramsha Zaeem','Noorin Manji','Qurat Ul Ain Nasir','Zair Syed','Usmaara I.','Zainab Jafari','Maryam F Rehman'];
   function byName(n){return (typeof REVIEWS!=='undefined')?REVIEWS.filter(function(x){return x.n===n})[0]:null}
   function link(r){var a=document.createElement('a');a.className='inl';a.href=r.l;a.target='_blank';a.rel='noopener';a.textContent=r.n;return a}
   var pull=document.querySelector('[data-review]');
@@ -501,8 +501,8 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
     if(pr){pull.querySelector('blockquote').textContent='“'+pr.x+'”';var pn=pull.querySelector('.nm');pn.appendChild(link(pr));pn.appendChild(document.createTextNode(' · Google'))}}
   var host=document.getElementById('revs');
   if(host&&typeof REVIEWS!=='undefined'){
-    REVIEWS.forEach(function(r){
-      if(!r.l||SKIP.indexOf(r.n)>-1)return;
+    KEEP.map(byName).forEach(function(r){
+      if(!r||!r.l)return;
       var art=document.createElement('article');art.className='rv';
       var q=document.createElement('blockquote');q.textContent='“'+r.x+'”';
       var p=document.createElement('p');p.className='nm';p.appendChild(link(r));
