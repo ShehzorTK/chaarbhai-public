@@ -196,6 +196,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 /* enquiry (aubergine), centred; the form is Studio Ninja's, transparent on the paper */
 .enq{text-align:center}
 .enq .lead{margin-inline:auto}
+.enq-grid{display:grid;gap:clamp(28px,4vw,48px);margin-top:clamp(28px,4vw,48px);text-align:left}.enq-grid .sum{margin:0;max-width:none}.enq-grid .form-wrap{margin:0;max-width:none}@media (min-width:900px){.enq-grid{grid-template-columns:5fr 7fr;align-items:start;gap:clamp(40px,5vw,72px)}.enq-grid .sum{position:sticky;top:24px}}
 .form-wrap{max-width:760px;margin:clamp(28px,4vw,48px) auto 0;text-align:left}
 .form-wrap iframe{display:block;width:1px;min-width:100%;height:1363px;border:0;background:transparent;color-scheme:light}
 .alt{margin-top:22px}
@@ -500,8 +501,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
   <div class="in">
     <h2 id="eh">Get in touch</h2>
     <p class="lead">Send us your date and venue. We’ll get back to you within a day or two.</p>
-    <div class="form-wrap"><iframe id="sn-form-golden" title="Enquiry form" loading="lazy" src="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" allowfullscreen></iframe></div>
-    <p class="small alt">Form not loading? <a class="inl" href="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" target="_blank" rel="noopener">Open it in a new tab</a>, message us on Instagram <a class="inl" href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">@chaarbhai</a>, or email <a class="inl" href="mailto:info@chaarbhai.com">info@chaarbhai.com</a>.</p>
+    <div class="enq-grid">
     <div class="sum" aria-labelledby="sumh">
       <h3 id="sumh">Golden Hour, in short</h3>
       <p class="eyebrow offer-line" data-offer style="margin:14px 0 0">Limited spots · <span data-left>only <span class="n">5</span> left</span></p>
@@ -513,6 +513,11 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
         <li>Backed by 1,800+ weddings since 2013 and the reviews above.</li>
       </ul>
       <p class="small">Extra hours are $550 each. A deposit holds your date, and a date can only be held for one couple, so the sooner you ask, the better the chance yours is free.</p>
+    </div>
+      <div class="enq-form">
+    <div class="form-wrap"><iframe id="sn-form-golden" title="Enquiry form" loading="lazy" src="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" allowfullscreen></iframe></div>
+    <p class="small alt">Form not loading? <a class="inl" href="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" target="_blank" rel="noopener">Open it in a new tab</a>, message us on Instagram <a class="inl" href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">@chaarbhai</a>, or email <a class="inl" href="mailto:info@chaarbhai.com">info@chaarbhai.com</a>.</p>
+      </div>
     </div>
   </div>
 </section>
