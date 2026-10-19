@@ -258,13 +258,14 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 .form-wrap{max-width:760px;margin:clamp(28px,4vw,48px) auto 0;text-align:left}
 .form-wrap iframe{display:block;width:1px;min-width:100%;height:1363px;border:0;background:transparent;color-scheme:light}
 .alt{margin-top:22px}
-.site-foot{--ink:#000;background-color:#000;background-image:none;padding:18px var(--pad) calc(10px + env(safe-area-inset-bottom))}
+.site-foot{--ink:#2B2B2E;--ink-2:#353538;background-color:var(--ink);background-image:var(--grain);background-size:400px;padding:18px var(--pad) calc(10px + env(safe-area-inset-bottom))}
 .site-foot .ftop{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 36px;max-width:1280px;margin:0 auto;padding-bottom:10px}
 .site-foot .fm{line-height:0}
 .site-foot .fm img{width:104px;height:auto}
 .site-foot .tagline{margin-top:6px;max-width:none;font-size:13px;line-height:1.4;color:var(--dim)}
-.site-foot .fc{display:flex;flex-wrap:wrap;align-items:center;gap:0 18px}
-.site-foot h2{font:500 11px/1.3 var(--f-serif);letter-spacing:.14em;text-transform:uppercase;margin:0;color:var(--paper)}
+.site-foot .fc{display:block}
+.site-foot .fc .fl{display:flex;flex-wrap:wrap;align-items:center;gap:0 18px}
+.site-foot h2{font:500 11px/1.3 var(--f-serif);letter-spacing:.14em;text-transform:uppercase;margin:0 0 2px;color:var(--paper)}
 .site-foot .fc a{display:inline-flex;align-items:center;min-height:40px;padding:0;font-size:14px;line-height:1.3;color:var(--dim)}
 .site-foot .fbot{display:flex;justify-content:space-between;align-items:center;gap:14px;padding-top:8px;border-top:1px solid var(--line);max-width:1280px;margin:0 auto;font-size:13px;color:var(--dim)}
 .site-foot .fbot .credit-logo{height:14px;width:auto;display:block;opacity:.7}
@@ -570,16 +571,20 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
     </div>
     <div class="fc elsewhere">
       <h2>Elsewhere</h2>
+      <div class="fl">
       <a class="inl" href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">Instagram</a>
       <a class="inl" href="https://www.youtube.com/@chaar.bhai." target="_blank" rel="noopener">YouTube</a>
       <a class="inl" href="https://tiktok.com/@chaar.bhai" target="_blank" rel="noopener">TikTok</a>
       <a class="inl" href="https://www.linkedin.com/company/chaarbhai" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
     </div>
     <div class="fc legal">
       <h2>Legal</h2>
+      <div class="fl">
       <a class="inl" href="index.html#/privacy">Privacy</a>
       <a class="inl" href="index.html#/terms">Terms</a>
       <a class="inl" href="index.html#/refunds">Refunds</a>
+      </div>
     </div>
   </div>
   <div class="fbot">
