@@ -189,6 +189,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 @media (min-width:900px){.steps{grid-template-columns:repeat(4,1fr);gap:32px}}
 
 /* reviews (cream): quote, hairline, name in small caps */
+.inlogo{display:inline-block;height:1.6em;width:auto;vertical-align:-.5em;margin:0 .1em}
 .readall{margin-top:22px}
 .tb{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(20px,3vw,32px)}
 .tbd{display:flex;align-items:center;gap:14px;padding:14px 20px 14px 16px;border:1px solid var(--line-2);border-radius:10px;background:var(--ink-2);color:var(--paper);text-decoration:none}
@@ -449,7 +450,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 
 <section class="pad g-cream films" aria-labelledby="fh">
   <div class="in">
-    <div class="head"><h2 id="fh">Watch how a Chaar Bhai film feels</h2><p class="lead">Five highlight films from our YouTube channel. Tap to play.</p></div>
+    <div class="head"><h2 id="fh">Watch how a <img class="inlogo" src="img/logo-dark.png" alt="Chaar Bhai" width="82" height="40"> film feels</h2><p class="lead">Five highlight films from our YouTube channel. Tap to play.</p></div>
     <div class="sl" data-sl data-loop>
       <div class="sl-top"><p class="loc" style="margin:0"></p>
         <p class="ctl"><span class="cnt" data-cnt aria-live="polite"></span><button class="lk" type="button" data-prev data-t="Previous"><span>Previous</span></button><button class="lk" type="button" data-next data-t="Next"><span>Next</span></button></p></div>
