@@ -95,9 +95,12 @@ figcaption{font-style:italic;font-size:14px;line-height:1.5;color:var(--dim);mar
 .prose{max-width:36em}
 .prose p{font-size:var(--t-lead);line-height:1.6;margin-top:18px;color:var(--dim)}
 .prose p:first-of-type{margin-top:26px}
-.how{list-style:none;padding:0;margin:clamp(28px,4vw,48px) 0 0;max-width:36em}
+.how{list-style:none;padding:0;margin:clamp(28px,4vw,48px) 0 0;display:grid;gap:0 clamp(24px,3vw,44px)}
 .how li{padding:16px 0;border-top:1px solid var(--line);font-size:var(--t-lead);line-height:1.5}
-.how li:last-child{border-bottom:1px solid var(--line)}
+.how b{display:block;margin-bottom:6px}
+@media (max-width:759px){.how li:last-child{border-bottom:1px solid var(--line)}}
+@media (min-width:760px){.how{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1080px){.how{grid-template-columns:repeat(4,1fr)}}
 .how b{font-weight:400;font-style:italic}
 .faqsec .in{max-width:44em}.faq{margin-top:clamp(28px,4vw,48px)}
 .faq details{border-top:1px solid var(--line)}
@@ -186,6 +189,18 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 @media (min-width:900px){.steps{grid-template-columns:repeat(4,1fr);gap:32px}}
 
 /* reviews (cream): quote, hairline, name in small caps */
+.readall{margin-top:22px}
+.tb{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(20px,3vw,32px)}
+.tbd{display:flex;align-items:center;gap:14px;padding:14px 20px 14px 16px;border:1px solid var(--line-2);border-radius:10px;background:var(--ink-2);color:var(--paper);text-decoration:none}
+.tbd:focus-visible{outline:2px solid var(--paper);outline-offset:3px}
+.tb-logo{width:34px;height:34px;flex:none}.tb-meta{width:40px;height:40px}
+.tb-body{display:grid;gap:2px;line-height:1.25}.tb-name{font-size:13px}
+.tb-score{display:flex;align-items:center;gap:7px}.tb-score b{font-size:20px;font-weight:600;font-variant-numeric:tabular-nums}
+.tb-rec{font-size:13px;color:var(--dim)}.tb-sub{font-size:12px;color:var(--dim)}
+.stars{position:relative;display:inline-flex;gap:1px;color:var(--line-2);line-height:0}.stars svg{width:16px;height:16px;fill:currentColor;flex:none}
+.stars-fill{position:absolute;inset:0 auto 0 0;display:inline-flex;gap:1px;overflow:hidden;color:#FBBC04}
+@media (max-width:520px){.tb{display:grid}}
+@media (hover:hover){.tbd:hover .tb-sub{text-decoration:underline}}
 .revs{columns:1;column-gap:clamp(28px,4vw,56px);margin-top:clamp(32px,5vw,56px)}
 .rv{break-inside:avoid;border-top:1px solid var(--line);padding:22px 0 30px}
 .rv blockquote{font-style:italic;font-size:17px;line-height:1.55;letter-spacing:.02em}
@@ -250,6 +265,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
     <figure class="pull" data-review="Dania Daanish">
       <blockquote></blockquote>
       <p class="nm"></p>
+      <a class="lk readall" href="#reviews" data-t="Read all reviews"><span>Read all reviews</span></a>
     </figure>
   </div>
 </section>
@@ -263,7 +279,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 </section>
 
 <section class="pad g-cream" aria-labelledby="mh">
-  <div class="in prose">
+  <div class="in">
     <h2 id="mh">Your wedding, told as your story</h2>
     <ul class="how">
       <li><b>Your culture, understood.</b> Hindu, Muslim, Sikh and Christian weddings, from the mehndi and nikkah to the anand karaj, baraat and reception, including multi-day weddings. We know what the important moments are before they happen.</li>
@@ -493,6 +509,10 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
   <div class="in">
     <h2 id="rh">What couples say, as they wrote it</h2>
     <p class="lead">Posted on Google, as written.</p>
+    <div class="tb">
+      <a class="tbd" href="https://www.google.com/maps?cid=901197728530734372" target="_blank" rel="noopener" aria-label="Rated 4.8 out of 5 from 37 reviews on Google. Read them on Google."><svg class="tb-logo" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg><span class="tb-body"><span class="tb-name">Google Reviews</span><span class="tb-score"><b>4.8</b><span class="stars" role="img" aria-label="4.8 out of 5 stars"><span class="stars-fill" style="width:96%"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></span></span><span class="tb-sub">Based on 37 reviews</span></span></a>
+      <a class="tbd" href="https://www.facebook.com/chaarbhai/reviews" target="_blank" rel="noopener" aria-label="94% recommend, from 344 reviews on Facebook. Read them on Facebook."><svg class="tb-logo tb-meta" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="metag2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0064E1"/><stop offset=".6" stop-color="#0073EE"/><stop offset="1" stop-color="#0082FB"/></linearGradient></defs><path fill="url(#metag2)" d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></svg><span class="tb-body"><span class="tb-name">Facebook Reviews</span><span class="tb-score"><b>94%</b><span class="tb-rec">recommend</span></span><span class="tb-sub">Based on 344 reviews</span></span></a>
+    </div>
     <div class="revs" id="revs"></div>
   </div>
 </section>
