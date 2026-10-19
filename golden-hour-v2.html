@@ -99,7 +99,7 @@ figcaption{font-style:italic;font-size:14px;line-height:1.5;color:var(--dim);mar
 .how li{padding:16px 0;border-top:1px solid var(--line);font-size:var(--t-lead);line-height:1.5}
 .how li:last-child{border-bottom:1px solid var(--line)}
 .how b{font-weight:400;font-style:italic}
-.faq{max-width:44em;margin-top:clamp(28px,4vw,48px)}
+.faqsec .in{max-width:44em}.faq{margin-top:clamp(28px,4vw,48px)}
 .faq details{border-top:1px solid var(--line)}
 .faq details:last-child{border-bottom:1px solid var(--line)}
 .faq summary{list-style:none;cursor:pointer;min-height:44px;padding:16px 0;font-size:var(--t-lead);line-height:1.4;display:flex;justify-content:space-between;gap:16px;align-items:baseline}
@@ -107,14 +107,14 @@ figcaption{font-style:italic;font-size:14px;line-height:1.5;color:var(--dim);mar
 .faq summary::after{content:"+";font-family:var(--f-display);font-size:26px;line-height:1}
 .faq details[open] summary::after{content:"\2212"}
 .faq details p{padding:0 0 20px;max-width:36em;color:var(--dim);font-size:var(--t-lead);line-height:1.6}
-.sticky{border-top:1px solid var(--line-2);box-shadow:0 -10px 28px rgba(42,29,15,.14)}
-.sticky .p{white-space:nowrap;gap:2px;min-width:0}.sticky [data-left]{display:inline-block}.sticky [data-left]::first-letter{text-transform:uppercase}
+.sticky{border-top:1px solid var(--line-2);box-shadow:0 -10px 28px rgba(0,0,0,.28)}
+.n{color:#F0B35A;font-style:normal;font-weight:600}.sticky .p{white-space:nowrap;gap:2px;min-width:0}.sticky [data-left]{display:inline-block}.sticky [data-left]::first-letter{text-transform:uppercase}
 .sticky .lim{display:none}@media (min-width:480px){.sticky .lim{display:inline}}
-.sticky .btn{margin:0;flex:none;min-height:48px;padding:0 18px;letter-spacing:.12em;font-size:13px;border:1px solid #5B3A23;background:#5B3A23;color:#F2EBDE;transition:background-color .2s cubic-bezier(.16,1,.3,1),color .2s cubic-bezier(.16,1,.3,1)}
-@media (hover:hover){.sticky .btn:hover{background:#fff;color:#5B3A23}}
-.sticky .btn:active{background:#fff;color:#5B3A23}
-.sticky .btn:focus-visible{outline-color:#5B3A23}
-.sticky .p{display:grid;line-height:1.3}.sticky .p1{font-size:13px;letter-spacing:.04em}.sticky .p2{font-style:italic;font-size:15px}@media (max-width:380px){.sticky{gap:12px}.sticky .p2{font-size:14px}}
+.sticky .btn{margin:0;flex:none;min-height:48px;padding:0 18px;letter-spacing:.12em;font-size:13px;border:1px solid #fff;background:#fff;color:#2B2530;transition:background-color .2s cubic-bezier(.16,1,.3,1),color .2s cubic-bezier(.16,1,.3,1)}
+@media (hover:hover){.sticky .btn:hover{background:#F2EBDE;border-color:#F2EBDE}}
+.sticky .btn:active{background:#F2EBDE;border-color:#F2EBDE}
+.sticky .btn:focus-visible{outline-color:#fff}
+.sticky .p{display:grid;line-height:1.3}.sticky .p1{font-size:15px;letter-spacing:.03em}.sticky .p2{font-style:italic;font-size:17px}.sticky .p{color:var(--paper)}@media (max-width:380px){.sticky{gap:10px}.sticky .p1{font-size:14px}.sticky .p2{font-size:15px}.sticky .btn{padding:0 14px;letter-spacing:.1em}}
 .sum{max-width:34em;margin:clamp(28px,4vw,48px) auto 0;padding:clamp(24px,4vw,40px);border:1px solid var(--line-2);text-align:left;background:var(--ink-2)}
 .sum h3{font-size:clamp(22px,2.4vw,30px)}
 .sum .price{margin-top:12px}
@@ -235,7 +235,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
   <img class="ph" src="photos/saadman-maariyah/ChaarBhai_SMNE_2343_resized-1280.webp" srcset="photos/saadman-maariyah/ChaarBhai_SMNE_2343_resized-640.webp 640w, photos/saadman-maariyah/ChaarBhai_SMNE_2343_resized-1280.webp 1280w" sizes="100vw" width="1280" height="1924" fetchpriority="high" alt="A bride and groom stand forehead to forehead in the backlit afternoon sun">
   <div class="glow"></div>
   <div class="txt">
-    <p class="pill offer-line" data-offer>Limited spots · <span data-left>only 5 left</span></p>
+    <p class="pill offer-line" data-offer>Limited spots · <span data-left>only <span class="n">5</span> left</span></p>
     <h1 id="h">1,800 families have trusted us with their wedding coverage.</h1>
     <p class="tag">Since 2013. Experienced, dependable, and easy to be around.</p>
     <a class="btn" id="hbtn" href="#enquire">Get in touch</a>
@@ -441,7 +441,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
   <div class="in">
     <div>
       <h2 id="oh">Golden Hour</h2>
-      <p class="eyebrow offer-line" data-offer style="margin:18px 0 0">Limited spots · <span data-left>only 5 left</span></p>
+      <p class="eyebrow offer-line" data-offer style="margin:18px 0 0">Limited spots · <span data-left>only <span class="n">5</span> left</span></p>
       <p class="price">$5,500 CAD</p>
       <p class="lead">Your whole wedding day, photographed and filmed, candid, timeless and made from your story. We take a limited number of weddings, so spots are limited.</p>
     </div>
@@ -471,7 +471,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
   </div>
 </section>
 
-<section class="pad g-brown" aria-labelledby="fqh">
+<section class="pad g-brown faqsec" aria-labelledby="fqh">
   <div class="in">
     <h2 id="fqh">What couples ask before they book</h2>
     <div class="faq">
@@ -504,7 +504,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
     <p class="small alt">Form not loading? <a class="inl" href="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" target="_blank" rel="noopener">Open it in a new tab</a>, message us on Instagram <a class="inl" href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">@chaarbhai</a>, or email <a class="inl" href="mailto:info@chaarbhai.com">info@chaarbhai.com</a>.</p>
     <div class="sum" aria-labelledby="sumh">
       <h3 id="sumh">Golden Hour, in short</h3>
-      <p class="eyebrow offer-line" data-offer style="margin:14px 0 0">Limited spots · <span data-left>only 5 left</span></p>
+      <p class="eyebrow offer-line" data-offer style="margin:14px 0 0">Limited spots · <span data-left>only <span class="n">5</span> left</span></p>
       <p class="price">$5,500 CAD</p>
       <ul class="r">
         <li>Ten hours with one photographer and one videographer, from getting ready to the last dance.</li>
@@ -544,8 +544,8 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
   </div>
 </footer>
 
-<div class="sticky g-cream" id="sticky">
-  <span class="p"><span class="p1" data-offer><span class="lim">Limited spots · </span><span data-left>only 5 left</span></span><span class="p2">Golden Hour · $5,500 CAD</span></span>
+<div class="sticky g-aub" id="sticky">
+  <span class="p"><span class="p1" data-offer><span class="lim">Limited spots · </span><span data-left>only <span class="n">5</span> left</span></span><span class="p2">Golden Hour · $5,500 CAD</span></span>
   <a class="btn" href="#enquire">Get in touch</a>
 </div>
 
@@ -554,8 +554,8 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 (function(){
   /* Limited spots: change this one number when a spot is booked. */
   var SPOTS=5;
-  var t=SPOTS===1?'only 1 left':'only '+SPOTS+' left';
-  document.querySelectorAll('[data-left]').forEach(function(el){el.textContent=t});
+  var t='only <span class="n">'+SPOTS+'</span> left';
+  document.querySelectorAll('[data-left]').forEach(function(el){el.innerHTML=t});
   if(SPOTS<=0)document.querySelectorAll('[data-offer]').forEach(function(el){el.hidden=true});
 })();
 (function(){
@@ -589,7 +589,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
   }
 
   /* Highlight films: the five newest highlight films on the channel (YouTube id, title, length in seconds). */
-  var FILMS=[['U9SuNGU2KP0','Lakeside ceremony and reception',411],['fn4257lIuU0','Vintage car baraat and mandap',251],['x5eZb65Ne1E','Outdoor haldi',209],['NjDgSJSYF78','Coptic Orthodox wedding',393],['MNpA7jO35Ew','Hindu wedding',266]];
+  var FILMS=[['NjDgSJSYF78','Michael & Rebecca, Coptic Orthodox wedding',393],['Pn6QjqCDdrM','Shradha & Rajan, Anand Karaj',230],['hfL1zC43gMY','Farhan & Farazia, reception at Dundurn Castle',338],['AuAUEnnftNY','Navi & Adam, garden wedding',246],['9dgjvqO2l9Q','Shoaib & Shafiqa, Afghan reception',216]];
   var vt=document.getElementById('vtrack');
   function mmss(s){return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2)}
   FILMS.forEach(function(f){
