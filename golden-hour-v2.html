@@ -281,6 +281,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 .sticky .p{font-style:italic;color:var(--dim)}
 @media (prefers-reduced-motion:reduce){.sticky{transition:none}}
 </style>
+<link rel="preconnect" href="https://app.studioninja.co" crossorigin>
 </head>
 <body>
 
@@ -555,7 +556,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
       <p class="small">Want something different? <a class="inl" href="prices.html">See our other packages on the main site</a>, or fill out the form and tell us what you need.</p>
     </div>
       <div class="enq-form">
-    <div class="form-wrap"><iframe id="sn-form-golden" title="Enquiry form" loading="lazy" src="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" allowfullscreen></iframe></div>
+    <div class="form-wrap"><iframe id="sn-form-golden" title="Enquiry form" src="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" allowfullscreen></iframe></div>
     <p class="small alt">Form not loading? <a class="inl" href="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" target="_blank" rel="noopener">Open it in a new tab</a>, message us on Instagram <a class="inl" href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">@chaarbhai</a>, or email <a class="inl" href="mailto:info@chaarbhai.com">info@chaarbhai.com</a>.</p>
       </div>
     </div>
@@ -637,23 +638,48 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
   var FILMS=[['NjDgSJSYF78','Michael & Rebecca, Coptic Orthodox wedding',393],['Pn6QjqCDdrM','Shradha & Rajan, Anand Karaj',230],['hfL1zC43gMY','Farhan & Farazia, reception at Dundurn Castle',338],['AuAUEnnftNY','Navi & Adam, garden wedding',246],['9dgjvqO2l9Q','Shoaib & Shafiqa, Afghan reception',216]];
   var vt=document.getElementById('vtrack');
   function mmss(s){return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2)}
-  FILMS.forEach(function(f){
+  var films=[];
+  FILMS.forEach(function(f,k){
     var d=document.createElement('div');d.className='v';
     var fr=document.createElement('div');fr.className='vframe';
     var im=document.createElement('img');im.loading='lazy';im.decoding='async';im.alt=f[1]+', highlight film';
     im.src='https://i.ytimg.com/vi/'+f[0]+'/hqdefault.jpg';
     var b=document.createElement('button');b.type='button';b.className='vplay';b.setAttribute('aria-label','Play the '+f[1]+' highlight film');
     b.innerHTML='<span class="lk" data-t="Play"><span>Play</span></span>';
-    b.addEventListener('click',function(){
-      var i=document.createElement('iframe');
-      i.src='https://www.youtube-nocookie.com/embed/'+f[0]+'?autoplay=1&rel=0&playsinline=1';
-      i.title=f[1]+' highlight film';i.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';i.allowFullscreen=true;
-      fr.innerHTML='';fr.appendChild(i);
-    });
+    b.addEventListener('click',function(){mount(k,false)});
+    films[k]={f:f,fr:fr,want:false,iframe:null};
     fr.append(im,b);
     var c=document.createElement('figcaption');c.textContent=f[1]+' · '+mmss(f[2]);
     d.append(fr,c);vt.appendChild(d);
   });
+
+  /* Films autoplay muted as they scroll into view: the one in view plays, the others pause. Sound is on YouTube's own control. */
+  function yt(o,func){try{o.iframe.contentWindow.postMessage(JSON.stringify({event:'command',func:func,args:''}),'*')}catch(e){}}
+  function mount(k,muted){
+    var o=films[k];if(o.iframe){o.want=true;yt(o,'playVideo');return}
+    var i=document.createElement('iframe');
+    i.src='https://www.youtube-nocookie.com/embed/'+o.f[0]+'?autoplay=1&'+(muted?'mute=1&':'')+'rel=0&playsinline=1&enablejsapi=1';
+    i.title=o.f[1]+' highlight film';i.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';i.allowFullscreen=true;
+    i.addEventListener('load',function(){setTimeout(function(){yt(o,o.want?'playVideo':'pauseVideo')},400)});
+    o.iframe=i;o.want=true;o.fr.innerHTML='';o.fr.appendChild(i);
+  }
+  function setWant(k,on){
+    var o=films[k];if(o.want===on)return;o.want=on;
+    if(on)mount(k,true);else if(o.iframe)yt(o,'pauseVideo');
+  }
+  if('IntersectionObserver' in window&&!reduce){
+    var ratio=[],secOn=false,slides=[].slice.call(vt.children);
+    function sync(){
+      var best=-1,br=.55;ratio.forEach(function(r,i){if(r>br){br=r;best=i}});
+      films.forEach(function(o,i){setWant(i,secOn&&i===best)});
+    }
+    slides.forEach(function(el,i){ratio[i]=0});
+    var so=new IntersectionObserver(function(es){es.forEach(function(e){secOn=e.isIntersecting});sync()},{threshold:.35});
+    so.observe(document.querySelector('.films'));
+    var vo=new IntersectionObserver(function(es){es.forEach(function(e){ratio[slides.indexOf(e.target)]=e.intersectionRatio});sync()},{root:vt,threshold:[0,.25,.5,.6,.75,.9,1]});
+    slides.forEach(function(el){vo.observe(el)});
+    document.addEventListener('visibilitychange',function(){if(document.hidden){films.forEach(function(o,i){setWant(i,false)})}else sync()});
+  }
 
   /* Sliders: swipe or use Previous and Next. They loop: Next on the last slide goes back to the first. */
   document.querySelectorAll('[data-sl]').forEach(function(sl){
