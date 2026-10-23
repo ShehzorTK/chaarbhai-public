@@ -6,6 +6,15 @@
   "assets": {
     "directory": ".",
     "binding": "ASSETS",
-    "run_worker_first": ["/"]
+    "run_worker_first": [
+      "/",
+      "/review-data.js",
+      "/reviews",
+      "/reviews/",
+      "/reviews.html",
+      "/golden-hour",
+      "/golden-hour/",
+      "/golden-hour.html"
+    ]
   }
 }

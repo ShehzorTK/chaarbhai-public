@@ -11,3 +11,9 @@ node_modules
 node_modules/**
 .wrangler
 .wrangler/**
+scripts
+scripts/**
+review-data.json
+REVIEW-SYNC.md
+.impeccable
+.impeccable/**

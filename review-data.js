@@ -1,0 +1,1 @@
+window.CB_REVIEW_DATA={"google":{"rating":4.9,"count":40,"url":"https://www.google.com/maps?cid=901197728530734372"},"meta":{"recommend":94,"count":344,"url":"https://www.facebook.com/chaarbhai/reviews"}};
