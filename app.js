@@ -110,7 +110,7 @@ let EST=null;
 let homeSceneFrame=0;
 const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
-/* Shared aggregate data, served by the Worker and backed by review-data.json. */
+/* Shared manually verified aggregate data, generated from review-data.json. */
 const PROOF=window.CB_REVIEW_DATA;
 /* Platform marks, drawn from the brands' own artwork: Google's four-colour G,
    and Meta's symbol (path from Simple Icons) in Meta's blue gradient. */

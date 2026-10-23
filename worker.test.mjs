@@ -38,22 +38,3 @@ test('other hostnames, asset paths, existing pages and non-read requests pass th
     assert.equal(forwarded.method, method);
   }
 });
-
-test('runtime JS uses KV and falls back safely on unavailable storage', async () => {
-  const request = new Request('https://goldenhour.chaarbhai.com/review-data.js');
-  const response = await worker.fetch(request, { REVIEW_DATA: { get: async () => ({ google: { rating: 5, count: 42 }, fetchedAt: new Date().toISOString() }) } });
-  assert.match(await response.text(), /"rating":5,"count":42/);
-  assert.equal(response.headers.get('cache-control'), 'no-store');
-  const fallback = await worker.fetch(request, { REVIEW_DATA: { get() { throw new Error('storage unavailable'); } } });
-  assert.match(await fallback.text(), /"rating":4.9,"count":40/);
-});
-
-test('server-rendered metadata uses the same runtime data as widgets', async () => {
-  const response = await worker.fetch(new Request('https://chaarbhai.com/reviews'), {
-    ASSETS: { fetch: async () => new Response('<meta data-review-description name="description" content="old">', { headers: { 'Content-Type': 'text/html', ETag: 'old' } }) },
-    REVIEW_DATA: { get: async () => ({ google: { rating: 5, count: 42 }, fetchedAt: new Date().toISOString() }) }
-  });
-  assert.match(await response.text(), /5.0 out of 5 from 42 Google reviews/);
-  assert.equal(response.headers.get('etag'), null);
-  assert.equal(response.headers.get('cache-control'), 'no-store');
-});

@@ -14,6 +14,5 @@ node_modules/**
 scripts
 scripts/**
 review-data.json
-REVIEW-SYNC.md
 .impeccable
 .impeccable/**

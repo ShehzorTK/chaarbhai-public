@@ -1,14 +1,3 @@
-export const MAX_AGE = 29 * 86400 * 1000;
-export function validGoogle(g) {
-  return g && Number.isFinite(g.rating) && g.rating >= 1 && g.rating <= 5 &&
-    Number.isSafeInteger(g.count) && g.count > 0;
-}
-export function selectData(seed, cached, now = Date.now()) {
-  const age = now - Date.parse(cached?.fetchedAt);
-  return validGoogle(cached?.google) && age >= 0 && age < MAX_AGE
-    ? { ...seed, google: { ...seed.google, rating: cached.google.rating, count: cached.google.count } }
-    : seed;
-}
 export const browserData = data => `window.CB_REVIEW_DATA=${JSON.stringify(data)};\n`;
 export function updateHtml(html, data) {
   const g = data.google, m = data.meta;
