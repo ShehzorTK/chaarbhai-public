@@ -1,0 +1,44 @@
+name: Sync review aggregates
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: '23 3 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: review-sync
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --test worker.test.mjs scripts/reviews.test.mjs
+  sync:
+    needs: verify
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'schedule' && vars.REVIEW_SYNC_ENABLED == 'true')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --test worker.test.mjs scripts/reviews.test.mjs
+      - name: Validate and publish Google aggregate to Cloudflare
+        run: node scripts/sync-reviews.mjs
+        env:
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
+          GOOGLE_LOCATION_NAME: ${{ secrets.GOOGLE_LOCATION_NAME }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_REVIEW_NAMESPACE_ID: ${{ secrets.CLOUDFLARE_REVIEW_NAMESPACE_ID }}
