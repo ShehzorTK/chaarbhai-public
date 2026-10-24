@@ -82,12 +82,11 @@ svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke
  var alts=['Black and white silhouette of the couple dancing on lakeside rocks under the sun, their names faint in the sky behind them','Black and white portrait of the couple against a bright sky','The couple lying in the grass, foreheads touching','Close-up of her looking up at the camera with a quiet smile','The couple cheek to cheek, smiling at the camera','Two photos of the couple dancing in the lake glare','The couple walking hand in hand across a lawn','Two photos of the couple walking by the lake','The couple nose to nose with the autumn trees behind them','Two black and white photos of the couple by a brick wall'];
  for(var i=1;i<=N;i++){var im=new Image();im.src='slides/s'+String(i).padStart(2,'0')+'.jpg';im.alt=alts[i-1];t.appendChild(im);var d=document.createElement('i');dots.appendChild(d)}
 
- var main='Nimisha and Naimul\nEngagement photoshoot by the lake';
- var kw='engagement photoshoot, engagement session, couple portraits, bride to be, groom to be, bride and groom, future bride, future groom, wedding photographer, wedding photography, wedding photo and film, candid couple photos, documentary wedding photography, lakeside engagement, autumn engagement, black and white portraits, South Asian wedding, Desi wedding, couple goals, Chaar Bhai';
+ var main='Nimisha and Naimul\nEngagement photoshoot by the lake\n\nAn autumn afternoon with the bride-to-be and her groom-to-be, walking, dancing and laughing along the water. We shot their engagement session the way we shoot a wedding, candid and documentary, so the portraits feel like the two of them and not a pose.\n\nSwipe through to see it in the order it happened, with a few black and white frames near the end.\n\nIf you are planning a South Asian or Desi wedding and want a photographer and film team who tell the story as it unfolds, that is what we do at Chaar Bhai. Congratulations, Nimisha and Naimul.';
  var caps=[null,'Quiet, before the day starts moving.','Foreheads together, nothing else to do.','That look right before she laughs.','Cheek to cheek and out of things to say.','Dancing in the glare off the water.','Hand in hand across the lawn.','Slow steps along the lake.','Nose to nose with the trees turning behind them.','And the last two, in black and white, against the brick.'];
  var cap=document.getElementById('cap');
  function setCap(k){cap.textContent='';var b=document.createElement('b');b.textContent='chaarbhai ';cap.appendChild(b);
-  if(k===0){cap.appendChild(document.createTextNode(main+'\n\n'));var e=document.createElement('span');e.className='kw';e.textContent=kw;cap.appendChild(e)}
+  if(k===0){cap.appendChild(document.createTextNode(main))}
   else cap.appendChild(document.createTextNode(caps[k]))}
  var ds=dots.children;
  function set(k){cur=k;c.textContent=(k+1)+'/'+N;for(var i=0;i<N;i++)ds[i].className=i===k?'on':'';p.hidden=k===0;n.hidden=k===N-1;setCap(k)}
