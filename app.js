@@ -374,7 +374,7 @@ P['/about']=()=>`
   <div class="founder-copy">
     <span class="mono">Founder</span>
     <h2 id="founder-name">Fahad Raza</h2>
-    <p class="lead">Originally from Pakistan, Fahad has been taking photographs since 2009. He loves getting to know the people in front of his camera, sharing a laugh, and catching the little moments in between. You’ll usually find him with a camera in his hands and a smile on his face.</p>
+    <p class="lead">Fahad has been taking photographs since 2009. He loves getting to know the people in front of his camera, sharing a laugh, and catching the little moments in between. You’ll usually find him with a camera in his hands, a smile on his face, and an Orange Monster close by.</p>
   </div>
 </section>
 
