@@ -1,10 +1,10 @@
 /* Preload the same native player during the initial site loader, before Home mounts. */
-const HERO_SRC=matchMedia('(max-width:700px)').matches?'media/hero-v42-720.mp4':'media/hero-v42-1080.mp4';
+const HERO_SRC=matchMedia('(max-width:700px)').matches?'media/hero-v43-720.mp4':'media/hero-v43-1080.mp4';
 const heroVideo=document.createElement('video');
 heroVideo.id='hero-video';heroVideo.className='vhero-video';
 heroVideo.muted=true;heroVideo.defaultMuted=true;heroVideo.loop=true;heroVideo.playsInline=true;
 heroVideo.setAttribute('muted','');heroVideo.setAttribute('playsinline','');
-heroVideo.preload='auto';heroVideo.poster='media/hero-v42-poster.webp';
+heroVideo.preload='auto';heroVideo.poster='media/hero-v43-poster.webp';
 heroVideo.setAttribute('aria-hidden','true');
 let heroController=null,heroDownload=null;
 function preloadHero(){
