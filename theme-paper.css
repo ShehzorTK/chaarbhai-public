@@ -328,6 +328,8 @@ html[data-theme="paper"] .tally{--ink:#2A1D0F;--ink-2:#34261A;--paper:#F2EBDE;--
 html[data-theme="paper"] .tally-big span,html[data-theme="paper"] .tally-copy,html[data-theme="paper"] .tally-more{color:var(--cream);text-shadow:0 1px 18px rgba(42,29,15,.8)}
 html[data-theme="paper"] .tally-pin::after{background:radial-gradient(ellipse 60% 55% at 50% 50%,rgba(42,29,15,.86),rgba(42,29,15,.62) 70%,rgba(42,29,15,.5) 100%)}
 html[data-theme="paper"] .tally-live .mo-t.mo-mid img{object-fit:cover;object-position:60% 50%}
+/* phones: the centre tile is landscape and gets zoomed to fill a portrait screen, which crops a wide photo to its middle third; show a portrait photo whole instead so the couple is not cut */
+@media(max-width:900px){html[data-theme="paper"] .tally-live .mo-t.mo-mid img{object-fit:contain;object-position:50% 50%!important}}
 html[data-theme="paper"] .voices blockquote p,html[data-theme="paper"] .v-more blockquote p{font-family:var(--f-serif);font-style:italic;color:var(--brown);letter-spacing:.02em}
 html[data-theme="paper"] .voices figcaption{font-family:var(--f-serif);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--brown);font-style:normal}
 html[data-theme="paper"] .paper-proof{display:grid;grid-template-columns:1fr 1fr;margin-top:24px;border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2)}
@@ -470,7 +472,7 @@ html[data-theme="paper"] .cta-ph span:nth-child(1){left:6%;top:16%}
 html[data-theme="paper"] .cta-ph span:nth-child(2){right:7%;top:12%}
 html[data-theme="paper"] .cta-ph span:nth-child(3){left:12%;bottom:12%}
 html[data-theme="paper"] .cta-ph span:nth-child(4){right:11%;bottom:14%}
-@media(max-width:700px){html[data-theme="paper"] .cta-ph span{width:26vw}html[data-theme="paper"] .cta-ph span:nth-child(1){left:-4%;top:9%}html[data-theme="paper"] .cta-ph span:nth-child(2){right:-4%;top:6%}html[data-theme="paper"] .cta-ph span:nth-child(3){left:2%;bottom:8%}html[data-theme="paper"] .cta-ph span:nth-child(4){right:2%;bottom:6%}}
+@media(max-width:700px){html[data-theme="paper"] .cta-ph span{width:34vw}html[data-theme="paper"] .cta-ph span:nth-child(1){left:5%;top:9%}html[data-theme="paper"] .cta-ph span:nth-child(2){right:5%;top:6%}html[data-theme="paper"] .cta-ph span:nth-child(3){left:6%;bottom:8%}html[data-theme="paper"] .cta-ph span:nth-child(4){right:6%;bottom:6%}}
 
 /* ---- loader: the pen logo on aubergine, drawn by the film's real buffer progress; numerals, a hairline rule and one italic line ---- */
 html[data-theme="paper"] .paper-loader{position:fixed;inset:0;z-index:2000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(22px,4svh,40px);
