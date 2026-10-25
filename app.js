@@ -1,10 +1,10 @@
 /* Preload the same native player during the initial site loader, before Home mounts. */
-const HERO_SRC=matchMedia('(max-width:700px)').matches?'media/hero-v41-720.mp4':'media/hero-v41-1080.mp4';
+const HERO_SRC=matchMedia('(max-width:700px)').matches?'media/hero-v42-720.mp4':'media/hero-v42-1080.mp4';
 const heroVideo=document.createElement('video');
 heroVideo.id='hero-video';heroVideo.className='vhero-video';
 heroVideo.muted=true;heroVideo.defaultMuted=true;heroVideo.loop=true;heroVideo.playsInline=true;
 heroVideo.setAttribute('muted','');heroVideo.setAttribute('playsinline','');
-heroVideo.preload='auto';heroVideo.poster='media/hero-v41-poster.webp';
+heroVideo.preload='auto';heroVideo.poster='media/hero-v42-poster.webp';
 heroVideo.setAttribute('aria-hidden','true');
 let heroController=null,heroDownload=null;
 function preloadHero(){
@@ -791,9 +791,9 @@ P['/contact']=()=>`
 
   <div class="sn-wrap">
     ${EST?`<div class="sn-est">
-      <span class="k">Your estimate from Prices</span>
+      <span class="k">Your estimate from Prices. Copy it, then paste it into the Package selection box below.</span>
       <p id="sn-est-text">${esc(EST)}</p>
-      <button type="button" class="sn-copy" id="sn-copy">Copy it for your message</button>
+      <button type="button" class="sn-copy" id="sn-copy">Copy your selection</button>
     </div>`:''}
     <div class="sn-slot"><p class="sn-wait">Loading the form…</p></div>
     <p class="sn-fallback">Form not loading? <a href="${SN_FORM}" target="_blank" rel="noopener">Open it in a new tab</a>, or message us on Instagram at <a href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">@chaarbhai</a>.</p>
@@ -1956,7 +1956,7 @@ function letterForm(){
   const cp=document.getElementById('sn-copy');
   if(cp)cp.addEventListener('click',async()=>{
     const t=`We’ve been looking at ${EST}.`;
-    try{await navigator.clipboard.writeText(t);cp.textContent='Copied. Paste it into your message'}
+    try{await navigator.clipboard.writeText(t);cp.textContent='Copied. Paste it into the Package selection box'}
     catch(e){const r=document.createRange();r.selectNodeContents(document.getElementById('sn-est-text'));
       const sel=getSelection();sel.removeAllRanges();sel.addRange(r);cp.textContent='Selected. Copy and paste it'}
     track('copy_estimate');
