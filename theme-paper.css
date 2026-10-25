@@ -804,6 +804,6 @@ html[data-theme="paper"] .fbot{justify-content:space-between}
 
 /* Work: each photograph carries its own caption underneath; the single updating line is gone. Photos give up ~56px of height for it. */
 html[data-theme="paper"] .ps{--fh:max(150px,calc(var(--ps-sh) - var(--ps-chrome) - 56px))}
-html[data-theme="paper"] .ps .fr-cap.vf-sr{position:static;width:auto;height:auto;overflow:visible;clip:auto;white-space:normal;display:block;padding-top:10px;font-family:var(--f-serif);font-size:var(--t-small);line-height:1.4;color:var(--brown)}
+html[data-theme="paper"] .ps .fr-cap.vf-sr{position:static;width:auto;height:auto;overflow:visible;clip:auto;white-space:normal;display:block;padding-top:10px;font-family:var(--f-serif);font-size:var(--t-small);line-height:1.4;color:inherit}
 html[data-theme="paper"] .ps-cap-t{display:none}
 html[data-theme="paper"] .ps .seq-count{margin-right:auto}
