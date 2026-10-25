@@ -197,16 +197,21 @@ function paperRails(){
   });
 }
 function paperCardsPaint(pc){
-  const cards=[...pc.querySelectorAll('.pcard')],n=cards.length;
+  const cards=[...pc.querySelectorAll('.pcard')],n=cards.length,track=pc.querySelector('.pcards-track');
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
-  if(matchMedia('(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)').matches){
-    // One viewport of vertical travel maps directly to one chapter destination.
-    const r=pc.getBoundingClientRect(),y=Math.max(0,-r.top)/innerHeight,u=Math.max(0,Math.min(n-1,y));
-    pc.querySelector('.pcards-track').style.transform=`translate3d(${-u*100}vw,0,0)`;
-  }else pc.querySelector('.pcards-track').style.removeProperty('transform');
-  const current=clamp(Math.round(pc.querySelector('.pcards-track').scrollLeft/Math.max(1,cards[0]?.getBoundingClientRect().width||innerWidth)),0,n-1);
   const desktop=matchMedia('(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)').matches;
-  const index=desktop?clamp(Math.round(Math.max(0,-pc.getBoundingClientRect().top)/Math.max(1,innerHeight)),0,n-1):current;
+  let index;
+  if(desktop){
+    // One viewport of vertical travel is one chapter: the strip follows the scroll position directly, with no snapping.
+    const y=Math.max(0,-pc.getBoundingClientRect().top)/innerHeight;
+    track.style.transform=`translate3d(${-Math.min(n-1,y)*100}vw,0,0)`;
+    index=clamp(Math.round(y),0,n-1);
+  }else{
+    track.style.removeProperty('transform');
+    index=clamp(Math.round(track.scrollLeft/Math.max(1,cards[0]?.getBoundingClientRect().width||innerWidth)),0,n-1);
+  }
+  if(pc.dataset.pcIndex===String(index))return;
+  pc.dataset.pcIndex=index;
   pc.querySelectorAll('[data-paper-chapter]').forEach((a,i)=>{if(i===index)a.setAttribute('aria-current','step');else a.removeAttribute('aria-current')});
   const nav=pc.querySelector('.pc-chapter-nav');if(nav&&cards[index])nav.style.color=getComputedStyle(cards[index]).getPropertyValue('--paper').trim();
 }
@@ -2278,13 +2283,13 @@ function tallyScene(){
 const tallyQueue=()=>{if(!tallyRaf)tallyRaf=requestAnimationFrame(tallyScene)};
 addEventListener('scroll',tallyQueue,{passive:true});addEventListener('resize',tallyQueue,{passive:true});
 
-/* Paper, desktop: keep page wheel easing, with one interruptible destination per Home chapter.
+/* Paper, desktop: page wheel easing for mouse notches; trackpads stay native. Chapter links glide to one chapter (interruptible).
    Touch, keyboard and reduced motion keep the browser's own scrolling. */
 function paperSmooth(){
   const R=document.documentElement;
   const capability=matchMedia('(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)');
   /* One place to tune Paper's scroll feel (see design/home-scroll-plan.md). */
-  const CFG={wheel:1,glide:100,notch:40,cardMs:360,gesture:220,trackpadHold:250};
+  const CFG={wheel:1,glide:100,notch:40,cardMs:360,trackpadHold:250};
   let target=scrollY,cur=scrollY,raf=0,last=0,expected=null,cardMove=null,vel=0,padUntil=0;
   const max=()=>Math.max(0,R.scrollHeight-innerHeight);
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
@@ -2310,19 +2315,7 @@ function paperSmooth(){
     if(cardMove||cur!==target)raf=requestAnimationFrame(step);
   };
   const go=()=>{if(!raf){last=performance.now();raf=requestAnimationFrame(step)}};
-  let wheelBurst={direction:0,peak:0,last:0,lastAt:0,decayed:false},wheelAt=0;
-  const freshBurst=(direction,magnitude,time)=>{
-    const begin=()=>{wheelBurst={direction,peak:magnitude,last:magnitude,lastAt:time,decayed:false};return true};
-    const gap=time-wheelBurst.lastAt;
-    /* A long trackpad tail can span more than one frame on a large viewport.
-       Keep it in the same gesture window so one physical swipe cannot skip
-       several chapters; a clear pause still starts a fresh gesture. */
-    if(direction!==wheelBurst.direction||gap>CFG.gesture&&magnitude>=wheelBurst.peak*.42)return begin();
-    if(magnitude<wheelBurst.peak*.42)wheelBurst.decayed=true;
-    const renewed=wheelBurst.decayed&&magnitude>=Math.max(wheelBurst.last*1.4,wheelBurst.peak*.35);
-    wheelBurst.peak=Math.max(wheelBurst.peak,magnitude);wheelBurst.last=magnitude;wheelBurst.lastAt=time;
-    return renewed?begin():false;
-  };
+  let wheelAt=0;
   const moveCard=(pc,fromIndex,toIndex,direction)=>{
     const top=pc.getBoundingClientRect().top+scrollY,to=clamp(top+toIndex*innerHeight,0,max());
     if(!cardMove){cur=scrollY;vel=0}
@@ -2343,17 +2336,6 @@ function paperSmooth(){
        device's own momentum, so outside the chapter cards it stays native. */
     const notch=e.deltaMode!==0||Math.abs(raw)>=CFG.notch&&stamp>padUntil;
     if(!notch)padUntil=stamp+CFG.trackpadHold;
-    const pc=document.querySelector('.pcards');
-    if(pc){
-      const n=pc.querySelectorAll('.pcard').length,top=pc.getBoundingClientRect().top+scrollY,y=(scrollY-top)/innerHeight;
-      if(y>=-.02&&y<=n-1+.02){
-        if(!freshBurst(dir,magnitude,stamp)){e.preventDefault();return}
-        const current=clamp(Math.round(y),0,n-1),source=cardMove?cardMove.toIndex:current;
-        const destination=cardMove&&dir!==cardMove.direction?cardMove.fromIndex:source+dir;
-        if(destination>=0&&destination<n){e.preventDefault();moveCard(pc,source,destination,dir);return}
-      }
-    }
-    wheelBurst.direction=0;
     if(!notch){if(raf){cancelAnimationFrame(raf);raf=0;cardMove=null;vel=0;expected=null}target=cur=scrollY;return}
     e.preventDefault();
     cardMove=null;vel=0;if(!raf)target=cur=scrollY;
@@ -2363,7 +2345,6 @@ function paperSmooth(){
     const link=e.target.closest?.('[data-paper-chapter]');if(!link)return;
     const pc=link.closest('.pcards');if(!pc)return;
     e.preventDefault();const i=Number(link.dataset.paperChapter),cards=[...pc.querySelectorAll('.pcard')],card=cards[i];if(!card)return;
-    wheelBurst.direction=0;
     if(capability.matches){const y=(scrollY-(pc.getBoundingClientRect().top+scrollY))/innerHeight,from=cardMove?cardMove.toIndex:clamp(Math.round(y),0,cards.length-1);moveCard(pc,from,i,Math.sign(i-from)||1)}
     else {card.scrollIntoView({block:'nearest',inline:'center',behavior:'auto'});homeSceneQueue()}
   });

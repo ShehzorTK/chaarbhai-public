@@ -433,7 +433,7 @@ html[data-theme="paper"] .pc-dots a:focus-visible{outline:2px solid currentColor
 @media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
   html[data-theme="paper"] .pcards{height:calc(var(--pc-n,7)*100svh)}
   html[data-theme="paper"] .pcards-stick{position:sticky;top:0;height:100svh;overflow:hidden}
-  html[data-theme="paper"] .pcards-track{width:calc(var(--pc-n,7)*100vw);height:100%;overflow:visible;scroll-snap-type:none}
+  html[data-theme="paper"] .pcards-track{width:calc(var(--pc-n,7)*100vw);height:100%;overflow:visible;scroll-snap-type:none;will-change:transform}
   html[data-theme="paper"] .pcard{flex:0 0 100vw;height:100svh;min-height:0;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:center;gap:clamp(30px,6vw,110px);padding:calc(var(--paper-nav-h) + 20px) var(--pad) 60px}
   html[data-theme="paper"] .pc-ph{order:0;aspect-ratio:auto;height:min(68svh,calc(100svh - 220px));max-height:none;justify-self:end;width:min(100%,640px);grid-column:1}
   html[data-theme="paper"] .pc-tx{grid-column:2}
