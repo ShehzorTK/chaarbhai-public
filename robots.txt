@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://chaarbhai.com/sitemap.xml
+Sitemap: https://www.chaarbhai.com/sitemap.xml
