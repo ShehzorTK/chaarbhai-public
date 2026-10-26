@@ -22,6 +22,13 @@ p{margin:0 auto;max-width:28em;opacity:.9}
     fbq('track','PageView');
     fbq('track','Lead',{content_name:'Golden Hour enquiry'},{eventID:id});
   }
+  /* Server-side copy of the same Lead (Conversions API), so blockers can't drop it. fbclid is kept by the landing page. */
+  if(/(^|\.)chaarbhai\.com$/.test(location.hostname)){
+    var ck=function(n){var m=document.cookie.match('(?:^|; )'+n+'=([^;]*)');return m?m[1]:undefined};
+    var fbc=ck('_fbc'),cl;try{cl=localStorage.getItem('cb-fbclid')}catch(e){}
+    if(!fbc&&cl)fbc='fb.1.'+Date.now()+'.'+cl;
+    try{fetch('https://capi.chaarbhai.com/lead',{method:'POST',keepalive:true,headers:{'content-type':'application/json'},body:JSON.stringify({event_id:id,fbp:ck('_fbp'),fbc:fbc,url:location.href})}).catch(function(){})}catch(e){}
+  }
   try{if(window.parent!==window)window.parent.postMessage({cb:'lead',id:id},location.origin)}catch(e){}
 })();
 </script>
