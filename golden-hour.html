@@ -303,23 +303,18 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 </script>
 <script>
 /* Meta Pixel (ad campaigns). No consent gate on this landing page by decision; the footer carries a cookie notice. Live hosts only.
-   Lead fires from /thanks (Studio Ninja redirects the form there after a real submit) and is relayed up here with one shared event id. */
+   Lead fires on /thanks (Studio Ninja redirects every enquiry there), and only when the cb_gh cookie set below is present. */
 (function(){
   if(!/(^|\.)chaarbhai\.com$/.test(location.hostname))return;
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init','2227226818091802');
   fbq('track','PageView');
-  try{var q=new URLSearchParams(location.search).get('fbclid');if(q)localStorage.setItem('cb-fbclid',q)}catch(e){}   /* kept for the server-side Lead on /thanks */
+  /* Marks this visitor as a landing-page lead for 2 hours, so /thanks (a different subdomain) counts the Lead. Other pages with the form clear it. */
+  document.cookie='cb_gh=1; Domain=.chaarbhai.com; Path=/; Max-Age=7200; SameSite=Lax; Secure';
+  try{var q=new URLSearchParams(location.search).get('fbclid');if(q)document.cookie='cb_fbclid='+encodeURIComponent(q)+'; Domain=.chaarbhai.com; Path=/; Max-Age=604800; SameSite=Lax; Secure'}catch(e){}   /* for the server-side Lead on /thanks */
   document.addEventListener('click',function(e){
     var a=e.target.closest&&e.target.closest('a[href="#enquire"]');
     if(a)fbq('trackCustom','CTAClick',{cta:(a.textContent||'').trim().slice(0,40)});
-  });
-  window.addEventListener('message',function(e){
-    var d=e.data;
-    if(e.origin!==location.origin||!d||d.cb!=='lead')return;
-    fbq('track','Lead',{content_name:'Golden Hour enquiry'},{eventID:d.id});
-    if(window.gtag)gtag('event','generate_lead',{page:'golden-hour'});
-    var f=document.getElementById('sn-form-golden');if(f)f.style.height='460px';
   });
 })();
 </script>

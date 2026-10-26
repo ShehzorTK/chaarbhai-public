@@ -36,24 +36,23 @@ h1{font:500 clamp(40px,9vw,64px)/1.05 var(--f-display);letter-spacing:.02em;text
 .small a{color:inherit;text-underline-offset:2px}
 </style>
 <script>
-/* Studio Ninja redirects here after a real enquiry submit. This page is shown inside the form iframe on the landing page.
-   Lead fires here, then the id is sent to the parent so its Lead carries the same event id and Meta counts it once. */
+/* Studio Ninja sends every enquiry here, from the landing page, the main site, the contact page and Instagram. Only the
+   Golden Hour landing page counts for the ads: it sets the cb_gh cookie (on .chaarbhai.com, 2 hours), every other page that
+   shows the form clears it. No cookie, no Meta events. The cookie is cleared after the Lead so a refresh can't count twice. */
 (function(){
+  var live=/(^|\.)chaarbhai\.com$/.test(location.hostname);
+  var ck=function(n){var m=document.cookie.match('(?:^|; )'+n+'=([^;]*)');return m?m[1]:undefined};
+  if(!live||ck('cb_gh')!=='1')return;
+  document.cookie='cb_gh=; Domain=.chaarbhai.com; Path=/; Max-Age=0; SameSite=Lax; Secure';
   var id='lead-'+Date.now()+'-'+Math.random().toString(36).slice(2,8);
-  if(/(^|\.)chaarbhai\.com$/.test(location.hostname)){
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','2227226818091802');
-    fbq('track','PageView');
-    fbq('track','Lead',{content_name:'Golden Hour enquiry'},{eventID:id});
-  }
-  /* Server-side copy of the same Lead (Conversions API), so blockers can't drop it. fbclid is kept by the landing page. */
-  if(/(^|\.)chaarbhai\.com$/.test(location.hostname)){
-    var ck=function(n){var m=document.cookie.match('(?:^|; )'+n+'=([^;]*)');return m?m[1]:undefined};
-    var fbc=ck('_fbc'),cl;try{cl=localStorage.getItem('cb-fbclid')}catch(e){}
-    if(!fbc&&cl)fbc='fb.1.'+Date.now()+'.'+cl;
-    try{fetch('https://capi.chaarbhai.com/lead',{method:'POST',keepalive:true,headers:{'content-type':'application/json'},body:JSON.stringify({event_id:id,fbp:ck('_fbp'),fbc:fbc,url:location.href})}).catch(function(){})}catch(e){}
-  }
-  try{if(window.parent!==window)window.parent.postMessage({cb:'lead',id:id},location.origin)}catch(e){}
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','2227226818091802');
+  fbq('track','PageView');
+  fbq('track','Lead',{content_name:'Golden Hour enquiry'},{eventID:id});
+  /* Server-side copy of the same Lead (Conversions API), so blockers can't drop it. cb_fbclid is kept by the landing page. */
+  var fbc=ck('_fbc'),cl=ck('cb_fbclid');
+  if(!fbc&&cl)fbc='fb.1.'+Date.now()+'.'+cl;
+  try{fetch('https://capi.chaarbhai.com/lead',{method:'POST',keepalive:true,headers:{'content-type':'application/json'},body:JSON.stringify({event_id:id,fbp:ck('_fbp'),fbc:fbc,url:location.href})}).catch(function(){})}catch(e){}
 })();
 </script>
 </head>
