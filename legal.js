@@ -70,7 +70,7 @@ const privacy=`
     <h2 id="s5">5. Cookies, analytics and similar technologies</h2>
     <ul>
       <li><b>Strictly necessary:</b> the site remembers your display choices (light or dark, whether you have seen the intro, your pricing choices) on your own device. These never leave your device and do not need consent.</li>
-      <li><b>Analytics (Google Analytics 4):</b> off until you click Accept in the notice. If you accept, Google sets cookies (<code>_ga</code>, <code>_ga_G-X1GHG229CQ</code>, up to 14 months) and receives your approximate location, device and the pages you view. We never send your name or anything you type in a form. Decline, or change your choice any time with <button type="button" class="linkish" data-consent-open>Cookie settings</button>.</li>
+      <li><b>Analytics (Google Analytics 4):</b> off until you click Accept in the notice. If you accept, Google sets cookies (<code>_ga</code>, <code>_ga_G-X1GHG229CQ</code>, up to 14 months) and receives your approximate location, device and the pages you view. We never send your name or anything you type in a form. Decline, or change your choice any time with <button type="button" class="linkish" data-consent-open>Cookie settings</button>. The one exception is our Instagram link page (links.chaarbhai.com): it is a single page of links, so it uses the same Google Analytics tag without a notice, to count visits and which links are tapped.</li>
       <li><b>YouTube films:</b> when a film loads, YouTube may receive your IP address and set cookies once you play it. We use YouTube’s privacy-enhanced mode.</li>
       <li><b>Signals:</b> if your browser sends Global Privacy Control or Do Not Track, we treat it as Decline for analytics.</li>
       <li>We have no advertising cookies.</li>
