@@ -91,7 +91,7 @@ const PR=[
  .map(p=>({priceBoth:p.hours*PR_RATE.both,pricePhoto:p.hours*PR_RATE.photo,priceVideo:p.hours*PR_RATE.video,...p}));
 const PR_CMP=[
  ['Coverage',null,['6 hours','10 hours','16 hours','24 hours']],
- ['Extra hour',null,['$550','$550','$750','$750']],
+ ['Extra hour',null,['$550','$550','$550','$550']],
  ['Best for',null,['One event','One full day','Two events','Full weekend']],
  ['Professional retouching','photo',[1,1,1,1]],
  ['Photo gallery','photo',[1,1,1,1]],
@@ -1253,9 +1253,9 @@ function pricing(){
       return parts.join(' · ');
     }
 
-    // Set by package, not by crew size: the two shorter packages bill extra
-    // hours at $550, the two longer ones at $750.
-    var HOUR_RATE = { 'first-light': 550, 'golden-hour': 550, 'till-dusk': 750, 'till-sunrise': 750 };
+    // Every package has one photographer and one videographer, so extra hours
+    // are $550 on all four.
+    var HOUR_RATE = { 'first-light': 550, 'golden-hour': 550, 'till-dusk': 550, 'till-sunrise': 550 };
     function extraHourRate(pkg) {
       return HOUR_RATE[pkg.id];
     }
