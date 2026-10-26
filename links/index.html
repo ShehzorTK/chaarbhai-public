@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Chaar Bhai</title>
+<meta name="theme-color" content="#F2EBDE" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#2B2530" media="(prefers-color-scheme: dark)">
+<script>
+/* Google Analytics (GA4, same property as the main site). No consent notice on this page by decision (see the Privacy Policy, section 5).
+   Counts visits (utm_source=instagram is kept from the bio link) and one link_click per tap, named by data-link. Never on localhost or file://. */
+(function(){
+  if(!/(^|\.)chaarbhai\.com$/.test(location.hostname))return;
+  var ID='G-X1GHG229CQ';
+  window.dataLayer=window.dataLayer||[];
+  window.gtag=function(){dataLayer.push(arguments)};
+  var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+ID;
+  document.head.appendChild(s);
+  gtag('js',new Date());
+  gtag('config',ID);
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[data-link]');
+    if(a)gtag('event','link_click',{link:a.getAttribute('data-link'),link_url:a.href,transport_type:'beacon'});
+  });
+})();
+</script>
+<style>
+@font-face{font-family:'Cormorant Garamond';font-weight:500;src:url(cormorant-garamond.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'EB Garamond';font-weight:400;src:url(eb-garamond.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'EB Garamond';font-style:italic;font-weight:400;src:url(eb-garamond-italic.woff2) format('woff2');font-display:swap}
+:root{
+  --aub:#2B2530;--cream:#F2EBDE;--cream-2:#EBE2D1;--brown:#2A1D0F;--olive:#4A4F34;--tan:#D2B6A1;
+  --f-display:'Cormorant Garamond','Cochin',Georgia,serif;
+  --f-serif:'EB Garamond','Sirenne',Georgia,serif;
+  --pad:clamp(18px,5.5vw,32px);--gap:12px;
+  --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n' x='0' y='0'><feTurbulence type='fractalNoise' baseFrequency='.8 .55' numOctaves='4' seed='4'/><feColorMatrix values='0 0 0 0 .16 0 0 0 0 .11 0 0 0 0 .06 0 0 0 .4 -.14'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%;background:var(--cream)}
+body{font-family:var(--f-serif);font-size:17px;line-height:1.5;letter-spacing:.02em;color:var(--brown);background:var(--cream) var(--grain);background-size:400px;min-height:100svh}
+::selection{background:var(--brown);color:var(--cream)}
+a{color:inherit;text-decoration:none;-webkit-tap-highlight-color:transparent}
+a:focus-visible{outline:2px solid var(--brown);outline-offset:3px}
+.wrap{max-width:480px;margin:0 auto;padding:calc(30px + env(safe-area-inset-top)) var(--pad) calc(28px + env(safe-area-inset-bottom));display:grid;gap:var(--gap)}
+header{text-align:center;padding:4px 8px 18px}
+header img{height:54px;width:auto;display:block;margin:0 auto 16px}
+header p{font-style:italic;font-size:18px;line-height:1.45;max-width:40ch;margin:0 auto;text-wrap:balance}
+.slip{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:26px 24px;background-color:var(--bg);background-image:var(--grain);background-size:400px;color:var(--fg)}
+.slip b{display:block;font-family:var(--f-display);font-weight:500;text-transform:uppercase;letter-spacing:.02em;line-height:1;font-size:clamp(23px,6.4vw,30px)}
+.slip small{display:block;margin-top:9px;font-size:16px;font-style:italic;color:var(--sub)}
+.ar{width:30px;height:30px;flex:none;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.slip:hover .ar,.slip:active .ar{transform:translateX(4px)}
+.ar{transition:transform 220ms cubic-bezier(.16,1,.3,1)}
+.site{--bg:var(--brown);--fg:var(--cream);--sub:var(--tan);padding:38px 24px;position:relative;overflow:visible}
+.contact{--bg:var(--olive);--fg:var(--cream);--sub:rgba(242,235,222,.9)}
+.site b{font-size:clamp(23px,6.4vw,30px)}
+.new{display:inline-block;vertical-align:.22em;margin-left:10px;padding:5px 9px 4px;background:var(--tan);color:var(--brown);font-family:var(--f-serif);font-size:12px;letter-spacing:.2em;line-height:1;animation:blink 1.8s ease-in-out infinite}
+@keyframes blink{0%,100%{background:var(--tan)}50%{background:var(--cream);color:var(--brown)}}
+.ic{width:24px;height:24px;flex:none;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+@media(prefers-reduced-motion:reduce){.new{animation:none}.ar{transition:none}.slip:hover .ar,.slip:active .ar{transform:none}}
+.stars{position:relative;display:block;width:50px;height:10px}
+.stars .base,.stars .fill{position:absolute;top:0;left:0;height:100%;display:block;overflow:hidden}
+.stars .base{width:50px}
+.stars svg{position:absolute;top:0;width:10px;height:10px;fill:none;stroke:rgba(42,29,15,.4);stroke-width:1.2;stroke-linejoin:round}
+.stars .fill svg{fill:#FBBC04;stroke:#FBBC04}
+.bar{display:block;width:50px;height:6px;border:1px solid rgba(42,29,15,.5);padding:1px}
+.bar span{display:block;height:100%;background:#0866FF}
+.cr{display:flex;justify-content:center;gap:10px 26px;flex-wrap:wrap;padding:2px 0 6px}
+.rc{display:grid;grid-template-columns:auto auto auto;justify-content:start;align-items:center;column-gap:8px;row-gap:3px;padding:6px 2px}
+.rc .hd,.rc .vl{display:contents}
+.rc .cap{grid-column:2/-1;white-space:nowrap;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:.01em;color:#70757a;text-align:left}
+.mk{width:16px;height:16px;flex:none}
+.vl{display:inline-flex;align-items:center;gap:8px}
+.vl b{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-weight:600;font-size:14px;letter-spacing:0;color:#3c4043}
+.soc{list-style:none;padding:6px 0;display:flex;flex-wrap:wrap;justify-content:center;margin:0 auto}
+.soc li{display:block;min-width:0}
+.soc a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:100%;height:62px;padding:0;color:var(--brown);background:none;border:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-weight:500;font-size:9.5px;letter-spacing:0;text-align:center;height:60px}
+.soc a:hover,.soc a:active{opacity:.6}
+.soc .ic{width:26px;height:26px;stroke-width:1.5}
+.soc.boxed{display:grid;grid-template-columns:repeat(6,1fr);gap:0;padding:0;margin:0;width:100%;flex:none;background:none;border:0}
+.film{display:grid;gap:14px;padding:22px 22px 20px;color:var(--brown)}
+.film .th{position:relative;display:block;border:1px solid var(--brown)}
+.film img{display:block;width:100%;height:auto;filter:sepia(.1) saturate(.94) contrast(.96) brightness(1.02)}
+.film .pl{position:absolute;right:10px;bottom:10px;width:34px;height:34px;fill:var(--cream);stroke:var(--cream);stroke-width:1.2}
+.film .pl circle{fill:rgba(43,37,48,.55)}
+.film .ft b{display:block;font-family:var(--f-display);font-weight:500;text-transform:uppercase;letter-spacing:.02em;font-size:26px;line-height:1}
+.film .ft small{display:block;margin-top:7px;font-size:16px;font-style:italic;color:rgba(42,29,15,.8)}
+.film .go2{display:flex;justify-content:space-between;align-items:center;min-height:50px;border-top:1px solid rgba(242,235,222,.3);text-transform:uppercase;letter-spacing:.18em;font-size:13px}
+.film .ar{width:24px;height:24px}
+.film:hover .ar,.film:active .ar{transform:translateX(4px)}
+
+/* one-screen layout: everything fits the first screen, no scrolling */
+html,body{height:100%}
+.wrap{display:flex;flex-direction:column;min-height:100svh;height:100svh;padding:calc(12px + env(safe-area-inset-top)) var(--pad) calc(12px + env(safe-area-inset-bottom));gap:clamp(6px,1.5svh,14px);justify-content:center;overflow:hidden}
+header{padding:0 8px;flex:none}
+header img{height:clamp(30px,6svh,48px);margin-bottom:clamp(4px,1.2svh,12px)}
+header p{font-size:clamp(14px,2.3svh,18px);line-height:1.35}
+.cr{padding:0;flex:none}
+.rc{padding:2px;row-gap:0}
+.slip{padding:0 20px;flex:1 1 0;min-height:60px;max-height:124px}
+.slip b,.contact b,.site b{font-size:clamp(20px,min(3.7svh,6.2vw),30px)}
+.slip small{margin-top:5px;font-size:clamp(13px,2svh,16px)}
+.ar{width:26px;height:26px}
+.film{display:grid;grid-template-columns:96px 1fr 26px;align-items:center;gap:12px;padding:10px 2px;flex:none;border-top:1px solid rgba(42,29,15,.25);border-bottom:1px solid rgba(42,29,15,.25)}
+.film .th{border-width:1px}
+.film .pl{right:4px;bottom:4px;width:18px;height:18px}
+.film .ft b{font-size:18px}
+.film .ft small{font-size:14px;margin-top:3px}
+.film .go2{display:none}
+.film .ar{width:22px;height:22px}
+.soc.boxed{display:grid;grid-template-columns:repeat(6,1fr);gap:0;padding:0;margin:0;width:100%;flex:none;background:none;border:0}
+.soc li{display:block;min-width:0}
+.soc a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:100%;height:62px;padding:0;color:var(--brown);background:none;border:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-weight:500;font-size:9.5px;letter-spacing:0;text-align:center;height:60px}
+.soc .ic{width:20px;height:20px;fill:currentColor;stroke:none}
+@media(max-height:600px){header p{display:none}.slip small{display:none}}
+
+/* dark mode: follows the phone setting */
+@media(prefers-color-scheme:dark){
+:root{color-scheme:dark}
+html,body{background:var(--aub)}
+body{background:var(--aub) var(--grain);background-size:400px;color:var(--cream)}
+header p{color:var(--cream)}
+.slip.site{outline:1px solid rgba(242,235,222,.16);outline-offset:-1px}
+.vl b{color:var(--cream)}
+.ln,.rc .cap{color:#aeb2b8}
+.bar{border-color:rgba(242,235,222,.55)}
+.stars svg{stroke:rgba(242,235,222,.45)}
+.film{color:var(--cream);border-color:rgba(242,235,222,.25)}
+.film .th{border-color:transparent}
+.film .ft small{color:rgba(242,235,222,.85)}
+.film .ar{color:var(--cream)}
+.soc a{color:var(--cream)}
+}
+</style></head>
+<body><main class="wrap">
+<!-- tracking hook: each link has a data-link name for the click tracker (not implemented here) -->
+<header>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="logo-beige.png"><img src="logo-dark.png" alt="Chaar Bhai"></picture>
+  <p>Wedding photography and film for 1,800 couples since 2013. Based in the GTA, we travel.</p>
+</header>
+<div class="cr">
+<a class="rc" href="https://www.google.com/maps?cid=901197728530734372" data-link="google-reviews"><span class="hd" style="display:contents"><svg class="mk" viewBox="0 0 48 48" role="img" aria-label="Google"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg></span><span class="vl"><b>4.8</b><span class="stars" role="img" aria-label="4.8 out of 5 stars"><span class="base"><svg viewBox="0 0 24 24" aria-hidden="true" style="left:0px"><path d="M12 2.8l2.7 5.8 6.3.8-4.6 4.4 1.2 6.3L12 17l-5.6 3.1 1.2-6.3L3 9.4l6.3-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" style="left:10px"><path d="M12 2.8l2.7 5.8 6.3.8-4.6 4.4 1.2 6.3L12 17l-5.6 3.1 1.2-6.3L3 9.4l6.3-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" style="left:20px"><path d="M12 2.8l2.7 5.8 6.3.8-4.6 4.4 1.2 6.3L12 17l-5.6 3.1 1.2-6.3L3 9.4l6.3-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" style="left:30px"><path d="M12 2.8l2.7 5.8 6.3.8-4.6 4.4 1.2 6.3L12 17l-5.6 3.1 1.2-6.3L3 9.4l6.3-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" style="left:40px"><path d="M12 2.8l2.7 5.8 6.3.8-4.6 4.4 1.2 6.3L12 17l-5.6 3.1 1.2-6.3L3 9.4l6.3-.8z"/></svg></span><span class="fill" style="width:48px"><svg viewBox="0 0 24 24" aria-hidden="true" style="left:0px"><path d="M12 2.8l2.7 5.8 6.3.8-4.6 4.4 1.2 6.3L12 17l-5.6 3.1 1.2-6.3L3 9.4l6.3-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" style="left:10px"><path d="M12 2.8l2.7 5.8 6.3.8-4.6 4.4 1.2 6.3L12 17l-5.6 3.1 1.2-6.3L3 9.4l6.3-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" style="left:20px"><path d="M12 2.8l2.7 5.8 6.3.8-4.6 4.4 1.2 6.3L12 17l-5.6 3.1 1.2-6.3L3 9.4l6.3-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" style="left:30px"><path d="M12 2.8l2.7 5.8 6.3.8-4.6 4.4 1.2 6.3L12 17l-5.6 3.1 1.2-6.3L3 9.4l6.3-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true" style="left:40px"><path d="M12 2.8l2.7 5.8 6.3.8-4.6 4.4 1.2 6.3L12 17l-5.6 3.1 1.2-6.3L3 9.4l6.3-.8z"/></svg></span></span></span><span class="cap">See all reviews</span></a>
+<a class="rc" href="https://facebook.com/chaarbhai/reviews" data-link="facebook-reviews"><span class="hd" style="display:contents"><svg class="mk" viewBox="0 0 24 24" role="img" aria-label="Meta"><path fill="#0866FF" d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></svg></span><span class="vl"><b>94%</b><span class="bar" role="img" aria-label="94% recommend"><span style="width:94%"></span></span></span><span class="cap">Customer reviews</span></a>
+</div>
+<a class="slip site" href="https://chaarbhai.com" data-link="website"><span><b>Our website <span class="new">New</span></b><small>Just launched. Work, films and prices.</small></span><svg class="ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+<a class="slip contact" href="https://app.studioninja.co/contactform/hosted/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-7cc8-186f-817c-e0d40d182ec8" data-link="contact"><span><b>Check your date</b><small>Tell us about your wedding.</small></span><svg class="ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+<a class="film" href="https://www.youtube.com/watch?v=U9SuNGU2KP0" data-link="youtube-latest">
+  <span class="th"><img src="latest.jpg" alt="Sid and Christel, lakeside ceremony and reception highlights" width="800" height="450"><svg class="pl" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="M10 8.2v7.6l6-3.8z"/></svg></span>
+  <span class="ft"><b>New YouTube video</b><small>Sid &amp; Christel, lakeside highlights</small></span>
+  <svg class="ar" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+</a>
+<ul class="soc boxed">
+<li><a aria-label="YouTube" href="https://www.youtube.com/@chaar.bhai." data-link="youtube"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span>YouTube</span></a></li><li><a aria-label="TikTok" href="https://tiktok.com/@chaar.bhai" data-link="tiktok"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg><span>TikTok</span></a></li><li><a aria-label="Facebook" href="https://facebook.com/chaarbhai" data-link="facebook"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg><span>Facebook</span></a></li>
+<li><a aria-label="Instagram" href="https://instagram.com/chaarbhai" data-link="instagram"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg><span>Instagram</span></a></li><li><a aria-label="LinkedIn" href="https://www.linkedin.com/company/chaarbhai" data-link="linkedin"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span>LinkedIn</span></a></li><li><a aria-label="X / Twitter" href="https://twitter.com/chaarbhai" data-link="x"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg><span>X/Twitter</span></a></li>
+</ul>
+</main></body></html>
