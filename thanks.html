@@ -6,10 +6,34 @@
 <meta name="robots" content="noindex">
 <title>Thank you | Chaar Bhai</title>
 <style>
-html,body{margin:0;background:transparent}
-body{font:18px/1.6 'EB Garamond',Georgia,serif;color:#F2EBDE;text-align:center;padding:48px 20px}
-h1{font:500 28px/1.15 Georgia,serif;letter-spacing:.02em;margin:0 0 14px}
-p{margin:0 auto;max-width:28em;opacity:.9}
+@font-face{font-family:'Cormorant Garamond';font-weight:500;font-style:normal;font-display:swap;src:url(fonts/cormorant-garamond.woff2) format('woff2')}
+@font-face{font-family:'EB Garamond';font-weight:400;font-style:normal;font-display:swap;src:url(fonts/eb-garamond.woff2) format('woff2')}
+@font-face{font-family:'EB Garamond';font-weight:400;font-style:italic;font-display:swap;src:url(fonts/eb-garamond-italic.woff2) format('woff2')}
+:root{--ink:#2B2530;--ink-2:#362F3C;--paper:#F2EBDE;--dim:rgba(242,235,222,.86);--line:rgba(242,235,222,.26);--f-display:'Cormorant Garamond','Cochin',Georgia,serif;--f-serif:'EB Garamond','Sirenne',Georgia,serif;
+--grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n' x='0' y='0'><feTurbulence type='fractalNoise' baseFrequency='.8 .55' numOctaves='4' seed='4'/><feColorMatrix values='0 0 0 0 .16  0 0 0 0 .11  0 0 0 0 .06  0 0 0 .4 -.14'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--ink) var(--grain);background-size:auto,400px;color:var(--paper);font:400 18px/1.6 var(--f-serif);font-variant-numeric:lining-nums;letter-spacing:.025em;-webkit-font-smoothing:antialiased;padding:clamp(32px,6vw,72px) 24px calc(32px + env(safe-area-inset-bottom));text-align:center}
+main{width:100%;max-width:34em;animation:in .6s cubic-bezier(.22,1,.36,1) both}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){main{animation:none}}
+.logo{width:132px;height:auto;margin:0 auto clamp(36px,7vw,64px)}
+.eyebrow{font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin:0 0 18px}
+h1{font:500 clamp(40px,9vw,64px)/1.05 var(--f-display);letter-spacing:.02em;text-transform:uppercase;margin:0;text-wrap:balance}
+.lead{margin:22px auto 0;color:var(--dim);font-size:clamp(18px,2.6vw,20px);line-height:1.55;max-width:28em;text-wrap:pretty}
+.next{margin:clamp(32px,6vw,48px) auto 0;padding:clamp(22px,4vw,32px);border:1px solid var(--line);background:var(--ink-2);text-align:left}
+.next h2{font:500 14px/1.3 var(--f-serif);letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px;color:var(--paper)}
+.next ol{margin:0;padding:0;list-style:none;counter-reset:s}
+.next li{counter-increment:s;display:flex;gap:14px;padding:10px 0;border-top:1px solid var(--line);color:var(--dim);font-size:17px;line-height:1.5}
+.next li:first-child{border-top:0;padding-top:0}.next li:last-child{padding-bottom:0}
+.next li::before{content:"0" counter(s);font:500 18px/1.3 var(--f-display);color:var(--paper);flex:none;width:1.6em}
+.links{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 14px;margin-top:clamp(28px,5vw,40px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 26px;background:var(--paper);color:var(--ink);font:400 15px/1 var(--f-serif);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:background-color .2s ease}
+.btn.ghost{background:transparent;color:var(--paper);border:1px solid var(--line)}
+@media (hover:hover){.btn:hover{background:#fff}.btn.ghost:hover{background:rgba(242,235,222,.08)}}
+.btn:focus-visible{outline:2px solid var(--paper);outline-offset:3px}
+.small{margin-top:28px;font-size:14px;color:var(--dim)}
+.small a{color:inherit;text-underline-offset:2px}
 </style>
 <script>
 /* Studio Ninja redirects here after a real enquiry submit. This page is shown inside the form iframe on the landing page.
@@ -34,7 +58,24 @@ p{margin:0 auto;max-width:28em;opacity:.9}
 </script>
 </head>
 <body>
-<h1>Thank you</h1>
-<p>We have your date and venue. We will message you back within a day or two.</p>
+<main>
+  <img class="logo" src="img/logo.png" alt="Chaar Bhai" width="320" height="156">
+  <p class="eyebrow">Enquiry received</p>
+  <h1>Thank you</h1>
+  <p class="lead">We have your date and venue. We will message you back within a day or two.</p>
+  <section class="next" aria-labelledby="nh">
+    <h2 id="nh">What happens next</h2>
+    <ol>
+      <li>We check that your date is free.</li>
+      <li>We message you with the details and a time to talk through your day.</li>
+      <li>A deposit holds your date, and we plan the rest together.</li>
+    </ol>
+  </section>
+  <div class="links">
+    <a class="btn" href="index.html#/work">See our work</a>
+    <a class="btn ghost" href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">Instagram</a>
+  </div>
+  <p class="small">Need us sooner? Email <a href="mailto:info@chaarbhai.com">info@chaarbhai.com</a>.</p>
+</main>
 </body>
 </html>
