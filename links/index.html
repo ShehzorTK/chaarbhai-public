@@ -72,7 +72,7 @@ header p{font-style:italic;font-size:18px;line-height:1.45;max-width:40ch;margin
 .vl b{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-weight:600;font-size:14px;letter-spacing:0;color:#3c4043}
 .soc{list-style:none;padding:6px 0;display:flex;flex-wrap:wrap;justify-content:center;margin:0 auto}
 .soc li{display:block;min-width:0}
-.soc a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:100%;height:62px;padding:0;color:var(--brown);background:none;border:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-weight:500;font-size:9.5px;letter-spacing:0;text-align:center;height:60px}
+.soc a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:100%;height:clamp(60px,9svh,84px);padding:0;color:var(--brown);background:none;border:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-weight:500;font-size:9.5px;letter-spacing:0;text-align:center}
 .soc a:hover,.soc a:active{opacity:.6}
 .soc .ic{width:26px;height:26px;stroke-width:1.5}
 .soc.boxed{display:grid;grid-template-columns:repeat(6,1fr);gap:0;padding:0;margin:0;width:100%;flex:none;background:none;border:0}
@@ -89,27 +89,27 @@ header p{font-style:italic;font-size:18px;line-height:1.45;max-width:40ch;margin
 
 /* one-screen layout: everything fits the first screen, no scrolling */
 html,body{height:100%}
-.wrap{display:flex;flex-direction:column;min-height:100svh;height:100svh;padding:calc(12px + env(safe-area-inset-top)) var(--pad) calc(12px + env(safe-area-inset-bottom));gap:clamp(6px,1.5svh,14px);justify-content:center;overflow:hidden}
+.wrap{display:flex;flex-direction:column;min-height:100svh;min-height:100dvh;height:100svh;height:100dvh;padding:calc(12px + env(safe-area-inset-top)) var(--pad) calc(12px + env(safe-area-inset-bottom));gap:clamp(6px,1.8svh,20px);justify-content:center;overflow:hidden}
 header{padding:0 8px;flex:none}
-header img{height:clamp(30px,6svh,48px);margin-bottom:clamp(4px,1.2svh,12px)}
-header p{font-size:clamp(14px,2.3svh,18px);line-height:1.35}
+header img{height:clamp(30px,min(7.5svh,15vw),72px);margin-bottom:clamp(4px,1.6svh,16px)}
+header p{font-size:clamp(14px,min(2.6svh,4.9vw),21px);line-height:1.38}
 .cr{padding:0;flex:none}
 .rc{padding:2px;row-gap:0}
-.slip{padding:0 20px;flex:1 1 0;min-height:60px;max-height:124px}
-.slip b,.contact b,.site b{font-size:clamp(20px,min(3.7svh,6.2vw),30px)}
-.slip small{margin-top:5px;font-size:clamp(13px,2svh,16px)}
+.slip{padding:0 20px;flex:1 1 0;min-height:60px;max-height:200px}
+.slip b,.contact b,.site b{font-size:clamp(20px,min(4.1svh,6.4vw),34px)}
+.slip small{margin-top:6px;font-size:clamp(13px,min(2.2svh,4.2vw),18px)}
 .ar{width:26px;height:26px}
-.film{display:grid;grid-template-columns:96px 1fr 26px;align-items:center;gap:12px;padding:10px 2px;flex:none;border-top:1px solid rgba(42,29,15,.25);border-bottom:1px solid rgba(42,29,15,.25)}
+.film{display:grid;grid-template-columns:clamp(96px,min(11svh,26vw),128px) 1fr 26px;align-items:center;gap:14px;padding:clamp(10px,1.8svh,20px) 2px;flex:none;border-top:1px solid rgba(42,29,15,.25);border-bottom:1px solid rgba(42,29,15,.25)}
 .film .th{border-width:1px}
 .film .pl{right:4px;bottom:4px;width:18px;height:18px}
-.film .ft b{font-size:18px}
-.film .ft small{font-size:14px;margin-top:3px}
+.film .ft b{font-size:clamp(17px,min(2.5svh,4.5vw),22px)}
+.film .ft small{font-size:clamp(13px,min(1.9svh,3.6vw),16px);margin-top:3px}
 .film .go2{display:none}
 .film .ar{width:22px;height:22px}
 .soc.boxed{display:grid;grid-template-columns:repeat(6,1fr);gap:0;padding:0;margin:0;width:100%;flex:none;background:none;border:0}
 .soc li{display:block;min-width:0}
-.soc a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:100%;height:62px;padding:0;color:var(--brown);background:none;border:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-weight:500;font-size:9.5px;letter-spacing:0;text-align:center;height:60px}
-.soc .ic{width:20px;height:20px;fill:currentColor;stroke:none}
+.soc a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:100%;height:clamp(60px,9svh,84px);padding:0;color:var(--brown);background:none;border:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-weight:500;font-size:9.5px;letter-spacing:0;text-align:center}
+.soc .ic{width:clamp(20px,min(3.2svh,6vw),28px);height:clamp(20px,min(3.2svh,6vw),28px);fill:currentColor;stroke:none}
 @media(max-height:600px){header p{display:none}.slip small{display:none}}
 
 /* dark mode: follows the phone setting */
