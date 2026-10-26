@@ -27,8 +27,8 @@
     opener=fromUser?document.activeElement:null;
     var cur=state();
     box=document.createElement('div');
-    box.className='consent';box.setAttribute('role','dialog');box.setAttribute('aria-label','Analytics choice');
-    box.innerHTML='<p>May we use Google Analytics to count visits and see which pages people read? It stays off unless you accept. <a href="#/privacy" data-nav>Privacy Policy</a></p>'
+    box.className='consent';box.setAttribute('role','dialog');box.setAttribute('aria-label','Analytics and ads choice');
+    box.innerHTML='<p>May we use Google Analytics and a Meta pixel to count visits and measure our ads? Both stay off unless you accept. <a href="#/privacy" data-nav>Privacy Policy</a></p>'
       +'<div class="consent-btns"><button type="button" data-c="denied">Decline</button><button type="button" data-c="granted">Accept</button></div>';
     box.addEventListener('click',function(e){var b=e.target.closest('button[data-c]');if(b)choose(b.dataset.c);else if(e.target.closest('a'))close()});
     box.addEventListener('keydown',function(e){if(e.key==='Escape')close()});

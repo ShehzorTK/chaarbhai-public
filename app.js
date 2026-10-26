@@ -853,7 +853,7 @@ let paperHomeTextCleanup=()=>{};
 const main=document.getElementById('main');
 let io;
 /* analytics: a no-op unless the tag loaded (see <head>) */
-const track=(name,params={})=>{if(window.CB_GA)gtag('event',name,params)};
+const track=(name,params={})=>{if(window.CB_GA){gtag('event',name,params);if(name==='page_view'&&window.fbq)fbq('track','PageView')}};
 const GA_PATH={'/':'/','/portfolio':'/work','/about':'/about','/services':'/prices','/testimonials':'/reviews','/contact':'/contact','/privacy':'/privacy','/terms':'/terms','/refunds':'/refunds'};
 window.cbPageView=()=>{if(!window.CB_GA||!document.title)return;const p=routeOf(location.hash),gp=GA_PATH[p]||'/';track('page_view',{page_title:document.title,page_location:location.origin+gp,page_path:gp})};   // Paper: called by index.html after the visitor accepts analytics, so the page they're on is counted
 const reduceMotion=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;

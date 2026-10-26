@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Thank you | Chaar Bhai</title>
+<style>
+html,body{margin:0;background:transparent}
+body{font:18px/1.6 'EB Garamond',Georgia,serif;color:#F2EBDE;text-align:center;padding:48px 20px}
+h1{font:500 28px/1.15 Georgia,serif;letter-spacing:.02em;margin:0 0 14px}
+p{margin:0 auto;max-width:28em;opacity:.9}
+</style>
+<script>
+/* Studio Ninja redirects here after a real enquiry submit. This page is shown inside the form iframe on the landing page.
+   Lead fires here, then the id is sent to the parent so its Lead carries the same event id and Meta counts it once. */
+(function(){
+  var id='lead-'+Date.now()+'-'+Math.random().toString(36).slice(2,8);
+  if(/(^|\.)chaarbhai\.com$/.test(location.hostname)){
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','2227226818091802');
+    fbq('track','PageView');
+    fbq('track','Lead',{content_name:'Golden Hour enquiry'},{eventID:id});
+  }
+  try{if(window.parent!==window)window.parent.postMessage({cb:'lead',id:id},location.origin)}catch(e){}
+})();
+</script>
+</head>
+<body>
+<h1>Thank you</h1>
+<p>We have your date and venue. We will message you back within a day or two.</p>
+</body>
+</html>

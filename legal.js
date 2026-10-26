@@ -41,12 +41,12 @@ const privacy=`
         <tr><td>Enquiry form: your names, email, phone, wedding date, location, message</td><td>To reply, quote and book your wedding</td><td>Steps before a contract; our legitimate interest in replying</td></tr>
         <tr><td>Emails, messages and booking details after you enquire</td><td>To plan and deliver your wedding</td><td>Contract</td></tr>
         <tr><td>Photos and films of weddings</td><td>To deliver them to you; and, only where you agreed, to show our work</td><td>Contract; your consent for marketing use</td></tr>
-        <tr><td>Website analytics (see section 5)</td><td>To count visits and see which pages and prices people look at</td><td>Your consent</td></tr>
+        <tr><td>Website analytics and ad measurement (see section 5)</td><td>To count visits, see which pages and prices people look at, and measure our Meta ads</td><td>Your consent</td></tr>
         <tr><td>Job applications sent to our email</td><td>To consider your application</td><td>Your request; consent</td></tr>
         <tr><td>Standard server logs kept by our hosts (IP, browser, page, time)</td><td>To keep the site secure and running</td><td>Legitimate interest</td></tr>
       </tbody>
     </table></div>
-    <p>We do not use session recording, heatmaps, advertising pixels or fingerprinting. We do not run ads on this site or build profiles to sell.</p>
+    <p>We do not use session recording, heatmaps or fingerprinting. We do not run ads on this site or build profiles to sell. We do use a Meta pixel to measure our own ads, only after you accept (section 5).</p>
 
     <h2>3. Photos and films of you</h2>
     <ul>
@@ -58,9 +58,10 @@ const privacy=`
     </ul>
 
     <h2>4. Who we share information with</h2>
-    <p>We do not sell or rent your information, and we do not “share” it for advertising. We use service providers who handle it on our behalf, under their own privacy terms:</p>
+    <p>We do not sell or rent your information, and we do not sell it. We use service providers who handle it on our behalf, under their own privacy terms:</p>
     <ul>
       <li>Google (Analytics, and YouTube for our films): analytics only after you accept; YouTube loads from its privacy-enhanced domain.</li>
+      <li>Meta (Facebook and Instagram): our Meta pixel, only after you accept, so we can measure our ads and show them to people who visited the site.</li>
       <li>Studio Ninja: our enquiry and booking system; receives what you type into the contact form.</li>
       <li>Netlify and GitHub: website hosting; keep standard server logs.</li>
       <li>wfolio (our gallery delivery platform): hosts galleries for clients.</li>
@@ -73,7 +74,7 @@ const privacy=`
       <li><b>Analytics (Google Analytics 4):</b> off until you click Accept in the notice. If you accept, Google sets cookies (<code>_ga</code>, <code>_ga_G-X1GHG229CQ</code>, up to 14 months) and receives your approximate location, device and the pages you view. We never send your name or anything you type in a form. Decline, or change your choice any time with <button type="button" class="linkish" data-consent-open>Cookie settings</button>. The exceptions are our Instagram link page (links.chaarbhai.com) and our Golden Hour landing page (goldenhour.chaarbhai.com): they are single pages, so they use the same Google Analytics tag without a notice, to count visits and which links are tapped.</li>
       <li><b>YouTube films:</b> when a film loads, YouTube may receive your IP address and set cookies once you play it. We use YouTube’s privacy-enhanced mode.</li>
       <li><b>Signals:</b> if your browser sends Global Privacy Control or Do Not Track, we treat it as Decline for analytics.</li>
-      <li>We have no advertising cookies.</li>
+      <li><b>Ad measurement (Meta pixel):</b> off until you click Accept in the notice. If you accept, Meta receives the pages you view and that you sent an enquiry, with your IP address and browser details, and may set its own cookies. We never send your name or anything you type in a form. Decline, or change your choice any time with <button type="button" class="linkish" data-consent-open>Cookie settings</button>.</li>
     </ul>
 
     <h2>6. Where your information is kept</h2>
