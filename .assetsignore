@@ -1,3 +1,10 @@
 .git
 .github
 .assetsignore
+scripts
+scripts/**
+node_modules
+node_modules/**
+.wrangler
+.wrangler/**
+.gitignore
