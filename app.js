@@ -115,7 +115,7 @@ const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',
    google.url opens the Chaar Bhai Canada listing by its
    permanent Maps id. Not the older Pakistan listing. */
 const PROOF={
-  google:{rating:4.8,count:37,url:'https://www.google.com/maps?cid=901197728530734372'},
+  google:{rating:4.9,count:37,url:'https://www.google.com/maps?cid=901197728530734372'},
   meta:{recommend:94,count:344,url:'https://www.facebook.com/chaarbhai/reviews'}};
 /* Platform marks, drawn from the brands' own artwork: Google's four-colour G,
    and Meta's symbol (path from Simple Icons) in Meta's blue gradient. */
