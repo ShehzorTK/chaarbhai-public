@@ -14,7 +14,7 @@ function preloadHero(){
   heroDownload=Promise.resolve();
   return heroDownload;
 }
-if(CB_ROUTER.internalPath()==='/')preloadHero();
+if(!location.hash||location.hash==='#/')preloadHero();
 
 const T=['#191C26','#1D2030','#232735','#1B1E29','#202431','#262A38'];   /* image-failed fallbacks, from the ink ramp */
 /* One photo from PORTFOLIO or PICKS: web-sized WebP copies in site/photos.
@@ -165,7 +165,7 @@ function paperCards(){
       <article class="pcard pc-${i+1}" id="paper-chapter-${c.id}">
         <figure class="pc-ph">${pic(c.pcover,'(max-width:900px) 80vw, 46vw')}</figure>
         <div class="pc-tx"><span class="pc-no" aria-hidden="true">${c.no}</span><h2>${c.name}</h2><p>${c.desc}</p><span class="pc-tag">${c.alt}</span>
-          <button class="btn" data-nav-to="/work?chapter=${c.id}"><span>View the work</span><i></i></button></div>
+          <button class="btn" data-nav-to="#/portfolio/photos/${c.id}"><span>View the work</span><i></i></button></div>
       </article>`).join('')}</div>
     <nav class="pc-chapter-nav" aria-label="Recent work chapters"><ol class="pc-dots">${list.map((h,j)=>`<li><a href="#paper-chapter-${h.id}" data-paper-chapter="${j}" aria-label="Go to chapter ${h.no}: ${esc(h.name)}"${j===0?' aria-current="step"':''}>${h.no}</a></li>`).join('')}</ol></nav>
   </div>
@@ -229,7 +229,7 @@ const PAPER_FAQ=[
 ['Do you offer drone shots?','Yes, all our videographers carry drones. One videographer can’t fly a drone and film at the same time, so drone footage needs an additional videographer, available as an add-on.'],
 ['How many photos do we get?','There is no set number. We photograph as much as we can, and before the day we ask you who the important people are, the ones we must not miss. We aim to catch everything that matters: the relevant people and the important moments. The number depends on how much happens at your event, not how many guests come, so we can’t give a figure.'],
 ['How long until we get our photos and film?','We don’t use presets or a standard editing system. Every photo is edited individually, and that takes time. Delivery can take up to three months. If you need it sooner, rushed delivery is available as an add-on.'],
-['What if we need to cancel?','We understand that plans can change. Because we reserve your date for you alone, a cancellation by the client is not refundable. Please read our <a href="/refunds" data-nav>Refunds and Cancellation</a> page for the full details, or get in touch if you have questions before booking.']
+['What if we need to cancel?','We understand that plans can change. Because we reserve your date for you alone, a cancellation by the client is not refundable. Please read our <a href="#/refunds" data-nav>Refunds and Cancellation</a> page for the full details, or get in touch if you have questions before booking.']
 ];
 const paperFaq=()=>`<section class="faq" aria-labelledby="faq-h"><h2 id="faq-h" class="rv">Questions couples ask</h2><div class="faq-list rv" data-d="1">${PAPER_FAQ.map(([q,a])=>`<details><summary>${q}</summary><p>${a}</p></details>`).join('')}</div></section>
 `;
@@ -252,7 +252,7 @@ P['/']=()=>`
     </h1>
     <p class="rv" data-d="2">We photograph and film weddings, and have done since 2013. Over eighteen hundred of them so far. We’re based in the Greater Toronto Area and we travel.</p>
     <div class="acts rv" data-d="3">
-      <a href="/contact" data-nav class="btn"><span>See if your date is free</span><i></i></a>
+      <a href="#/contact" data-nav class="btn"><span>See if your date is free</span><i></i></a>
       <span class="quiet mono">Tell us the date and we’ll come back to you</span>
     </div>
   </div>
@@ -270,7 +270,7 @@ P['/']=()=>`
     <div>
       <p class="lead rv" data-d="2">We sit down with you before the day and go through it properly. Which events matter most, who has to be in the family photos, what you want us nowhere near.</p>
       <p class="lead rv" data-d="3" style="margin-top:20px">It’s not the interesting part of the job. It’s the reason things don’t get missed.</p>
-      <div class="rv plan-btn" data-d="3" style="margin-top:34px"><a href="/about" data-nav class="btn"><span>More about us</span><i></i></a></div>
+      <div class="rv plan-btn" data-d="3" style="margin-top:34px"><a href="#/about" data-nav class="btn"><span>More about us</span><i></i></a></div>
     </div>
   </div>
 </section>
@@ -283,10 +283,10 @@ ${PAPER?paperCards():`<section class="day" style="padding-top:0">
       <div class="day-panel" id="recent-${c.id}">
         <figure class="day-ph arch">${pic(c.cover,'(max-width:900px) 90vw, 46vw')}</figure>
         <div class="day-tx"><span class="mono">${c.no}</span><h3>${c.name}</h3><p class="mono">${c.alt}</p><p class="lead">${c.desc}</p>
-          <button class="btn" data-nav-to="/work?chapter=${c.id}"><span>View</span><i></i></button>
+          <button class="btn" data-nav-to="#/portfolio/photos/${c.id}"><span>View</span><i></i></button>
         </div>
       </div>`).join('')}</div>
-    <div class="day-end" style="margin-top:44px"><a href="/work" data-nav class="btn"><span>The full archive</span><i></i></a></div>
+    <div class="day-end" style="margin-top:44px"><a href="#/portfolio" data-nav class="btn"><span>The full archive</span><i></i></a></div>
   </div>
 </section>`}
 
@@ -324,7 +324,7 @@ ${PAPER?paperCards():`<section class="day" style="padding-top:0">
     <figure${PAPER?' class="rv" data-d="1"':''}><blockquote><p>“You guys have literally covered each and every moment.”</p></blockquote><figcaption>Jannat Hashmi</figcaption></figure>
     <figure${PAPER?' class="rv" data-d="2"':''}><blockquote><p>“They made us feel completely at ease and captured every special moment so naturally.”</p></blockquote><figcaption>Zair Syed</figcaption></figure>
     <figure${PAPER?' class="rv" data-d="3"':''}><blockquote><p>“Truly mesmerizing, especially the candid shots.”</p></blockquote><figcaption>Zohra Masudi</figcaption></figure>
-    <a href="/reviews" data-nav class="btn${PAPER?' rv':''}"${PAPER?' data-d="4"':''}><span>Read all ${REVIEWS.length}</span><i></i></a>
+    <a href="#/testimonials" data-nav class="btn${PAPER?' rv':''}"${PAPER?' data-d="4"':''}><span>Read all ${REVIEWS.length}</span><i></i></a>
   </div>
 </section>
 
@@ -332,7 +332,7 @@ ${PAPER?paperCards():`<section class="day" style="padding-top:0">
   ${PAPER?`<div class="cta-ph" aria-hidden="true">${PICKS.ctaPh.map(f=>`<span>${pic(f,'20vw')}</span>`).join('')}</div>`:''}
   <h2 class="rv">Tell us about<br>your wedding</h2>
   <p class="lead rv" data-d="1" style="margin-top:24px">Send us the date and the venue and we’ll come back to you.</p>
-  <div class="rv" data-d="2" style="margin-top:38px"><a href="/contact" data-nav class="btn"><span>Check your date</span><i></i></a></div>
+  <div class="rv" data-d="2" style="margin-top:38px"><a href="#/contact" data-nav class="btn"><span>Check your date</span><i></i></a></div>
 </section>`;
 
 P['/portfolio']=()=>`
@@ -418,7 +418,7 @@ P['/about']=()=>`
 
 <section class="cta">
   <h2 class="rv">Want to talk?</h2>
-  <div class="rv" data-d="1" style="margin-top:38px"><a href="/contact" data-nav class="btn"><span>Get in touch</span><i></i></a></div>
+  <div class="rv" data-d="1" style="margin-top:38px"><a href="#/contact" data-nav class="btn"><span>Get in touch</span><i></i></a></div>
 </section>`;
 
 P['/services']=()=>`
@@ -736,7 +736,7 @@ P['/services']=()=>`
         </div>
         <p class="summary-note">We'll confirm your exact quote by email once we've reviewed your date and details.</p>
 
-        <a href="/contact" class="btn" id="submit-cta"><span>Write to us about this</span><i></i></a>
+        <a href="#/contact" class="btn" id="submit-cta"><span>Write to us about this</span><i></i></a>
 
         <button type="button" class="reset-btn" id="reset-btn">Start over</button>
       </aside>
@@ -749,7 +749,7 @@ ${PAPER?paperFaq():''}
 <section class="cta">
   <h2 class="rv">Rather talk it through<br>with one of us?</h2>
   <p class="lead rv" data-d="1" style="margin-top:24px">Send us your date and what you’re planning, and we’ll go through the options with you.</p>
-  <div class="rv" data-d="2" style="margin-top:38px"><a href="/contact" data-nav class="btn"><span>Start the conversation</span><i></i></a></div>
+  <div class="rv" data-d="2" style="margin-top:38px"><a href="#/contact" data-nav class="btn"><span>Start the conversation</span><i></i></a></div>
 </section>`;
 
 P['/testimonials']=()=>`
@@ -772,7 +772,7 @@ P['/testimonials']=()=>`
 
 <section class="cta">
   <h2 class="rv">Add yours</h2>
-  <div class="rv" data-d="1" style="margin-top:38px"><a href="/contact" data-nav class="btn"><span>Work with us</span><i></i></a></div>
+  <div class="rv" data-d="1" style="margin-top:38px"><a href="#/contact" data-nav class="btn"><span>Work with us</span><i></i></a></div>
 </section>`;
 
 /* ---------- enquiry form ----------
@@ -803,7 +803,7 @@ P['/contact']=()=>`
     <div class="sn-slot"><p class="sn-wait">Loading the form…</p></div>
     <p class="sn-fallback">Form not loading? <a href="${SN_FORM}" target="_blank" rel="noopener">Open it in a new tab</a>, or message us on Instagram at <a href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">@chaarbhai</a>.</p>
   
-    ${PAPER?`<p class="sn-consent">By sending this you agree we may contact you about your enquiry and handle your details as described in our <a href="/privacy" data-nav>Privacy Policy</a>.</p>`:''}
+    ${PAPER?`<p class="sn-consent">By sending this you agree we may contact you about your enquiry and handle your details as described in our <a href="#/privacy" data-nav>Privacy Policy</a>.</p>`:''}
   </div>
 </section>`;
 
@@ -855,7 +855,7 @@ let io;
 /* analytics: a no-op unless the tag loaded (see <head>) */
 const track=(name,params={})=>{if(window.CB_GA){gtag('event',name,params);if(name==='page_view'&&window.fbq)fbq('track','PageView')}};
 const GA_PATH={'/':'/','/portfolio':'/work','/about':'/about','/services':'/prices','/testimonials':'/reviews','/contact':'/contact','/privacy':'/privacy','/terms':'/terms','/refunds':'/refunds'};
-window.cbPageView=()=>{if(!window.CB_GA||!document.title)return;const p=routeOf(),gp=GA_PATH[p]||'/';track('page_view',{page_title:document.title,page_location:location.origin+gp,page_path:gp})};   // Paper: called by index.html after the visitor accepts analytics, so the page they're on is counted
+window.cbPageView=()=>{if(!window.CB_GA||!document.title)return;const p=routeOf(location.hash),gp=GA_PATH[p]||'/';track('page_view',{page_title:document.title,page_location:location.origin+gp,page_path:gp})};   // Paper: called by index.html after the visitor accepts analytics, so the page they're on is counted
 const reduceMotion=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* resolves once the preloader has fully faded, so the hero reveal is seen */
 let preGoneResolve; const preGone=new Promise(r=>preGoneResolve=r);
@@ -1892,7 +1892,7 @@ function reel(){
   listen(video,'play',updatePlayback);listen(video,'pause',updatePlayback);
   listen(video,'playing',()=>{if(landed&&visible())reveal();});
   listen(window,'scroll',sync);listen(window,'resize',sync);
-  listen(window,'cb-route-change',()=>{pause();});
+  listen(window,'hashchange',()=>{pause();});
   listen(document,'visibilitychange',sync);listen(window,'pagehide',pause);listen(window,'pageshow',sync);
   listen(video,'error',()=>{manualPlayback=true;ready=true;landed=true;logo.playing();reveal();pause();updatePlayback();});
   // Keep the film covered until a playable opening is buffered; the native player downloads ahead.
@@ -1983,12 +1983,11 @@ function render(path){
   page.innerHTML=(P[path]||P['/'])();
   if(PAPER&&path==='/'){const m=document.querySelector('.vhero-media');if(m)m.after(document.getElementById('hdr'));paperRails();paperWritePaint()}   // Paper Home: the bar sits right under the film and sticks (CSS)
   document.querySelectorAll('nav.links a[data-nav]').forEach(a=>{
-    const cur=a.getAttribute('href')===(GA_PATH[path]||path);
+    const cur=a.getAttribute('href')==='#'+path;
     a.classList.toggle('on',cur&&(PAPER||!a.classList.contains('book')));
     if(cur)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
   });
   document.title=TITLES[path]||TITLES['/'];
-  syncRouteMetadata(GA_PATH[path]||path);
   const gp=GA_PATH[path]||'/';
   track('page_view',{page_title:document.title,page_location:location.origin+gp,page_path:gp});
   scrollTo({top:0,behavior:'instant'});
@@ -2098,7 +2097,7 @@ function afterTransition(el,fallbackMs){
    from wherever opacity is), and a click during a leave skips rendering the
    page that was abandoned: #main just stays hidden and moves on. */
 async function go(){
-  pendingPath=routeOf();
+  pendingPath=routeOf(location.hash);
   if(routing){if(wake)wake();return}
   routing=true;
   while(pendingPath!==currentPath){
@@ -2135,36 +2134,40 @@ async function go(){
   }
   routing=false;
 }
-/* Work views use query parameters on the real /work page. */
-function routeOf(){const p=CB_ROUTER.internalPath();return p==='/portfolio'||p.startsWith('/portfolio/')?'/portfolio':p}
+/* Work has two views on one page: #/portfolio (Photos) and #/portfolio/films[/ID] (Films).
+   Old #/portfolio/videos links still work: they are rewritten to films.
+   routeOf gives the page a hash belongs to, so switching view doesn't redraw or animate the page. */
+function routeOf(h){const p=(h||'#/').slice(1);return p==='/portfolio'||p.indexOf('/portfolio/')===0?'/portfolio':p}
 function photoChapter(){
-  const m=/^\/portfolio\/photos\/([\w-]+)\/?$/.exec(CB_ROUTER.internalPath());
+  const m=/^#\/portfolio\/photos\/([\w-]+)\/?$/.exec(location.hash);
   return m&&CHAPTERS.some(c=>c.id===m[1])?m[1]:null;
 }
 function workSync(){
-  const m=/^\/portfolio\/films(?:\/([\w-]+))?\/?$/.exec(CB_ROUTER.internalPath());
+  const m=/^\/portfolio\/(?:films|videos)(?:\/([\w-]+))?\/?$/.exec(location.hash.slice(1));
   if(!m){VF.close({focus:true});const chapter=photoChapter();if(chapter)PS.go(chapter,true);else PS.restore();return}
-  PS.suspend();
-  preGone.then(()=>{
-    const m2=/^\/portfolio\/films(?:\/([\w-]+))?\/?$/.exec(CB_ROUTER.internalPath());
+  PS.suspend(); // Release Photos before the asynchronous Films handoff.
+  preGone.then(()=>{                              // not behind the loading screen
+    const m2=/^\/portfolio\/(?:films|videos)(?:\/([\w-]+))?\/?$/.exec(location.hash.slice(1));
     if(m2)VF.open(m2[1]);
   });
 }
-addEventListener('cb-route-change',go);
-addEventListener('cb-route-change',()=>{
-  if(routeOf()!=='/portfolio')VF.pauseAll();
+/* a link like ?view=films&v=ID (or the older ?view=videos) opens the same place */
+(function(){
+  const q=new URLSearchParams(location.search);
+  if(!/^(films|videos)$/.test(q.get('view')||'')||routeOf(location.hash)==='/portfolio')return;
+  const v=q.get('v');q.delete('view');q.delete('v');const rest=q.toString();
+  try{history.replaceState(null,'',location.pathname+(rest?'?'+rest:'')+'#/portfolio/films'+(v&&/^[\w-]{6,20}$/.test(v)?'/'+v:''))}catch(e){}
+})();
+addEventListener('hashchange',go);
+addEventListener('hashchange',()=>{
+  if(routeOf(location.hash)!=='/portfolio')VF.pauseAll();          // leaving Work: silence it now, the page swap follows
   else if(currentPath==='/portfolio')workSync();
 });
 document.addEventListener('click',e=>{
-  if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
   const nt=e.target.closest('[data-nav-to]');
-  if(nt){e.preventDefault();jumpAfter=nt.dataset.then||null;CB_ROUTER.navigate(nt.dataset.navTo);return}
-  const a=e.target.closest('a[href]');
-  if(!a||a.hasAttribute('download')||(a.target&&a.target!=='_self'))return;
-  const url=new URL(a.href,location.href);
-  // Ordinary #section links and cookie controls keep their native behaviour.
-  if(a.getAttribute('href').startsWith('#')&&!a.getAttribute('href').startsWith('#/'))return;
-  if(CB_ROUTER.navigate(url.href)){e.preventDefault();setMenu(false)}
+  if(nt){jumpAfter=nt.dataset.then||null;location.hash=nt.dataset.navTo;return}
+  if(!e.target.closest('a[data-nav]'))return;
+  setMenu(false);
 });
 
 const burger=document.getElementById('burger'),navlinks=document.getElementById('navlinks');
@@ -2202,7 +2205,7 @@ if(document.documentElement.dataset.theme==='paper'){
     e.preventDefault();f[(i+(e.shiftKey?-1:1)+f.length)%f.length].focus();
   });
   /* one photo per link, cross-faded when a link is hovered or focused (desktop) */
-  const NP={'/':'home','/work':'work','/about':'about','/prices':'services','/reviews':'reviews','/contact':'contact'};
+  const NP={'#/':'home','#/portfolio':'work','#/about':'about','#/services':'services','#/testimonials':'reviews','#/contact':'contact'};
   const ph=document.createElement('div');ph.className='nav-ph';ph.setAttribute('aria-hidden','true');
   const links=[...navlinks.querySelectorAll('a[data-nav]')];
   ph.innerHTML=links.map((a,i)=>{const k=NP[a.getAttribute('href')],f=(PICKS.nav||{})[k];return f?`<span class="${i?'':'on'}">${pic(f,'40vw')}</span>`:'<span></span>'}).join('');

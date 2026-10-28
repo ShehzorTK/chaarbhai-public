@@ -1,13 +1,4 @@
 /golden-hour-v2 /golden-hour 301
 /golden-hour-v2.html /golden-hour 301
-/services /prices 301
-/services/ /prices 301
-/testimonials /reviews 301
-/testimonials/ /reviews 301
-/portfolio /work 301
-/portfolio/ /work 301
-/portfolio/films /work?view=films 301
-/portfolio/videos /work?view=films 301
-/portfolio/films/:id /work?view=films&v=:id 301
-/portfolio/videos/:id /work?view=films&v=:id 301
-/portfolio/photos/:id /work?chapter=:id 301
+/disk https://chaarbhai.com/disk 302
+/disk/* https://chaarbhai.com/disk/:splat 302

@@ -14,13 +14,13 @@ const privacy=`
   <div class="trust">
     <h2 id="trust-h" class="mono">Built around the privacy laws of the places we shoot</h2>
     <ul class="chips">
-      <li><a href="/privacy" data-jump="s8-ca"><b>Canada</b> PIPEDA, CASL, Quebec Law 25</a></li>
-      <li><a href="/privacy" data-jump="s8-us"><b>United States</b> California CalOPPA, CAN-SPAM, state privacy laws</a></li>
-      <li><a href="/privacy" data-jump="s8-eu"><b>United Kingdom</b> UK GDPR, PECR</a></li>
-      <li><a href="/privacy" data-jump="s8-eu"><b>European Union</b> GDPR, ePrivacy</a></li>
-      <li><a href="/privacy" data-jump="s8-au"><b>Australia</b> Privacy Act and Australian Privacy Principles, Spam Act</a></li>
-      <li><a href="/privacy" data-jump="s8-in"><b>India</b> Digital Personal Data Protection Act</a></li>
-      <li><a href="/privacy" data-jump="s8-pk"><b>Pakistan and elsewhere</b> local law where it gives you rights</a></li>
+      <li><a href="#/privacy" data-jump="s8-ca"><b>Canada</b> PIPEDA, CASL, Quebec Law 25</a></li>
+      <li><a href="#/privacy" data-jump="s8-us"><b>United States</b> California CalOPPA, CAN-SPAM, state privacy laws</a></li>
+      <li><a href="#/privacy" data-jump="s8-eu"><b>United Kingdom</b> UK GDPR, PECR</a></li>
+      <li><a href="#/privacy" data-jump="s8-eu"><b>European Union</b> GDPR, ePrivacy</a></li>
+      <li><a href="#/privacy" data-jump="s8-au"><b>Australia</b> Privacy Act and Australian Privacy Principles, Spam Act</a></li>
+      <li><a href="#/privacy" data-jump="s8-in"><b>India</b> Digital Personal Data Protection Act</a></li>
+      <li><a href="#/privacy" data-jump="s8-pk"><b>Pakistan and elsewhere</b> local law where it gives you rights</a></li>
     </ul>
     <p class="note">These are the laws this policy is written to meet. They are not certificates or seals: no government issues a compliance badge for them, and we don’t display any badge we haven’t earned.</p>
     <ul class="promises">
@@ -160,7 +160,7 @@ const terms=`
 
     <h2>5. Permission to show your photos and films</h2>
     <ul>
-      <li>Our booking agreement asks whether you agree to us using your photos and films for marketing on our website and social media. We only publish the work of couples who said yes, and we will remove images on request (see the <a href="/privacy" data-nav>Privacy Policy</a>).</li>
+      <li>Our booking agreement asks whether you agree to us using your photos and films for marketing on our website and social media. We only publish the work of couples who said yes, and we will remove images on request (see the <a href="#/privacy" data-nav>Privacy Policy</a>).</li>
       <li>We take care with guests and children and ask permission before featuring them in marketing.</li>
     </ul>
 
@@ -171,7 +171,7 @@ const terms=`
     </ul>
 
     <h2>7. If we can’t attend</h2>
-    <p>In the unlikely event that we cannot cover your wedding (serious illness, emergency, accident), we will promptly tell you and arrange a replacement of comparable standard where possible. If we cannot provide one, we will refund what you have paid for services not delivered (see the <a href="/refunds" data-nav>Refund and Cancellation Policy</a>).</p>
+    <p>In the unlikely event that we cannot cover your wedding (serious illness, emergency, accident), we will promptly tell you and arrange a replacement of comparable standard where possible. If we cannot provide one, we will refund what you have paid for services not delivered (see the <a href="#/refunds" data-nav>Refund and Cancellation Policy</a>).</p>
 
     <h2>8. Events outside our control</h2>
     <p>Neither of us is responsible for failing to perform because of events beyond reasonable control (natural disaster, severe weather, war, pandemic restrictions, government action, travel bans, venue closures). We will work together to reschedule or find a fair solution.</p>
@@ -189,7 +189,7 @@ const terms=`
     </ul>
 
     <h2>11. Privacy</h2>
-    <p>How we handle your information is set out in our <a href="/privacy" data-nav>Privacy Policy</a>.</p>
+    <p>How we handle your information is set out in our <a href="#/privacy" data-nav>Privacy Policy</a>.</p>
 
     <h2>12. Disputes</h2>
     <p>We hope to sort any concern through a conversation first. Email ${MAIL}. If you are a consumer in a place that gives you mandatory rights (for example the UK, EU, Australia or Quebec), those rights stay in place.</p>
@@ -228,7 +228,7 @@ const refunds=`
     <p>Nothing in this policy takes away rights you have under the law where you live (for example mandatory consumer rights in the UK, EU, Australia, Quebec or elsewhere), including any right to a remedy if we do not provide a service as agreed.</p>
 
     <h2>7. Questions</h2>
-    <p>Contact us at ${MAIL}. See also our <a href="/terms" data-nav>Terms of Service</a>.</p>
+    <p>Contact us at ${MAIL}. See also our <a href="#/terms" data-nav>Terms of Service</a>.</p>
   </div>
 </section>`;
 

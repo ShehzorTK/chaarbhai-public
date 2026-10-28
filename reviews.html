@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<base href="/">
-<script src="router.js?v=20261027"></script>
 <style>html{background:#2B2530;color-scheme:light}</style>   <!-- dark from the first byte: no white flash before style.css arrives -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Reviews from Chaar Bhai Couples</title>
@@ -18,6 +16,8 @@
      <meta name="robots" content="noindex,nofollow"> so Google never lists the review copies. On chaarbhai.com it does
      nothing, so going live needs no edit. To find every place: grep -rn "NOINDEX UNTIL LIVE" site tools docs -->
 <script>if(!/(^|\.)chaarbhai\.com$/.test(location.hostname)){var m=document.createElement('meta');m.name='robots';m.content='noindex,nofollow';document.head.appendChild(m)}</script>
+<script>/* this page's own address (/reviews) opens its route in the app */
+if(!location.hash)try{history.replaceState(null,'',location.pathname+location.search+'#/testimonials')}catch(e){}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Photographer","@id":"https://www.chaarbhai.com/#business","name":"Chaar Bhai","alternateName":"Chaar Bhai Inc.","url":"https://www.chaarbhai.com/","logo":"https://www.chaarbhai.com/img/logo.png","image":"https://www.chaarbhai.com/og-image.jpg","description":"Wedding photography and film since 2013. Based in the Greater Toronto Area, and we travel.","foundingDate":"2013","email":"info@chaarbhai.com","priceRange":"$$$","areaServed":{"@type":"AdministrativeArea","name":"Greater Toronto Area"},"founder":{"@type":"Person","name":"Fahad Raza","jobTitle":"Founder and photographer","url":"https://www.chaarbhai.com/about"},"sameAs":["https://instagram.com/chaarbhai","https://www.youtube.com/@chaar.bhai.","https://tiktok.com/@chaar.bhai","https://www.linkedin.com/company/chaarbhai"]},{"@type":"WebSite","@id":"https://www.chaarbhai.com/#website","url":"https://www.chaarbhai.com/","name":"Chaar Bhai","publisher":{"@id":"https://www.chaarbhai.com/#business"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.chaarbhai.com/"},{"@type":"ListItem","position":2,"name":"Reviews","item":"https://www.chaarbhai.com/reviews"}]}]}</script>
 <style>.seo-static{position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden}</style>
 <noscript><style>.seo-static{position:static;width:auto;height:auto;overflow:visible;padding:24px;color:#F2EBDE;font:16px/1.6 Georgia,serif}.seo-static a{color:inherit;margin-right:12px}body.locked{overflow:auto}#pre{display:none}</style></noscript><!--/seo:head-->
@@ -26,7 +26,7 @@
      chaarbhai.com and the main Netlify address, never on localhost, a file
      opened from disk, or Netlify's preview copies (their names contain "--"),
      so testing doesn't count as visits. Page views are sent by the site itself,
-     one per page, including navigation through the History API.
+     one per page (#/about, #/services...), since GA can't see #/ addresses.
      No names, emails or form contents are ever sent. -->
 <script>
 (function(){
@@ -103,7 +103,7 @@ window.CB_FONTS_OK();
 try{if(sessionStorage.getItem('cb-loaded')==='1')document.documentElement.classList.add('seen')}catch(e){}
 /* Experiment (v40.2, every Home load from v40.3): when a load starts on Home there is no logo-fill loading screen. The pen logo draws at once
    and the site comes up around it. cb-pen-boot hides the loading screen and holds the dark background until then. */
-if(CB_ROUTER.internalPath()==='/'){document.documentElement.classList.add('cb-pen-boot');document.documentElement.classList.add('cb-pen-hold')}   // every load of Home: the pen draws alone first (cb-pen-hold), then the site comes up
+if(location.hash===''||location.hash==='#/'){document.documentElement.classList.add('cb-pen-boot');document.documentElement.classList.add('cb-pen-hold')}   // every load of Home: the pen draws alone first (cb-pen-hold), then the site comes up
 /* Light or dark, as the visitor last chose it. Set before paint so the page
    never flashes the other theme. Dark is the house default. */
 document.documentElement.dataset.theme='paper';
@@ -117,7 +117,7 @@ try{
   var _d=document.documentElement;
   _d.dataset.theme='paper';
   document.getElementById('themecolor').setAttribute('content','#2B2530');
-  document.write('<script src="legal.js?v=20261027"><\/script><script src="consent.js?v=20261027"><\/script>');
+  document.write('<script src="legal.js?v=40.143"><\/script><script src="consent.js?v=40.143"><\/script>');
 }catch(e){}
 </script>
 </head>
@@ -138,17 +138,17 @@ try{
 
 
 <header id="hdr">
-  <a href="/contact" data-nav class="paper-contact" data-tooltip="Get in touch" style="display:none">Contact</a>   <!-- Paper theme only: Contact sits far left of the bar -->
-  <a href="/" class="brand" data-nav aria-label="Chaar Bhai, home">
+  <a href="#/contact" data-nav class="paper-contact" data-tooltip="Get in touch" style="display:none">Contact</a>   <!-- Paper theme only: Contact sits far left of the bar -->
+  <a href="#/" class="brand" data-nav aria-label="Chaar Bhai, home">
     <img data-logo src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Chaar Bhai">
   </a>
   <nav class="links" id="navlinks">
-    <a href="/" data-nav class="on">Home</a>
-    <a href="/work" data-nav>Work</a>
-    <a href="/about" data-nav>About</a>
-    <a href="/prices" data-nav>Prices</a>
-    <a href="/reviews" data-nav>Reviews</a>
-    <a href="/contact" data-nav class="book"><span>Contact</span><i></i></a>
+    <a href="#/" data-nav class="on">Home</a>
+    <a href="#/portfolio" data-nav>Work</a>
+    <a href="#/about" data-nav>About</a>
+    <a href="#/services" data-nav>Prices</a>
+    <a href="#/testimonials" data-nav>Reviews</a>
+    <a href="#/contact" data-nav class="book"><span>Contact</span><i></i></a>
   </nav>
   <button class="theme-sw" id="themesw" type="button" aria-label="Switch to light mode">
     <svg class="i-sun" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3.6"/><path d="M10 1.8v2.4M10 15.8v2.4M1.8 10h2.4M15.8 10h2.4M4.2 4.2l1.7 1.7M14.1 14.1l1.7 1.7M4.2 15.8l1.7-1.7M14.1 5.9l1.7-1.7"/></svg>
@@ -170,9 +170,9 @@ try{
     </div>
     <div class="fc">
       <h2 class="mono">Pages</h2>
-      <a href="/" data-nav>Home</a><a href="/work" data-nav>Work</a>
-      <a href="/about" data-nav>About</a><a href="/prices" data-nav>Prices</a>
-      <a href="/reviews" data-nav>Reviews</a><a href="/contact" data-nav>Contact</a>
+      <a href="#/" data-nav>Home</a><a href="#/portfolio" data-nav>Work</a>
+      <a href="#/about" data-nav>About</a><a href="#/services" data-nav>Prices</a>
+      <a href="#/testimonials" data-nav>Reviews</a><a href="#/contact" data-nav>Contact</a>
     </div>
     <div class="fc">
       <h2 class="mono">Elsewhere</h2>
@@ -183,8 +183,8 @@ try{
     </div>
     <div class="fc paper-legal" style="display:none">   <!-- Paper theme only (theme-paper.css shows it) -->
       <h2 class="mono">Legal</h2>
-      <a href="/privacy" data-nav>Privacy</a><a href="/terms" data-nav>Terms</a>
-      <a href="/refunds" data-nav>Refunds</a><a href="#" data-consent-open role="button">Cookie settings</a>
+      <a href="#/privacy" data-nav>Privacy</a><a href="#/terms" data-nav>Terms</a>
+      <a href="#/refunds" data-nav>Refunds</a><a href="#" data-consent-open role="button">Cookie settings</a>
     </div>
   </div>
   <div class="fbot mono">
@@ -197,12 +197,11 @@ try{
 <!-- development-only diagnostics omitted from the public bundle. -->
 <script src="portfolio.js?v=40.143"></script>
 <script src="videos.js?v=40.143"></script>
-<script src="video-feed.js?v=20261027"></script>
+<script src="video-feed.js?v=40.143"></script>
 <script src="photo-stage.js?v=40.143"></script>
 <script src="reviews.js?v=40.143"></script>
 <script src="pen-loader.js?v=40.143"></script>
 <script src="canada-map.js?v=40.143"></script>
-<script src="route-meta.js?v=20261027"></script>
-<script src="app.js?v=20261027"></script>
+<script src="app.js?v=40.143"></script>
 </body>
 </html>

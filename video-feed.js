@@ -29,7 +29,7 @@ window.cbGlide=(function(){
 'use strict';
 
 const AUTO_ADVANCE=true;              // when a video ends, scroll to the next slide
-const HASH='/work?view=films';
+const HASH='#/portfolio/films';
 const SND_KEY='cb-vf-sound';
 
 const dbg=m=>{if(window.cbLog)window.cbLog(m)};
@@ -99,7 +99,7 @@ function loadYT(){
 /* ---------- the Photos | Films switch. There is one, in the site header, on Work only (app.js puts it there) ---------- */
 function toggleHTML(active){
   const a=(v,href,label)=>`<a href="${href}"${active===v?' aria-current="true"':''}>${label}</a>`;
-  return `<div class="wk-tog" role="group" aria-label="Work view">${a('photos','/work','Photographs')}<span class="sep" aria-hidden="true"></span>${a('videos',HASH,'Films')}<i class="ul" aria-hidden="true"></i></div>`;
+  return `<div class="wk-tog" role="group" aria-label="Work view">${a('photos','#/portfolio','Photographs')}<span class="sep" aria-hidden="true"></span>${a('videos',HASH,'Films')}<i class="ul" aria-hidden="true"></i></div>`;
 }
 
 /* The gold underline under the current word is one element that slides to it (transform only). Used by the switch
@@ -136,7 +136,7 @@ function markCat(root,k,reduce){
 /* keep the switch's highlight in step with the view */
 function markToggle(view){
   document.querySelectorAll('.wk-tog a').forEach(a=>{
-    if(a.getAttribute('href')===(view==='videos'?HASH:'/work'))a.setAttribute('aria-current','true');
+    if(a.getAttribute('href')===(view==='videos'?HASH:'#/portfolio'))a.setAttribute('aria-current','true');
     else a.removeAttribute('aria-current');
   });
   document.querySelectorAll('.wk-tog').forEach(moveUL);
@@ -561,10 +561,9 @@ function flash(i){
   S.flashT=setTimeout(()=>f.remove(),1600);
 }
 function setHash(){
-  const url=new URL(location.href);
-  url.pathname='/work';url.hash='';url.searchParams.delete('chapter');
-  url.searchParams.set('view','films');url.searchParams.set('v',curId(S.data[S.active]));
-  CB_ROUTER.navigate(url.href,true,false);
+  const h=HASH+'/'+curId(S.data[S.active]);
+  if(location.hash===h)return;
+  try{history.replaceState(history.state,'',location.pathname+location.search+h)}catch(e){}
 }
 
 /* ---------- moving between slides ---------- */
