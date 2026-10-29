@@ -22,16 +22,16 @@
 <style>.seo-static{position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden}</style>
 <noscript><style>.seo-static{position:static;width:auto;height:auto;overflow:visible;padding:24px;color:#F2EBDE;font:16px/1.6 Georgia,serif}.seo-static a{color:inherit;margin-right:12px}body.locked{overflow:auto}#pre{display:none}</style></noscript><!--/seo:head-->
 <meta name="theme-color" content="#12141C" id="themecolor">
-<!-- Google Analytics (GA4, G-X1GHG229CQ). Loads only on the real site:
-     chaarbhai.com and the main Netlify address, never on localhost, a file
-     opened from disk, or Netlify's preview copies (their names contain "--"),
+<!-- Google Analytics (GA4, G-Z463MFP164). Loads only on the real site:
+     chaarbhai.com and www.chaarbhai.com, never on localhost, test subdomains,
+     a file opened from disk, or deployment preview addresses,
      so testing doesn't count as visits. Page views are sent by the site itself,
      one per page, including navigation through the History API.
      No names, emails or form contents are ever sent. -->
 <script>
 (function(){
-  var ID='G-X1GHG229CQ', h=location.hostname;
-  var live=/(^|\.)chaarbhai\.com$/.test(h)||(/\.netlify\.app$/.test(h)&&h.indexOf('--')<0);
+  var ID='G-Z463MFP164', h=location.hostname;
+  var live=/^(www\.)?chaarbhai\.com$/.test(h);
   var paper=true;
   window.dataLayer=window.dataLayer||[];
   window.gtag=function(){dataLayer.push(arguments)};
@@ -45,6 +45,7 @@
     document.head.appendChild(s);
     gtag('js',new Date());
     gtag('config',ID,{send_page_view:false});
+    window.dispatchEvent(new Event('cb:analytics-ready'));
     /* Meta Pixel: loads only with the same consent as Google Analytics. Page views go through track() in app.js. */
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
     fbq('consent','grant');fbq('init','2227226818091802');
@@ -62,6 +63,7 @@
     gtag('consent','update',{analytics_storage:'denied'});
     if(window.fbq)fbq('consent','revoke');
     window.CB_GA=null;
+    document.cookie='cb_ga_enquiry=; Domain=.chaarbhai.com; Path=/; Max-Age=0; SameSite=Lax; Secure';
     document.cookie.split(';').forEach(function(c){var n=c.split('=')[0].trim();
       if(n==='_ga'||n.indexOf('_ga_')===0)['','; domain='+h,'; domain=.'+h.replace(/^www\./,'')].forEach(function(d){document.cookie=n+'=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/'+d})});
   };
@@ -203,6 +205,7 @@ try{
 <script src="pen-loader.js?v=40.144"></script>
 <script src="canada-map.js?v=40.144"></script>
 <script src="route-meta.js?v=40.144"></script>
-<script src="app.js?v=40.144"></script>
+<script src="app.js?v=20261029"></script>
+<script defer src="analytics-events.js?v=20261029"></script>
 </body>
 </html>

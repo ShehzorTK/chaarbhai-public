@@ -853,9 +853,9 @@ let paperHomeTextCleanup=()=>{};
 const main=document.getElementById('main');
 let io;
 /* analytics: a no-op unless the tag loaded (see <head>) */
-const track=(name,params={})=>{if(window.CB_GA){gtag('event',name,params);if(name==='page_view'&&window.fbq)fbq('track','PageView')}};
+const track=(name,params={})=>{if(window.CB_GA){gtag('event',name,params);if(name==='page_view')window.dispatchEvent(new Event('cb:pageview'));if(name==='page_view'&&window.fbq)fbq('track','PageView')}};
 const GA_PATH={'/':'/','/portfolio':'/work','/about':'/about','/services':'/prices','/testimonials':'/reviews','/contact':'/contact','/privacy':'/privacy','/terms':'/terms','/refunds':'/refunds'};
-window.cbPageView=()=>{if(!window.CB_GA||!document.title)return;const p=routeOf(),gp=GA_PATH[p]||'/';track('page_view',{page_title:document.title,page_location:location.origin+gp,page_path:gp})};   // Paper: called by index.html after the visitor accepts analytics, so the page they're on is counted
+window.cbPageView=()=>{if(!window.CB_GA||!document.title)return;const p=routeOf(),gp=GA_PATH[p]||'/';track('page_view',{page_title:document.title,page_location:location.origin+gp+location.search,page_path:gp})};   // Paper: called by index.html after the visitor accepts analytics, so the page they're on is counted
 const reduceMotion=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* resolves once the preloader has fully faded, so the hero reveal is seen */
 let preGoneResolve; const preGone=new Promise(r=>preGoneResolve=r);
@@ -1990,7 +1990,7 @@ function render(path){
   document.title=TITLES[path]||TITLES['/'];
   syncRouteMetadata(GA_PATH[path]||path);
   const gp=GA_PATH[path]||'/';
-  track('page_view',{page_title:document.title,page_location:location.origin+gp,page_path:gp});
+  track('page_view',{page_title:document.title,page_location:location.origin+gp+location.search,page_path:gp});
   scrollTo({top:0,behavior:'instant'});
   const sub=document.getElementById('hdrsub');
   document.documentElement.classList.toggle('on-work',path==='/portfolio');
