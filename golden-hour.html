@@ -306,7 +306,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 /* Meta Pixel (ad campaigns). No consent gate on this landing page by decision; the footer carries a cookie notice. Live hosts only.
    Lead fires on /thanks (Studio Ninja redirects every enquiry there), and only when the cb_gh cookie set below is present. */
 (function(){
-  if(!/(^|\.)chaarbhai\.com$/.test(location.hostname))return;
+  if(!/^(www\.|goldenhour\.|links\.)?chaarbhai\.com$/.test(location.hostname))return;
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init','2227226818091802');
   fbq('track','PageView');

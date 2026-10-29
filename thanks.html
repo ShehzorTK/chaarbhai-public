@@ -40,7 +40,7 @@ h1{font:500 clamp(40px,9vw,64px)/1.05 var(--f-display);letter-spacing:.02em;text
    Golden Hour landing page counts for the ads: it sets the cb_gh cookie (on .chaarbhai.com, 2 hours), every other page that
    shows the form clears it. No cookie, no Meta events. The cookie is cleared after the Lead so a refresh can't count twice. */
 (function(){
-  var live=/(^|\.)chaarbhai\.com$/.test(location.hostname);
+  var live=/^(www\.|goldenhour\.|links\.)?chaarbhai\.com$/.test(location.hostname);
   var ck=function(n){var m=document.cookie.match('(?:^|; )'+n+'=([^;]*)');return m?m[1]:undefined};
   if(!live||ck('cb_gh')!=='1')return;
   document.cookie='cb_gh=; Domain=.chaarbhai.com; Path=/; Max-Age=0; SameSite=Lax; Secure';
@@ -58,7 +58,7 @@ h1{font:500 clamp(40px,9vw,64px)/1.05 var(--f-display);letter-spacing:.02em;text
 <script>
 /* Studio Ninja's successful-submit redirect. A short-lived marker prevents direct visits and reloads from counting as leads. */
 (function(){
-  if(!/(^|\.)chaarbhai\.com$/.test(location.hostname))return;
+  if(!/^(www\.|goldenhour\.|links\.)?chaarbhai\.com$/.test(location.hostname))return;
   var m=document.cookie.match('(?:^|; )cb_ga_enquiry=([^;]*)');
   if(!m||! /^(golden_hour|main_site)$/.test(m[1]))return;
   var source=m[1];

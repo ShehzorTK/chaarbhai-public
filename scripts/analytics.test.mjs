@@ -44,3 +44,27 @@ test('success redirect sends a source-labelled lead once; direct visits and deni
  const direct=setup();vm.runInNewContext(thanks,direct.context);assert.equal(direct.context.dataLayer.length,0);
  const denied=setup(undefined,false);denied.setCookie('cb_ga_enquiry=main_site');vm.runInNewContext(thanks,denied.context);assert.equal(denied.context.dataLayer.length,0);
 });
+
+test('built production tags stay disabled on Netlify, Pages and test hosts',()=>{
+  for(const file of ['index.html','golden-hour.html','thanks.html','links/index.html']) {
+    const html=readFileSync(file,'utf8');
+    const blocks=[...html.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/g)].map(x=>x[1]).filter(x=>/googletagmanager|fbevents/.test(x));
+    assert.ok(blocks.length, file+' contains tracking code');
+    for(const host of ['chaarbhai.netlify.app','preview--chaarbhai.netlify.app','shehzortk.github.io','test.chaarbhai.com','localhost']) {
+      const b=setup(host); const injected=[];
+      b.context.document.head.appendChild=s=>injected.push(s);
+      for(const block of blocks) vm.runInNewContext(block,b.context);
+      assert.equal(injected.length,0,file+' must not load tags on '+host);
+      assert.equal(b.context.window.fbq,undefined,file+' must not initialise Pixel on '+host);
+    }
+  }
+});
+
+test('generated entries use the current Google stream and the production Pixel',()=>{
+  for(const file of ['index.html','about.html','contact.html','prices.html','reviews.html','work.html','golden-hour.html','thanks.html','links/index.html']) {
+    const html=readFileSync(file,'utf8');
+    assert.ok(html.includes('G-Z463MFP164'),file);
+    assert.ok(!html.includes('G-X1GHG229CQ'),file+' must not restore the retired tag');
+    if(!file.startsWith('links/')) assert.ok(html.includes("fbq('init','2227226818091802')"),file);
+  }
+});
