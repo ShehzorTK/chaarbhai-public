@@ -354,25 +354,25 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 </script>
 <style>
 /* hero: split, light. Text left, couple portrait right (below it on phones) */
-.hero{display:grid;grid-template-areas:"logo" "txt" "ph";color:#2A1D0F}
+.hero{display:grid;grid-template-areas:"logo" "txt" "ph"}
 .hero .ph{grid-area:ph;width:100%;aspect-ratio:2/3;max-height:78svh;object-fit:cover;object-position:50% 40%;filter:none}
 @media (max-width:899px){.hero .ph{max-width:520px;justify-self:center}}
 .hero .txt{grid-area:txt;padding:0 var(--pad) 40px;text-align:center;display:flex;flex-direction:column;align-items:center}
 .hero .hlogo{grid-area:logo;height:40px;width:auto;margin:28px auto 22px}
-.hero .pill{display:inline-block;font-size:13px;letter-spacing:.2em;text-transform:uppercase;border:1px solid rgba(42,29,15,.4);padding:7px 12px;margin:14px 0 0;line-height:1.4;color:#2A1D0F}
-.hero .pill .n{color:#8A5A1F}
+.hero .pill{display:inline-block;font-size:13px;letter-spacing:.2em;text-transform:uppercase;border:1px solid rgba(242,235,222,.5);padding:7px 12px;margin:14px 0 0;line-height:1.4;color:#F2EBDE}
+.hero .pill .n{color:#E3B75A}
 .hero h1{font-size:clamp(36px,9vw,64px);line-height:1.05;max-width:12em;margin-top:0;text-wrap:balance}
-.hero .tag{color:#2A1D0F;text-align:center;margin:14px auto 0;max-width:26em;font-size:clamp(17px,4.6vw,21px);line-height:1.45}
-.hero .heroprice{color:#2A1D0F;font-size:15px;letter-spacing:.12em;text-transform:uppercase;margin:22px 0 0}
-.hero .heroprice b{color:#8A5A1F;font-weight:400}
+.hero .tag{color:#F2EBDE;text-align:center;margin:14px auto 0;max-width:26em;font-size:clamp(17px,4.6vw,21px);line-height:1.45}
+.hero .heroprice{color:#F2EBDE;font-size:15px;letter-spacing:.12em;text-transform:uppercase;margin:22px 0 0}
+.hero .heroprice b{color:#E3B75A;font-weight:400}
 .hero .cta{display:flex;gap:14px 22px;flex-wrap:wrap;justify-content:center;align-items:center;margin-top:20px}
-.hero .btn{margin-top:0;background:#2A1D0F;color:#F2EBDE}
+.hero .btn{margin-top:0;background:#F2EBDE;color:#2B2530}
 @media (max-width:520px){.hero .cta{flex-wrap:nowrap;gap:16px}.hero .btn{padding:0 16px;letter-spacing:.12em;font-size:13px;white-space:nowrap}.hero .sec{letter-spacing:.12em;font-size:13px;white-space:nowrap}}
 @media (max-width:359px){.hero .cta{flex-wrap:wrap}}
-@media (hover:hover){.hero .btn:hover{background:#3d2d1b}}
-.hero .btn:active{background:#1c1309}
-.hero .btn:focus-visible{outline-color:#2A1D0F}
-.hero .sec{color:#2A1D0F;font:400 14px/1.3 var(--f-serif);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(42,29,15,.4);padding:6px 0}
+@media (hover:hover){.hero .btn:hover{background:#fff}}
+.hero .btn:active{background:#d9cfbc}
+.hero .btn:focus-visible{outline-color:#F2EBDE}
+.hero .sec{color:#F2EBDE;font:400 14px/1.3 var(--f-serif);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(242,235,222,.5);padding:6px 0}
 @media (min-width:900px){
 .hero{grid-template-columns:1fr minmax(340px,440px);grid-template-areas:"logo logo" "txt ph";column-gap:clamp(48px,6vw,96px);align-items:center;padding:0 max(var(--pad),calc((100% - 1200px)/2)) 40px}
 .hero .hlogo{height:56px;margin:24px 0 28px;justify-self:start}
@@ -389,8 +389,8 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 <body>
 
 <main>
-<section class="hero g-cream" aria-labelledby="h">
-  <img class="hlogo" src="img/logo-dark-330.webp" alt="Chaar Bhai" width="82" height="40">
+<section class="hero g-aub" aria-labelledby="h">
+  <img class="hlogo" src="img/logo-330.webp" alt="Chaar Bhai" width="82" height="40">
   <div class="txt">
     <h1 id="h">Timeless wedding photo and film for Toronto couples.</h1>
     <p class="tag">Photos and film you will still feel in twenty years.</p>
