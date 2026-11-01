@@ -294,8 +294,24 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
   var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+ID;
   document.head.appendChild(s);
   gtag('js',new Date());
-  gtag('config',ID);
+  gtag('config',ID,{content_group:'golden_hour',traffic_type:(function(){try{if(/[?&]cb_internal=1/.test(location.search))localStorage.setItem('cb-internal','1');if(/[?&]cb_internal=0/.test(location.search))localStorage.removeItem('cb-internal');return localStorage.getItem('cb-internal')?'internal':undefined}catch(e){}})()});
   window.CB_GA=ID;
+  /* Reporting: how far down the page people get (scroll_depth) and which sections they see (section_view). Each fires once per visit. */
+  var seen={};
+  function once(k,n,p){if(seen[k])return;seen[k]=1;gtag('event',n,p)}
+  addEventListener('scroll',function(){
+    var pct=(scrollY+innerHeight)/document.documentElement.scrollHeight*100;
+    [25,50,75,100].forEach(function(t){if(pct>=(t===100?98:t))once('s'+t,'scroll_depth',{percent:t,page:'golden-hour'})});
+  },{passive:true});
+  var names={h:'hero',ph1:'trust',mh:'story',wh:'every_part',fh:'films',oh:'offer',sh:'what_next',fqh:'faq',rh:'reviews',eh:'enquire'};
+  if(window.IntersectionObserver){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(!e.isIntersecting)return;io.unobserve(e.target);
+      var k=e.target.id==='enquire'?'eh':e.target.id==='reviews'?'rh':e.target.id==='offer'?'oh':(e.target.getAttribute('aria-labelledby')||'');
+      if(names[k])once('v'+k,'section_view',{section:names[k],page:'golden-hour'});
+    })},{threshold:0.4});
+    document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('main > section').forEach(function(s){io.observe(s)})});
+  }
   document.addEventListener('click',function(e){
     var a=e.target.closest&&e.target.closest('a[href="#enquire"]');
     if(a)gtag('event','cta_click',{cta:(a.textContent||'').trim().slice(0,40),page:'golden-hour'});
