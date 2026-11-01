@@ -9,13 +9,11 @@
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#2B2530">
 <link rel="icon" href="img/favicon-32.png">
-<link rel="preload" as="image" href="photos/saadman-maariyah/ChaarBhai_SMNE_2343_resized-1280.webp" imagesrcset="photos/saadman-maariyah/ChaarBhai_SMNE_2343_resized-640.webp 640w, photos/saadman-maariyah/ChaarBhai_SMNE_2343_resized-1280.webp 1280w" imagesizes="100vw">
 <style>
 /* Tokens and rules copied from the design system (brand/guidelines.html) and site/theme-paper.css. */
 @font-face{font-family:'Cormorant Garamond';font-weight:500;font-style:normal;font-display:swap;src:url(fonts/cormorant-garamond.woff2) format('woff2')}
 @font-face{font-family:'EB Garamond';font-weight:400;font-style:normal;font-display:swap;src:url(fonts/eb-garamond.woff2) format('woff2')}
 @font-face{font-family:'EB Garamond';font-weight:400;font-style:italic;font-display:swap;src:url(fonts/eb-garamond-italic.woff2) format('woff2')}
-@font-face{font-family:'Pinyon Script';font-weight:400;font-style:normal;font-display:swap;src:url(fonts/pinyon-script.woff2) format('woff2')}
 :root{
   --f-display:'Cormorant Garamond','Cochin',Georgia,serif;
   --f-serif:'EB Garamond','Sirenne',Georgia,serif;
@@ -72,22 +70,10 @@ figcaption{font-style:italic;font-size:14px;line-height:1.5;color:var(--dim);mar
 .bar{position:absolute;z-index:5;top:0;left:0;right:0;display:flex;align-items:center;justify-content:center;height:76px}
 .bar img{height:40px;width:auto}
 .bar{pointer-events:none}.bar img{pointer-events:auto}
-/* hero: full-screen backlit photo with a warm glow, centred text */
-.hero{position:relative;min-height:max(560px,100svh);overflow:hidden;text-align:center;color:#F2EBDE;background:#18131D}
-.hero .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;filter:var(--tone);animation:hz 14s cubic-bezier(.16,1,.3,1) forwards}
-@keyframes hz{from{transform:scale(1)}to{transform:scale(1.07)}}
-@media (prefers-reduced-motion:reduce){.hero .ph{animation:none}}
-.hero .glow{position:absolute;inset:0;background:radial-gradient(circle at 72% 18%,rgba(255,186,105,.38),rgba(255,186,105,0) 55%),linear-gradient(to top,rgba(24,19,29,.95) 0%,rgba(24,19,29,.55) 36%,rgba(24,19,29,0) 64%)}
-.hero .txt{position:absolute;left:0;right:0;bottom:0;padding:24px var(--pad) calc(28px + 68px + env(safe-area-inset-bottom));display:flex;flex-direction:column;align-items:center}
-.hero .pill{display:inline-block;font-size:13px;letter-spacing:.2em;text-transform:uppercase;border:1px solid rgba(242,235,222,.55);padding:7px 12px;margin:0;line-height:1.4}
-.hero h1{font-size:clamp(44px,12vw,88px);line-height:1.02;max-width:12em;margin-top:18px}
-.hero .tag{color:#F2EBDE;text-align:center;margin:14px auto 0;max-width:26em;font-size:clamp(17px,4.6vw,22px)}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 30px;background:#F2EBDE;color:#2B2530;font:400 14px/1.3 var(--f-serif);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;margin-top:22px}
 @media (hover:hover){.btn:hover{background:#fff}}
 .btn:active{background:#E4DAC8}
 .btn:focus-visible{outline:2px solid #F2EBDE;outline-offset:3px}
-.hero .under{color:#F2EBDE;margin-top:10px}
-@media (min-width:900px){.hero .ph{object-position:50% 45%}.hero .txt{padding-bottom:calc(56px + 68px)}.hero h1{font-size:clamp(60px,6.4vw,88px)}}
 
 /* v2: eyebrow, proof strip under the button, problem, mechanism, P.S. */
 .eyebrow{font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-bottom:20px;max-width:34em;line-height:1.5}
@@ -245,6 +231,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 .stars-fill{position:absolute;inset:0 auto 0 0;display:inline-flex;gap:1px;overflow:hidden;color:#FBBC04}
 @media (max-width:520px){.tb{display:grid}}
 @media (hover:hover){.tbd:hover .tb-sub{text-decoration:underline}}
+#revs{min-height:240px}
 .revs{columns:1;column-gap:clamp(28px,4vw,56px);margin-top:clamp(32px,5vw,56px)}
 .rv{break-inside:avoid;border-top:1px solid var(--line);padding:22px 0 30px}
 .rv blockquote{font-style:italic;font-size:17px;line-height:1.55;letter-spacing:.02em}
@@ -313,7 +300,6 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 .sticky .p{font-style:italic;color:var(--dim)}
 @media (prefers-reduced-motion:reduce){.sticky{transition:none}}
 </style>
-<link rel="preconnect" href="https://app.studioninja.co" crossorigin>
 <script>
 /* Google Analytics (GA4, same property as the main site). This landing page has no consent notice by decision (Privacy Policy, section 5).
    One page view, plus cta_click when someone taps a link to the enquiry form. Never on localhost or file://. */
@@ -367,28 +353,43 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 })();
 </script>
 <style>
-.heroprice{margin:14px 0 0;font-size:clamp(18px,5vw,24px);letter-spacing:.04em;color:#F2EBDE;text-align:center}
-.heroprice b{font-weight:500;color:#F5C98A}
-.hero .btn{margin-top:18px}
+/* hero: split, light. Text left, couple portrait right (below it on phones) */
+.hero{display:grid;background:#F2EBDE;color:#2A1D0F}
+.hero .ph{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;filter:none;order:2}
+.hero .txt{order:1;padding:28px var(--pad) 44px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.hero .hlogo{height:40px;width:auto;margin:0 0 22px}
+.hero .pill{display:inline-block;font-size:13px;letter-spacing:.2em;text-transform:uppercase;border:1px solid rgba(42,29,15,.4);padding:7px 12px;margin:14px 0 0;line-height:1.4;color:#2A1D0F}
+.hero .pill .n{color:#8A5A1F}
+.hero h1{font-size:clamp(36px,9vw,64px);line-height:1.05;max-width:12em;margin-top:0;text-wrap:balance}
+.hero .tag{color:#2A1D0F;text-align:center;margin:14px auto 0;max-width:26em;font-size:clamp(17px,4.6vw,21px);line-height:1.45}
+.hero .heroprice{color:#2A1D0F;font-size:15px;letter-spacing:.12em;text-transform:uppercase;margin:22px 0 0}
+.hero .heroprice b{color:#8A5A1F;font-weight:400}
+.hero .cta{display:flex;gap:14px 22px;flex-wrap:wrap;justify-content:center;align-items:center;margin-top:20px}
+.hero .btn{margin-top:0;background:#2A1D0F;color:#F2EBDE}
+@media (max-width:520px){.hero .cta{flex-wrap:nowrap;gap:16px}.hero .btn{padding:0 16px;letter-spacing:.12em;font-size:13px;white-space:nowrap}.hero .sec{letter-spacing:.12em;font-size:13px;white-space:nowrap}}
+@media (max-width:359px){.hero .cta{flex-wrap:wrap}}
+@media (hover:hover){.hero .btn:hover{background:#3d2d1b}}
+.hero .btn:active{background:#1c1309}
+.hero .btn:focus-visible{outline-color:#2A1D0F}
+.hero .sec{color:#2A1D0F;font:400 14px/1.3 var(--f-serif);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(42,29,15,.4);padding:6px 0}
+@media (min-width:900px){.hero{grid-template-columns:1fr 1fr;min-height:min(100svh,820px)}.hero .ph{aspect-ratio:auto;height:100%;min-height:620px;order:2}.hero .txt{align-items:flex-start;text-align:left;justify-content:center;padding:48px clamp(32px,6vw,96px)}.hero .tag{text-align:left;margin-left:0}.hero .cta{justify-content:flex-start}.hero .hlogo{margin-bottom:34px}}
+.heroprice{margin:14px 0 0}
 @media (max-width:899px){.enq-grid .enq-form{order:-1}}
 </style>
 </head>
 <body>
 
-<header class="bar">
-  <img class="hlogo" src="img/logo-dark.png" alt="Chaar Bhai" width="82" height="40" data-hover="img/logo.png">
-</header>
-
 <main>
 <section class="hero" aria-labelledby="h">
-  <img class="ph" src="photos/saadman-maariyah/ChaarBhai_SMNE_2343_resized-1280.webp" srcset="photos/saadman-maariyah/ChaarBhai_SMNE_2343_resized-640.webp 640w, photos/saadman-maariyah/ChaarBhai_SMNE_2343_resized-1280.webp 1280w" sizes="100vw" width="1280" height="1924" fetchpriority="high" alt="A bride and groom stand forehead to forehead in the backlit afternoon sun">
-  <div class="glow"></div>
   <div class="txt">
-    <p class="pill offer-line" data-offer>Limited spots · <span data-left>only <span class="n">5</span> left</span></p>
-    <h1 id="h">Trusted with 1,800 weddings.</h1>
+    <img class="hlogo" src="img/logo-dark-330.webp" alt="Chaar Bhai" width="82" height="40">
+    <h1 id="h">Timeless wedding photo and film for Toronto couples.</h1>
+    <p class="tag">Photos and film you will still feel in twenty years.</p>
+    <div class="cta"><a class="btn" id="hbtn" href="#enquire">Book a consult</a><a class="sec" href="https://www.chaarbhai.com/work" target="_blank" rel="noopener">See portfolio</a></div>
     <p class="heroprice">Wedding photo + film · <b>$5,500 CAD</b></p>
-    <a class="btn" id="hbtn" href="#enquire">Book a consult</a>
+    <p class="pill offer-line" data-offer>Limited spots · <span data-left>only <span class="n">5</span> left</span></p>
   </div>
+  <img class="ph" src="photos/zainab-maaz/_FR_2497_resized-1280.webp" srcset="photos/zainab-maaz/_FR_2497_resized-640.webp 640w, photos/zainab-maaz/_FR_2497_resized-1280.webp 1280w, photos/zainab-maaz/_FR_2497_resized-1920.webp 1920w, photos/zainab-maaz/_FR_2497_resized-2560.webp 2560w" sizes="(min-width:900px) 50vw, 100vw" width="1280" height="1919" fetchpriority="high" alt="A bride and groom nose to nose, smiling">
 </section>
 
 <section class="pad g-cream" id="reviews" aria-labelledby="rh">
@@ -557,7 +558,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 
 <section class="pad g-cream films" aria-labelledby="fh">
   <div class="in">
-    <div class="head"><h2 id="fh">Watch how a <img class="inlogo" src="img/logo-dark.png" alt="Chaar Bhai" width="82" height="40"> film feels</h2><p class="lead">Five highlight films from our YouTube channel. Tap to play.</p></div>
+    <div class="head"><h2 id="fh">Watch how a <img class="inlogo" src="img/logo-dark-330.webp" alt="Chaar Bhai" width="82" height="40"> film feels</h2><p class="lead">Five highlight films from our YouTube channel. Tap to play.</p></div>
     <div class="sl" data-sl data-loop>
       <div class="sl-top"><p class="loc" style="margin:0"></p>
         <p class="ctl"><span class="cnt" data-cnt aria-live="polite"></span><button class="lk" type="button" data-prev data-t="Previous"><span>Previous</span></button><button class="lk" type="button" data-next data-t="Next"><span>Next</span></button></p></div>
@@ -622,7 +623,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
     <p class="lead">Send us your date and venue. We’ll get back to you within a day or two.</p>
     <div class="enq-grid">
       <div class="enq-form">
-    <div class="form-wrap"><iframe id="sn-form-golden" title="Enquiry form" src="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" allowfullscreen></iframe></div>
+    <div class="form-wrap"><iframe id="sn-form-golden" title="Enquiry form" data-src="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" allowfullscreen></iframe></div>
     <p class="small alt">Form not loading? <a class="inl" href="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" target="_blank" rel="noopener">Open it in a new tab</a>, message us on Instagram <a class="inl" href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">@chaarbhai</a>, or email <a class="inl" href="mailto:info@chaarbhai.com">info@chaarbhai.com</a>.</p>
       </div>
     </div>
@@ -651,7 +652,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 <footer class="site-foot g-cream" id="foot">
   <div class="ftop">
     <div>
-      <div class="fm"><img src="img/logo-dark.png" alt="Chaar Bhai" width="320" height="156"></div>
+      <div class="fm"><img src="img/logo-dark-330.webp" alt="Chaar Bhai" width="320" height="156"></div>
       <p class="tagline">Wedding photography and film since 2008. Based in the Greater Toronto Area.</p>
     </div>
     <div class="fc elsewhere">
@@ -683,7 +684,6 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
   <a class="btn" href="#enquire">Book a consult</a>
 </div>
 
-<script src="reviews.js"></script>
 <script>
 (function(){
   /* Limited spots: change this one number when a spot is booked. */
@@ -707,11 +707,9 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
   var KEEP=['Haaris 7khan','Zee S','Ramsha Zaeem','Noorin Manji','Qurat Ul Ain Nasir','Zair Syed','Usmaara I.','Zainab Jafari','Maryam F Rehman'];
   function byName(n){return (typeof REVIEWS!=='undefined')?REVIEWS.filter(function(x){return x.n===n})[0]:null}
   function link(r){var a=document.createElement('a');a.className='inl';a.href=r.l;a.target='_blank';a.rel='noopener';a.textContent=r.n;return a}
-  var pull=document.querySelector('[data-review]');
-  if(pull){var pr=byName(pull.getAttribute('data-review'));
-    if(pr){pull.querySelector('blockquote').textContent='“'+pr.x+'”';var pn=pull.querySelector('.nm');pn.appendChild(link(pr));pn.appendChild(document.createTextNode(' · Google'))}}
   var host=document.getElementById('revs');
-  if(host&&typeof REVIEWS!=='undefined'){
+  function renderReviews(){
+    if(!host||typeof REVIEWS==='undefined'||host.children.length)return;
     KEEP.map(byName).forEach(function(r){
       if(!r||!r.l)return;
       var art=document.createElement('article');art.className='rv';
@@ -721,6 +719,11 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
       art.append(q,p);host.appendChild(art);
     });
   }
+  /* Below-the-fold extras (the reviews text, the script font) load after the page has finished, so they never compete with the first screen. */
+  window.addEventListener('load',function(){
+    var rs=document.createElement('script');rs.src='reviews.js';rs.onload=renderReviews;document.head.appendChild(rs);
+    if(window.FontFace){var ff=new FontFace('Pinyon Script','url(fonts/pinyon-script.woff2) format("woff2")',{display:'swap'});ff.load().then(function(f){document.fonts.add(f)},function(){})}
+  });
 
   /* Highlight films: the five newest highlight films on the channel (YouTube id, title, length in seconds). */
   var FILMS=[['NjDgSJSYF78','Michael & Rebecca, Coptic Orthodox wedding',393],['Pn6QjqCDdrM','Shradha & Rajan, Anand Karaj',230],['hfL1zC43gMY','Farhan & Farazia, reception at Dundurn Castle',338],['AuAUEnnftNY','Navi & Adam, garden wedding',246],['9dgjvqO2l9Q','Shoaib & Shafiqa, Afghan reception',216]];
@@ -807,12 +810,23 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
     im.addEventListener('mouseenter',function(){im.src=b});im.addEventListener('mouseleave',function(){im.src=a});
   });
 
-  /* Studio Ninja's resizer keeps the form frame as tall as the form. */
-  var fr=document.getElementById('sn-form-golden');
-  var s=document.createElement('script');s.async=true;
-  s.src='https://app.studioninja.co/client-assets/form-render/assets/scripts/iframeResizer.js';
-  s.onload=function(){if(window.iFrameResize)iFrameResize({log:false,minHeight:320},fr)};
-  document.head.appendChild(s);
+  /* Studio Ninja's form (about 1 MB with its maps and reCAPTCHA scripts) loads only when the visitor is near it or taps a button for it, so it never slows the first screen. */
+  var fr=document.getElementById('sn-form-golden'),formOn=false;
+  function loadForm(){
+    if(formOn||!fr)return;formOn=true;
+    var link=document.createElement('link');link.rel='preconnect';link.href='https://app.studioninja.co';link.crossOrigin='';document.head.appendChild(link);
+    fr.src=fr.getAttribute('data-src');
+    var s=document.createElement('script');s.async=true;
+    s.src='https://app.studioninja.co/client-assets/form-render/assets/scripts/iframeResizer.js';
+    s.onload=function(){if(window.iFrameResize)iFrameResize({log:false,minHeight:320},fr)};
+    document.head.appendChild(s);
+  }
+  if('IntersectionObserver' in window){
+    var fio=new IntersectionObserver(function(es){if(es.some(function(e){return e.isIntersecting})){loadForm();fio.disconnect()}},{rootMargin:'1500px 0px'});
+    fio.observe(document.getElementById('enquire'));
+  }else{window.addEventListener('load',loadForm)}
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href="#enquire"]');if(a)loadForm()},true);
+  if(location.hash==='#enquire')loadForm();
   /* The sticky link steps aside while the form is on screen. */
   var st=document.getElementById('sticky'),enq=document.getElementById('enquire');
   if('IntersectionObserver' in window){
