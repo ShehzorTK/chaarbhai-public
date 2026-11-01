@@ -354,10 +354,11 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 </script>
 <style>
 /* hero: split, light. Text left, couple portrait right (below it on phones) */
-.hero{display:grid;background:#F2EBDE;color:#2A1D0F}
-.hero .ph{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;filter:none;order:2}
-.hero .txt{order:1;padding:28px var(--pad) 44px;text-align:center;display:flex;flex-direction:column;align-items:center}
-.hero .hlogo{height:40px;width:auto;margin:0 0 22px}
+.hero{display:grid;grid-template-areas:"logo" "txt" "ph";background:#F2EBDE;color:#2A1D0F}
+.hero .ph{grid-area:ph;width:100%;aspect-ratio:2/3;max-height:78svh;object-fit:cover;object-position:50% 40%;filter:none}
+@media (max-width:899px){.hero .ph{max-width:520px;justify-self:center}}
+.hero .txt{grid-area:txt;padding:0 var(--pad) 40px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.hero .hlogo{grid-area:logo;height:40px;width:auto;margin:28px auto 22px}
 .hero .pill{display:inline-block;font-size:13px;letter-spacing:.2em;text-transform:uppercase;border:1px solid rgba(42,29,15,.4);padding:7px 12px;margin:14px 0 0;line-height:1.4;color:#2A1D0F}
 .hero .pill .n{color:#8A5A1F}
 .hero h1{font-size:clamp(36px,9vw,64px);line-height:1.05;max-width:12em;margin-top:0;text-wrap:balance}
@@ -372,7 +373,15 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 .hero .btn:active{background:#1c1309}
 .hero .btn:focus-visible{outline-color:#2A1D0F}
 .hero .sec{color:#2A1D0F;font:400 14px/1.3 var(--f-serif);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(42,29,15,.4);padding:6px 0}
-@media (min-width:900px){.hero{grid-template-columns:1fr 1fr;min-height:min(100svh,820px)}.hero .ph{aspect-ratio:auto;height:100%;min-height:620px;order:2}.hero .txt{align-items:flex-start;text-align:left;justify-content:center;padding:48px clamp(32px,6vw,96px)}.hero .tag{text-align:left;margin-left:0}.hero .cta{justify-content:flex-start}.hero .hlogo{margin-bottom:34px}}
+@media (min-width:900px){
+.hero{grid-template-columns:1fr minmax(340px,440px);grid-template-areas:"logo logo" "txt ph";column-gap:clamp(48px,6vw,96px);align-items:center;padding:0 max(var(--pad),calc((100% - 1200px)/2)) 40px}
+.hero .hlogo{height:56px;margin:24px 0 28px;justify-self:start}
+.hero .txt{align-items:flex-start;text-align:left;padding:0}
+.hero h1{font-size:clamp(40px,4.3vw,60px)}
+.hero .tag{text-align:left;margin-left:0}
+.hero .cta{justify-content:flex-start}
+.hero .ph{aspect-ratio:3/4;max-height:min(520px,calc(100svh - 200px));justify-self:end}
+}
 .heroprice{margin:14px 0 0}
 @media (max-width:899px){.enq-grid .enq-form{order:-1}}
 </style>
@@ -381,8 +390,8 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 
 <main>
 <section class="hero" aria-labelledby="h">
+  <img class="hlogo" src="img/logo-dark-330.webp" alt="Chaar Bhai" width="82" height="40">
   <div class="txt">
-    <img class="hlogo" src="img/logo-dark-330.webp" alt="Chaar Bhai" width="82" height="40">
     <h1 id="h">Timeless wedding photo and film for Toronto couples.</h1>
     <p class="tag">Photos and film you will still feel in twenty years.</p>
     <div class="cta"><a class="btn" id="hbtn" href="#enquire">Book a consult</a><a class="sec" href="https://www.chaarbhai.com/work" target="_blank" rel="noopener">See portfolio</a></div>
