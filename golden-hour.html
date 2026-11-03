@@ -356,6 +356,17 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
   });
 })();
 </script>
+<script>
+/* Microsoft Clarity (session recordings and heatmaps, project z58jordnb4). Loads after the page has finished, on the live hosts only, and never for visits flagged as internal (cb_internal=1). */
+(function(){
+  if(!/^(www\.|goldenhour\.)?chaarbhai\.com$/.test(location.hostname))return;
+  try{if(localStorage.getItem('cb-internal')==='1'||/[?&]cb_internal=1/.test(location.search))return}catch(e){}
+  function go(){
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","z58jordnb4");
+  }
+  if(document.readyState==='complete')setTimeout(go,1500);else addEventListener('load',function(){setTimeout(go,1500)});
+})();
+</script>
 <style>
 /* hero: split, light. Text left, couple portrait right (below it on phones) */
 .hero{display:grid;grid-template-areas:"logo" "txt" "ph"}
@@ -687,7 +698,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
       </div>
     </div>
   </div>
-  <p class="cookie-note">We use cookies and a Meta pixel to give you the best experience and measure our ads. <a class="inl" href="/privacy">Privacy</a></p>
+  <p class="cookie-note">We use cookies, a Meta pixel and Microsoft Clarity (which records how the page is used) to give you the best experience and measure our ads. <a class="inl" href="/privacy">Privacy</a></p>
   <div class="fbot">
     <span>© 2026 Chaar Bhai Inc.</span>
   </div>
