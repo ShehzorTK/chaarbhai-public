@@ -184,6 +184,12 @@ figcaption{font-style:italic;font-size:14px;line-height:1.5;color:var(--dim);mar
 /* offer (aubergine) */
 .offer .in{display:grid;gap:40px}
 .price{font:italic 400 clamp(34px,4vw,52px)/1.1 var(--f-serif);letter-spacing:.02em;margin-top:22px}
+.tiers{list-style:none;margin:22px 0 0;padding:0;border-top:1px solid var(--line-2)}
+.tiers li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid var(--line-2)}
+.tiers .tn{font:400 15px/1.3 var(--f-serif);letter-spacing:.16em;text-transform:uppercase}
+.tiers .tp{font:italic 400 clamp(22px,2.6vw,30px)/1.1 var(--f-serif);white-space:nowrap}
+.tiers .top .tp{font-size:clamp(30px,3.6vw,44px)}
+.tiers .top .tn{font-weight:600}
 ul.r{list-style:none;padding:0;margin:0 0 8px;max-width:36em}
 ul.r li{padding:12px 0 12px 22px;border-top:1px solid var(--line);position:relative}
 ul.r li:last-child{border-bottom:1px solid var(--line)}
@@ -372,11 +378,11 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 .hero .ph{grid-area:ph;width:calc(100% - 2*var(--pad));margin:0 auto;height:auto;aspect-ratio:6/5;max-height:none;object-fit:cover;object-position:50% 30%;filter:none}
 .hero .txt{grid-area:txt;padding:22px var(--pad) 40px;text-align:center;display:flex;flex-direction:column;align-items:center}
 .hero .hlogo{grid-area:logo;height:40px;width:auto;margin:28px auto 22px}
-.hero .htrust{order:0;margin:0 0 14px;font-size:11px;line-height:1.4;letter-spacing:.03em;white-space:nowrap;color:var(--paper);opacity:.85}
+.hero .htrust{order:0;margin:0 0 14px;font-size:clamp(9.5px,3vw,11px);line-height:1.4;letter-spacing:.03em;white-space:nowrap;color:var(--paper);opacity:.85}
 .hero .htrust .st{color:#6E5C3B;letter-spacing:.08em;margin-right:3px}
 .hero h1{font-size:clamp(34px,9vw,60px);line-height:1.06;max-width:12em;margin-top:0;text-wrap:balance;order:1}
 .hero .tag{color:var(--paper);text-align:center;margin:12px auto 0;max-width:26em;font-size:clamp(17px,4.6vw,21px);line-height:1.45;order:2}
-.hero .heroprice{color:var(--paper);font-size:14px;letter-spacing:.14em;text-transform:uppercase;margin:16px 0 0;order:3}
+.hero .heroprice{color:var(--paper);font-size:clamp(10px,3.1vw,13px);letter-spacing:.08em;white-space:nowrap;text-transform:uppercase;margin:16px 0 0;order:3}
 .hero .heroprice b{color:var(--paper);font-weight:400}
 .hero .pill{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;border:0;padding:0;margin:8px 0 0;line-height:1.4;color:var(--paper);order:4}
 .hero .pill::before{content:"";display:inline-block;vertical-align:1px;margin-right:10px;width:8px;height:8px;border-radius:50%;background:#2B2530;}
@@ -415,7 +421,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
     <h1 id="h">Timeless wedding photo and film for Toronto couples.</h1>
     <p class="tag">Photos and film you will still feel in twenty years.</p>
     <div class="cta"><a class="btn" id="hbtn" href="#enquire">Book a consult</a><a class="sec" href="#work">See work</a></div>
-    <p class="heroprice">Wedding photo + film · <b>$5,500 CAD</b></p>
+    <p class="heroprice">Wedding coverage starting from <b>$3,500 CAD</b></p>
     <p class="pill offer-line" data-offer>Limited spots · <span data-left>only <span class="n">5</span> left</span></p>
   </div>
   <img class="ph" src="photos/zainab-maaz/_FR_2497_resized-1280.webp" srcset="photos/zainab-maaz/_FR_2497_resized-640.webp 640w, photos/zainab-maaz/_FR_2497_resized-1280.webp 1280w, photos/zainab-maaz/_FR_2497_resized-1920.webp 1920w, photos/zainab-maaz/_FR_2497_resized-2560.webp 2560w" sizes="(min-width:900px) 50vw, 100vw" width="1280" height="1919" fetchpriority="high" alt="A bride and groom nose to nose, smiling">
@@ -602,17 +608,21 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
     <div>
       <h2 id="oh">Offer details</h2>
       <p class="eyebrow offer-line" data-offer style="margin:18px 0 0">Limited spots · <span data-left>only <span class="n">5</span> left</span></p>
-      <p class="price">$5,500 CAD</p>
+      <ul class="tiers" aria-label="Golden Hour prices">
+        <li class="top"><span class="tn">Photo and video</span><span class="tp">$5,500 CAD</span></li>
+        <li><span class="tn">Photo only</span><span class="tp">$3,500 CAD</span></li>
+        <li><span class="tn">Video only</span><span class="tp">$4,500 CAD</span></li>
+      </ul>
       <p class="lead">Your whole wedding day, photographed and filmed, candid, timeless and made from your story. We take a limited number of weddings, so spots are limited.</p>
     </div>
     <div>
       <ul class="r">
-        <li>Ten hours with one photographer and one videographer, with lighting and support, from getting ready to the last dance.</li>
-        <li>Every photo edited individually, never from a preset, in a private online gallery.</li>
-        <li>Your wedding film by private download link, with professional audio and on-camera interviews.</li>
+        <li>Ten hours with one photographer, one videographer or both, with lighting and support, from getting ready to the last dance.</li>
+        <li>With photo: every photo edited individually, never from a preset, in a private online gallery.</li>
+        <li>With video: your wedding film by private download link, with professional audio and on-camera interviews.</li>
         <li>A get-ready session, and coverage of each event you choose: nikkah, baraat, anand karaj, mehndi or reception.</li>
       </ul>
-      <p class="small fine">Prices are in Canadian dollars. Extra hours are $550 each. A deposit holds your date and the rest is paid later, as set out in your contract. Planning a longer weekend? Ask us about our larger packages.</p>
+      <p class="small fine">Prices are in Canadian dollars. Photo only and video only are the same ten hours with just that half. Extra hours for photo and video are $550 each. A deposit holds your date and the rest is paid later, as set out in your contract. Planning a longer weekend? Ask us about our larger packages.</p>
       <a class="btn" href="#enquire">Book a consult</a>
     </div>
   </div>
@@ -641,7 +651,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
       <details><summary>Will it feel like our wedding, or like a template?</summary><p>We don't use presets or a standard editing system. Every photo is edited on its own, so it looks like your day. We can do what's trendy, but what we aim to keep are the real moments, shot in a way that will still look right in many years.</p></details>
       <details><summary>Who exactly will be there on the day?</summary><p>One photographer and one videographer, with lighting and support, for the ten hours. If your event is busy, with many things happening at once, extra photographers are available as an add-on.</p></details>
       <details><summary>How long until we get our photos and film?</summary><p>Because every photo is edited individually, delivery can take up to three months. If you need it sooner, rushed delivery is available as an add-on.</p></details>
-      <details><summary>What does Golden Hour cost, and is there anything extra?</summary><p>$5,500 CAD for ten hours, with every photo individually edited, a private online gallery, and your wedding film by private download link. Extra hours are $550 each, and add-ons such as extra photographers, drone footage with an additional videographer, and rushed delivery are priced separately. Planning a longer weekend? Ask us about our larger packages.</p></details>
+      <details><summary>What does Golden Hour cost, and is there anything extra?</summary><p>Ten hours is $5,500 CAD for photo and video, $3,500 CAD for photo only, or $4,500 CAD for video only, with every photo individually edited, a private online gallery, and your wedding film by private download link (photo only has the photos, video only has the film). Extra hours for photo and video are $550 each, and add-ons such as extra photographers, drone footage with an additional videographer, and rushed delivery are priced separately. Planning a longer weekend? Ask us about our larger packages.</p></details>
       <details><summary>How do we book, and what if plans change?</summary><p>Start with the form below. After we meet, we send a contract in writing. Booking takes an initial deposit, and the rest is paid later, as set out in the contract. Because we reserve your date for you alone, a cancellation by the client is not refundable. Please read our <a class="inl" href="/refunds">Refunds and Cancellation</a> page for the full details.</p></details>
     </div>
   </div>
@@ -665,11 +675,11 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
     <div class="sum" aria-labelledby="sumh">
       <h3 id="sumh">Golden Hour, in short</h3>
       <p class="eyebrow offer-line" data-offer style="margin:14px 0 0">Limited spots · <span data-left>only <span class="n">5</span> left</span></p>
-      <p class="price">$5,500 CAD</p>
+      <p class="price">From $3,500 CAD</p>
       <ul class="r">
-        <li>Ten hours with one photographer and one videographer, from getting ready to the last dance.</li>
-        <li>Every photo edited individually, never from a preset, in a private online gallery.</li>
-        <li>Your wedding film by private download link, with professional audio and on-camera interviews.</li>
+        <li>Ten hours with one photographer, one videographer or both, from getting ready to the last dance.</li>
+        <li>With photo: every photo edited individually, never from a preset, in a private online gallery.</li>
+        <li>With video: your wedding film by private download link, with professional audio and on-camera interviews.</li>
         <li>Backed by 1,800+ weddings since 2008 and the reviews above.</li>
       </ul>
       <p class="small">Extra hours are $550 each. A deposit holds your date, and a date can only be held for one couple, so the sooner you ask, the better the chance yours is free.</p>
@@ -710,7 +720,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 </footer>
 
 <div class="sticky g-aub" id="sticky">
-  <span class="p"><span class="p1" data-offer><span class="lim">Limited spots · </span><span data-left>only <span class="n">5</span> left</span></span><span class="p2">Golden Hour · $5,500 CAD</span></span>
+  <span class="p"><span class="p1" data-offer><span class="lim">Limited spots · </span><span data-left>only <span class="n">5</span> left</span></span><span class="p2">From $3,500 CAD</span></span>
   <a class="btn" href="#enquire">Book a consult</a>
 </div>
 
