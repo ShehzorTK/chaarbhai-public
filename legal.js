@@ -46,7 +46,7 @@ const privacy=`
         <tr><td>Standard server logs kept by our hosts (IP, browser, page, time)</td><td>To keep the site secure and running</td><td>Legitimate interest</td></tr>
       </tbody>
     </table></div>
-    <p>We do not use session recording, heatmaps or fingerprinting. We do not run ads on this site or build profiles to sell. We do use a Meta pixel to measure our own ads, only after you accept (section 5).</p>
+    <p>We do not use fingerprinting. On our Golden Hour landing page (goldenhour.chaarbhai.com) we use Microsoft Clarity, which records how the page is used (taps, scrolling and an anonymous replay of the visit) and builds heatmaps; it cannot see inside our enquiry form. We do not run session recording or heatmaps on the rest of this site. We do not run ads on this site or build profiles to sell. We do use a Meta pixel to measure our own ads, only after you accept (section 5).</p>
 
     <h2>3. Photos and films of you</h2>
     <ul>
@@ -62,6 +62,7 @@ const privacy=`
     <ul>
       <li>Google (Analytics, and YouTube for our films): analytics only after you accept; YouTube loads from its privacy-enhanced domain.</li>
       <li>Meta (Facebook and Instagram): our Meta pixel, only after you accept, so we can measure our ads and show them to people who visited the site.</li>
+      <li>Microsoft (Clarity): session replays and heatmaps on our Golden Hour landing page only, to see how the page is used and improve it.</li>
       <li>Studio Ninja: our enquiry and booking system; receives what you type into the contact form.</li>
       <li>Netlify and GitHub: website hosting; keep standard server logs.</li>
       <li>wfolio (our gallery delivery platform): hosts galleries for clients.</li>
