@@ -369,36 +369,38 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 </script>
 <style>
 /* hero: split, light. Text left, couple portrait right (below it on phones) */
-.hero{display:grid;grid-template-areas:"logo" "txt" "ph"}
-.hero .ph{grid-area:ph;width:100%;aspect-ratio:2/3;max-height:78svh;object-fit:cover;object-position:50% 40%;filter:none}
-@media (max-width:899px){.hero .ph{max-width:520px;justify-self:center}}
-.hero .txt{grid-area:txt;padding:0 var(--pad) 40px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.hero{display:grid;grid-template-areas:"logo" "ph" "txt";border-bottom:1px solid var(--line-2)}
+.hero .ph{grid-area:ph;width:calc(100% - 2*var(--pad));margin:0 auto;height:auto;aspect-ratio:6/5;max-height:none;object-fit:cover;object-position:50% 30%;filter:none}
+.hero .txt{grid-area:txt;padding:22px var(--pad) 40px;text-align:center;display:flex;flex-direction:column;align-items:center}
 .hero .hlogo{grid-area:logo;height:40px;width:auto;margin:28px auto 22px}
-.hero .pill{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;border:0;padding:0;margin:12px 0 0;line-height:1.4;color:#F2EBDE;opacity:.72}
-.hero .pill .n{color:#E3B75A}
-.hero h1{font-size:clamp(36px,9vw,64px);line-height:1.05;max-width:12em;margin-top:0;text-wrap:balance}
-.hero .tag{color:#F2EBDE;text-align:center;margin:14px auto 0;max-width:26em;font-size:clamp(17px,4.6vw,21px);line-height:1.45}
-.hero .heroprice{color:#F2EBDE;font-size:15px;letter-spacing:.12em;text-transform:uppercase;margin:22px 0 0}
-.hero .heroprice b{color:#E3B75A;font-weight:400}
-.hero .cta{display:flex;gap:14px 22px;flex-wrap:wrap;justify-content:center;align-items:center;margin-top:20px}
-.hero .btn{margin-top:0;background:#F2EBDE;color:#2B2530;min-height:60px;padding:0 40px;font-size:15px;font-weight:600;letter-spacing:.18em;box-shadow:0 6px 22px rgba(0,0,0,.28)}
-@media (max-width:520px){.hero .cta{flex-wrap:nowrap;gap:12px}.hero .btn{flex:1.5 1 0;padding:0 14px;letter-spacing:.12em;font-size:14px;white-space:nowrap}.hero .sec{flex:1 1 0;letter-spacing:.12em;font-size:13px;white-space:nowrap}}
-@media (max-width:359px){.hero .cta{flex-wrap:wrap}}
-@media (hover:hover){.hero .btn:hover{background:#fff}}
-.hero .btn:active{background:#d9cfbc}
-.hero .btn:focus-visible{outline-color:#F2EBDE}
-.hero .sec{display:inline-flex;align-items:center;justify-content:center;min-height:48px;color:#F2EBDE;font:400 14px/1.3 var(--f-serif);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(242,235,222,.6);padding:0 24px}
-@media (hover:hover){.hero .sec:hover{background:rgba(242,235,222,.12)}}
-.hero .sec:active{background:rgba(242,235,222,.2)}
-.hero .sec:focus-visible{outline:2px solid #F2EBDE;outline-offset:3px}
+.hero h1{font-size:clamp(34px,9vw,60px);line-height:1.06;max-width:12em;margin-top:0;text-wrap:balance;order:1}
+.hero .tag{color:var(--paper);text-align:center;margin:12px auto 0;max-width:26em;font-size:clamp(17px,4.6vw,21px);line-height:1.45;order:2}
+.hero .heroprice{color:var(--paper);font-size:14px;letter-spacing:.14em;text-transform:uppercase;margin:16px 0 0;order:3}
+.hero .heroprice b{color:var(--paper);font-weight:400}
+.hero .pill{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;border:0;padding:0;margin:8px 0 0;line-height:1.4;color:var(--paper);order:4}
+.hero .pill::before{content:"";display:inline-block;vertical-align:1px;margin-right:10px;width:8px;height:8px;border-radius:50%;background:#2B2530;box-shadow:0 0 0 0 rgba(43,37,48,.45);animation:cbdot 2.4s ease-out infinite}
+@keyframes cbdot{0%{box-shadow:0 0 0 0 rgba(43,37,48,.4)}70%,100%{box-shadow:0 0 0 9px rgba(43,37,48,0)}}
+@media (prefers-reduced-motion:reduce){.hero .pill::before{animation:none}}
+.hero .pill .n{color:inherit}
+.hero .cta{display:flex;flex-direction:column;gap:6px;align-items:center;width:100%;max-width:420px;margin-top:16px;order:5}
+.hero .btn{margin-top:0;width:100%;background:#2B2530;color:#F2EBDE;min-height:60px;padding:0 28px;font-size:15px;font-weight:600;letter-spacing:.18em;box-shadow:0 8px 22px rgba(43,37,48,.28)}
+@media (hover:hover){.hero .btn:hover{background:#3A3240}}
+.hero .btn:active{background:#1D1822}
+.hero .btn:focus-visible{outline-color:#2B2530}
+.hero .sec{display:inline-flex;align-items:center;min-height:44px;color:var(--paper);font:400 14px/1.3 var(--f-serif);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;border:0;border-bottom:1px solid rgba(42,29,15,.5);padding:0;margin-top:4px;height:auto;min-height:0;padding-bottom:3px}
+.hero .sec:focus-visible{outline:2px solid #2B2530;outline-offset:4px}
 @media (min-width:900px){
 .hero{grid-template-columns:1fr minmax(340px,440px);grid-template-areas:"logo logo" "txt ph";grid-template-rows:auto 1fr;min-height:70svh;column-gap:clamp(48px,6vw,96px);align-items:center;padding:0 max(var(--pad),calc((100% - 1200px)/2)) 40px}
 .hero .hlogo{height:56px;margin:24px 0 28px;justify-self:start}
 .hero .txt{align-items:flex-start;text-align:left;padding:0}
 .hero h1{font-size:clamp(40px,4.3vw,60px)}
 .hero .tag{text-align:left;margin-left:0}
-.hero .cta{justify-content:flex-start}
-.hero .ph{aspect-ratio:3/4;max-height:min(520px,calc(100svh - 200px));justify-self:end}
+.hero .cta{flex-direction:row;align-items:center;gap:26px;width:auto;max-width:none;margin-top:28px;order:3}
+.hero .btn{width:auto;padding:0 44px}
+.hero .sec{margin-top:0}
+.hero .pill{order:4;margin-top:20px}
+.hero .heroprice{order:5;margin-top:10px}
+.hero .ph{width:100%;aspect-ratio:3/4;max-height:min(520px,calc(100svh - 200px));justify-self:end;margin:0}
 }
 .heroprice{margin:14px 0 0}
 @media (max-width:899px){.enq-grid .enq-form{order:-1}}
@@ -407,8 +409,8 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 <body>
 
 <main>
-<section class="hero g-aub" aria-labelledby="h">
-  <img class="hlogo" src="img/logo-330.webp" alt="Chaar Bhai" width="82" height="40">
+<section class="hero g-cream" aria-labelledby="h">
+  <img class="hlogo" src="img/logo-dark-330.webp" alt="Chaar Bhai" width="82" height="40">
   <div class="txt">
     <h1 id="h">Timeless wedding photo and film for Toronto couples.</h1>
     <p class="tag">Photos and film you will still feel in twenty years.</p>
@@ -701,7 +703,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
       </div>
     </div>
   </div>
-  <p class="cookie-note">We use cookies, a Meta pixel and Microsoft Clarity (which records how the page is used) to give you the best experience and measure our ads. <a class="inl" href="/privacy">Privacy</a></p>
+  <p class="cookie-note">We use cookies to give you the best experience possible. <a class="inl" href="/privacy">Privacy</a></p>
   <div class="fbot">
     <span>© 2026 Chaar Bhai Inc.</span>
   </div>
