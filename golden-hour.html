@@ -32,8 +32,7 @@
 .g-maroon{--ink:#4A2530;--ink-2:#58313C;--paper:#F2EBDE;--dim:#D2B6A1;--soft:#D2B6A1;--line:rgba(210,182,161,.22);--line-2:rgba(210,182,161,.4)}
 [class*="g-"]{background-color:var(--ink);background-image:var(--grain);background-size:400px;color:var(--paper)}
 *{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;background:#F2EBDE}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+html{-webkit-text-size-adjust:100%;background:#F2EBDE}
 body{background:#F2EBDE;font:400 16px/1.55 var(--f-serif);font-variant-numeric:lining-nums;letter-spacing:.025em;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}
 a{color:inherit}
@@ -373,21 +372,21 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 .hero .ph{grid-area:ph;width:calc(100% - 2*var(--pad));margin:0 auto;height:auto;aspect-ratio:6/5;max-height:none;object-fit:cover;object-position:50% 30%;filter:none}
 .hero .txt{grid-area:txt;padding:22px var(--pad) 40px;text-align:center;display:flex;flex-direction:column;align-items:center}
 .hero .hlogo{grid-area:logo;height:40px;width:auto;margin:28px auto 22px}
+.hero .htrust{order:0;margin:0 0 14px;font-size:11px;line-height:1.4;letter-spacing:.03em;white-space:nowrap;color:var(--paper);opacity:.85}
+.hero .htrust .st{color:#6E5C3B;letter-spacing:.08em;margin-right:3px}
 .hero h1{font-size:clamp(34px,9vw,60px);line-height:1.06;max-width:12em;margin-top:0;text-wrap:balance;order:1}
 .hero .tag{color:var(--paper);text-align:center;margin:12px auto 0;max-width:26em;font-size:clamp(17px,4.6vw,21px);line-height:1.45;order:2}
 .hero .heroprice{color:var(--paper);font-size:14px;letter-spacing:.14em;text-transform:uppercase;margin:16px 0 0;order:3}
 .hero .heroprice b{color:var(--paper);font-weight:400}
 .hero .pill{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;border:0;padding:0;margin:8px 0 0;line-height:1.4;color:var(--paper);order:4}
-.hero .pill::before{content:"";display:inline-block;vertical-align:1px;margin-right:10px;width:8px;height:8px;border-radius:50%;background:#2B2530;box-shadow:0 0 0 0 rgba(43,37,48,.45);animation:cbdot 2.4s ease-out infinite}
-@keyframes cbdot{0%{box-shadow:0 0 0 0 rgba(43,37,48,.4)}70%,100%{box-shadow:0 0 0 9px rgba(43,37,48,0)}}
-@media (prefers-reduced-motion:reduce){.hero .pill::before{animation:none}}
+.hero .pill::before{content:"";display:inline-block;vertical-align:1px;margin-right:10px;width:8px;height:8px;border-radius:50%;background:#2B2530;}
 .hero .pill .n{color:inherit}
 .hero .cta{display:flex;flex-direction:column;gap:6px;align-items:center;width:100%;max-width:420px;margin-top:16px;order:5}
 .hero .btn{margin-top:0;width:100%;background:#2B2530;color:#F2EBDE;min-height:60px;padding:0 28px;font-size:15px;font-weight:600;letter-spacing:.18em;box-shadow:0 8px 22px rgba(43,37,48,.28)}
 @media (hover:hover){.hero .btn:hover{background:#3A3240}}
 .hero .btn:active{background:#1D1822}
 .hero .btn:focus-visible{outline-color:#2B2530}
-.hero .sec{display:inline-flex;align-items:center;min-height:44px;color:var(--paper);font:400 14px/1.3 var(--f-serif);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;border:0;border-bottom:1px solid rgba(42,29,15,.5);padding:0;margin-top:4px;height:auto;min-height:0;padding-bottom:3px}
+.hero .sec{display:inline-flex;align-items:center;min-height:44px;color:var(--paper);font:400 14px/1.3 var(--f-serif);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;border:0;border-bottom:1px solid rgba(42,29,15,.5);padding:0;margin-top:14px;height:auto;min-height:0;padding-bottom:3px}
 .hero .sec:focus-visible{outline:2px solid #2B2530;outline-offset:4px}
 @media (min-width:900px){
 .hero{grid-template-columns:1fr minmax(340px,440px);grid-template-areas:"logo logo" "txt ph";grid-template-rows:auto 1fr;min-height:70svh;column-gap:clamp(48px,6vw,96px);align-items:center;padding:0 max(var(--pad),calc((100% - 1200px)/2)) 40px}
@@ -412,6 +411,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 <section class="hero g-cream" aria-labelledby="h">
   <img class="hlogo" src="img/logo-dark-330.webp" alt="Chaar Bhai" width="82" height="40">
   <div class="txt">
+    <p class="htrust"><span class="st" aria-hidden="true">★★★★★</span> 4.9 out of 5 on Google · 1,800+ weddings captured</p>
     <h1 id="h">Timeless wedding photo and film for Toronto couples.</h1>
     <p class="tag">Photos and film you will still feel in twenty years.</p>
     <div class="cta"><a class="btn" id="hbtn" href="#enquire">Book a consult</a><a class="sec" href="#work">See work</a></div>
@@ -434,8 +434,8 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
   </div>
 </section>
 
-<section class="pad g-brown pchead" id="work" aria-labelledby="wh"><div class="in"><div class="head" style="margin:0"><h2 id="wh">Every part of the wedding</h2><p class="lead">Seven stages of a wedding, each from a different couple. Tap a stage to swipe through its photos.</p></div></div></section>
-<section class="pcards" aria-label="Every part of the wedding">
+<section class="pad g-brown pchead" id="work" aria-labelledby="wh"><div class="in"><div class="head" style="margin:0"><h2 id="wh">Every part of the wedding, in photos</h2><p class="lead">Some of our recent shoots from different parts of a wedding.</p></div></div></section>
+<section class="pcards" aria-label="Every part of the wedding, in photos">
   <div class="pcards-stick">
     <div class="pcards-track" data-chap-track tabindex="0" role="group" aria-roledescription="carousel" aria-label="Wedding stages"><article class="pcard pc-1" id="chapter-before"><button class="pc-ph" type="button" data-open="before" aria-label="Open the portraits photos"><img style="object-position:2% 50%" src="photos/christel-sid/MFR_9391-640.webp" srcset="photos/christel-sid/MFR_9391-640.webp 640w, photos/christel-sid/MFR_9391-1280.webp 1280w" sizes="(min-width:900px) 40vw, 80vw" alt="" loading="lazy" decoding="async"></button><div class="pc-tx"><span class="pc-no" aria-hidden="true">01</span><h2>Portraits</h2><p>An hour away from everyone, sometimes months before, sometimes between the ceremony and the reception. Two people, whatever light there is, and nobody watching.</p><span class="pc-tag">Engagement · Nikkah and reception portraits</span><button class="btn" type="button" data-open="before"><span>View the photos</span></button></div></article><article class="pcard pc-7" id="chapter-night"><button class="pc-ph" type="button" data-open="night" aria-label="Open the the night before photos"><img src="photos/darmant-harpal/_FR_1425-640.webp" srcset="photos/darmant-harpal/_FR_1425-640.webp 640w, photos/darmant-harpal/_FR_1425-1280.webp 1280w" sizes="(min-width:900px) 40vw, 80vw" alt="" loading="lazy" decoding="async"></button><div class="pc-tx"><span class="pc-no" aria-hidden="true">02</span><h2>The night before</h2><p>Days before anything official happens. The house fills up, someone digs the dhol out of a cupboard, and nobody goes home.</p><span class="pc-tag">Dholki · Sangeet · Jaggo · Mayoun</span><button class="btn" type="button" data-open="night"><span>View the photos</span></button></div></article><article class="pcard pc-2" id="chapter-henna"><button class="pc-ph" type="button" data-open="henna" aria-label="Open the henna and haldi photos"><img src="photos/zainab-maaz/USA_6464_resized-640.webp" srcset="photos/zainab-maaz/USA_6464_resized-640.webp 640w, photos/zainab-maaz/USA_6464_resized-1280.webp 1280w" sizes="(min-width:900px) 40vw, 80vw" alt="" loading="lazy" decoding="async"></button><div class="pc-tx"><span class="pc-no" aria-hidden="true">03</span><h2>Henna and haldi</h2><p>Henna, turmeric, or both, depending on the family. Whatever yours calls it, it is the loudest and most crowded room of the week.</p><span class="pc-tag">Mehndi · Haldi · Gaye holud · Vatna</span><button class="btn" type="button" data-open="henna"><span>View the photos</span></button></div></article><article class="pcard pc-3" id="chapter-ceremony"><button class="pc-ph" type="button" data-open="ceremony" aria-label="Open the the ceremony photos"><img src="photos/saadman-maariyah/ChaarBhai_SMNE_1843_resized-640.webp" srcset="photos/saadman-maariyah/ChaarBhai_SMNE_1843_resized-640.webp 640w, photos/saadman-maariyah/ChaarBhai_SMNE_1843_resized-1280.webp 1280w" sizes="(min-width:900px) 40vw, 80vw" alt="" loading="lazy" decoding="async"></button><div class="pc-tx"><span class="pc-no" aria-hidden="true">04</span><h2>The ceremony</h2><p>Usually the quietest hour of the whole week, and the only part of it that is actually binding.</p><span class="pc-tag">Nikkah · Anand Karaj · Pheras · Bibaho</span><button class="btn" type="button" data-open="ceremony"><span>View the photos</span></button></div></article><article class="pcard pc-4" id="chapter-arrival"><button class="pc-ph" type="button" data-open="arrival" aria-label="Open the the arrival photos"><img style="object-position:88% 50%" src="photos/haleema-hassaan/_FR_1537_resized-640.webp" srcset="photos/haleema-hassaan/_FR_1537_resized-640.webp 640w, photos/haleema-hassaan/_FR_1537_resized-1280.webp 1280w" sizes="(min-width:900px) 40vw, 80vw" alt="" loading="lazy" decoding="async"></button><div class="pc-tx"><span class="pc-no" aria-hidden="true">05</span><h2>The arrival</h2><p>Both families walking in. You hear it a long time before you see it, and there is always somebody’s grandmother waving at the back.</p><span class="pc-tag">Baraat · Milni · Entrances</span><button class="btn" type="button" data-open="arrival"><span>View the photos</span></button></div></article><article class="pcard pc-5" id="chapter-reception"><button class="pc-ph" type="button" data-open="reception" aria-label="Open the the reception photos"><img src="photos/rabia-eldad/ChaarBhai_RERE_4956_resized-640.webp" srcset="photos/rabia-eldad/ChaarBhai_RERE_4956_resized-640.webp 640w, photos/rabia-eldad/ChaarBhai_RERE_4956_resized-1280.webp 1280w" sizes="(min-width:900px) 40vw, 80vw" alt="" loading="lazy" decoding="async"></button><div class="pc-tx"><span class="pc-no" aria-hidden="true">06</span><h2>The reception</h2><p>The formal one. The photographed one. The one the aunts have opinions about.</p><span class="pc-tag">Walima · Reception · Bou bhat</span><button class="btn" type="button" data-open="reception"><span>View the photos</span></button></div></article><article class="pcard pc-6" id="chapter-farewell"><button class="pc-ph" type="button" data-open="farewell" aria-label="Open the the farewell photos"><img style="object-position:22% 50%" src="photos/zahra-hussam/ChaarBhai_ZHNE_3706_resized-640.webp" srcset="photos/zahra-hussam/ChaarBhai_ZHNE_3706_resized-640.webp 640w, photos/zahra-hussam/ChaarBhai_ZHNE_3706_resized-1280.webp 1280w" sizes="(min-width:900px) 40vw, 80vw" alt="" loading="lazy" decoding="async"></button><div class="pc-tx"><span class="pc-no" aria-hidden="true">07</span><h2>The farewell</h2><p>Twenty minutes, and the hardest part of the whole week to shoot properly.</p><span class="pc-tag">Rukhsati · Vidaai · Doli</span><button class="btn" type="button" data-open="farewell"><span>View the photos</span></button></div></article></div>
     <nav class="pc-chapter-nav" aria-label="Wedding stages"><ol class="pc-dots"><li><a aria-current="step" href="#chapter-before" data-chap-link="0" aria-label="Go to chapter 01: Portraits">01</a></li><li><a href="#chapter-night" data-chap-link="1" aria-label="Go to chapter 02: The night before">02</a></li><li><a href="#chapter-henna" data-chap-link="2" aria-label="Go to chapter 03: Henna and haldi">03</a></li><li><a href="#chapter-ceremony" data-chap-link="3" aria-label="Go to chapter 04: The ceremony">04</a></li><li><a href="#chapter-arrival" data-chap-link="4" aria-label="Go to chapter 05: The arrival">05</a></li><li><a href="#chapter-reception" data-chap-link="5" aria-label="Go to chapter 06: The reception">06</a></li><li><a href="#chapter-farewell" data-chap-link="6" aria-label="Go to chapter 07: The farewell">07</a></li></ol></nav>
@@ -563,7 +563,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 
 <section class="pad g-aub films" aria-labelledby="fh">
   <div class="in">
-    <div class="head"><h2 id="fh">Watch how a <img class="inlogo" src="img/logo-330.webp" alt="Chaar Bhai" width="82" height="40"> film feels</h2><p class="lead">Five highlight films from our YouTube channel. Tap to play.</p></div>
+    <div class="head"><h2 id="fh">Watch how a <img class="inlogo" src="img/logo-330.webp" alt="Chaar Bhai" width="82" height="40"> film feels</h2><p class="lead">Five of the newest films we’ve shot.</p></div>
     <div class="sl" data-sl data-loop>
       <div class="sl-top"><p class="loc" style="margin:0"></p>
         <p class="ctl"><span class="cnt" data-cnt aria-live="polite"></span><button class="lk" type="button" data-prev data-t="Previous"><span>Previous</span></button><button class="lk" type="button" data-next data-t="Next"><span>Next</span></button></p></div>
@@ -574,7 +574,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 
 <section class="pad g-cream" aria-labelledby="mh">
   <div class="in">
-    <h2 id="mh">Your wedding, told as your story</h2>
+    <h2 id="mh">What we are known for</h2>
     <ul class="how">
       <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><b>Your culture, understood.</b> Hindu, Muslim, Sikh and Christian weddings, from the mehndi and nikkah to the anand karaj, baraat and reception, including multi-day weddings. We know what the important moments are before they happen.</li>
       <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 17l.7 1.8L21.5 19.5l-1.8.7L19 22l-.7-1.8-1.8-.7 1.8-.7z"/></svg><b>Candid and timeless.</b> We can do what is trendy. What we aim to keep are the real moments, shot in a way that still looks right in many years.</li>
@@ -586,7 +586,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 
 <section class="pad g-cream" id="reviews" aria-labelledby="rh">
   <div class="in">
-    <h2 id="rh">What couples say, as they wrote it</h2>
+    <h2 id="rh">Testimonials</h2>
     <p class="lead">From couples on Google and Facebook, copied across as they wrote them.</p>
     <div class="tb">
       <a class="tbd" href="https://www.google.com/maps?cid=901197728530734372" target="_blank" rel="noopener" aria-label="Rated 4.9 out of 5 from 37 reviews on Google. Read them on Google."><svg class="tb-logo" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg><span class="tb-body"><span class="tb-name">Google Reviews</span><span class="tb-score"><b>4.9</b><span class="stars" role="img" aria-label="4.9 out of 5 stars"><span class="stars-fill" style="width:98%"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></span></span><span class="tb-sub">Based on 37 reviews</span></span></a>
@@ -600,7 +600,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 <section class="pad g-aub offer" id="offer" aria-labelledby="oh">
   <div class="in">
     <div>
-      <h2 id="oh">Golden Hour</h2>
+      <h2 id="oh">Offer details</h2>
       <p class="eyebrow offer-line" data-offer style="margin:18px 0 0">Limited spots · <span data-left>only <span class="n">5</span> left</span></p>
       <p class="price">$5,500 CAD</p>
       <p class="lead">Your whole wedding day, photographed and filmed, candid, timeless and made from your story. We take a limited number of weddings, so spots are limited.</p>
@@ -632,7 +632,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 
 <section class="pad g-brown faqsec" aria-labelledby="fqh">
   <div class="in">
-    <h2 id="fqh">What couples ask before they book</h2>
+    <h2 id="fqh">Frequently asked questions</h2>
     <div class="faq">
       <details><summary>Can we trust you with our wedding day?</summary><p>We have covered more than 1,800 weddings since 2008. Some families have come back for a second wedding, and in some we have photographed three generations. Every review further down is linked to the original on Google, so you can read what couples wrote in their own words.</p></details>
       <details><summary>Have you shot weddings like ours?</summary><p>Very likely. We shoot South Asian and multi-day weddings, from the mehndi and nikkah to the baraat, anand karaj, ceremony and reception, and we have photographed Hindu, Muslim, Sikh and Christian weddings. We can cover each event.</p></details>
