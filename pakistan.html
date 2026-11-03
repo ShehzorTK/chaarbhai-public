@@ -136,7 +136,7 @@ figcaption{font-style:italic;font-size:14px;line-height:1.5;color:var(--dim);mar
 .row p{grid-column:1;color:var(--dim)}
 .row .pr{grid-column:2;grid-row:1;font:italic 400 clamp(24px,3vw,36px)/1.1 var(--f-serif);letter-spacing:.02em;text-align:right;white-space:nowrap}
 .row .pr small{display:block;font:400 13px/1.4 var(--f-serif);font-style:normal;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
-.note{margin-top:26px;color:var(--dim);max-width:44ch}
+.grp{margin-top:clamp(56px,8vw,104px);font-size:clamp(34px,5vw,60px);line-height:1.05;letter-spacing:.01em}.grp:first-of-type{margin-top:clamp(36px,5vw,56px)}.grp+.rows{margin-top:22px}#prices .grp span{display:block;margin-top:14px;font-family:var(--f-serif);font-weight:400;font-size:18px;line-height:1.55;letter-spacing:0;text-transform:none;color:var(--dim);max-width:52ch}#prices .row h3{font-size:clamp(20px,2.2vw,28px)}#prices .row .pr{font-size:clamp(22px,2.4vw,30px)}.note{margin-top:26px;color:var(--dim);max-width:44ch}
 @media(max-width:560px){.row{grid-template-columns:1fr}.row .pr{grid-column:1;grid-row:auto;text-align:left;order:2}.row p{order:3}.row .pr small{display:inline;margin-left:10px}}
 
 /* reviews (cream) */
@@ -247,15 +247,18 @@ footer p{font-size:14px;color:var(--dim)}
 
 <section class="pad g-brown" id="prices" aria-labelledby="ph">
   <div class="in">
-    <h2 id="ph">Simple day rates</h2>
-    <div class="rows" aria-label="Services and prices">
+    <h2 id="ph">Pricing</h2>
+    <h3 class="grp">By our signature artists<span>Trained by Fahad, shooting in our signature quality, based in Pakistan.</span></h3>
+    <div class="rows" aria-label="Shoots by our signature artists">
       <div class="row"><h3>Event photography</h3><div class="pr">PKR 70,000<small>per day</small></div><p>Includes an album with 100 images.</p></div>
       <div class="row"><h3>Couple shoot</h3><div class="pr">PKR 60,000<small>per day</small></div><p>Includes a separate album with 20 images.</p></div>
       <div class="row"><h3>Video</h3><div class="pr">PKR 65,000<small>per day</small></div><p>Includes a highlight film and the full video.</p></div>
-      <div class="row"><h3>Couple shoot by Fahad Raza*</h3><div class="pr">PKR 120,000<small>per day</small></div><p>Includes a separate album with 20 images.</p></div>
     </div>
-    <p class="note">Please note: this pricing covers shoots by our signature artists in Pakistan, who are trained by Fahad to create high quality work in our signature quality.</p>
-    <p class="note">* For a shoot by Fahad Raza himself, he is flown in from Canada.</p>
+    <h3 class="grp">By Fahad Raza himself<span>Our founder, flown in from Canada. The flight is paid for by the client on top of these rates, so please talk to us before booking.</span></h3>
+    <div class="rows" aria-label="Shoots by Fahad Raza">
+      <div class="row"><h3>Event photography</h3><div class="pr">PKR 140,000<small>per day</small></div><p>Includes an album with 100 images.</p></div>
+      <div class="row"><h3>Couple shoot</h3><div class="pr">PKR 120,000<small>per day</small></div><p>Includes a separate album with 20 images.</p></div>
+    </div>
     <p class="note">Rates are per day, so a multi-day wedding is the number of days you need.</p>
   </div>
 </section>
