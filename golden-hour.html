@@ -435,6 +435,18 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 .incl summary::-webkit-details-marker{display:none}
 .incl summary::after{content:"+";font-family:var(--f-display);font-size:28px;line-height:1}
 .incl[open] summary::after{content:"\2212"}
+.hero .hstrip .hshot{flex:0 0 100%;width:100%;height:100%;padding:0;border:0;background:none;cursor:zoom-in;scroll-snap-align:center;display:block}
+.hero .hstrip .hshot img{flex:none}
+dialog.hl{border:0;padding:0;margin:auto;width:100vw;max-width:100vw;height:100svh;max-height:100svh;background:#140E08;color:#F2EBDE;overflow:hidden}
+dialog.hl::backdrop{background:#140E08}
+.hl-in{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:56px 12px}
+.hl img{max-width:100%;max-height:100%;object-fit:contain;display:block;touch-action:pinch-zoom}
+.hl button{position:absolute;z-index:2;background:rgba(20,14,8,.55);border:0;color:#F2EBDE;font:500 16px/1 var(--f-text);min-height:44px;min-width:44px;padding:0 14px;cursor:pointer}
+.hl .hl-x{top:8px;right:6px}
+.hl .hl-p{left:6px;border-radius:999px;top:50%;transform:translateY(-50%);font-size:30px}
+.hl .hl-n{right:6px;border-radius:999px;top:50%;transform:translateY(-50%);font-size:30px}
+.hl .hl-c{position:absolute;top:18px;left:18px;font:500 14px/1 var(--f-text);opacity:.8}
+.hl button:focus-visible{outline:2px solid #F2EBDE;outline-offset:2px}
 .pricestrip .btn{margin-top:20px}
 .form-wrap{min-height:1363px}
 .hero .txt{min-width:0;max-width:100%}.hero .htrust,.hero .heroprice{white-space:normal}
@@ -455,10 +467,10 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
   </div>
   <div class="hmedia">
     <div class="hstrip" data-hstrip tabindex="0" role="group" aria-roledescription="carousel" aria-label="Wedding photos, swipe sideways">
-      <img src="photos/zainab-maaz/_FR_2497_resized-1280.webp" srcset="photos/zainab-maaz/_FR_2497_resized-640.webp 640w, photos/zainab-maaz/_FR_2497_resized-1280.webp 1280w" sizes="(min-width:900px) 440px, 100vw" width="1280" height="1919" fetchpriority="high" alt="A bride and groom nose to nose, smiling">
-      <img src="photos/fathema-christian/ChaarBhai_FCNE_0299_resized-1280.webp" srcset="photos/fathema-christian/ChaarBhai_FCNE_0299_resized-640.webp 640w, photos/fathema-christian/ChaarBhai_FCNE_0299_resized-1280.webp 1280w" sizes="(min-width:900px) 440px, 100vw" width="1280" height="1920" loading="lazy" decoding="async" alt="A bride in a red lehenga stands in a doorway lit by a chandelier">
-      <img style="object-position:55% 50%" src="photos/darmant-harpal/_FR_1425-1280.webp" srcset="photos/darmant-harpal/_FR_1425-640.webp 640w, photos/darmant-harpal/_FR_1425-1280.webp 1280w" sizes="(min-width:900px) 440px, 100vw" width="1280" height="853" loading="lazy" decoding="async" alt="A couple at their Anand Karaj">
-      <img style="object-position:88% 50%" src="photos/haleema-hassaan/_FR_1537_resized-1280.webp" srcset="photos/haleema-hassaan/_FR_1537_resized-640.webp 640w, photos/haleema-hassaan/_FR_1537_resized-1280.webp 1280w" sizes="(min-width:900px) 440px, 100vw" width="1280" height="854" loading="lazy" decoding="async" alt="A couple on their wedding day">
+      <button class="hshot" type="button" data-hshot="0" aria-label="Enlarge photo 1"><img src="photos/zainab-maaz/_FR_2497_resized-1280.webp" srcset="photos/zainab-maaz/_FR_2497_resized-640.webp 640w, photos/zainab-maaz/_FR_2497_resized-1280.webp 1280w" sizes="(min-width:900px) 440px, 100vw" width="1280" height="1919" fetchpriority="high" alt="A bride and groom nose to nose, smiling"></button>
+      <button class="hshot" type="button" data-hshot="1" aria-label="Enlarge photo 2"><img src="photos/fathema-christian/ChaarBhai_FCNE_0299_resized-1280.webp" srcset="photos/fathema-christian/ChaarBhai_FCNE_0299_resized-640.webp 640w, photos/fathema-christian/ChaarBhai_FCNE_0299_resized-1280.webp 1280w" sizes="(min-width:900px) 440px, 100vw" width="1280" height="1920" loading="lazy" decoding="async" alt="A bride in a red lehenga stands in a doorway lit by a chandelier"></button>
+      <button class="hshot" type="button" data-hshot="2" aria-label="Enlarge photo 3"><img style="object-position:50% 50%" src="photos/saadman-maariyah/ChaarBhai_SMNE_1843_resized-1280.webp" srcset="photos/saadman-maariyah/ChaarBhai_SMNE_1843_resized-640.webp 640w, photos/saadman-maariyah/ChaarBhai_SMNE_1843_resized-1280.webp 1280w" sizes="(min-width:900px) 440px, 100vw" width="1280" height="852" loading="lazy" decoding="async" alt="A bride and groom seated with their family around them at the ceremony"></button>
+      <button class="hshot" type="button" data-hshot="3" aria-label="Enlarge photo 4"><img style="object-position:88% 50%" src="photos/haleema-hassaan/_FR_1537_resized-1280.webp" srcset="photos/haleema-hassaan/_FR_1537_resized-640.webp 640w, photos/haleema-hassaan/_FR_1537_resized-1280.webp 1280w" sizes="(min-width:900px) 440px, 100vw" width="1280" height="854" loading="lazy" decoding="async" alt="A couple on their wedding day"></button>
     </div>
     <div class="hdots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
   </div>
@@ -881,6 +893,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
   }
 })();
 </script>
+<dialog class="hl" id="hlight" aria-label="Photo, enlarged"><div class="hl-in"><p class="hl-c" aria-hidden="true"></p><button type="button" class="hl-x" data-hl-close aria-label="Close">Close</button><button type="button" class="hl-p" data-hl-prev aria-label="Previous photo">&#8249;</button><img alt=""><button type="button" class="hl-n" data-hl-next aria-label="Next photo">&#8250;</button></div></dialog>
 <script>
 /* Hero strip: the dots follow the photo in view, and the first swipe is reported once. */
 (function(){
@@ -893,6 +906,20 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
     },40);
     if(!sent&&s.scrollLeft>8){sent=true;if(typeof window.gtag==='function')window.gtag('event','hero_swipe',{page:'golden-hour'});if(typeof window.clarity==='function')window.clarity('event','hero_swipe')}
   },{passive:true});
+})();
+/* Tap a hero photo to see it large, with Previous and Next; Escape, the backdrop or Close shuts it. */
+(function(){
+  var s=document.querySelector('[data-hstrip]'),d=document.getElementById('hlight');
+  if(!s||!d||!d.showModal)return;
+  var shots=[].slice.call(s.querySelectorAll('.hshot img')),im=d.querySelector('img'),ct=d.querySelector('.hl-c'),i=0,sent=false;
+  function show(k){i=(k+shots.length)%shots.length;var o=shots[i];im.src=o.currentSrc||o.src;im.alt=o.alt;ct.textContent=(i+1)+' of '+shots.length}
+  s.addEventListener('click',function(e){var b=e.target.closest('.hshot');if(!b)return;show(+b.dataset.hshot);d.showModal();
+    if(!sent){sent=true;if(typeof window.gtag==='function')window.gtag('event','hero_photo_open',{page:'golden-hour'});if(typeof window.clarity==='function')window.clarity('event','hero_photo_open')}});
+  d.querySelector('[data-hl-close]').addEventListener('click',function(){d.close()});
+  d.querySelector('[data-hl-prev]').addEventListener('click',function(){show(i-1)});
+  d.querySelector('[data-hl-next]').addEventListener('click',function(){show(i+1)});
+  d.addEventListener('click',function(e){if(e.target===d||e.target.classList.contains('hl-in'))d.close()});
+  d.addEventListener('keydown',function(e){if(e.key==='ArrowRight')show(i+1);if(e.key==='ArrowLeft')show(i-1)});
 })();
 </script>
 <script defer src="analytics-events.js?v=20261029"></script>
