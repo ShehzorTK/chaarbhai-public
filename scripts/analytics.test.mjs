@@ -36,7 +36,7 @@ test('parked preload is ignored; visible enquiry form counts only once',()=>{
  assert.equal(b.events.length,1);assert.equal(b.events[0][1],'enquiry_form_view');assert.equal(b.events[0][2].enquiry_source,'main_site');
 });
 test('success redirect sends a source-labelled lead once; direct visits and denied main-site visits do not',()=>{
- for(const source of ['golden_hour','golden_hour_b','main_site']){
+ for(const source of ['golden_hour','golden_hour_a','golden_hour_b','main_site']){
   const b=setup();b.setCookie('cb_ga_enquiry='+source);vm.runInNewContext(thanks,b.context);
   const lead=b.context.dataLayer.filter(x=>x[0]==='event'&&x[1]==='generate_lead');assert.equal(lead.length,1);assert.equal(lead[0][2].enquiry_source,source);
   vm.runInNewContext(thanks,b.context);assert.equal(b.context.dataLayer.filter(x=>x[1]==='generate_lead').length,1);

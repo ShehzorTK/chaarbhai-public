@@ -3,7 +3,8 @@
   'use strict';
   if (!/^(www\.|goldenhour\.)?chaarbhai\.com$/.test(location.hostname)) return;
   var golden = location.hostname === 'goldenhour.chaarbhai.com';
-  var source = golden ? (document.documentElement.getAttribute('data-cb-variant') === 'b' ? 'golden_hour_b' : 'golden_hour') : 'main_site';
+  var variant = golden ? document.documentElement.getAttribute('data-cb-variant') : null;
+  var source = golden ? (variant ? 'golden_hour_' + variant : 'golden_hour') : 'main_site';
   var seenForms = new WeakSet();
   function enabled() { return !!window.CB_GA && typeof window.gtag === 'function'; }
   function send(name, params) {

@@ -48,7 +48,7 @@ h1{font:500 clamp(40px,9vw,64px)/1.05 var(--f-display);letter-spacing:.02em;text
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init','2227226818091802');
   fbq('track','PageView');
-  fbq('track','Lead',{content_name:'Golden Hour enquiry',variant:ck('cb_ga_enquiry')==='golden_hour_b'?'b':'a'},{eventID:id});
+  fbq('track','Lead',{content_name:'Golden Hour enquiry',variant:(/^golden_hour_([ab])$/.exec(ck('cb_ga_enquiry')||'')||[0,'old'])[1]},{eventID:id});
   /* Server-side copy of the same Lead (Conversions API), so blockers can't drop it. cb_fbclid is kept by the landing page. */
   var fbc=ck('_fbc'),cl=ck('cb_fbclid');
   if(!fbc&&cl)fbc='fb.1.'+Date.now()+'.'+cl;
@@ -60,11 +60,11 @@ h1{font:500 clamp(40px,9vw,64px)/1.05 var(--f-display);letter-spacing:.02em;text
 (function(){
   if(!/^(www\.|goldenhour\.|links\.)?chaarbhai\.com$/.test(location.hostname))return;
   var m=document.cookie.match('(?:^|; )cb_ga_enquiry=([^;]*)');
-  if(!m||! /^(golden_hour|golden_hour_b|main_site)$/.test(m[1]))return;
+  if(!m||! /^(golden_hour|golden_hour_[ab]|main_site)$/.test(m[1]))return;
   var source=m[1];
   document.cookie='cb_ga_enquiry=; Domain=.chaarbhai.com; Path=/; Max-Age=0; SameSite=Lax; Secure';
   /* Microsoft Clarity (same project as the landing page, z58jordnb4), only for Golden Hour enquiries, so a recording of the visit can be matched to a lead. Never for visits flagged as internal. */
-  if(source==='golden_hour'||source==='golden_hour_b'){try{if(localStorage.getItem('cb-internal')==='1')throw 0;(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","z58jordnb4")}catch(e){}}
+  if(source.indexOf('golden_hour')===0){try{if(localStorage.getItem('cb-internal')==='1')throw 0;(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","z58jordnb4");window.clarity('set','variant',source==='golden_hour'?'old':source.slice(-1));window.clarity('event','lead_submitted')}catch(e){}}
   if(source==='main_site'){try{if(localStorage.getItem('cb-consent')!=='granted')return}catch(e){return}}
   window.dataLayer=window.dataLayer||[];
   window.gtag=function(){dataLayer.push(arguments)};
