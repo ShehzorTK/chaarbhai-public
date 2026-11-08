@@ -1,5 +1,9 @@
 /golden-hour-v2 /golden-hour 301
 /golden-hour-v2.html /golden-hour 301
+/golden-hour-a /golden-hour 301
+/golden-hour-a.html /golden-hour 301
+/golden-hour-b /golden-hour 301
+/golden-hour-b.html /golden-hour 301
 /disk https://chaarbhai.com/disk?cb=1 302
 /disk/* https://chaarbhai.com/disk/:splat?cb=1 302
 /services /prices 301

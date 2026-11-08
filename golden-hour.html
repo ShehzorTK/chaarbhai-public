@@ -9,19 +9,23 @@
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#2B2530">
 <link rel="icon" href="img/favicon-32.png">
+<link rel="preload" href="fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/fraunces-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 /* Tokens and rules copied from the design system (brand/guidelines.html) and site/theme-paper.css. */
-@font-face{font-family:'Cormorant Garamond';font-weight:500;font-style:normal;font-display:swap;src:url(fonts/cormorant-garamond.woff2) format('woff2')}
-@font-face{font-family:'EB Garamond';font-weight:400;font-style:normal;font-display:swap;src:url(fonts/eb-garamond.woff2) format('woff2')}
-@font-face{font-family:'EB Garamond';font-weight:400;font-style:italic;font-display:swap;src:url(fonts/eb-garamond-italic.woff2) format('woff2')}
+/* Version B type: Fraunces, a soft serif with a little wobble, for the voice (headings, prices, quotes); Instrument Sans, a clean humanist sans, for reading and controls. No capitals-and-tracking, no wedding script. */
+@font-face{font-family:'Fraunces';font-weight:400 700;font-style:normal;font-display:swap;src:url(fonts/fraunces.woff2) format('woff2')}
+@font-face{font-family:'Fraunces';font-weight:400 700;font-style:italic;font-display:swap;src:url(fonts/fraunces-italic.woff2) format('woff2')}
+@font-face{font-family:'Instrument Sans';font-weight:400 600;font-style:normal;font-display:swap;src:url(fonts/instrument-sans.woff2) format('woff2')}
+@font-face{font-family:'Instrument Sans';font-weight:400 600;font-style:italic;font-display:swap;src:url(fonts/instrument-sans-italic.woff2) format('woff2')}
 :root{
-  --f-display:'Cormorant Garamond','Cochin',Georgia,serif;
-  --f-serif:'EB Garamond','Sirenne',Georgia,serif;
-  --f-script:'Pinyon Script','Snell Roundhand',cursive;
+  --f-display:'Fraunces','Iowan Old Style',Georgia,serif;
+  --f-text:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
   --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n' x='0' y='0'><feTurbulence type='fractalNoise' baseFrequency='.8 .55' numOctaves='4' seed='4'/><feColorMatrix values='0 0 0 0 .16  0 0 0 0 .11  0 0 0 0 .06  0 0 0 .4 -.14'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   --pad:clamp(18px,4.6vw,76px);
-  --t-display:clamp(34px,6vw,84px);--t-headline:clamp(28px,4vw,56px);--t-headline-s:clamp(26px,3.2vw,44px);
-  --t-lead:clamp(16px,1.35vw,19px);
+  --t-display:clamp(34px,6vw,84px);--t-headline:clamp(30px,4.2vw,58px);--t-headline-s:clamp(24px,3vw,40px);
+  --t-lead:clamp(16px,1.3vw,18px);
   --tone:sepia(.1) saturate(.94) contrast(.96) brightness(1.02);
   color-scheme:light;
 }
@@ -33,25 +37,26 @@
 [class*="g-"]{background-color:var(--ink);background-image:var(--grain);background-size:400px;color:var(--paper)}
 *{box-sizing:border-box;margin:0}
 html{-webkit-text-size-adjust:100%;background:#F2EBDE}
-body{background:#F2EBDE;font:400 16px/1.55 var(--f-serif);font-variant-numeric:lining-nums;letter-spacing:.025em;-webkit-font-smoothing:antialiased}
+body{background:#F2EBDE;font:400 16px/1.55 var(--f-text);font-variant-numeric:lining-nums;letter-spacing:0;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}
 a{color:inherit}
 button{font:inherit;color:inherit;background:none;border:0;border-radius:0;cursor:pointer;-webkit-appearance:none;appearance:none}
 :focus-visible{outline:2px solid var(--paper);outline-offset:3px}
-h1,h2,h3{font:500 var(--t-headline)/1 var(--f-display);font-variant-numeric:lining-nums;letter-spacing:.02em;text-transform:uppercase;text-wrap:balance}
+h1,h2,h3{font:500 var(--t-headline)/1.06 var(--f-display);font-variant-numeric:lining-nums;letter-spacing:-.015em;text-wrap:balance}
+h1 em,h2 em,h3 em{font-style:italic;font-weight:400}
 h1{font-size:var(--t-display)}
-.hero h1{font-size:clamp(36px,5vw,68px);line-height:1.08;letter-spacing:0;text-transform:none;max-width:16em}
+.hero h1{font-size:clamp(36px,5vw,68px);line-height:1.04;letter-spacing:-.022em;max-width:16em}
 h3{font-size:var(--t-headline-s)}
 p{text-wrap:pretty}
 .lead{font-size:var(--t-lead);line-height:1.55;color:var(--dim);max-width:34em;margin-top:22px}
-.tag{font-style:italic;font-size:var(--t-lead);line-height:1.5;color:var(--dim);max-width:30em;margin-top:22px}
+.tag{font-family:var(--f-display);font-style:italic;font-size:var(--t-lead);line-height:1.5;color:var(--dim);max-width:30em;margin-top:22px}
 .small{font-size:14px;line-height:1.55;color:var(--dim)}
-.num{font:400 clamp(34px,4vw,52px)/1 var(--f-script);display:block;margin-bottom:10px}
+.num{font:italic 400 clamp(30px,3.4vw,44px)/1 var(--f-display);display:block;margin-bottom:8px;opacity:.85}
 .pad{padding:clamp(56px,9vw,128px) var(--pad)}
 .in{max-width:1280px;margin:0 auto}
 
 /* link atom: caps, tracked, italic + underline on hover/focus/press, no transition */
-.lk{display:inline-grid;align-content:end;min-height:44px;padding:12px 0 3px;border-bottom:1px solid currentColor;color:inherit;text-decoration:none;font:400 14px/1.3 var(--f-serif);letter-spacing:.2em;text-transform:uppercase}
+.lk{display:inline-grid;align-content:end;min-height:44px;padding:12px 0 3px;border-bottom:1px solid currentColor;color:inherit;text-decoration:none;font:500 16px/1.3 var(--f-text);letter-spacing:0}
 .lk>span{grid-area:1/1}
 .lk::before{content:attr(data-t);grid-area:1/1;font-style:italic;height:0;overflow:hidden;visibility:hidden}
 .lk:hover,.lk:focus-visible,.lk:active{font-style:italic;border-bottom-color:currentColor}
@@ -63,19 +68,19 @@ p{text-wrap:pretty}
 
 /* photograph atom: original, warm tone, 1px square frame */
 .ph{display:block;filter:var(--tone)}
-figcaption{font-style:italic;font-size:14px;line-height:1.5;color:var(--dim);margin-top:8px}
+figcaption{font:italic 400 17px/1.35 var(--f-display);color:var(--dim);margin-top:10px}
 
 /* nav over the hero: centred logo on a dark tint, not sticky */
 .bar{position:absolute;z-index:5;top:0;left:0;right:0;display:flex;align-items:center;justify-content:center;height:76px}
 .bar img{height:40px;width:auto}
 .bar{pointer-events:none}.bar img{pointer-events:auto}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 30px;background:#F2EBDE;color:#2B2530;font:400 14px/1.3 var(--f-serif);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;margin-top:22px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 30px;background:#F2EBDE;color:#2B2530;font:600 16px/1.3 var(--f-text);letter-spacing:0;text-decoration:none;margin-top:22px}
 @media (hover:hover){.btn:hover{background:#fff}}
 .btn:active{background:#E4DAC8}
 .btn:focus-visible{outline:2px solid #F2EBDE;outline-offset:3px}
 
 /* v2: eyebrow, proof strip under the button, problem, mechanism, P.S. */
-.eyebrow{font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-bottom:20px;max-width:34em;line-height:1.5}
+.eyebrow{font-size:15px;letter-spacing:0;color:var(--dim);margin-bottom:20px;max-width:34em;line-height:1.5}
 .hero .next{font-size:var(--t-lead);line-height:1.55;color:var(--dim);max-width:30em;margin-top:22px}
 .hero .under{font-size:14px;line-height:1.6;color:var(--dim);margin-top:10px}
 .prose{max-width:36em}
@@ -91,19 +96,19 @@ figcaption{font-style:italic;font-size:14px;line-height:1.5;color:var(--dim);mar
 .faqsec .in{max-width:44em}.faq{margin-top:clamp(28px,4vw,48px)}
 .faq details{border-top:1px solid var(--line)}
 .faq details:last-child{border-bottom:1px solid var(--line)}
-.faq summary{list-style:none;cursor:pointer;min-height:44px;padding:16px 0;font-size:var(--t-lead);line-height:1.4;display:flex;justify-content:space-between;gap:16px;align-items:baseline}
+.faq summary{list-style:none;cursor:pointer;min-height:44px;padding:16px 0;font:500 clamp(19px,1.7vw,22px)/1.3 var(--f-display);letter-spacing:-.005em;display:flex;justify-content:space-between;gap:16px;align-items:baseline}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-family:var(--f-display);font-size:26px;line-height:1}
+.faq summary::after{content:"+";font-family:var(--f-display);font-size:28px;line-height:1}
 .faq details[open] summary::after{content:"\2212"}
 .faq details p{padding:0 0 20px;max-width:36em;color:var(--dim);font-size:var(--t-lead);line-height:1.6}
 .sticky{border-top:1px solid var(--line-2);box-shadow:0 -10px 28px rgba(0,0,0,.28)}
 .n{color:#F0B35A;font-style:normal;font-weight:600}.sticky .p{white-space:nowrap;gap:2px;min-width:0}.sticky [data-left]{display:inline-block}.sticky [data-left]::first-letter{text-transform:uppercase}
 .sticky .lim{display:none}@media (min-width:480px){.sticky .lim{display:inline}}
-.sticky .btn{margin:0;flex:none;min-height:48px;padding:0 18px;letter-spacing:.12em;font-size:13px;border:1px solid #F2EBDE;background:#F2EBDE;color:#2B2530;transition:background-color .2s cubic-bezier(.16,1,.3,1),color .2s cubic-bezier(.16,1,.3,1)}
+.sticky .btn{margin:0;flex:none;min-height:48px;padding:0 18px;letter-spacing:0;font:600 15px/1.2 var(--f-text);border:1px solid #F2EBDE;background:#F2EBDE;color:#2B2530;transition:background-color .2s cubic-bezier(.16,1,.3,1),color .2s cubic-bezier(.16,1,.3,1)}
 @media (hover:hover){.sticky .btn:hover{background:#fff;border-color:#fff}}
 .sticky .btn:active{background:#fff;border-color:#fff}
 .sticky .btn:focus-visible{outline-color:#fff}
-.sticky .p{display:grid;line-height:1.3}.sticky .p1{font-size:15px;letter-spacing:.03em}.sticky .p2{font-style:italic;font-size:17px}.sticky .p{color:var(--paper)}@media (max-width:380px){.sticky{gap:10px}.sticky .p1{font-size:14px}.sticky .p2{font-size:15px}.sticky .btn{padding:0 14px;letter-spacing:.1em}}
+.sticky .p{display:grid;line-height:1.3}.sticky .p1{font-size:15px;letter-spacing:0}.sticky .p2{font:italic 500 18px/1.2 var(--f-display)}.sticky .p{color:var(--paper)}@media (max-width:380px){.sticky{gap:10px}.sticky .p1{font-size:14px}.sticky .p2{font-size:15px}.sticky .btn{padding:0 14px;letter-spacing:0}}
 .sum{max-width:34em;margin:clamp(28px,4vw,48px) auto 0;padding:clamp(24px,4vw,40px);border:1px solid var(--line-2);text-align:left;background:var(--ink-2)}
 .sum h3{font-size:clamp(22px,2.4vw,30px)}
 .sum .price{margin-top:12px}
@@ -115,19 +120,19 @@ figcaption{font-style:italic;font-size:14px;line-height:1.5;color:var(--dim);mar
 
 /* proof (cream): a true number beside a review that says what it was like */
 .proof .in{display:grid;gap:clamp(36px,6vw,80px);align-items:center}
-.fig b{display:block;font:500 clamp(64px,9vw,128px)/.95 var(--f-display);font-variant-numeric:lining-nums;letter-spacing:.02em}
+.fig b{display:block;font:600 clamp(72px,10vw,144px)/.9 var(--f-display);font-variant-numeric:lining-nums;letter-spacing:-.04em}
 .fig span{display:block;margin-top:14px;font-size:var(--t-lead);color:var(--dim);max-width:20em}
 .pull{border-top:1px solid var(--line);padding-top:26px}
 @media (max-width:899px){.pull{display:none}.proof .in{gap:0}}
-.pull blockquote{font-style:italic;font-size:clamp(20px,2.2vw,30px);line-height:1.4;letter-spacing:.02em;text-wrap:pretty}
-.pull .nm{margin-top:16px;font-size:15px;font-variant:small-caps;letter-spacing:.08em;color:var(--soft)}
+.pull blockquote{font:400 clamp(19px,1.9vw,24px)/1.5 var(--f-text);letter-spacing:0;text-wrap:pretty}
+.pull .nm{margin-top:16px;font:600 15px/1.3 var(--f-text);letter-spacing:0;color:var(--soft)}
 @media (min-width:900px){.proof .in{grid-template-columns:5fr 7fr}.pull{border-top:0;border-left:1px solid var(--line);padding:6px 0 6px clamp(28px,4vw,64px)}}
 
 /* galleries: one couple per chapter, never cropped */
 .sl-sec{padding-block:clamp(44px,7vw,96px)}
 .head{margin-bottom:clamp(32px,5vw,56px)}
 .sl-top{display:flex;flex-wrap:wrap;gap:6px 24px;align-items:flex-end;justify-content:space-between;margin-bottom:22px}
-.loc{font-style:italic;color:var(--dim);margin-top:8px}
+.loc{font-family:var(--f-display);font-style:italic;color:var(--dim);margin-top:8px}
 .ctl{display:flex;align-items:flex-end;gap:26px}
 .cnt{font-style:italic;color:var(--dim);font-size:14px;padding-bottom:3px;min-width:5.5em}
 .track{display:flex;align-items:center;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;overscroll-behavior-x:contain;padding-bottom:4px}
@@ -157,12 +162,12 @@ figcaption{font-style:italic;font-size:14px;line-height:1.5;color:var(--dim);mar
 .pc-ph{order:-1;display:block;padding:0;margin:0;background:none;border:1px solid currentColor;color:inherit;overflow:hidden;cursor:pointer;width:100%;height:clamp(190px,38svh,320px);flex:0 0 auto}
 .pc-ph img{width:100%;height:100%;object-fit:cover;object-position:50% 42%;display:block}
 .pc-tx h2{font-size:clamp(30px,8vw,44px);color:var(--paper);font-weight:400;line-height:1.05}
-.pc-tx p{margin:14px 0 6px;color:var(--dim);font-style:italic;font-size:16px;line-height:1.35;max-width:34ch}
-.pc-tag{display:block;margin-top:10px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
-.pc-no{display:block;font-family:var(--f-script);font-size:42px;line-height:1.1;color:var(--paper);opacity:.75;margin-bottom:4px}
+.pc-tx p{margin:14px 0 6px;color:var(--dim);font-family:var(--f-display);font-style:italic;font-size:17px;line-height:1.4;max-width:34ch}
+.pc-tag{display:block;margin-top:10px;font-size:15px;letter-spacing:0;color:var(--dim)}
+.pc-no{display:block;font:italic 400 44px/1 var(--f-display);color:var(--paper);opacity:.8;margin-bottom:6px}
 .pc-tx .btn{background:none;color:var(--paper);border:1px solid currentColor;margin-top:18px;min-height:48px;padding:0 24px}
 .pc-chapter-nav{position:absolute;z-index:3;top:8px;right:var(--pad);color:#2A1D0F}
-.pc-dots{list-style:none;display:flex;gap:2px;padding:0;margin:0;color:inherit;font-family:var(--f-serif);font-size:13px;letter-spacing:.14em}
+.pc-dots{list-style:none;display:flex;gap:2px;padding:0;margin:0;color:inherit;font-family:var(--f-text);font-size:14px;letter-spacing:.04em}
 .pc-dots a{display:grid;place-items:center;min-width:30px;min-height:44px;color:inherit;text-decoration:none;opacity:.68}
 .pc-dots a[aria-current="step"]{font-style:italic;opacity:1;text-decoration:underline;text-underline-offset:6px}
 @media (min-width:900px){
@@ -183,11 +188,11 @@ figcaption{font-style:italic;font-size:14px;line-height:1.5;color:var(--dim);mar
 .pop .slide{--h:clamp(240px,56svh,560px)}
 /* offer (aubergine) */
 .offer .in{display:grid;gap:40px}
-.price{font:italic 400 clamp(34px,4vw,52px)/1.1 var(--f-serif);letter-spacing:.02em;margin-top:22px}
+.price{font:italic 500 clamp(36px,4.2vw,56px)/1.05 var(--f-display);letter-spacing:-.02em;margin-top:22px}
 .tiers{list-style:none;margin:22px 0 0;padding:0;border-top:1px solid var(--line-2)}
 .tiers li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid var(--line-2)}
-.tiers .tn{font:400 15px/1.3 var(--f-serif);letter-spacing:.16em;text-transform:uppercase}
-.tiers .tp{font:italic 400 clamp(22px,2.6vw,30px)/1.1 var(--f-serif);white-space:nowrap}
+.tiers .tn{font:500 19px/1.3 var(--f-display);letter-spacing:-.005em}
+.tiers .tp{font:italic 400 clamp(22px,2.6vw,30px)/1.1 var(--f-text);white-space:nowrap}
 .tiers .top .tp{font-size:clamp(30px,3.6vw,44px)}
 .tiers .top .tn{font-weight:600}
 ul.r{list-style:none;padding:0;margin:0 0 8px;max-width:36em}
@@ -210,11 +215,10 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 .vplay:hover .lk,.vplay:focus-visible .lk{font-style:italic;border-bottom-color:currentColor}
 .vplay:focus-visible{outline:2px solid #F2EBDE;outline-offset:-6px}
 
-
 /* checklist (cream): the questions to ask any studio, and our answers */
 .cmp{margin-top:clamp(28px,4vw,48px);border-top:1px solid var(--line-2)}
 .cmp .row{display:grid;grid-template-columns:1.1fr 1.3fr .6fr;gap:0 clamp(14px,3vw,40px);padding:16px 0;border-bottom:1px solid var(--line);align-items:baseline}
-.cmp .hd{padding:12px 0;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
+.cmp .hd{padding:12px 0;font:600 14px/1.3 var(--f-text);letter-spacing:0;color:var(--soft)}
 .cmp .q{color:var(--dim)}
 .cmp .us{font-size:var(--t-lead)}
 .cmp .them{font-style:italic;color:var(--soft)}
@@ -234,7 +238,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 .tbd:focus-visible{outline:2px solid var(--paper);outline-offset:3px}
 .tb-logo{width:34px;height:34px;flex:none}.tb-meta{width:40px;height:40px}
 .tb-body{display:grid;gap:2px;line-height:1.25}.tb-name{font-size:13px}
-.tb-score{display:flex;align-items:center;gap:7px}.tb-score b{font-size:20px;font-weight:600;font-variant-numeric:tabular-nums}
+.tb-score{display:flex;align-items:center;gap:7px}.tb-score b{font:600 24px/1 var(--f-text);letter-spacing:0;font-variant-numeric:tabular-nums}
 .tb-rec{font-size:13px;color:var(--dim)}.tb-sub{font-size:12px;color:var(--dim)}
 .stars{position:relative;display:inline-flex;gap:1px;color:var(--line-2);line-height:0}.stars svg{width:16px;height:16px;fill:currentColor;flex:none}
 .stars-fill{position:absolute;inset:0 auto 0 0;display:inline-flex;gap:1px;overflow:hidden;color:#FBBC04}
@@ -243,11 +247,10 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 #revs{min-height:240px}
 .revs{columns:1;column-gap:clamp(28px,4vw,56px);margin-top:clamp(32px,5vw,56px)}
 .rv{break-inside:avoid;border-top:1px solid var(--line);padding:22px 0 30px}
-.rv blockquote{font-style:italic;font-size:17px;line-height:1.55;letter-spacing:.02em}
-.rv .nm{margin-top:14px;font-size:15px;font-variant:small-caps;letter-spacing:.08em;color:var(--soft)}
+.rv blockquote{font:400 16px/1.6 var(--f-text);letter-spacing:0}
+.rv .nm{margin-top:14px;font:600 15px/1.3 var(--f-text);letter-spacing:0;color:var(--soft)}
 @media (min-width:760px){.revs{columns:2}}
 @media (min-width:1080px){.revs{columns:3}}
-
 
 /* trust tiles and story icons */
 .ic{width:30px;height:30px;color:var(--paper);opacity:.9;flex:none}
@@ -257,9 +260,9 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 .tiles b{font-weight:500;font-size:19px;line-height:1.3}
 .tiles span{color:var(--dim);line-height:1.45}
 .tstat{margin-top:22px;color:var(--dim);font-size:var(--t-lead)}
-.tstat b{font:500 clamp(28px,4vw,40px)/1 var(--f-display);color:var(--paper);margin-right:.2em}
+.tstat b{font:600 clamp(30px,4vw,44px)/1 var(--f-display);letter-spacing:-.025em;color:var(--paper);margin-right:.2em}
 @media (min-width:760px){.tiles{grid-template-columns:repeat(3,1fr);gap:20px}.tiles li{grid-template-columns:1fr;padding:24px}.tiles li .ic{grid-row:auto;margin-bottom:10px}}
-.how li{display:grid;grid-template-columns:auto 1fr;column-gap:16px;align-items:start}
+.how li{display:grid;grid-template-columns:auto 1fr;column-gap:16px;align-items:start;align-content:start}
 .how li .ic{grid-row:1/3;margin-top:2px}
 .how li{grid-template-columns:auto 1fr}
 @media (min-width:1080px){.how li{grid-template-columns:1fr}.how li .ic{grid-row:auto;margin-bottom:10px}}
@@ -270,9 +273,8 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 .rv{flex:0 0 min(84%,380px);scroll-snap-align:start;border:1px solid var(--line-2);border-radius:12px;padding:22px 20px;display:flex;flex-direction:column;justify-content:space-between;gap:14px}
 .rv blockquote{display:-webkit-box;-webkit-line-clamp:9;-webkit-box-orient:vertical;overflow:hidden}
 }
-.revhint{display:none;margin-top:12px;font-size:13px;color:var(--soft);letter-spacing:.06em}
+.revhint{display:none;margin-top:12px;font:400 14px/1.4 var(--f-text);color:var(--soft);letter-spacing:0}
 @media (max-width:899px){.revhint{display:block}}
-
 
 /* rating badges: half and half */
 .tb{display:grid;grid-template-columns:1fr 1fr}
@@ -292,7 +294,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 .site-foot .tagline{margin-top:6px;max-width:none;font-size:13px;line-height:1.4;color:var(--dim)}
 .site-foot .fc{display:block}
 .site-foot .fc .fl{display:flex;flex-wrap:wrap;align-items:center;gap:0 18px}
-.site-foot h2{font:500 11px/1.3 var(--f-serif);letter-spacing:.14em;text-transform:uppercase;margin:0 0 2px;color:var(--paper)}
+.site-foot h2{font:600 14px/1.3 var(--f-text);letter-spacing:0;margin:0 0 2px;color:var(--paper)}
 .site-foot .fc a{display:inline-flex;align-items:center;min-height:40px;padding:0;font-size:14px;line-height:1.3;color:var(--dim)}
 .site-foot .cookie-note{max-width:1280px;margin:0 auto;padding:6px 0 10px;font-size:13px;line-height:1.5;color:var(--dim)}
 .site-foot .cookie-note a{text-decoration:underline;text-underline-offset:2px}
@@ -368,7 +370,6 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
   try{if(localStorage.getItem('cb-internal')==='1'||/[?&]cb_internal=1/.test(location.search))return}catch(e){}
   function go(){
     (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","z58jordnb4");
-    window.clarity("set","variant","old");
   }
   if(document.readyState==='complete')setTimeout(go,1500);else addEventListener('load',function(){setTimeout(go,1500)});
 })();
@@ -376,30 +377,30 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 <style>
 /* hero: split, light. Text left, couple portrait right (below it on phones) */
 .hero{display:grid;grid-template-areas:"logo" "ph" "txt";border-bottom:1px solid var(--line-2)}
-.hero .ph{grid-area:ph;width:calc(100% - 2*var(--pad));margin:0 auto;height:auto;aspect-ratio:6/5;max-height:none;object-fit:cover;object-position:50% 30%;filter:none}
+.hero .ph{grid-area:ph;width:calc(100% - 2*var(--pad));margin:0 auto;height:auto;aspect-ratio:4/5;max-height:none;object-fit:cover;object-position:50% 24%;filter:none}
 .hero .txt{grid-area:txt;padding:22px var(--pad) 40px;text-align:center;display:flex;flex-direction:column;align-items:center}
 .hero .hlogo{grid-area:logo;height:40px;width:auto;margin:28px auto 22px}
-.hero .htrust{order:0;margin:0 0 14px;font-size:clamp(9.5px,3vw,11px);line-height:1.4;letter-spacing:.03em;white-space:nowrap;color:var(--paper);opacity:.85}
+.hero .htrust{order:0;margin:0 0 14px;font-size:clamp(11.5px,3.25vw,15px);line-height:1.4;letter-spacing:0;white-space:nowrap;color:var(--paper);opacity:.9}
 .hero .htrust .st{color:#6E5C3B;letter-spacing:.08em;margin-right:3px}
-.hero h1{font-size:clamp(34px,9vw,60px);line-height:1.06;max-width:12em;margin-top:0;text-wrap:balance;order:1}
-.hero .tag{color:var(--paper);text-align:center;margin:12px auto 0;max-width:26em;font-size:clamp(17px,4.6vw,21px);line-height:1.45;order:2}
-.hero .heroprice{color:var(--paper);font-size:clamp(10px,3.1vw,13px);letter-spacing:.08em;white-space:nowrap;text-transform:uppercase;margin:16px 0 0;order:3}
+.hero h1{font-size:clamp(36px,9.6vw,64px);line-height:1.04;max-width:12em;margin-top:0;text-wrap:balance;order:1}
+.hero .tag{color:var(--paper);text-align:center;margin:14px auto 0;max-width:26em;font-size:clamp(19px,5vw,23px);line-height:1.4;order:2}
+.hero .heroprice{color:var(--paper);font-size:clamp(13px,3.8vw,16px);letter-spacing:0;white-space:nowrap;margin:16px 0 0;order:3}
 .hero .heroprice b{color:var(--paper);font-weight:400}
-.hero .pill{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;border:0;padding:0;margin:8px 0 0;line-height:1.4;color:var(--paper);order:4}
+.hero .pill{display:block;font:500 clamp(14px,3.8vw,15px)/1.4 var(--f-text);letter-spacing:0;border:0;padding:0;margin:8px 0 0;line-height:1.4;color:var(--paper);order:4}
 .hero .pill::before{content:"";display:inline-block;vertical-align:1px;margin-right:10px;width:8px;height:8px;border-radius:50%;background:#2B2530;}
 .hero .pill .n{color:inherit}
 .hero .cta{display:flex;flex-direction:column;gap:6px;align-items:center;width:100%;max-width:420px;margin-top:16px;order:5}
-.hero .btn{margin-top:0;width:100%;background:#2B2530;color:#F2EBDE;min-height:60px;padding:0 28px;font-size:15px;font-weight:600;letter-spacing:.18em;box-shadow:0 8px 22px rgba(43,37,48,.28)}
+.hero .btn{margin-top:0;width:100%;background:#2B2530;color:#F2EBDE;min-height:60px;padding:0 28px;font-size:17px;font-weight:600;letter-spacing:0;box-shadow:0 8px 22px rgba(43,37,48,.28)}
 @media (hover:hover){.hero .btn:hover{background:#3A3240}}
 .hero .btn:active{background:#1D1822}
 .hero .btn:focus-visible{outline-color:#2B2530}
-.hero .sec{display:inline-flex;align-items:center;min-height:44px;color:var(--paper);font:400 14px/1.3 var(--f-serif);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;border:0;border-bottom:1px solid rgba(42,29,15,.5);padding:0;margin-top:14px;height:auto;min-height:0;padding-bottom:3px}
+.hero .sec{display:inline-flex;align-items:center;min-height:44px;color:var(--paper);font:500 16px/1.3 var(--f-text);letter-spacing:0;text-decoration:none;border:0;border-bottom:1px solid rgba(42,29,15,.5);padding:0;margin-top:14px;height:auto;min-height:0;padding-bottom:3px}
 .hero .sec:focus-visible{outline:2px solid #2B2530;outline-offset:4px}
 @media (min-width:900px){
 .hero{grid-template-columns:1fr minmax(340px,440px);grid-template-areas:"logo logo" "txt ph";grid-template-rows:auto 1fr;min-height:70svh;column-gap:clamp(48px,6vw,96px);align-items:center;padding:0 max(var(--pad),calc((100% - 1200px)/2)) 40px}
 .hero .hlogo{height:56px;margin:24px 0 28px;justify-self:start}
 .hero .txt{align-items:flex-start;text-align:left;padding:0}
-.hero h1{font-size:clamp(40px,4.3vw,60px)}
+.hero h1{font-size:clamp(42px,4.8vw,68px)}
 .hero .tag{text-align:left;margin-left:0}
 .hero .cta{flex-direction:row;align-items:center;gap:26px;width:auto;max-width:none;margin-top:28px;order:3}
 .hero .btn{width:auto;padding:0 44px}
@@ -411,6 +412,33 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 .heroprice{margin:14px 0 0}
 @media (max-width:899px){.enq-grid .enq-form{order:-1}}
 </style>
+<style>
+/* Version B: swipeable hero strip, price strip up top, FAQ before the form. Reserved sizes keep the layout from shifting. */
+.hero .hmedia{grid-area:ph;position:relative;width:calc(100% - 2*var(--pad));margin:0 auto}
+.hero .hstrip{display:flex;aspect-ratio:4/5;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;overscroll-behavior-x:contain;background:rgba(42,29,15,.08)}
+.hero .hstrip::-webkit-scrollbar{display:none}
+.hero .hstrip img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;object-position:50% 24%;scroll-snap-align:center;display:block}
+.hero .hdots{display:flex;justify-content:center;gap:8px;margin-top:12px;min-height:8px}
+.hero .hdots i{width:8px;height:8px;border-radius:50%;background:rgba(42,29,15,.25);transition:background-color .2s}
+.hero .hdots i.on{background:#2A1D0F}
+@media (min-width:900px){
+.hero .hmedia{width:100%;justify-self:end;margin:0}
+.hero .hstrip{aspect-ratio:3/4;max-height:min(520px,calc(100svh - 200px))}
+}
+.vtrack{min-height:min(58vw,330px)}
+.revs.one{display:block;min-height:210px;margin-inline:0;padding:0;overflow:visible}
+.revs.one .rv{flex:none;max-width:560px}
+.revs.one .rv blockquote{-webkit-line-clamp:unset;display:block}
+.tb.one{grid-template-columns:1fr;max-width:420px}
+.incl{margin-top:22px;border-top:1px solid var(--line-2)}
+.incl summary{list-style:none;cursor:pointer;min-height:44px;padding:14px 0;font:500 19px/1.3 var(--f-display);display:flex;justify-content:space-between;gap:16px;align-items:baseline}
+.incl summary::-webkit-details-marker{display:none}
+.incl summary::after{content:"+";font-family:var(--f-display);font-size:28px;line-height:1}
+.incl[open] summary::after{content:"\2212"}
+.pricestrip .btn{margin-top:20px}
+.form-wrap{min-height:1363px}
+.hero .txt{min-width:0;max-width:100%}.hero .htrust,.hero .heroprice{white-space:normal}
+</style>
 </head>
 <body>
 
@@ -419,25 +447,89 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
   <img class="hlogo" src="img/logo-dark-330.webp" alt="Chaar Bhai" width="82" height="40">
   <div class="txt">
     <p class="htrust"><span class="st" aria-hidden="true">★★★★★</span> 4.9 out of 5 on Google · 1,800+ weddings captured</p>
-    <h1 id="h">Timeless wedding photo and film for Toronto couples.</h1>
-    <p class="tag">Photos and film you will still feel in twenty years.</p>
-    <div class="cta"><a class="btn" id="hbtn" href="#enquire">Book a consult</a><a class="sec" href="#work">See work</a></div>
+    <h1 id="h">Hate being photographed? <em>So did most of our brides.</em></h1>
+    <p class="tag">Natural photos and film, every relative included.</p>
+    <div class="cta"><a class="btn" id="hbtn" href="#enquire">Tell us your date</a><a class="sec" href="#work">See work</a></div>
     <p class="heroprice">Wedding coverage starting from <b>$3,500 CAD</b></p>
     <p class="pill offer-line" data-offer>Limited spots · <span data-left>only <span class="n">5</span> left</span></p>
   </div>
-  <img class="ph" src="photos/zainab-maaz/_FR_2497_resized-1280.webp" srcset="photos/zainab-maaz/_FR_2497_resized-640.webp 640w, photos/zainab-maaz/_FR_2497_resized-1280.webp 1280w, photos/zainab-maaz/_FR_2497_resized-1920.webp 1920w, photos/zainab-maaz/_FR_2497_resized-2560.webp 2560w" sizes="(min-width:900px) 50vw, 100vw" width="1280" height="1919" fetchpriority="high" alt="A bride and groom nose to nose, smiling">
+  <div class="hmedia">
+    <div class="hstrip" data-hstrip tabindex="0" role="group" aria-roledescription="carousel" aria-label="Wedding photos, swipe sideways">
+      <img src="photos/zainab-maaz/_FR_2497_resized-1280.webp" srcset="photos/zainab-maaz/_FR_2497_resized-640.webp 640w, photos/zainab-maaz/_FR_2497_resized-1280.webp 1280w" sizes="(min-width:900px) 440px, 100vw" width="1280" height="1919" fetchpriority="high" alt="A bride and groom nose to nose, smiling">
+      <img src="photos/fathema-christian/ChaarBhai_FCNE_0299_resized-1280.webp" srcset="photos/fathema-christian/ChaarBhai_FCNE_0299_resized-640.webp 640w, photos/fathema-christian/ChaarBhai_FCNE_0299_resized-1280.webp 1280w" sizes="(min-width:900px) 440px, 100vw" width="1280" height="1920" loading="lazy" decoding="async" alt="A bride in a red lehenga stands in a doorway lit by a chandelier">
+      <img style="object-position:55% 50%" src="photos/darmant-harpal/_FR_1425-1280.webp" srcset="photos/darmant-harpal/_FR_1425-640.webp 640w, photos/darmant-harpal/_FR_1425-1280.webp 1280w" sizes="(min-width:900px) 440px, 100vw" width="1280" height="853" loading="lazy" decoding="async" alt="A couple at their Anand Karaj">
+      <img style="object-position:88% 50%" src="photos/haleema-hassaan/_FR_1537_resized-1280.webp" srcset="photos/haleema-hassaan/_FR_1537_resized-640.webp 640w, photos/haleema-hassaan/_FR_1537_resized-1280.webp 1280w" sizes="(min-width:900px) 440px, 100vw" width="1280" height="854" loading="lazy" decoding="async" alt="A couple on their wedding day">
+    </div>
+    <div class="hdots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+  </div>
 </section>
 
-<section class="pad g-cream" aria-labelledby="ph1">
+<section class="pad g-aub offer pricestrip" id="offer" aria-labelledby="oh">
   <div class="in">
-    <h2 id="ph1">What couples trust us with</h2>
-    <p class="lead">The same three things come up in the reviews, again and again.</p>
-    <ul class="tiles">
-      <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h9"/></svg><b>A team that's organized</b><span>Professional from the first call to the last photo.</span></li>
-      <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6.5 5.5 5.5 0 0 1 21.5 12c-2.5 4.5-9.5 9-9.5 9z"/></svg><b>Your family at ease</b><span>Couples say we felt like family, not like vendors.</span></li>
-      <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg><b>Photos as you pictured</b><span>One bride asked for a Bollywood wedding. We made it real.</span></li>
-    </ul>
-    <p class="tstat"><b>1,800+</b> weddings since 2008, and three generations of some families.</p>
+    <div>
+      <h2 id="oh">Offer details</h2>
+      <p class="eyebrow offer-line" data-offer style="margin:18px 0 0">Limited spots · <span data-left>only <span class="n">5</span> left</span></p>
+      <ul class="tiers" aria-label="Golden Hour prices">
+        <li><span class="tn">Photo only</span><span class="tp">$3,500 CAD</span></li>
+        <li><span class="tn">Video only</span><span class="tp">$4,500 CAD</span></li>
+        <li class="top"><span class="tn">Photo and video</span><span class="tp">$5,500 CAD</span></li>
+      </ul>
+      <p class="lead">Your whole wedding day, photographed and filmed, documentary in feel and made from your story. We take a limited number of weddings, so spots are limited.</p>
+    </div>
+    <div>
+      <details class="incl"><summary>What's included</summary>
+      <ul class="r">
+        <li>Ten hours with one photographer, one videographer or both, with lighting and support, from getting ready to the last dance.</li>
+        <li>With photo: every photo edited individually, never from a preset, in a private online gallery.</li>
+        <li>With video: your wedding film by private download link, with professional audio and on-camera interviews.</li>
+        <li>A get-ready session, and coverage of each event you choose: nikkah, baraat, anand karaj, mehndi or reception.</li>
+      </ul>
+      <p class="small fine">Prices are in Canadian dollars. Photo only and video only are the same ten hours with just that half. Extra hours are $550 each, whichever option you choose. A deposit holds your date and the rest is paid later, as set out in your contract. Planning a longer weekend? Ask us about our larger packages.</p>
+      </details>
+      <a class="btn" href="#enquire">Tell us your date</a>
+    </div>
+  </div>
+</section>
+
+<section class="pad g-brown faqsec" aria-labelledby="fqh">
+  <div class="in">
+    <h2 id="fqh">Frequently asked questions</h2>
+    <div class="faq">
+      <details open><summary>Can we trust you with our wedding day?</summary><p>We have covered more than 1,800 weddings since 2008. Some families have come back for a second wedding, and in some we have photographed three generations. Every review further down is linked to the original on Google, so you can read what couples wrote in their own words.</p></details>
+      <details open><summary>Have you shot weddings like ours?</summary><p>Very likely. We shoot South Asian and multi-day weddings, from the mehndi and nikkah to the baraat, anand karaj, ceremony and reception, and we have photographed Hindu, Muslim, Sikh and Christian weddings. We can cover each event, and we know what the important moments are before they happen.</p></details>
+      <details open><summary>Will we feel comfortable around you?</summary><p>Most of our brides hate being photographed too, and they tell us they felt at ease. In their reviews they say we made them feel at ease and like family. We start with a conversation to get to know you before the day, so you are not meeting us for the first time on your wedding morning. And we aim for real, candid moments, not a day of stiff posing.</p></details>
+      <details><summary>Will you know who matters in our family and what moments we can't miss?</summary><p>That's what our first conversation is for. We ask about your wedding, the coverage you need and the photos you are after, and before the day we ask who the important people are, the ones we must not miss.</p></details>
+      <details><summary>Will it feel like our wedding, or like a template?</summary><p>We don't use presets or a standard editing system. Every photo is edited on its own, so it looks like your day. We can do what's trendy, but what we aim to keep are the real moments, shot in a way that will still look right in many years.</p></details>
+      <details><summary>Who exactly will be there on the day?</summary><p>One photographer and one videographer, with lighting and support, for the ten hours. If your event is busy, with many things happening at once, extra photographers are available as an add-on.</p></details>
+      <details><summary>How long until we get our photos and film?</summary><p>Because every photo is edited individually, delivery can take up to three months. If you need it sooner, rushed delivery is available as an add-on.</p></details>
+      <details><summary>What does Golden Hour cost, and is there anything extra?</summary><p>Ten hours is $5,500 CAD for photo and video, $3,500 CAD for photo only, or $4,500 CAD for video only, with every photo individually edited, a private online gallery, and your wedding film by private download link (photo only has the photos, video only has the film). Extra hours are $550 each, whichever option you choose, and add-ons such as extra photographers, drone footage with an additional videographer, and rushed delivery are priced separately. Planning a longer weekend? Ask us about our larger packages.</p></details>
+      <details><summary>How do we book, and what if plans change?</summary><p>Start with the form below. After the consult, we send a contract in writing. Booking takes an initial deposit, and the rest is paid later, as set out in the contract. Because we reserve your date for you alone, a cancellation by the client is not refundable. Please read our <a class="inl" href="/refunds">Refunds and Cancellation</a> page for the full details.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="pad g-aub enq" id="enquire" aria-labelledby="eh">
+  <div class="in">
+    <h2 id="eh">Tell us your date</h2>
+    <p class="lead">Fill in the form with what you know, and we’ll set up a consult around you.</p>
+    <div class="enq-grid">
+      <div class="enq-form">
+    <div class="form-wrap"><iframe id="sn-form-golden" title="Enquiry form" data-src="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" allowfullscreen></iframe></div>
+    <p class="small alt">Form not loading? <a class="inl" href="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" target="_blank" rel="noopener">Open it in a new tab</a>, message us on Instagram <a class="inl" href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">@chaarbhai</a>, or email <a class="inl" href="mailto:info@chaarbhai.com">info@chaarbhai.com</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pad g-cream" aria-labelledby="sh">
+  <div class="in">
+    <h2 id="sh">What happens after you tell us your date</h2>
+    <ol class="steps">
+      <li><span class="num">01 /</span><h3><a class="inl" href="#enquire">Share your details</a></h3><p>Whatever you know so far: the date or the season, the place, the events you want covered.</p></li>
+      <li><span class="num">02 /</span><h3>A short consult</h3><p>We get to know you: your wedding, the coverage you need and the photos you’re after.</p></li>
+      <li><span class="num">03 /</span><h3>You get a contract</h3><p>Once we know what you need, the details come to you in writing.</p></li>
+      <li><span class="num">04 /</span><h3>A deposit holds the date</h3><p>You enjoy the day. We photograph and film it.</p></li>
+    </ol>
   </div>
 </section>
 
@@ -566,8 +658,6 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
       </div>
     </div></div></dialog>
 
-
-
 <section class="pad g-aub films" aria-labelledby="fh">
   <div class="in">
     <div class="head"><h2 id="fh">Watch how a <img class="inlogo" src="img/logo-330.webp" alt="Chaar Bhai" width="82" height="40"> film feels</h2><p class="lead">Five of the newest films we’ve shot.</p></div>
@@ -579,115 +669,30 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
   </div>
 </section>
 
-<section class="pad g-cream" aria-labelledby="mh">
+<section class="pad g-cream" aria-labelledby="ph1">
   <div class="in">
-    <h2 id="mh">What we are known for</h2>
-    <ul class="how">
-      <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><b>Your culture, understood.</b> Hindu, Muslim, Sikh and Christian weddings, from the mehndi and nikkah to the anand karaj, baraat and reception, including multi-day weddings. We know what the important moments are before they happen.</li>
-      <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 17l.7 1.8L21.5 19.5l-1.8.7L19 22l-.7-1.8-1.8-.7 1.8-.7z"/></svg><b>Candid and timeless.</b> We can do what is trendy. What we aim to keep are the real moments, shot in a way that still looks right in many years.</li>
-      <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg><b>No presets.</b> We don't use a standard editing system. Every photo is edited on its own, so each one looks like your day and not a template. It takes longer, and we think it's worth it.</li>
-      <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg><b>Your priorities first.</b> Before the day we ask who the important people are and what you have pictured, so the story we tell is yours.</li>
+    <h2 id="ph1">What our brides say</h2>
+    <p class="lead">The same three things come up in the reviews, again and again.</p>
+    <ul class="tiles">
+      <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h9"/></svg><b>A team that's organized</b><span>Professional from the first call to the last photo.</span></li>
+      <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6.5 5.5 5.5 0 0 1 21.5 12c-2.5 4.5-9.5 9-9.5 9z"/></svg><b>Your family at ease</b><span>Couples say we felt like family, not like vendors.</span></li>
+      <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg><b>Photos as you pictured</b><span>One bride asked for a Bollywood wedding. We made it real.</span></li>
     </ul>
+    <p class="tstat"><b>1,800+</b> weddings since 2008, and three generations of some families.</p>
   </div>
 </section>
 
 <section class="pad g-cream" id="reviews" aria-labelledby="rh">
   <div class="in">
     <h2 id="rh">Testimonials</h2>
-    <p class="lead">From couples on Google and Facebook, copied across as they wrote them.</p>
-    <div class="tb">
+    <p class="lead">From a couple on Google, copied across as they wrote it.</p>
+    <div class="tb one">
       <a class="tbd" href="https://www.google.com/maps?cid=901197728530734372" target="_blank" rel="noopener" aria-label="Rated 4.9 out of 5 from 37 reviews on Google. Read them on Google."><svg class="tb-logo" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg><span class="tb-body"><span class="tb-name">Google Reviews</span><span class="tb-score"><b>4.9</b><span class="stars" role="img" aria-label="4.9 out of 5 stars"><span class="stars-fill" style="width:98%"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></span></span><span class="tb-sub">Based on 37 reviews</span></span></a>
-      <a class="tbd" href="https://www.facebook.com/chaarbhai/reviews" target="_blank" rel="noopener" aria-label="94% recommend, from 344 reviews on Facebook. Read them on Facebook."><svg class="tb-logo tb-meta" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="metag2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0064E1"/><stop offset=".6" stop-color="#0073EE"/><stop offset="1" stop-color="#0082FB"/></linearGradient></defs><path fill="url(#metag2)" d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></svg><span class="tb-body"><span class="tb-name">Facebook Reviews</span><span class="tb-score"><b>94%</b><span class="tb-rec">recommend</span></span><span class="tb-sub">Based on 344 reviews</span></span></a>
     </div>
-    <div class="revs" id="revs" tabindex="0" role="group" aria-label="Reviews, swipe sideways"></div>
-    <p class="revhint" aria-hidden="true">Swipe for more →</p>
+    <div class="revs one" id="revs" tabindex="0" role="group" aria-label="Reviews, swipe sideways"></div>
   </div>
 </section>
 
-<section class="pad g-aub offer" id="offer" aria-labelledby="oh">
-  <div class="in">
-    <div>
-      <h2 id="oh">Offer details</h2>
-      <p class="eyebrow offer-line" data-offer style="margin:18px 0 0">Limited spots · <span data-left>only <span class="n">5</span> left</span></p>
-      <ul class="tiers" aria-label="Golden Hour prices">
-        <li><span class="tn">Photo only</span><span class="tp">$3,500 CAD</span></li>
-        <li><span class="tn">Video only</span><span class="tp">$4,500 CAD</span></li>
-        <li class="top"><span class="tn">Photo and video</span><span class="tp">$5,500 CAD</span></li>
-      </ul>
-      <p class="lead">Your whole wedding day, photographed and filmed, candid, timeless and made from your story. We take a limited number of weddings, so spots are limited.</p>
-    </div>
-    <div>
-      <ul class="r">
-        <li>Ten hours with one photographer, one videographer or both, with lighting and support, from getting ready to the last dance.</li>
-        <li>With photo: every photo edited individually, never from a preset, in a private online gallery.</li>
-        <li>With video: your wedding film by private download link, with professional audio and on-camera interviews.</li>
-        <li>A get-ready session, and coverage of each event you choose: nikkah, baraat, anand karaj, mehndi or reception.</li>
-      </ul>
-      <p class="small fine">Prices are in Canadian dollars. Photo only and video only are the same ten hours with just that half. Extra hours are $550 each, whichever option you choose. A deposit holds your date and the rest is paid later, as set out in your contract. Planning a longer weekend? Ask us about our larger packages.</p>
-      <a class="btn" href="#enquire">Book a consult</a>
-    </div>
-  </div>
-</section>
-
-<section class="pad g-cream" aria-labelledby="sh">
-  <div class="in">
-    <h2 id="sh">What happens after you book a consult</h2>
-    <ol class="steps">
-      <li><span class="num">01 /</span><h3><a class="inl" href="#enquire">Share your details</a></h3><p>Whatever you know so far: the date or the season, the place, the events you want covered.</p></li>
-      <li><span class="num">02 /</span><h3>A short consult</h3><p>We get to know you: your wedding, the coverage you need and the photos you’re after.</p></li>
-      <li><span class="num">03 /</span><h3>You get a contract</h3><p>Once we know what you need, the details come to you in writing.</p></li>
-      <li><span class="num">04 /</span><h3>A deposit holds the date</h3><p>You enjoy the day. We photograph and film it.</p></li>
-    </ol>
-  </div>
-</section>
-
-<section class="pad g-brown faqsec" aria-labelledby="fqh">
-  <div class="in">
-    <h2 id="fqh">Frequently asked questions</h2>
-    <div class="faq">
-      <details><summary>Can we trust you with our wedding day?</summary><p>We have covered more than 1,800 weddings since 2008. Some families have come back for a second wedding, and in some we have photographed three generations. Every review further down is linked to the original on Google, so you can read what couples wrote in their own words.</p></details>
-      <details><summary>Have you shot weddings like ours?</summary><p>Very likely. We shoot South Asian and multi-day weddings, from the mehndi and nikkah to the baraat, anand karaj, ceremony and reception, and we have photographed Hindu, Muslim, Sikh and Christian weddings. We can cover each event.</p></details>
-      <details><summary>Will we feel comfortable around you?</summary><p>Couples tell us they did. In their reviews they say we made them feel at ease and like family. We start with a conversation to get to know you before the day, so you are not meeting us for the first time on your wedding morning. And we aim for real, candid moments, not a day of stiff posing.</p></details>
-      <details><summary>Will you know who matters in our family and what moments we can't miss?</summary><p>That's what our first conversation is for. We ask about your wedding, the coverage you need and the photos you are after, and before the day we ask who the important people are, the ones we must not miss.</p></details>
-      <details><summary>Will it feel like our wedding, or like a template?</summary><p>We don't use presets or a standard editing system. Every photo is edited on its own, so it looks like your day. We can do what's trendy, but what we aim to keep are the real moments, shot in a way that will still look right in many years.</p></details>
-      <details><summary>Who exactly will be there on the day?</summary><p>One photographer and one videographer, with lighting and support, for the ten hours. If your event is busy, with many things happening at once, extra photographers are available as an add-on.</p></details>
-      <details><summary>How long until we get our photos and film?</summary><p>Because every photo is edited individually, delivery can take up to three months. If you need it sooner, rushed delivery is available as an add-on.</p></details>
-      <details><summary>What does Golden Hour cost, and is there anything extra?</summary><p>Ten hours is $5,500 CAD for photo and video, $3,500 CAD for photo only, or $4,500 CAD for video only, with every photo individually edited, a private online gallery, and your wedding film by private download link (photo only has the photos, video only has the film). Extra hours are $550 each, whichever option you choose, and add-ons such as extra photographers, drone footage with an additional videographer, and rushed delivery are priced separately. Planning a longer weekend? Ask us about our larger packages.</p></details>
-      <details><summary>How do we book, and what if plans change?</summary><p>Start with the form below. After the consult, we send a contract in writing. Booking takes an initial deposit, and the rest is paid later, as set out in the contract. Because we reserve your date for you alone, a cancellation by the client is not refundable. Please read our <a class="inl" href="/refunds">Refunds and Cancellation</a> page for the full details.</p></details>
-    </div>
-  </div>
-</section>
-
-<section class="pad g-aub enq" id="enquire" aria-labelledby="eh">
-  <div class="in">
-    <h2 id="eh">Book a consult</h2>
-    <p class="lead">Fill in the form with what you know, and we’ll set up a consult around you.</p>
-    <div class="enq-grid">
-      <div class="enq-form">
-    <div class="form-wrap"><iframe id="sn-form-golden" title="Enquiry form" data-src="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" allowfullscreen></iframe></div>
-    <p class="small alt">Form not loading? <a class="inl" href="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" target="_blank" rel="noopener">Open it in a new tab</a>, message us on Instagram <a class="inl" href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">@chaarbhai</a>, or email <a class="inl" href="mailto:info@chaarbhai.com">info@chaarbhai.com</a>.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="pad g-maroon sumsec" aria-labelledby="sumh">
-  <div class="in">
-    <div class="sum" aria-labelledby="sumh">
-      <h3 id="sumh">Golden Hour, in short</h3>
-      <p class="eyebrow offer-line" data-offer style="margin:14px 0 0">Limited spots · <span data-left>only <span class="n">5</span> left</span></p>
-      <p class="price">From $3,500 CAD</p>
-      <ul class="r">
-        <li>Ten hours with one photographer, one videographer or both, from getting ready to the last dance.</li>
-        <li>With photo: every photo edited individually, never from a preset, in a private online gallery.</li>
-        <li>With video: your wedding film by private download link, with professional audio and on-camera interviews.</li>
-        <li>Backed by 1,800+ weddings since 2008 and the reviews above.</li>
-      </ul>
-      <p class="small">Extra hours are $550 each, whichever option you choose. A deposit holds your date, and a date can only be held for one couple, so the sooner you ask, the better the chance yours is free.</p>
-      <p class="small">Want something different? <a class="inl" href="https://www.chaarbhai.com/prices">See our other packages on the main site</a>, or fill out the form and tell us what you need.</p>
-    </div>
-  </div>
-</section>
 </main>
 
 <footer class="site-foot g-aub" id="foot">
@@ -722,7 +727,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 
 <div class="sticky g-aub" id="sticky">
   <span class="p"><span class="p1" data-offer><span class="lim">Limited spots · </span><span data-left>only <span class="n">5</span> left</span></span><span class="p2">From $3,500 CAD</span></span>
-  <a class="btn" href="#enquire">Book a consult</a>
+  <a class="btn" href="#enquire">Tell us your date</a>
 </div>
 
 <script>
@@ -745,7 +750,7 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
     hf.addEventListener('pointerleave',rest);hf.addEventListener('pointerup',function(e){if(e.pointerType!=='mouse')rest()});hf.addEventListener('pointercancel',rest)}
 
   /* Reviews: read from reviews.js so the text stays word for word and every name links to the original. */
-  var KEEP=['Haaris 7khan','Zee S','Ramsha Zaeem','Noorin Manji','Qurat Ul Ain Nasir','Zair Syed','Usmaara I.','Zainab Jafari','Maryam F Rehman'];
+  var KEEP=['Zainab Jafari'];
   function byName(n){return (typeof REVIEWS!=='undefined')?REVIEWS.filter(function(x){return x.n===n})[0]:null}
   function link(r){var a=document.createElement('a');a.className='inl';a.href=r.l;a.target='_blank';a.rel='noopener';a.textContent=r.n;return a}
   var host=document.getElementById('revs');
@@ -763,7 +768,6 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
   /* Below-the-fold extras (the reviews text, the script font) load after the page has finished, so they never compete with the first screen. */
   window.addEventListener('load',function(){
     var rs=document.createElement('script');rs.src='reviews.js';rs.onload=renderReviews;document.head.appendChild(rs);
-    if(window.FontFace){var ff=new FontFace('Pinyon Script','url(fonts/pinyon-script.woff2) format("woff2")',{display:'swap'});ff.load().then(function(f){document.fonts.add(f)},function(){})}
   });
 
   /* Highlight films: the five newest highlight films on the channel (YouTube id, title, length in seconds). */
@@ -875,6 +879,20 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
     var io=new IntersectionObserver(function(es){es.forEach(function(e){seen[e.target.id]=e.isIntersecting});st.classList.toggle('hide',!!(seen.enquire||seen.foot||seen.hbtn))},{threshold:.05});
     io.observe(enq);io.observe(document.getElementById('foot'));io.observe(document.getElementById('hbtn'));
   }
+})();
+</script>
+<script>
+/* Hero strip: the dots follow the photo in view, and the first swipe is reported once. */
+(function(){
+  var s=document.querySelector('[data-hstrip]');if(!s)return;
+  var dots=[].slice.call(document.querySelectorAll('.hdots i')),sent=false,t;
+  s.addEventListener('scroll',function(){
+    clearTimeout(t);t=setTimeout(function(){
+      var i=Math.round(s.scrollLeft/s.clientWidth);
+      dots.forEach(function(d,k){d.classList.toggle('on',k===i)});
+    },40);
+    if(!sent&&s.scrollLeft>8){sent=true;if(typeof window.gtag==='function')window.gtag('event','hero_swipe',{page:'golden-hour'});if(typeof window.clarity==='function')window.clarity('event','hero_swipe')}
+  },{passive:true});
 })();
 </script>
 <script defer src="analytics-events.js?v=20261029"></script>
