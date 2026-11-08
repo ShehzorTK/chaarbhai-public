@@ -183,6 +183,22 @@ main{flex:1;display:flex;flex-direction:column;position:relative}
 .call .btn{margin-top:24px}
 .call .bring{margin-top:16px;font:italic 400 19px/1.35 var(--f-display);color:var(--dim)}
 .call .alt-lk{margin-top:10px}
+.book{text-align:center}
+.book .lead{margin-inline:auto;max-width:28em}
+.plan{margin:26px auto 0;padding:20px 20px 18px;border:1px solid var(--line-2);text-align:left;max-width:640px;background:var(--ink-2)}
+.plan b{display:block;font:500 22px/1.2 var(--f-display)}
+.plan span{display:block;margin-top:6px;font-size:15px;line-height:1.5;color:var(--dim)}
+.plan .lk{margin-top:8px}
+.copied{font:italic 400 17px/1 var(--f-display);margin-left:12px;opacity:0;transition:opacity .3s}
+.copied.on{opacity:1}
+.form-wrap{max-width:640px;margin:26px auto 0;text-align:left}
+.form-wrap iframe{display:block;width:1px;min-width:100%;height:1363px;border:0;background:transparent;color-scheme:light}
+.small{font-size:14px;line-height:1.55;color:var(--dim)}
+.alt{margin-top:22px}
+.small a{text-decoration:underline;text-underline-offset:3px}
+[hidden]{display:none!important}
+.cookie-note{padding:16px var(--pad) 24px;text-align:center;font-size:13px;color:var(--dim);background-color:var(--ink);background-image:var(--grain);background-size:400px}
+.cookie-note a{text-decoration:underline;text-underline-offset:2px}
 .fine2{margin-top:30px;font-size:13px;color:var(--dim);text-align:center}
 .sticky{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:12px var(--pad) calc(env(safe-area-inset-bottom) + 12px);background:#4A2530;background-image:var(--grain);border-top:1px solid rgba(242,235,222,.3);display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;color:#F2EBDE;transform:translateY(110%);transition:transform .5s var(--ease)}
 .sticky.show{transform:none}
@@ -220,9 +236,8 @@ noscript p{padding:40px;text-align:center;color:#F2EBDE}
 <script>
 /* ---------- CONFIG ---------- */
 var CONFIG={
-  /* Paste the booking calendar link (Calendly / Studio Ninja). Plan answers are appended as query params.
-     Left empty, the button opens an email to the address below with the plan filled in. */
-  bookingUrl:'',
+  /* The same Studio Ninja enquiry form as the Golden Hour landing page. It redirects to /thanks, where the Meta Lead event fires. */
+  formUrl:'https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29',
   fallbackEmail:'info@chaarbhai.com',
   packagesUrl:'https://chaarbhai.com/prices',
   advanceMs:1500
@@ -544,10 +559,17 @@ function showResult(){
     (A.decide==='parents'?'<p class="bring">Your parents are welcome on the call too.</p>':'')+
     '<a class="lk alt-lk" data-t="See the full packages" href="'+CONFIG.packagesUrl+'" target="_blank" rel="noopener"><span>See the full packages</span></a>'+
     '<p class="fine2"><button class="lk" type="button" id="redo" data-t="Start over"><span>Start over</span></button></p></div></section>'+
+  '<section class="g-cream book" id="bookform" hidden aria-labelledby="bh"><div class="in"><h3 id="bh">Pick a time with Fahad</h3><p class="lead">Fill in the form and we’ll set up your free planning call.</p>'+
+    '<div class="plan"><b>'+R.pkg.name+' · '+fmt(R.pkg.price)+' '+cur+'</b><span>'+evs.length+(evs.length===1?' event':' events')+', '+(optOf('guests')?optOf('guests').l.toLowerCase()+' guests':'')+'</span>'+
+    '<button class="lk u" type="button" id="copyplan" data-t="Copy my plan"><span>Copy my plan</span></button><em class="copied" id="copied" aria-live="polite">Copied</em>'+
+    '<span>Paste it into the message box so Fahad starts with your answers.</span></div>'+
+    '<div class="form-wrap"><iframe id="sn-form-quiz" title="Enquiry form" data-src="'+CONFIG.formUrl+'" allowfullscreen></iframe></div>'+
+    '<p class="small alt">Form not loading? <a href="'+CONFIG.formUrl+'" target="_blank" rel="noopener">Open it in a new tab</a>, message us on Instagram <a href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">@chaarbhai</a>, or email <a href="mailto:'+CONFIG.fallbackEmail+'">'+CONFIG.fallbackEmail+'</a>.</p></div></section>'+
+  '<p class="cookie-note">We use cookies to measure our ads. <a href="https://chaarbhai.com/privacy">Privacy</a></p>'+
   '<div class="sticky" id="sticky"><div><div class="p1">'+R.pkg.name+' · '+fmt(R.pkg.price)+'</div><div class="p2">Free call with Fahad</div></div><button class="btn" type="button" id="book2">Book a call</button></div>';
   main.appendChild(s);
   track('ViewContent',{content_name:R.pkg.name,value:R.pkg.price,currency:cur,lead_tag:R.tag});
-  track('Lead',{content_name:R.pkg.name,value:R.pkg.price,currency:cur,lead_tag:R.tag});
+  track('QuizComplete',{content_name:R.pkg.name,value:R.pkg.price,currency:cur,lead_tag:R.tag},true);
   var book=function(){bookCall(R)};
   $('#book').onclick=book;$('#book2').onclick=book;
   $('#redo').onclick=function(){A={};prog.innerHTML='';showIntro()};
@@ -557,7 +579,7 @@ function showResult(){
   var st=$('#sticky'),callEl=$('#call');
   var io2=new IntersectionObserver(function(es){st.classList.toggle('show',window.scrollY>400&&!es[0].isIntersecting)});
   io2.observe(callEl);
-  addEventListener('scroll',function(){if(step===9)st.classList.toggle('show',window.scrollY>400&&callEl.getBoundingClientRect().top>innerHeight)},{passive:true});
+  addEventListener('scroll',function(){if(step!==9)return;var bf=$('#bookform');var onForm=bf&&!bf.hidden&&bf.getBoundingClientRect().top<innerHeight;st.classList.toggle('show',window.scrollY>400&&callEl.getBoundingClientRect().top>innerHeight&&!onForm)},{passive:true});
 }
 
 /* ---------- BOOKING ---------- */
@@ -567,20 +589,45 @@ function planFields(R){
   return{lead_tag:R.tag,package:R.pkg.name,hours:R.pkg.hours,price:R.pkg.price,currency:R.usd?'USD':'CAD',events:ev,days:A.days,guests:g('guests'),
     location:g('where'),date_band:g('when'),priority:g('matters'),worry:g('worry'),budget:g('budget'),deciders:g('decide'),travel:R.travel?'yes':'no'};
 }
-function bookCall(R){
-  var f=planFields(R);
-  track('Schedule',{content_name:R.pkg.name,lead_tag:R.tag});
-  if(CONFIG.bookingUrl){
-    var u=new URL(CONFIG.bookingUrl);
-    Object.keys(f).forEach(function(k){u.searchParams.set(k,f[k])});
-    location.href=u.toString();
-  }else{
-    var body='Hi Fahad,%0D%0A%0D%0AI took the quiz and would like a free planning call.%0D%0A%0D%0A'+Object.keys(f).map(function(k){return encodeURIComponent(k+': '+f[k])}).join('%0D%0A');
-    location.href='mailto:'+CONFIG.fallbackEmail+'?subject='+encodeURIComponent('Planning call: '+R.pkg.name)+'&body='+body;
-  }
+var formOn=false;
+function loadForm(){
+  var fr=document.getElementById('sn-form-quiz');
+  if(formOn||!fr)return;formOn=true;
+  var link=document.createElement('link');link.rel='preconnect';link.href='https://app.studioninja.co';link.crossOrigin='';document.head.appendChild(link);
+  fr.src=fr.getAttribute('data-src');
+  var sc=document.createElement('script');sc.async=true;
+  sc.src='https://app.studioninja.co/client-assets/form-render/assets/scripts/iframeResizer.js';
+  sc.onload=function(){if(window.iFrameResize)iFrameResize({log:false,minHeight:320},fr)};
+  document.head.appendChild(sc);
 }
+function bookCall(R){
+  var bf=$('#bookform');if(!bf)return;
+  track('BookCallClick',{content_name:R.pkg.name,lead_tag:R.tag},true);
+  /* Marks this visitor as a quiz lead for 2 hours, so /thanks (Studio Ninja's redirect) counts the Lead. */
+  try{if(/(^|\.)chaarbhai\.com$/.test(location.hostname))document.cookie='cb_gh=1; Domain=.chaarbhai.com; Path=/; Max-Age=7200; SameSite=Lax; Secure'}catch(e){}
+  bf.hidden=false;loadForm();
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  bf.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+  var cp=$('#copyplan');
+  if(cp&&!cp._on){cp._on=true;cp.onclick=function(){
+    var f=planFields(R),t='Quiz plan: '+f.package+', '+f.hours+' hours, '+fmt(f.price)+' '+f.currency+'\nEvents: '+f.events+'\nDays: '+f.days+'\nGuests: '+f.guests+'\nWhere: '+f.location+'\nWhen: '+f.date_band+'\nMost important: '+f.priority+'\nBiggest worry: '+f.worry+'\nBudget: '+f.budget+(f.deciders?'\nDeciding: '+f.deciders:'');
+    var done=function(){var c=$('#copied');c.classList.add('on');setTimeout(function(){c.classList.remove('on')},1800)};
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(done,function(){fallback(t,done)});else fallback(t,done);
+  }}
+}
+function fallback(t,done){var ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done()}catch(e){}ta.remove()}
 
 showIntro();
+</script>
+<script>
+/* Meta Pixel (ad campaigns), same pixel as the Golden Hour landing page. Live hosts only. The Lead fires on /thanks, after Studio Ninja's redirect, only when cb_gh is set (see bookCall). */
+(function(){
+  if(!/^(www\.|goldenhour\.|links\.|quiz\.)?chaarbhai\.com$/.test(location.hostname))return;
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','2227226818091802');
+  fbq('track','PageView');
+  try{var q=new URLSearchParams(location.search).get('fbclid');if(q)document.cookie='cb_fbclid='+encodeURIComponent(q)+'; Domain=.chaarbhai.com; Path=/; Max-Age=604800; SameSite=Lax; Secure'}catch(e){}
+})();
 </script>
 </body>
 </html>
