@@ -559,13 +559,13 @@ function showResult(){
     (A.decide==='parents'?'<p class="bring">Your parents are welcome on the call too.</p>':'')+
     '<a class="lk alt-lk" data-t="See the full packages" href="'+CONFIG.packagesUrl+'" target="_blank" rel="noopener"><span>See the full packages</span></a>'+
     '<p class="fine2"><button class="lk" type="button" id="redo" data-t="Start over"><span>Start over</span></button></p></div></section>'+
-  '<section class="g-cream book" id="bookform" hidden aria-labelledby="bh"><div class="in"><h3 id="bh">Pick a time with Fahad</h3><p class="lead">Fill in the form and we’ll set up your free planning call.</p>'+
+  '<section class="g-aub book" id="bookform" hidden aria-labelledby="bh"><div class="in"><h3 id="bh">Pick a time with Fahad</h3><p class="lead">Fill in the form and we’ll set up your free planning call.</p>'+
     '<div class="plan"><b>'+R.pkg.name+' · '+fmt(R.pkg.price)+' '+cur+'</b><span>'+evs.length+(evs.length===1?' event':' events')+', '+(optOf('guests')?optOf('guests').l.toLowerCase()+' guests':'')+'</span>'+
     '<button class="lk u" type="button" id="copyplan" data-t="Copy my plan"><span>Copy my plan</span></button><em class="copied" id="copied" aria-live="polite">Copied</em>'+
     '<span>Paste it into the message box so Fahad starts with your answers.</span></div>'+
     '<div class="form-wrap"><iframe id="sn-form-quiz" title="Enquiry form" data-src="'+CONFIG.formUrl+'" allowfullscreen></iframe></div>'+
     '<p class="small alt">Form not loading? <a href="'+CONFIG.formUrl+'" target="_blank" rel="noopener">Open it in a new tab</a>, message us on Instagram <a href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">@chaarbhai</a>, or email <a href="mailto:'+CONFIG.fallbackEmail+'">'+CONFIG.fallbackEmail+'</a>.</p></div></section>'+
-  '<p class="cookie-note">We use cookies to measure our ads. <a href="https://chaarbhai.com/privacy">Privacy</a></p>'+
+  '<p class="cookie-note g-aub">We use cookies to measure our ads. <a href="https://chaarbhai.com/privacy">Privacy</a></p>'+
   '<div class="sticky" id="sticky"><div><div class="p1">'+R.pkg.name+' · '+fmt(R.pkg.price)+'</div><div class="p2">Free call with Fahad</div></div><button class="btn" type="button" id="book2">Book a call</button></div>';
   main.appendChild(s);
   track('ViewContent',{content_name:R.pkg.name,value:R.pkg.price,currency:cur,lead_tag:R.tag});
