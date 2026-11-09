@@ -444,6 +444,17 @@ dialog.hl::backdrop{background:#140E08}
 .hl .hl-n{right:6px;border-radius:999px;top:50%;transform:translateY(-50%);font-size:30px}
 .hl .hl-c{position:absolute;top:18px;left:18px;font:500 14px/1 var(--f-text);opacity:.8}
 .hl button:focus-visible{outline:2px solid #F2EBDE;outline-offset:2px}
+@media (max-width:899px){
+/* First screen on a phone: the photo takes whatever height is left so the headline and the line under it end above the sticky bar, not in the middle of a sentence. */
+.hero .hlogo{margin:16px auto 10px}
+.hero .hstrip{aspect-ratio:auto;height:clamp(260px,calc(100vh - 295px - 26vw),440px);height:clamp(260px,calc(100svh - 295px - 26vw),440px)}
+.hero .hstrip img{object-position:50% 22%}
+.hero .hdots{position:absolute;left:0;right:0;bottom:10px;margin:0}
+.hero .hdots i{background:rgba(255,255,255,.6);box-shadow:0 0 0 1px rgba(0,0,0,.3)}
+.hero .hdots i.on{background:#fff}
+.hero .txt{padding-top:14px}
+.hero .htrust{margin-bottom:10px}
+}
 .pricestrip .btn{margin-top:20px}
 .form-wrap{min-height:1363px}
 .hero .txt{min-width:0;max-width:100%}.hero .htrust,.hero .heroprice{white-space:normal}
