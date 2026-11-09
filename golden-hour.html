@@ -445,15 +445,23 @@ dialog.hl::backdrop{background:#140E08}
 .hl .hl-c{position:absolute;top:18px;left:18px;font:500 14px/1 var(--f-text);opacity:.8}
 .hl button:focus-visible{outline:2px solid #F2EBDE;outline-offset:2px}
 @media (max-width:899px){
-/* First screen on a phone: the photo takes whatever height is left so the headline and the line under it end above the sticky bar, not in the middle of a sentence. */
-.hero .hlogo{margin:16px auto 10px}
-.hero .hstrip{aspect-ratio:auto;height:clamp(260px,calc(100vh - 295px - 26vw),440px);height:clamp(260px,calc(100svh - 295px - 26vw),440px)}
+/* First screen on a phone: everything down to the button and "See work" fits above the fold. The photo takes whatever height is left, and the small text is as small as stays readable (12 to 13 px). */
+.hero .hlogo{height:30px;margin:12px auto 8px}
+.hero .hstrip{aspect-ratio:auto;height:clamp(200px,calc(100vh - 372px - 6vw),440px);height:clamp(200px,calc(100svh - 372px - 6vw),440px)}
 .hero .hstrip img{object-position:50% 22%}
-.hero .hdots{position:absolute;left:0;right:0;bottom:10px;margin:0}
+.hero .hdots{position:absolute;left:0;right:0;bottom:8px;margin:0}
 .hero .hdots i{background:rgba(255,255,255,.6);box-shadow:0 0 0 1px rgba(0,0,0,.3)}
 .hero .hdots i.on{background:#fff}
-.hero .txt{padding-top:14px}
-.hero .htrust{margin-bottom:10px}
+.hero .txt{padding-top:10px;padding-bottom:16px}
+.hero .htrust{font-size:12px;margin:0 0 6px}
+.hero h1{font-size:clamp(30px,8.4vw,64px)}
+.hero .tag{font-size:clamp(15px,4.2vw,18px);margin-top:8px}
+.hero .heroprice{font-size:13px;margin:10px 0 0}
+.hero .pill{font-size:13px;margin:4px 0 0}
+.hero .cta{margin-top:12px}
+.hero .btn{min-height:52px;font-size:16px}
+.hero .sec{margin-top:6px;font-size:15px}
+}
 }
 .pricestrip .btn{margin-top:20px;border:1px solid rgba(242,235,222,.4)}
 .form-wrap{min-height:1363px}
