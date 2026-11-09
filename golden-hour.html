@@ -466,6 +466,26 @@ dialog.hl::backdrop{background:#140E08}
 .pricestrip .btn{margin-top:20px;border:1px solid rgba(242,235,222,.4)}
 .form-wrap{min-height:1363px}
 .hero .txt{min-width:0;max-width:100%}.hero .htrust,.hero .heroprice{white-space:normal}
+/* Phones on their side (short and wide): give the photos real height instead of thin strips */
+@media (orientation:landscape) and (max-height:520px){
+.hero .hlogo{height:34px;margin:10px auto 8px}
+.hero .hmedia{width:min(calc(100% - 2*var(--pad)),calc((100svh - 70px)*.8))}
+.hero .hstrip{aspect-ratio:4/5;height:auto;max-height:none}
+.pchead+.pcards .pcard,.pcard{flex:0 0 100%;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);align-items:center;gap:clamp(20px,4vw,48px);padding:20px max(var(--pad),env(safe-area-inset-left)) 20px}
+.pchead+.pcards .pc-ph,.pc-ph{order:0;grid-column:1;justify-self:end;width:min(100%,520px);height:min(calc(100svh - 56px),560px)}
+.pcard:nth-child(even) .pc-ph{grid-column:2;justify-self:start}
+.pc-tx{grid-column:2}
+.pcard:nth-child(even) .pc-tx{grid-column:1;grid-row:1;justify-self:end;text-align:right}
+.pcard:nth-child(even) .pc-tx p{margin-left:auto}
+.pc-tx h2{font-size:clamp(28px,5vw,44px)}
+.pc-no{font-size:30px}
+}
+@media (orientation:landscape) and (max-height:520px) and (min-width:900px){
+.hero{min-height:0;grid-template-columns:1fr minmax(260px,calc((100svh - 150px)*.8));padding-bottom:20px}
+.hero .hlogo{height:34px;margin:10px 0 12px}
+.hero .hmedia{width:100%}
+.hero .hstrip{aspect-ratio:auto;max-height:none;height:calc(100svh - 150px)}
+}
 </style>
 </head>
 <body>
