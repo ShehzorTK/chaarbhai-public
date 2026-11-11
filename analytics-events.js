@@ -9,6 +9,7 @@
   function enabled() { return !!window.CB_GA && typeof window.gtag === 'function'; }
   function send(name, params) {
     if (enabled()) window.gtag('event', name, Object.assign({enquiry_source: source}, params));
+    if (/^enquiry_form_(view|open)$/.test(name) && typeof window.clarity === 'function') window.clarity('event', name);
   }
   function markForm() {
     if (!enabled()) return;

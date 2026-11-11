@@ -922,6 +922,8 @@ dialog.hl::backdrop{background:#140E08}
   }else{window.addEventListener('load',loadForm)}
   document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href="#enquire"]');if(a)loadForm()},true);
   if(location.hash==='#enquire')loadForm();
+  /* Also warm it up once the page has fully loaded and the browser is idle (Safari has no requestIdleCallback, so it falls back to a timer), so the form is ready before anyone taps, without competing with the first screen. */
+  window.addEventListener('load',function(){if('requestIdleCallback' in window)requestIdleCallback(loadForm,{timeout:3000});else setTimeout(loadForm,1500)});
   /* The sticky link steps aside while the form is on screen. */
   var st=document.getElementById('sticky'),enq=document.getElementById('enquire');
   if('IntersectionObserver' in window){
@@ -960,6 +962,6 @@ dialog.hl::backdrop{background:#140E08}
   d.addEventListener('keydown',function(e){if(e.key==='ArrowRight')show(i+1);if(e.key==='ArrowLeft')show(i-1)});
 })();
 </script>
-<script defer src="analytics-events.js?v=20261029"></script>
+<script defer src="analytics-events.js?v=20261111"></script>
 </body>
 </html>
