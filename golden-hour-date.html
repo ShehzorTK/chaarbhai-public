@@ -550,69 +550,156 @@ dialog.hl::backdrop{background:#140E08}
 .gg3,.gg4{grid-template-columns:repeat(2,1fr)}
 @media (min-width:820px){.gg3{grid-template-columns:repeat(3,1fr);gap:14px}.gg4{grid-template-columns:repeat(4,1fr);gap:14px}}
 .gal-sec .gg{margin-bottom:8px}
+
+/* ===== template match: parallax hero, full-photo testimonials, edge-to-edge grid, light/dark bands ===== */
+.btn{white-space:nowrap}
+.dk{background:#141015;color:#F2EBDE;--paper:#F2EBDE;--dim:rgba(242,235,222,.86);--soft:rgba(242,235,222,.75);--line:rgba(242,235,222,.22);--line-2:rgba(242,235,222,.4)}
+.lt{background:#F2EBDE;color:#2A1D0F;--paper:#2A1D0F;--dim:rgba(42,29,15,.82);--soft:rgba(42,29,15,.72);--line:rgba(42,29,15,.16);--line-2:rgba(42,29,15,.3)}
+.dk,.lt{padding:clamp(56px,9vw,120px) var(--pad);text-align:center}
+.wrap{max-width:900px;margin-inline:auto}
+.dk h2,.lt h2{font:600 clamp(30px,5vw,60px)/1.08 var(--f-display);text-transform:uppercase;letter-spacing:-.005em;margin:0 0 20px}
+.dk h2 em,.lt h2 em{font-style:italic;font-weight:500;text-transform:none;color:#D2B6A1}
+.lt h2 em{color:#8A5A3C}
+.eb{font:600 13px/1.3 var(--f-text);letter-spacing:.18em;text-transform:uppercase;margin:0 0 16px;color:#D2B6A1}
+.lt .eb{color:#8A5A3C}
+.sm{font-size:15px;line-height:1.55;color:var(--dim);max-width:34em;margin:0 auto 18px}
+.sm.up{text-transform:uppercase;letter-spacing:.12em;font-size:13px;margin-bottom:8px}
+.mid{font-size:var(--t-lead);line-height:1.6;color:var(--dim);max-width:36em;margin:0 auto 22px}
+.caps{font:600 clamp(16px,2vw,20px)/1.4 var(--f-text);text-transform:uppercase;letter-spacing:.04em;margin:0 0 22px}
+.it{font:italic 500 clamp(20px,2.6vw,30px)/1.35 var(--f-display);margin:26px 0}
+.it em{color:#8A5A3C}
+.pull{border-left:3px solid #D2B6A1;margin:30px auto;padding:4px 0 4px 20px;text-align:left;max-width:34em;font:italic 500 clamp(17px,1.9vw,22px)/1.55 var(--f-display);color:var(--paper)}
+.lt .pull{border-color:#8A5A3C}
+.pull em{color:#D2B6A1;font-style:italic}
+.cols{display:grid;gap:18px;text-align:left;max-width:760px;margin:0 auto 10px;font-size:16px;line-height:1.65}
+@media (min-width:820px){.cols{grid-template-columns:1fr 1fr;gap:36px}}
+/* hero: the photo stays put while the page scrolls over it (works on iPhone, where background-attachment:fixed does not) */
+.dhero{position:relative;min-height:100svh;display:grid;align-items:end;color:#F2EBDE;background:#141015}
+.dh-clip{position:absolute;inset:0;clip-path:inset(0)}
+.dh-bg{position:fixed;top:0;left:0;width:100%;height:100vh;height:100lvh;object-fit:cover;object-position:50% 25%}
+.dhero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,16,21,.55) 0%,rgba(20,16,21,.1) 35%,rgba(20,16,21,.8) 100%);pointer-events:none}
+.dh-logo{position:absolute;z-index:2;top:clamp(18px,3vw,36px);left:var(--pad);width:clamp(200px,34vw,420px);height:auto}
+.dh-in{position:relative;z-index:2;padding:clamp(150px,22vw,260px) var(--pad) clamp(40px,7vw,96px);max-width:1200px}
+.dh-in h1{font:700 clamp(36px,8.6vw,92px)/1 var(--f-display);text-transform:uppercase;letter-spacing:-.015em;margin:0 0 22px;color:#F2EBDE;text-wrap:balance}
+.dh-sub{font:italic 500 clamp(18px,2.2vw,28px)/1.45 var(--f-display);max-width:30em;margin:0 0 8px;color:#F2EBDE}
+.dh-sub em{color:#D2B6A1}
+/* testimonial panels: full photo, quote over it */
+.tps{display:grid}
+@media (min-width:820px){.tps{grid-template-columns:1fr 1fr}}
+.tp{position:relative;margin:0;min-height:clamp(380px,62vw,560px);display:grid;place-content:center;gap:16px;padding:48px var(--pad);text-align:center;color:#F2EBDE;overflow:hidden;background:#141015}
+.tp-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tp::after{content:"";position:absolute;inset:0;background:rgba(20,14,16,.5)}
+.tp blockquote,.tp figcaption{position:relative;z-index:1;margin:0 auto}
+.tp blockquote{max-width:30em;font:italic 500 clamp(16px,1.7vw,21px)/1.55 var(--f-display)}
+.tp figcaption{font:600 13px/1.3 var(--f-text);letter-spacing:.12em;text-transform:uppercase}
+/* photo grid, edge to edge */
+.gi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:#141015}
+@media (min-width:820px){.gi-grid{grid-template-columns:repeat(3,1fr)}}
+.gi{display:block;padding:0;border:0;background:#141015;cursor:zoom-in;aspect-ratio:3/2;overflow:hidden}
+.gi img{display:block;width:100%;height:100%;object-fit:cover}
+.couldbe .sm{margin-bottom:22px}
+.person .pp{margin:24px auto 0}.person .pp img{display:block;width:min(280px,70vw);height:auto;aspect-ratio:4/5;object-fit:cover;margin-inline:auto}
+.checks{list-style:none;padding:0;margin:34px auto 0;display:grid;gap:14px;max-width:760px}
+@media (min-width:820px){.checks{grid-template-columns:repeat(3,1fr)}}
+.checks li{display:flex;align-items:center;justify-content:center;gap:10px;font:600 13px/1.3 var(--f-text);letter-spacing:.1em;text-transform:uppercase}
+.checks svg{flex:none;color:#D2B6A1}
+/* enquiry: light band, dark form card */
+.enquire .eq-grid{max-width:1040px;display:grid;gap:32px;text-align:left;align-items:start}
+@media (min-width:900px){.enquire .eq-grid{grid-template-columns:1fr 420px;gap:56px}}
+.enquire h2{text-align:left}
+.eq-steps{margin:0 0 20px;padding-left:20px;display:grid;gap:8px;font-size:16px;line-height:1.5}
+.enquire .sm{margin-left:0}
+.eq-card{background:#1B1722;color:#F2EBDE;padding:28px;--dim:rgba(242,235,222,.86);--soft:rgba(242,235,222,.75)}
+.eq-card .nf label{font:600 12px/1.3 var(--f-text);letter-spacing:.12em;text-transform:uppercase;color:#F2EBDE}
+.eq-card .small{color:var(--dim);margin:16px 0 0;text-align:center}
+.eq-card .nf-msg{color:#F2EBDE}
+.invest .price{font:500 clamp(40px,8vw,84px)/1.05 var(--f-display);margin:0 0 8px}
+.invest .price span{font-size:.4em;letter-spacing:.1em}
+.invest .incl{text-align:left;max-width:640px;margin:24px auto 0}
+.finalcta .btn{margin-top:6px}
+/* lightbox */
+.lb{border:0;padding:0;margin:auto;width:100vw;max-width:100vw;height:100svh;max-height:100svh;background:#0E0A0C;color:#F2EBDE}
+.lb::backdrop{background:#0E0A0C}
+.lb figure{margin:0;height:100%;display:grid;grid-template-rows:1fr auto;justify-items:center;padding:56px 16px 20px;gap:12px}
+.lb img{max-width:100%;max-height:100%;min-height:0;object-fit:contain}
+.lb figcaption{font:600 13px/1.3 var(--f-text);letter-spacing:.12em;text-transform:uppercase}
+.lb button{position:absolute;background:none;border:0;color:#F2EBDE;font-size:36px;line-height:1;cursor:pointer;padding:10px 16px}
+.lb-x{top:6px;right:6px}.lb-p{left:0;top:50%;transform:translateY(-50%)}.lb-n{right:0;top:50%;transform:translateY(-50%)}
+@media (prefers-reduced-motion:reduce){.dh-bg{position:absolute}}
 </style>
 </head>
 <body>
 
 <main>
-<section class="dhero g-aub" aria-labelledby="h">
-  <img class="dh-bg" src="photos/zainab-maaz/_FR_2497_resized-1280.webp" srcset="photos/zainab-maaz/_FR_2497_resized-640.webp 640w, photos/zainab-maaz/_FR_2497_resized-1280.webp 1280w" sizes="100vw" width="1280" height="1919" fetchpriority="high" alt="A bride and groom nose to nose, smiling">
+<section class="dhero" aria-labelledby="h">
+  <div class="dh-clip"><picture>
+    <source media="(min-width:820px)" srcset="photos/navi-adam/ChaarBhai_NANE_0021-1280.webp">
+    <img class="dh-bg" src="photos/zainab-maaz/_FR_2497_resized-1280.webp" width="1280" height="1919" fetchpriority="high" alt="A bride and groom nose to nose, smiling"></picture></div>
+  <img class="dh-logo" src="img/logo.png" alt="Chaar Bhai" width="320" height="156">
   <div class="dh-in">
-    <img class="hlogo" src="img/logo-330.webp" alt="Chaar Bhai" width="82" height="40">
-    <p class="htrust"><span class="st" aria-hidden="true">★★★★★</span> 4.9 out of 5 on Google · 1,800+ weddings captured</p>
-    <h1 id="h">Your wedding, <em>exactly as it felt.</em></h1>
-    <p class="tag">I give you just enough direction that you forget I’m directing. What’s left is your day, with everyone who matters in it, so you can relive it forever.</p>
+    <h1 id="h">Your wedding, exactly as it felt.</h1>
+    <p class="dh-sub">I give you just enough direction that you <em>forget I’m directing you.</em> What’s left is your day, with everyone who matters in it, so you can relive it forever.</p>
     <a class="btn" id="hbtn" href="#enquire">Check availability</a>
   </div>
 </section>
 
-<section class="pad g-cream tqsec" aria-label="What couples say">
-  <div class="in tqs"><figure class="tq"><img src="photos/navi-adam/ChaarBhai_NANE_0059-1280.webp" srcset="photos/navi-adam/ChaarBhai_NANE_0059-640.webp 640w, photos/navi-adam/ChaarBhai_NANE_0059-1280.webp 1280w" sizes="(min-width:900px) 220px, 40vw" width="1280" height="1920" loading="lazy" decoding="async" alt="Navi and her husband laughing together"><figcaption><blockquote>“They made my vision a dream come true and really gave me the best instructions when it came to posing, i needed the help!”</blockquote><span>Navi, on Google</span></figcaption></figure><figure class="tq"><img src="photos/zainab-maaz/USA_5331_resized-1280.webp" srcset="photos/zainab-maaz/USA_5331_resized-640.webp 640w, photos/zainab-maaz/USA_5331_resized-1280.webp 1280w" sizes="(min-width:900px) 220px, 40vw" width="1280" height="1921" loading="lazy" decoding="async" alt="Zainab in an orange lehenga with her husband"><figcaption><blockquote>“Fahad and team makes you feel like a family throughout your wedding events and even after. … They turned my dream Bollywood wedding into a reality.”</blockquote><span>Zainab Jafari, on Google</span></figcaption></figure></div>
+<section class="tps" aria-label="What couples say"><figure class="tp"><img class="tp-bg" src="photos/navi-adam/ChaarBhai_NANE_0084-1280.webp" srcset="photos/navi-adam/ChaarBhai_NANE_0084-640.webp 640w, photos/navi-adam/ChaarBhai_NANE_0084-1280.webp 1280w" sizes="(min-width:820px) 50vw, 100vw" width="1280" height="854" loading="lazy" decoding="async" alt="Navi on a park bench in her wedding dress"><blockquote>“They made my vision a dream come true and really gave me the best instructions when it came to posing, i needed the help!”</blockquote><figcaption>Navi &amp; Adam, Ottawa</figcaption></figure><figure class="tp"><img class="tp-bg" src="photos/zainab-maaz/1J4A2951_resized-1280.webp" srcset="photos/zainab-maaz/1J4A2951_resized-640.webp 640w, photos/zainab-maaz/1J4A2951_resized-1280.webp 1280w" sizes="(min-width:820px) 50vw, 100vw" width="1280" height="854" loading="lazy" decoding="async" alt="Zainab and Maaz at their ceremony"><blockquote>“Fahad and team makes you feel like a family throughout your wedding events and even after. … They turned my dream Bollywood wedding into a reality.”</blockquote><figcaption>Zainab &amp; Maaz, Toronto</figcaption></figure></section>
+
+<section class="gi-grid" aria-label="Wedding photos"><button class="gi" type="button" data-lb="0" data-full="photos/zahra-hussam/ChaarBhai_ZHNE_3753_resized-1280.webp" data-cap="Zahra &amp; Hussam, Brampton" aria-label="Enlarge photo: Zahra &amp; Hussam, Brampton"><img src="photos/zahra-hussam/ChaarBhai_ZHNE_3753_resized-640.webp" srcset="photos/zahra-hussam/ChaarBhai_ZHNE_3753_resized-640.webp 640w, photos/zahra-hussam/ChaarBhai_ZHNE_3753_resized-1280.webp 1280w" sizes="(min-width:820px) 33vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Zahra &amp; Hussam, Brampton"></button><button class="gi" type="button" data-lb="1" data-full="photos/haleema-hassaan/_FR_1574_resized-1280.webp" data-cap="Haleema &amp; Hassaan, Toronto" aria-label="Enlarge photo: Haleema &amp; Hassaan, Toronto"><img src="photos/haleema-hassaan/_FR_1574_resized-640.webp" srcset="photos/haleema-hassaan/_FR_1574_resized-640.webp 640w, photos/haleema-hassaan/_FR_1574_resized-1280.webp 1280w" sizes="(min-width:820px) 33vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Haleema &amp; Hassaan, Toronto"></button><button class="gi" type="button" data-lb="2" data-full="photos/rabia-eldad/ChaarBhai_RERE_4577_resized-1280.webp" data-cap="Rabia &amp; Eldad, Oakville" aria-label="Enlarge photo: Rabia &amp; Eldad, Oakville"><img src="photos/rabia-eldad/ChaarBhai_RERE_4577_resized-640.webp" srcset="photos/rabia-eldad/ChaarBhai_RERE_4577_resized-640.webp 640w, photos/rabia-eldad/ChaarBhai_RERE_4577_resized-1280.webp 1280w" sizes="(min-width:820px) 33vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Rabia &amp; Eldad, Oakville"></button><button class="gi" type="button" data-lb="3" data-full="photos/christel-sid/MFR_9880-1280.webp" data-cap="Christel &amp; Sid, Toronto" aria-label="Enlarge photo: Christel &amp; Sid, Toronto"><img src="photos/christel-sid/MFR_9880-640.webp" srcset="photos/christel-sid/MFR_9880-640.webp 640w, photos/christel-sid/MFR_9880-1280.webp 1280w" sizes="(min-width:820px) 33vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Christel &amp; Sid, Toronto"></button><button class="gi" type="button" data-lb="4" data-full="photos/zahra-hussam/ChaarBhai_ZHNE_3622_resized-1280.webp" data-cap="Zahra &amp; Hussam, Brampton" aria-label="Enlarge photo: Zahra &amp; Hussam, Brampton"><img src="photos/zahra-hussam/ChaarBhai_ZHNE_3622_resized-640.webp" srcset="photos/zahra-hussam/ChaarBhai_ZHNE_3622_resized-640.webp 640w, photos/zahra-hussam/ChaarBhai_ZHNE_3622_resized-1280.webp 1280w" sizes="(min-width:820px) 33vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Zahra &amp; Hussam, Brampton"></button><button class="gi" type="button" data-lb="5" data-full="photos/zainab-maaz/USA_6213_resized-1280.webp" data-cap="Zainab &amp; Maaz, Toronto" aria-label="Enlarge photo: Zainab &amp; Maaz, Toronto"><img src="photos/zainab-maaz/USA_6213_resized-640.webp" srcset="photos/zainab-maaz/USA_6213_resized-640.webp 640w, photos/zainab-maaz/USA_6213_resized-1280.webp 1280w" sizes="(min-width:820px) 33vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Zainab &amp; Maaz, Toronto"></button></section>
+
+<section class="dk couldbe" aria-labelledby="gh">
+  <h2 id="gh">These could be <em>your photos</em></h2>
+  <p class="sm">Check if your date is still available. I’ll reply within 24 hours.</p>
+  <a class="btn" href="#enquire">Check availability</a>
 </section>
 
-<section class="pad g-cream gal-sec" aria-labelledby="gh">
-  <div class="in">
-    <h2 id="gh">These could be your photos</h2>
-    <p class="lead">Check if your date is still free. I reply within 24 hours.</p>
-    <div class="gg gg3"><figure class="gg-i"><img src="photos/haleema-hassaan/_FR_1537_resized-1280.webp" srcset="photos/haleema-hassaan/_FR_1537_resized-640.webp 640w, photos/haleema-hassaan/_FR_1537_resized-1280.webp 1280w" sizes="(min-width:900px) 25vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Into the hall, veiled in red."><figcaption>Into the hall, veiled in red.</figcaption></figure><figure class="gg-i"><img src="photos/haleema-hassaan/_FR_1574_resized-1280.webp" srcset="photos/haleema-hassaan/_FR_1574_resized-640.webp 640w, photos/haleema-hassaan/_FR_1574_resized-1280.webp 1280w" sizes="(min-width:900px) 25vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Lifting the red veil."><figcaption>Lifting the red veil.</figcaption></figure><figure class="gg-i"><img src="photos/saadman-maariyah/ChaarBhai_SMNE_0713_resized-1280.webp" srcset="photos/saadman-maariyah/ChaarBhai_SMNE_0713_resized-640.webp 640w, photos/saadman-maariyah/ChaarBhai_SMNE_0713_resized-1280.webp 1280w" sizes="(min-width:900px) 25vw, 50vw" width="1280" height="852" loading="lazy" decoding="async" alt="Getting ready with the women."><figcaption>Getting ready with the women.</figcaption></figure><figure class="gg-i"><img src="photos/saadman-maariyah/ChaarBhai_SMNE_1976_resized-1280.webp" srcset="photos/saadman-maariyah/ChaarBhai_SMNE_1976_resized-640.webp 640w, photos/saadman-maariyah/ChaarBhai_SMNE_1976_resized-1280.webp 1280w" sizes="(min-width:900px) 25vw, 50vw" width="1280" height="852" loading="lazy" decoding="async" alt="Under the red shawl."><figcaption>Under the red shawl.</figcaption></figure><figure class="gg-i"><img src="photos/saadman-maariyah/ChaarBhai_SMNE_1843_resized-1280.webp" srcset="photos/saadman-maariyah/ChaarBhai_SMNE_1843_resized-640.webp 640w, photos/saadman-maariyah/ChaarBhai_SMNE_1843_resized-1280.webp 1280w" sizes="(min-width:900px) 25vw, 50vw" width="1280" height="852" loading="lazy" decoding="async" alt="Surrounded by family."><figcaption>Surrounded by family.</figcaption></figure><figure class="gg-i"><img src="photos/zahra-hussam/ChaarBhai_ZHNE_3753_resized-1280.webp" srcset="photos/zahra-hussam/ChaarBhai_ZHNE_3753_resized-640.webp 640w, photos/zahra-hussam/ChaarBhai_ZHNE_3753_resized-1280.webp 1280w" sizes="(min-width:900px) 25vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Heads bowed together."><figcaption>Heads bowed together.</figcaption></figure><a class="btn" href="#enquire">Check availability</a>
-  </div>
-</section>
-
-<section class="pad g-brown fahad" aria-labelledby="mh">
-  <div class="in fahad-in">
-    <figure class="fahad-ph"><img src="img/founder-fahad-raza-720.webp" srcset="img/founder-fahad-raza-480.webp 480w, img/founder-fahad-raza-720.webp 720w" sizes="(max-width:700px) 300px, 360px" width="720" height="900" loading="lazy" decoding="async" alt="Fahad Raza, founder of Chaar Bhai, laughing as he shoots with his camera"></figure>
-    <div class="fahad-tx">
-      <p class="eyebrow">The person behind the camera</p>
-      <h2 id="mh">Hi, I’m Fahad.</h2>
-      <p class="lead">I’ll be the most relaxed person at your wedding, and the one face you already know.</p>
-      <p class="lead">A good photo has very little to do with the camera. When you’re at ease and laughing, I become just another familiar face in the room, and that’s when the real moments happen.</p>
-      <p class="lead">That’s why we talk before your wedding. By the day, you shouldn’t feel photographed. You should feel like you’re living it.</p>
-      <a class="btn" href="#enquire">Check my availability</a>
+<section class="lt person" aria-labelledby="mh">
+  <div class="wrap">
+    <p class="eb">The person behind the camera</p>
+    <h2 id="mh">Hi, I’m Fahad.</h2>
+    <p class="caps">I’m probably the most relaxed person at your wedding.</p>
+    <figure class="pp"><img src="img/founder-fahad-raza-720.webp" srcset="img/founder-fahad-raza-480.webp 480w, img/founder-fahad-raza-720.webp 720w" sizes="280px" width="720" height="900" loading="lazy" decoding="async" alt="Fahad Raza, founder of Chaar Bhai, laughing as he shoots with his camera"></figure>
+    <p class="it">The best part of a great photo <em>doesn’t involve a camera at all.</em></p>
+    <div class="cols">
+      <p>To get a photo that really feels like something, you need to be <b>having fun</b>, feel <b>at ease with me as a person</b>, and know me well enough that on your wedding day I’m just <b>another familiar face in the room</b>.</p>
+      <p>That’s why I put as much effort into the conversations before your wedding as the photography itself. By the time the day arrives, you shouldn’t feel photographed. You should feel like you’re living it.</p>
     </div>
+    <blockquote class="pull">Your wedding day is yours: every decision, every detail, every moment. My job isn’t to take it over. <b>Your day is already taking shape, and I’m just one piece that fits in alongside everything else.</b></blockquote>
+    <p class="sm">If you send me your date, I’ll send one reply with pricing and availability. No spam. No pressure.</p>
+    <a class="btn" href="#enquire">Check my availability</a>
   </div>
 </section>
 
-<section class="pad g-cream work-me" aria-labelledby="wmh">
-  <div class="in wm-in">
-    <div class="wm-tx">
-      <p class="eyebrow">What working with me looks like</p>
-      <h2 id="wmh">You should enjoy your wedding day. All of it.</h2>
-      <p class="lead">My job is to fit into your day, not the other way around. In the time you give me, I’ll make sure the photos feel fun, easy and completely yours.</p>
-      <p class="lead">By the end of the night, the only thing on your mind is when you get to see them.</p>
-      <ul class="wm-list"><li>Calm, natural direction</li><li>Every relative included, from getting ready to the last dance</li><li>Honest editing, never a preset, that won’t date</li></ul>
+<section class="dk working" aria-labelledby="wmh">
+  <div class="wrap">
+    <p class="eb">What working with me looks like</p>
+    <h2 id="wmh">You should <em>enjoy</em> your wedding day. All of it.</h2>
+    <p class="mid">My job is to fit into your day, not the other way around. In the time you give me, I’ll make sure the photos feel fun, easy and completely yours.</p>
+    <blockquote class="pull">The goal is simple: you walk away at the end of the night saying <em>“I can’t wait to see my photos.”</em></blockquote>
+    <ul class="checks">
+      <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>A team that’s organized</span></li>
+      <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Your family at ease</span></li>
+      <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Photos as you pictured</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="lt enquire" id="enquire" aria-labelledby="eh">
+  <div class="wrap eq-grid">
+    <div class="eq-tx">
+      <p class="eb">Let’s talk</p>
+      <h2 id="eh">Send me your date, <em>I’ll take it from there.</em></h2>
+      <p class="caps">I’ll personally reply within 24 hours. Pricing, availability, and nothing you didn’t ask for.</p>
+      <ol class="eq-steps" aria-label="What happens next">
+        <li>You send me your date</li>
+        <li>I personally check availability and send pricing</li>
+        <li>If it feels right, we grab a coffee or jump on a call</li>
+        <li>No pressure. At all. <b>Ever.</b></li>
+      </ol>
+      <p class="sm">Not sure what you need yet? Once you’ve sent me your date, I’ll unlock our free 2-minute planning quiz. It shows what to expect for your kind of wedding, including a rough price.</p>
     </div>
-    <div class="wm-ph"><img src="photos/haleema-hassaan/_FR_0594_resized-1280.webp" srcset="photos/haleema-hassaan/_FR_0594_resized-640.webp 640w, photos/haleema-hassaan/_FR_0594_resized-1280.webp 1280w" sizes="(min-width:900px) 420px, 90vw" width="1280" height="1919" loading="lazy" decoding="async" alt="A bride and groom in a quiet moment"></div>
-  </div>
-</section>
-
-<section class="pad g-aub enq phbg" id="enquire" aria-labelledby="eh" style="--ph:url('photos/saadman-maariyah/ChaarBhai_SMNE_1843_resized-1280.webp')">
-  <div class="in">
-    <p class="eyebrow" style="margin-inline:auto">Let’s talk</p>
-    <h2 id="eh">Send me your date. <em>I’ll take it from there.</em></h2>
-    <p class="lead">I’ll personally reply within 24 hours with availability and pricing, and nothing you didn’t ask for.</p>
-    <div class="enq-grid">
-      <div class="enq-form">
-    <form class="nf" id="nf" hidden novalidate>
+    <div class="eq-card">
+      <form class="nf" id="nf" hidden novalidate>
       <label>Your name<input name="name" type="text" autocomplete="name" required></label>
       <label>Your email<input name="email" type="email" inputmode="email" autocomplete="email" required></label>
       <label><span>Phone <span class="opt">(optional)</span></span><input name="phone" type="tel" inputmode="tel" autocomplete="tel"></label>
@@ -621,58 +708,21 @@ dialog.hl::backdrop{background:#140E08}
       <button class="btn" type="submit">Check availability</button>
       <p class="small nf-msg" role="status" aria-live="polite"></p>
     </form>
-    <div class="form-wrap" id="snwrap"><iframe id="sn-form-golden" title="Enquiry form" data-src="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" allowfullscreen></iframe></div>
-    <p class="small alt">No spam. No pressure. Just availability and pricing from me. Prefer to chat? Message me on Instagram <a class="inl" href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">@chaarbhai</a>, or email <a class="inl" href="mailto:info@chaarbhai.com">info@chaarbhai.com</a>.</p>
-      </div>
-      <div class="enq-steps" aria-labelledby="sh">
-        <h3 id="sh">What happens next</h3>
-        <ol class="steps">
-          <li><span class="num">01 /</span><h4>You send me your date</h4><p>Just the date or the season, and whatever else you know so far.</p></li>
-          <li><span class="num">02 /</span><h4>I check availability and send pricing</h4><p>I reply personally within 24 hours.</p></li>
-          <li><span class="num">03 /</span><h4>If it feels right, we jump on a call</h4><p>Or we chat on Instagram or WhatsApp, whichever you prefer.</p></li>
-          <li><span class="num">04 /</span><h4>No pressure. At all. Ever.</h4><p>A contract and deposit only come if you want me and the team.</p></li>
-        </ol>
-        <p class="quiznote">Not sure what you need yet? Once you’ve sent me your date, I’ll unlock our free 2-minute planning quiz. It shows what to expect for your kind of wedding, including a rough price.</p>
-      </div>
+      <p class="small alt">No spam. No pressure. Just availability and pricing.</p>
     </div>
   </div>
 </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<section class="pad g-brown realw" aria-labelledby="wh">
-  <div class="in">
-    <h2 id="wh">Real weddings, from getting ready to the last dance.</h2>
-    <p class="lead">Every relative included, and the little moments in between.</p>
-    <div class="gg gg4"><figure class="gg-i"><img src="photos/zahra-hussam/ChaarBhai_ZHNE_3622_resized-1280.webp" srcset="photos/zahra-hussam/ChaarBhai_ZHNE_3622_resized-640.webp 640w, photos/zahra-hussam/ChaarBhai_ZHNE_3622_resized-1280.webp 1280w" sizes="(min-width:900px) 25vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Walking through the sparklers."><figcaption>Walking through the sparklers.</figcaption></figure><figure class="gg-i"><img src="photos/zahra-hussam/ChaarBhai_ZHNE_3703_resized-1280.webp" srcset="photos/zahra-hussam/ChaarBhai_ZHNE_3703_resized-640.webp 640w, photos/zahra-hussam/ChaarBhai_ZHNE_3703_resized-1280.webp 1280w" sizes="(min-width:900px) 25vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="In tears, in black and white."><figcaption>In tears, in black and white.</figcaption></figure><figure class="gg-i"><img src="photos/rabia-eldad/ChaarBhai_RERE_4577_resized-1280.webp" srcset="photos/rabia-eldad/ChaarBhai_RERE_4577_resized-640.webp 640w, photos/rabia-eldad/ChaarBhai_RERE_4577_resized-1280.webp 1280w" sizes="(min-width:900px) 25vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Hands joined, guests clapping."><figcaption>Hands joined, guests clapping.</figcaption></figure><figure class="gg-i"><img src="photos/rabia-eldad/ChaarBhai_RERE_4857_resized-1280.webp" srcset="photos/rabia-eldad/ChaarBhai_RERE_4857_resized-640.webp 640w, photos/rabia-eldad/ChaarBhai_RERE_4857_resized-1280.webp 1280w" sizes="(min-width:900px) 25vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Dancing, a blur of motion."><figcaption>Dancing, a blur of motion.</figcaption></figure><figure class="gg-i"><img src="photos/darmant-harpal/_FR_1429-1280.webp" srcset="photos/darmant-harpal/_FR_1429-640.webp 640w, photos/darmant-harpal/_FR_1429-1280.webp 1280w" sizes="(min-width:900px) 25vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Dancing down the street."><figcaption>Dancing down the street.</figcaption></figure><figure class="gg-i"><img src="photos/christel-sid/MFR_9391-1280.webp" srcset="photos/christel-sid/MFR_9391-640.webp 640w, photos/christel-sid/MFR_9391-1280.webp 1280w" sizes="(min-width:900px) 25vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Up the hill, on his back."><figcaption>Up the hill, on his back.</figcaption></figure><figure class="gg-i"><img src="photos/christel-sid/MFR_9880-1280.webp" srcset="photos/christel-sid/MFR_9880-640.webp 640w, photos/christel-sid/MFR_9880-1280.webp 1280w" sizes="(min-width:900px) 25vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Love wins."><figcaption>Love wins.</figcaption></figure><figure class="gg-i"><img src="photos/zainab-maaz/_FR_1907_resized-1280.webp" srcset="photos/zainab-maaz/_FR_1907_resized-640.webp 640w, photos/zainab-maaz/_FR_1907_resized-1280.webp 1280w" sizes="(min-width:900px) 25vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Shouting for joy."><figcaption>Shouting for joy.</figcaption></figure></div>
-    <a class="btn" href="#enquire">Check availability</a>
-  </div>
-</section>
-
-<section class="pad g-aub offer pricestrip phbg" id="offer" aria-labelledby="oh" style="--ph:url('photos/fathema-christian/ChaarBhai_FCNE_0420_resized-1280.webp')">
-  <div class="in">
-    <div>
-      <p class="eyebrow">Investment</p>
-      <h2 id="oh">Photos and film you’ll have for the rest of your life.</h2>
-      <p class="lead">The food gets eaten and the flowers fade. Your photos and film are what’s left, and they only get more precious.</p>
-      <p class="lead">Most couples invest between <b>$3,500 and $5,500 CAD</b> for a full wedding day (ten hours), depending on photo, film or both.</p>
-      <p class="lead">No two weddings are the same, so send me your date and I’ll send the full pricing straight to your inbox. No strings attached.</p>
-    </div>
-    <div>
-      <details class="incl"><summary>What's included</summary>
+<section class="dk invest" id="offer" aria-labelledby="oh">
+  <div class="wrap">
+    <p class="eb">Investment</p>
+    <h2 id="oh">Photos and film you’ll have <em>for the rest of your life.</em></h2>
+    <p class="mid">This isn’t a line item on a spreadsheet. It’s the one thing from your wedding day that <b>gets better with time.</b> The flowers are gone. The food is gone. The photos and film stay.</p>
+    <p class="sm up">Most couples invest between</p>
+    <p class="price">$3,500 – $5,500 <span>CAD</span></p>
+    <p class="sm up">For full day coverage</p>
+    <p class="mid">No two weddings are the same, so send me your date and I’ll send the full pricing straight to your inbox. No strings attached.</p>
+    <details class="incl"><summary>What's included</summary>
       <ul class="r">
         <li>Ten hours with one photographer, one videographer or both, with lighting and support, from getting ready to the last dance.</li>
         <li>With photo: every photo edited individually, never from a preset, in a private online gallery.</li>
@@ -681,88 +731,21 @@ dialog.hl::backdrop{background:#140E08}
       </ul>
       <p class="small fine">Prices are in Canadian dollars. Photo only and video only are the same ten hours with just that half. Extra hours are $550 each, whichever option you choose. A deposit holds your date and the rest is paid later, as set out in your contract. Planning a longer weekend? Ask us about our larger packages.</p>
       </details>
-      <a class="btn" href="#enquire">Check availability</a>
-    </div>
   </div>
 </section>
 
-<section class="pad g-cream tqsec" aria-label="More from couples">
-  <div class="in tqs"><figure class="tq"><img src="photos/fathema-christian/ChaarBhai_FCNE_0420_resized-1280.webp" srcset="photos/fathema-christian/ChaarBhai_FCNE_0420_resized-640.webp 640w, photos/fathema-christian/ChaarBhai_FCNE_0420_resized-1280.webp 1280w" sizes="(min-width:900px) 220px, 40vw" width="1280" height="854" loading="lazy" decoding="async" alt="Fathema and her husband in a wood-panelled Montreal room"><figcaption><blockquote>“Fahad and his incredible team came all the way to Montreal to capture our wedding, and I honestly could not have found anyone better. … Looking back at the photos and videos feels like reliving the day all over again.”</blockquote><span>Fathema Rahman, on Google</span></figcaption></figure><figure class="tq"><img src="photos/christel-sid/MFR_8343-1280.webp" srcset="photos/christel-sid/MFR_8343-640.webp 640w, photos/christel-sid/MFR_8343-1280.webp 1280w" sizes="(min-width:900px) 220px, 40vw" width="1280" height="1919" loading="lazy" decoding="async" alt="Christel laughing on a bench with her husband"><figcaption><blockquote>“Fahad was the photographer I had a good feeling about from the very beginning and I’m so happy my instincts were right! … Throughout our wedding week, he and his team made us feel so comfortable.”</blockquote><span>Christel Joyce, on Google</span></figcaption></figure></div>
+<section class="tps" aria-label="More from couples"><figure class="tp"><img class="tp-bg" src="photos/fathema-christian/ChaarBhai_FCNE_0420_resized-1280.webp" srcset="photos/fathema-christian/ChaarBhai_FCNE_0420_resized-640.webp 640w, photos/fathema-christian/ChaarBhai_FCNE_0420_resized-1280.webp 1280w" sizes="(min-width:820px) 50vw, 100vw" width="1280" height="854" loading="lazy" decoding="async" alt="Fathema and Christian in a wood-panelled room"><blockquote>“Fahad and his incredible team came all the way to Montreal to capture our wedding, and I honestly could not have found anyone better. … Looking back at the photos and videos feels like reliving the day all over again.”</blockquote><figcaption>Fathema &amp; Christian, Montreal</figcaption></figure><figure class="tp"><img class="tp-bg" src="photos/christel-sid/MFR_8704-1280.webp" srcset="photos/christel-sid/MFR_8704-640.webp 640w, photos/christel-sid/MFR_8704-1280.webp 1280w" sizes="(min-width:820px) 50vw, 100vw" width="1280" height="854" loading="lazy" decoding="async" alt="Christel and Sid by the lake"><blockquote>“Fahad was the photographer I had a good feeling about from the very beginning and I’m so happy my instincts were right! … Throughout our wedding week, he and his team made us feel so comfortable.”</blockquote><figcaption>Christel &amp; Sid, Toronto</figcaption></figure></section>
+
+<section class="dk finalcta" aria-labelledby="fch">
+  <h2 id="fch">If this feels like the right fit, <em>your date might still be free.</em></h2>
+  <p class="sm">Fill in the form and I’ll reply with pricing and availability. No obligation, no spam, just the info you need.</p>
+  <a class="btn" href="#enquire">Check availability</a>
 </section>
-
-
-<section class="pad g-brown faqsec" aria-labelledby="fqh">
-  <div class="in">
-    <h2 id="fqh">Frequently asked questions</h2>
-    <div class="faq">
-      <details open><summary>Can we trust you with our wedding day?</summary><p>We have covered more than 1,800 weddings since 2008. Some families have come back for a second wedding, and in some we have photographed three generations. Every quote on this page is from a real couple, copied from their Google review.</p></details>
-      <details open><summary>Have you shot weddings like ours?</summary><p>Very likely. We shoot South Asian and multi-day weddings, from the mehndi and nikkah to the baraat, anand karaj, ceremony and reception, and we have photographed Hindu, Muslim, Sikh and Christian weddings. We can cover each event, and we know what the important moments are before they happen.</p></details>
-      <details open><summary>Will we feel comfortable around you?</summary><p>Most of our brides hate being photographed too, and they tell us they felt at ease. In their reviews they say we made them feel at ease and like family. We start with a conversation to get to know you before the day, so you are not meeting us for the first time on your wedding morning. And we aim for real, candid moments, not a day of stiff posing.</p></details>
-      <details><summary>Will you know who matters in our family and what moments we can't miss?</summary><p>That's what our first conversation is for. We ask about your wedding, the coverage you need and the photos you are after, and before the day we ask who the important people are, the ones we must not miss.</p></details>
-      <details><summary>Will it feel like our wedding, or like a template?</summary><p>We don't use presets or a standard editing system. Every photo is edited on its own, so it looks like your day. We can do what's trendy, but what we aim to keep are the real moments, shot in a way that will still look right in many years.</p></details>
-      <details><summary>Who exactly will be there on the day?</summary><p>One photographer and one videographer, with lighting and support, for the ten hours. If your event is busy, with many things happening at once, extra photographers are available as an add-on.</p></details>
-      <details><summary>How long until we get our photos and film?</summary><p>Because every photo is edited individually, delivery can take up to three months. If you need it sooner, rushed delivery is available as an add-on.</p></details>
-      <details><summary>What does Golden Hour cost, and is there anything extra?</summary><p>Ten hours is $5,500 CAD for photo and video, $3,500 CAD for photo only, or $4,500 CAD for video only, with every photo individually edited, a private online gallery, and your wedding film by private download link (photo only has the photos, video only has the film). Extra hours are $550 each, whichever option you choose, and add-ons such as extra photographers, drone footage with an additional videographer, and rushed delivery are priced separately. Planning a longer weekend? Ask us about our larger packages.</p></details>
-      <details><summary>How do we book, and what if plans change?</summary><p>Start by sending me your date in the form above. After the consult, we send a contract in writing. Booking takes an initial deposit, and the rest is paid later, as set out in the contract. Because we reserve your date for you alone, a cancellation by the client is not refundable. Please read our <a class="inl" href="/refunds">Refunds and Cancellation</a> page for the full details.</p></details>
-    </div>
-  </div>
-</section>
-<section class="pad g-aub finalcta phbg" aria-labelledby="fch" style="--ph:url('photos/darmant-harpal/_FR_1442-1280.webp')">
-  <div class="in">
-    <h2 id="fch">If this feels like the right fit, your date might still be free.</h2>
-    <p class="lead">Send it over and I’ll reply personally with pricing and availability. No obligation, no spam, just the info you need.</p>
-    <a class="btn" href="#enquire">Check availability</a>
-  </div>
-</section>
-
-
 </main>
 
-<footer class="site-foot g-aub" id="foot">
-  <div class="ftop">
-    <div>
-      <div class="fm"><img src="img/logo-330.webp" alt="Chaar Bhai" width="320" height="156"></div>
-      <p class="tagline">Wedding photography and film since 2008. Based in the Greater Toronto Area.</p>
-    </div>
-    <div class="fc elsewhere">
-      <h2>Elsewhere</h2>
-      <div class="fl">
-      <a class="inl" href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">Instagram</a>
-      <a class="inl" href="https://www.youtube.com/@chaar.bhai." target="_blank" rel="noopener">YouTube</a>
-      <a class="inl" href="https://tiktok.com/@chaar.bhai" target="_blank" rel="noopener">TikTok</a>
-      <a class="inl" href="https://www.linkedin.com/company/chaarbhai" target="_blank" rel="noopener">LinkedIn</a>
-      </div>
-    </div>
-    <div class="fc legal">
-      <h2>Legal</h2>
-      <div class="fl">
-      <a class="inl" href="/privacy">Privacy</a>
-      <a class="inl" href="/terms">Terms</a>
-      <a class="inl" href="/refunds">Refunds</a>
-      </div>
-    </div>
-  </div>
-  <p class="cookie-note">We use cookies to give you the best experience possible. <a class="inl" href="/privacy">Privacy</a></p>
-  <div class="fbot">
-    <span>© 2026 Chaar Bhai Inc.</span>
-  </div>
-</footer>
+<dialog class="lb" id="lb" aria-label="Photo, enlarged"><button class="lb-x" type="button" aria-label="Close">×</button><button class="lb-p" type="button" aria-label="Previous photo">‹</button><figure><img alt=""><figcaption></figcaption></figure><button class="lb-n" type="button" aria-label="Next photo">›</button></dialog>
 
-<div class="sticky g-cream" id="sticky">
-  <span class="p"><span class="p1">I reply within 24 hours</span><span class="p2">No pressure, ever</span></span>
-  <a class="btn" href="#enquire">Check availability</a>
-</div>
 
-<script>
-/* The sticky bar steps aside while the hero button, the form or the footer is on screen. */
-(function(){
-  var st=document.getElementById('sticky'),enq=document.getElementById('enquire');
-  if(!st||!enq||!('IntersectionObserver' in window))return;
-  var seen={};
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){seen[e.target.id]=e.isIntersecting});st.classList.toggle('hide',!!(seen.enquire||seen.foot||seen.hbtn))},{threshold:.05});
-  ['enquire','foot','hbtn'].forEach(function(id){var el=document.getElementById(id);if(el)io.observe(el)});
-})();
-</script>
 
 <script>
 /* Native 3-field form. Shown instead of the Studio Ninja form (kept in the page, hidden). Not wired up yet: until NATIVE_FORM_ENDPOINT is set to a
@@ -770,7 +753,7 @@ dialog.hl::backdrop{background:#140E08}
 (function(){
   var NATIVE_FORM_ENDPOINT='';
   var f=document.getElementById('nf');if(!f)return;
-  document.getElementById('snwrap').hidden=true;f.hidden=false;
+  f.hidden=false;
   var msg=f.querySelector('.nf-msg'),btn=f.querySelector('button');
   f.addEventListener('submit',function(e){
     e.preventDefault();
@@ -782,6 +765,20 @@ dialog.hl::backdrop{background:#140E08}
       .then(function(r){if(!r.ok)throw 0;location.href='https://www.chaarbhai.com/thanks'})
       .catch(function(){btn.disabled=false;msg.textContent='That didn’t send. Please try again, or email info@chaarbhai.com.'});
   });
+})();
+</script>
+<script>
+/* Tap a photo to see it large. Previous, Next, the backdrop, Close or Escape. */
+(function(){
+  var d=document.getElementById('lb');if(!d||!d.showModal)return;
+  var items=[].slice.call(document.querySelectorAll('.gi')),im=d.querySelector('img'),cp=d.querySelector('figcaption'),i=0;
+  function show(k){i=(k+items.length)%items.length;var o=items[i];im.src=o.getAttribute('data-full');im.alt=o.getAttribute('data-cap').replace(/&amp;/g,'&');cp.innerHTML=o.getAttribute('data-cap')}
+  items.forEach(function(o,k){o.addEventListener('click',function(){show(k);d.showModal()})});
+  d.querySelector('.lb-x').onclick=function(){d.close()};
+  d.querySelector('.lb-p').onclick=function(){show(i-1)};
+  d.querySelector('.lb-n').onclick=function(){show(i+1)};
+  d.addEventListener('click',function(e){if(e.target===d)d.close()});
+  d.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')show(i-1);if(e.key==='ArrowRight')show(i+1)});
 })();
 </script>
 <script defer src="analytics-events.js?v=20261111"></script>
