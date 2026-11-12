@@ -576,7 +576,7 @@ dialog.hl::backdrop{background:#140E08}
 /* hero: the photo stays put while the page scrolls over it (works on iPhone, where background-attachment:fixed does not) */
 .dh-pin{position:sticky;top:0;height:100vh;height:100svh;margin-bottom:-100vh;margin-bottom:-100svh;z-index:0;overflow:hidden;background:#2f0909}
 .dh-pin::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(47,9,9,.4) 0%,rgba(47,9,9,0) 32%,rgba(47,9,9,.7) 100%)}
-.dh-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% 40%}
+.dh-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
 .dhero{position:relative;z-index:1;min-height:100vh;min-height:100svh;display:grid;align-items:end;color:#F2EBDE;background:transparent}
 main>section:not(.dhero){position:relative;z-index:1}
 .dh-logo{position:absolute;z-index:2;top:clamp(18px,3vw,36px);left:var(--pad);width:clamp(200px,34vw,420px);height:auto}
@@ -639,7 +639,9 @@ main>section:not(.dhero){position:relative;z-index:1}
 <body>
 
 <main>
-<div class="dh-pin"><img class="dh-bg" src="photos/navi-adam/ChaarBhai_NANE_0021-1280.webp" srcset="photos/navi-adam/ChaarBhai_NANE_0021-640.webp 640w, photos/navi-adam/ChaarBhai_NANE_0021-1280.webp 1280w" sizes="100vw" width="1280" height="854" fetchpriority="high" alt="Navi and Adam holding hands on a lawn"></div>
+<div class="dh-pin"><picture>
+    <source media="(max-width:819px)" srcset="photos/navi-adam/ChaarBhai_NANE_0021-hero-m.webp">
+    <img class="dh-bg" src="photos/navi-adam/ChaarBhai_NANE_0021-hero-1920.webp" srcset="photos/navi-adam/ChaarBhai_NANE_0021-hero-1920.webp 1920w, photos/navi-adam/ChaarBhai_NANE_0021-hero-2560.webp 2560w, photos/navi-adam/ChaarBhai_NANE_0021-hero-3840.webp 3840w" sizes="100vw" width="1920" height="1281" fetchpriority="high" alt="Navi and Adam holding hands on a lawn"></picture></div>
 <section class="dhero" aria-labelledby="h">
   <img class="dh-logo" src="img/logo.png" alt="Chaar Bhai" width="320" height="156">
   <div class="dh-in">
