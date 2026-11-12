@@ -486,31 +486,6 @@ dialog.hl::backdrop{background:#140E08}
 .hero .hmedia{width:100%}
 .hero .hstrip{aspect-ratio:auto;max-height:none;height:calc(100svh - 150px)}
 }
-
-/* date-first page: hero quotes, enquiry grid with steps, native form, Fahad, final CTA */
-.hq{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:14px;max-width:32em}
-.hq li{border-left:2px solid var(--line-2);padding-left:14px}
-.hq q{display:block;quotes:none;font-size:15px;line-height:1.5;color:var(--dim)}
-.hq span{display:block;margin-top:4px;font-size:13px;color:var(--soft)}
-@media (min-width:900px){.enq-grid{max-width:1040px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}.enq-grid .enq-form{order:0}}
-.enq-steps h3{font:italic 500 clamp(22px,2.4vw,30px)/1.2 var(--f-display)}
-.enq-steps .steps{display:grid;grid-template-columns:1fr;gap:22px;margin-top:20px}
-.enq-steps .steps h4{font-size:clamp(18px,2vw,22px);margin:2px 0 0}
-.quiznote{margin-top:26px;padding-top:20px;border-top:1px solid var(--line-2);font-size:15px;line-height:1.55;color:var(--dim)}
-.nf{display:grid;gap:16px}
-.nf[hidden]{display:none}
-.nf label{display:grid;gap:6px;font-size:14px;color:var(--dim)}
-.nf .opt{opacity:.8}
-.nf input{font:16px/1.3 var(--f-text);min-height:50px;padding:0 14px;border:1px solid var(--line-2);border-radius:0;background:#F2EBDE;color:#2A1D0F;-webkit-appearance:none;appearance:none;width:100%}
-.nf input:focus-visible{outline:2px solid #F2EBDE;outline-offset:2px}
-.nf .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
-.nf .btn{margin-top:6px;width:100%}
-.nf-msg{min-height:1.4em;margin:0}
-.fahad-in{display:grid;gap:28px;align-items:center}
-.fahad-ph{margin:0}.fahad-ph img{display:block;width:100%;max-width:300px;height:auto}@media (min-width:820px){.fahad-ph img{max-width:360px}}
-.fahad-tx .lead{margin-top:16px}
-@media (min-width:820px){.fahad-in{grid-template-columns:minmax(240px,360px) 1fr;gap:clamp(36px,5vw,72px)}}
-.finalcta{text-align:center}.finalcta .lead{margin-inline:auto}
 </style>
 </head>
 <body>
@@ -520,13 +495,11 @@ dialog.hl::backdrop{background:#140E08}
   <img class="hlogo" src="img/logo-dark-330.webp" alt="Chaar Bhai" width="82" height="40">
   <div class="txt">
     <p class="htrust"><span class="st" aria-hidden="true">★★★★★</span> 4.9 out of 5 on Google · 1,800+ weddings captured</p>
-    <h1 id="h">Send us your date. <em>We’ll take it from there.</em></h1>
-    <p class="tag">We check we’re free, then send your pricing. A real person replies within 24 hours, no pressure.</p>
-    <div class="cta"><a class="btn" id="hbtn" href="#enquire">Check availability</a><a class="sec" href="#work">See work</a></div>
-    <ul class="hq" aria-label="What brides say">
-      <li><q>Was extremely nervous before my e-shoot as I never found myself photogenic or comfortable posing in front of a camera. Fahad totally changed that.</q><span>Dis Chapo, on Google</span></li>
-      <li><q>Every single person, from the photographers, to the videographers, made us feel completely at home throughout the event.</q><span>Anum Malik, on Google</span></li>
-    </ul>
+    <h1 id="h">Hate being photographed? <em>So did most of our brides.</em></h1>
+    <p class="tag">Natural photos and film, every relative included.</p>
+    <div class="cta"><a class="btn" id="hbtn" href="#enquire">Book a free consultation</a><a class="sec" href="#work">See work</a></div>
+    <p class="heroprice">Wedding coverage starting from <b>$3,500 CAD</b></p>
+    <p class="pill offer-line" data-offer>Limited spots · <span data-left>only <span class="n">5</span> left</span></p>
   </div>
   <div class="hmedia">
     <div class="hstrip" data-hstrip tabindex="0" role="group" aria-roledescription="carousel" aria-label="Wedding photos, swipe sideways">
@@ -539,58 +512,73 @@ dialog.hl::backdrop{background:#140E08}
   </div>
 </section>
 
+<section class="pad g-aub offer pricestrip" id="offer" aria-labelledby="oh">
+  <div class="in">
+    <div>
+      <h2 id="oh">Offer details</h2>
+      <p class="eyebrow offer-line" data-offer style="margin:18px 0 0">Limited spots · <span data-left>only <span class="n">5</span> left</span></p>
+      <ul class="tiers" aria-label="Golden Hour prices">
+        <li><span class="tn">Photo only</span><span class="tp">$3,500 CAD</span></li>
+        <li><span class="tn">Video only</span><span class="tp">$4,500 CAD</span></li>
+        <li class="top"><span class="tn">Photo and video</span><span class="tp">$5,500 CAD</span></li>
+      </ul>
+      <p class="lead">Your whole wedding day, photographed and filmed, documentary in feel and made from your story. We take a limited number of weddings, so spots are limited.</p>
+    </div>
+    <div>
+      <details class="incl"><summary>What's included</summary>
+      <ul class="r">
+        <li>Ten hours with one photographer, one videographer or both, with lighting and support, from getting ready to the last dance.</li>
+        <li>With photo: every photo edited individually, never from a preset, in a private online gallery.</li>
+        <li>With video: your wedding film by private download link, with professional audio and on-camera interviews.</li>
+        <li>A get-ready session, and coverage of each event you choose: nikkah, baraat, anand karaj, mehndi or reception.</li>
+      </ul>
+      <p class="small fine">Prices are in Canadian dollars. Photo only and video only are the same ten hours with just that half. Extra hours are $550 each, whichever option you choose. A deposit holds your date and the rest is paid later, as set out in your contract. Planning a longer weekend? Ask us about our larger packages.</p>
+      </details>
+      <a class="btn" href="#enquire">Book a free consultation</a>
+    </div>
+  </div>
+</section>
+
 <section class="pad g-aub enq" id="enquire" aria-labelledby="eh">
   <div class="in">
-    <h2 id="eh">Send us your date</h2>
-    <p class="lead">Tell us when, and we’ll check we’re free and send your pricing. A real person replies within 24 hours.</p>
+    <h2 id="eh">Book a free consultation</h2>
+    <p class="lead">Fill in the form with what you know, and we’ll set up a consult around you.</p>
     <div class="enq-grid">
       <div class="enq-form">
-    <form class="nf" id="nf" hidden novalidate>
-      <label>Your name<input name="name" type="text" autocomplete="name" required></label>
-      <label>Your email<input name="email" type="email" inputmode="email" autocomplete="email" required></label>
-      <label>Phone <span class="opt">(optional)</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel"></label>
-      <label>Wedding date<input name="date" type="date" required></label>
-      <input class="hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <button class="btn" type="submit">Check availability</button>
-      <p class="small nf-msg" role="status" aria-live="polite"></p>
-    </form>
-    <div class="form-wrap" id="snwrap"><iframe id="sn-form-golden" title="Enquiry form" data-src="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" allowfullscreen></iframe></div>
-    <p class="small alt">No spam. No pressure. Just availability and pricing. Form not loading? <a class="inl" href="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" target="_blank" rel="noopener">Open it in a new tab</a>, message us on Instagram <a class="inl" href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">@chaarbhai</a>, or email <a class="inl" href="mailto:info@chaarbhai.com">info@chaarbhai.com</a>.</p>
-      </div>
-      <div class="enq-steps" aria-labelledby="sh">
-        <h3 id="sh">What happens next</h3>
-        <ol class="steps">
-          <li><span class="num">01 /</span><h4>You send us your date</h4><p>Just the date or the season, and whatever else you know so far.</p></li>
-          <li><span class="num">02 /</span><h4>We check availability and send pricing</h4><p>A real person replies within 24 hours.</p></li>
-          <li><span class="num">03 /</span><h4>If it feels right, we jump on a call</h4><p>Or chat on Instagram or WhatsApp, whichever you prefer.</p></li>
-          <li><span class="num">04 /</span><h4>No pressure. At all. Ever.</h4><p>A contract and deposit only come if you want us.</p></li>
-        </ol>
-        <p class="quiznote">Not sure what you need yet? Once you’ve sent your date, we’ll unlock our free 2-minute planning quiz. It shows what to expect for your kind of wedding, including a rough price.</p>
+    <div class="form-wrap"><iframe id="sn-form-golden" title="Enquiry form" data-src="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" allowfullscreen></iframe></div>
+    <p class="small alt">Form not loading? <a class="inl" href="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" target="_blank" rel="noopener">Open it in a new tab</a>, message us on Instagram <a class="inl" href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">@chaarbhai</a>, or email <a class="inl" href="mailto:info@chaarbhai.com">info@chaarbhai.com</a>.</p>
       </div>
     </div>
   </div>
 </section>
 
-
-
-
-
-
-
-
-
-
-
-<section class="pad g-cream fahad" aria-labelledby="mh">
-  <div class="in fahad-in">
-    <figure class="fahad-ph"><img src="img/founder-fahad-raza-720.webp" srcset="img/founder-fahad-raza-480.webp 480w, img/founder-fahad-raza-720.webp 720w" sizes="(max-width:700px) 300px, 360px" width="720" height="900" loading="lazy" decoding="async" alt="Fahad Raza, founder of Chaar Bhai, laughing as he shoots with his camera"></figure>
-    <div class="fahad-tx">
-      <p class="eyebrow">The person behind the camera</p>
-      <h2 id="mh">Meet Fahad.</h2>
-      <p class="lead">Fahad has been taking photographs since 2003, and started Chaar Bhai with three friends in 2008. He loves getting to know the people in front of his camera, sharing a laugh, and catching the little moments in between.</p>
-      <p class="lead">That’s why we start with a conversation, not a contract. By your wedding morning you’ll know us, and we’ll know who matters in your family. You shouldn’t feel photographed. You should feel like you’re living your day.</p>
-      <a class="btn" href="#enquire">Check availability</a>
+<section class="pad g-brown faqsec" aria-labelledby="fqh">
+  <div class="in">
+    <h2 id="fqh">Frequently asked questions</h2>
+    <div class="faq">
+      <details open><summary>Can we trust you with our wedding day?</summary><p>We have covered more than 1,800 weddings since 2008. Some families have come back for a second wedding, and in some we have photographed three generations. Every review further down is linked to the original on Google, so you can read what couples wrote in their own words.</p></details>
+      <details open><summary>Have you shot weddings like ours?</summary><p>Very likely. We shoot South Asian and multi-day weddings, from the mehndi and nikkah to the baraat, anand karaj, ceremony and reception, and we have photographed Hindu, Muslim, Sikh and Christian weddings. We can cover each event, and we know what the important moments are before they happen.</p></details>
+      <details open><summary>Will we feel comfortable around you?</summary><p>Most of our brides hate being photographed too, and they tell us they felt at ease. In their reviews they say we made them feel at ease and like family. We start with a conversation to get to know you before the day, so you are not meeting us for the first time on your wedding morning. And we aim for real, candid moments, not a day of stiff posing.</p></details>
+      <details><summary>Will you know who matters in our family and what moments we can't miss?</summary><p>That's what our first conversation is for. We ask about your wedding, the coverage you need and the photos you are after, and before the day we ask who the important people are, the ones we must not miss.</p></details>
+      <details><summary>Will it feel like our wedding, or like a template?</summary><p>We don't use presets or a standard editing system. Every photo is edited on its own, so it looks like your day. We can do what's trendy, but what we aim to keep are the real moments, shot in a way that will still look right in many years.</p></details>
+      <details><summary>Who exactly will be there on the day?</summary><p>One photographer and one videographer, with lighting and support, for the ten hours. If your event is busy, with many things happening at once, extra photographers are available as an add-on.</p></details>
+      <details><summary>How long until we get our photos and film?</summary><p>Because every photo is edited individually, delivery can take up to three months. If you need it sooner, rushed delivery is available as an add-on.</p></details>
+      <details><summary>What does Golden Hour cost, and is there anything extra?</summary><p>Ten hours is $5,500 CAD for photo and video, $3,500 CAD for photo only, or $4,500 CAD for video only, with every photo individually edited, a private online gallery, and your wedding film by private download link (photo only has the photos, video only has the film). Extra hours are $550 each, whichever option you choose, and add-ons such as extra photographers, drone footage with an additional videographer, and rushed delivery are priced separately. Planning a longer weekend? Ask us about our larger packages.</p></details>
+      <details><summary>How do we book, and what if plans change?</summary><p>Start with the form below. After the consult, we send a contract in writing. Booking takes an initial deposit, and the rest is paid later, as set out in the contract. Because we reserve your date for you alone, a cancellation by the client is not refundable. Please read our <a class="inl" href="/refunds">Refunds and Cancellation</a> page for the full details.</p></details>
     </div>
+  </div>
+</section>
+
+
+<section class="pad g-cream" aria-labelledby="sh">
+  <div class="in">
+    <h2 id="sh">What happens after you book your free consultation</h2>
+    <ol class="steps">
+      <li><span class="num">01 /</span><h3><a class="inl" href="#enquire">Share your details</a></h3><p>Whatever you know so far: the date or the season, the place, the events you want covered.</p></li>
+      <li><span class="num">02 /</span><h3>A short consult</h3><p>We get to know you: your wedding, the coverage you need and the photos you’re after.</p></li>
+      <li><span class="num">03 /</span><h3>You get a contract</h3><p>Once we know what you need, the details come to you in writing.</p></li>
+      <li><span class="num">04 /</span><h3>A deposit holds the date</h3><p>You enjoy the day. We photograph and film it.</p></li>
+    </ol>
   </div>
 </section>
 
@@ -756,51 +744,6 @@ dialog.hl::backdrop{background:#140E08}
   </div>
 </section>
 
-<section class="pad g-aub offer pricestrip" id="offer" aria-labelledby="oh">
-  <div class="in">
-    <div>
-      <h2 id="oh">What it costs</h2>
-      <p class="lead">Most couples invest between <b>$3,500 and $5,500 CAD</b> for a full wedding day, depending on photo, film or both. Send us your date and we’ll send the full pricing, with nothing extra you didn’t ask for.</p>
-    </div>
-    <div>
-      <details class="incl"><summary>What's included</summary>
-      <ul class="r">
-        <li>Ten hours with one photographer, one videographer or both, with lighting and support, from getting ready to the last dance.</li>
-        <li>With photo: every photo edited individually, never from a preset, in a private online gallery.</li>
-        <li>With video: your wedding film by private download link, with professional audio and on-camera interviews.</li>
-        <li>A get-ready session, and coverage of each event you choose: nikkah, baraat, anand karaj, mehndi or reception.</li>
-      </ul>
-      <p class="small fine">Prices are in Canadian dollars. Photo only and video only are the same ten hours with just that half. Extra hours are $550 each, whichever option you choose. A deposit holds your date and the rest is paid later, as set out in your contract. Planning a longer weekend? Ask us about our larger packages.</p>
-      </details>
-      <a class="btn" href="#enquire">Check availability</a>
-    </div>
-  </div>
-</section>
-
-<section class="pad g-brown faqsec" aria-labelledby="fqh">
-  <div class="in">
-    <h2 id="fqh">Frequently asked questions</h2>
-    <div class="faq">
-      <details open><summary>Can we trust you with our wedding day?</summary><p>We have covered more than 1,800 weddings since 2008. Some families have come back for a second wedding, and in some we have photographed three generations. Every review further down is linked to the original on Google, so you can read what couples wrote in their own words.</p></details>
-      <details open><summary>Have you shot weddings like ours?</summary><p>Very likely. We shoot South Asian and multi-day weddings, from the mehndi and nikkah to the baraat, anand karaj, ceremony and reception, and we have photographed Hindu, Muslim, Sikh and Christian weddings. We can cover each event, and we know what the important moments are before they happen.</p></details>
-      <details open><summary>Will we feel comfortable around you?</summary><p>Most of our brides hate being photographed too, and they tell us they felt at ease. In their reviews they say we made them feel at ease and like family. We start with a conversation to get to know you before the day, so you are not meeting us for the first time on your wedding morning. And we aim for real, candid moments, not a day of stiff posing.</p></details>
-      <details><summary>Will you know who matters in our family and what moments we can't miss?</summary><p>That's what our first conversation is for. We ask about your wedding, the coverage you need and the photos you are after, and before the day we ask who the important people are, the ones we must not miss.</p></details>
-      <details><summary>Will it feel like our wedding, or like a template?</summary><p>We don't use presets or a standard editing system. Every photo is edited on its own, so it looks like your day. We can do what's trendy, but what we aim to keep are the real moments, shot in a way that will still look right in many years.</p></details>
-      <details><summary>Who exactly will be there on the day?</summary><p>One photographer and one videographer, with lighting and support, for the ten hours. If your event is busy, with many things happening at once, extra photographers are available as an add-on.</p></details>
-      <details><summary>How long until we get our photos and film?</summary><p>Because every photo is edited individually, delivery can take up to three months. If you need it sooner, rushed delivery is available as an add-on.</p></details>
-      <details><summary>What does Golden Hour cost, and is there anything extra?</summary><p>Ten hours is $5,500 CAD for photo and video, $3,500 CAD for photo only, or $4,500 CAD for video only, with every photo individually edited, a private online gallery, and your wedding film by private download link (photo only has the photos, video only has the film). Extra hours are $550 each, whichever option you choose, and add-ons such as extra photographers, drone footage with an additional videographer, and rushed delivery are priced separately. Planning a longer weekend? Ask us about our larger packages.</p></details>
-      <details><summary>How do we book, and what if plans change?</summary><p>Start by sending us your date in the form above. After the consult, we send a contract in writing. Booking takes an initial deposit, and the rest is paid later, as set out in the contract. Because we reserve your date for you alone, a cancellation by the client is not refundable. Please read our <a class="inl" href="/refunds">Refunds and Cancellation</a> page for the full details.</p></details>
-    </div>
-  </div>
-</section>
-<section class="pad g-aub finalcta" aria-labelledby="fch">
-  <div class="in">
-    <h2 id="fch">Is your date still free?</h2>
-    <p class="lead">Send it over and a real person replies within 24 hours with availability and pricing. No spam. No pressure.</p>
-    <a class="btn" href="#enquire">Check availability</a>
-  </div>
-</section>
-
 </main>
 
 <footer class="site-foot g-aub" id="foot">
@@ -834,8 +777,8 @@ dialog.hl::backdrop{background:#140E08}
 </footer>
 
 <div class="sticky g-cream" id="sticky">
-  <span class="p"><span class="p1">We reply within 24 hours</span><span class="p2">No pressure, ever</span></span>
-  <a class="btn" href="#enquire">Check availability</a>
+  <span class="p"><span class="p1" data-offer><span class="lim">Limited spots · </span><span data-left>only <span class="n">5</span> left</span></span><span class="p2">From $3,500 CAD</span></span>
+  <a class="btn" href="#enquire">Book a free consultation</a>
 </div>
 
 <script>
@@ -1018,26 +961,6 @@ dialog.hl::backdrop{background:#140E08}
   d.querySelector('[data-hl-next]').addEventListener('click',function(){show(i+1)});
   d.addEventListener('click',function(e){if(e.target===d||e.target.classList.contains('hl-in'))d.close()});
   d.addEventListener('keydown',function(e){if(e.key==='ArrowRight')show(i+1);if(e.key==='ArrowLeft')show(i-1)});
-})();
-</script>
-
-<script>
-/* Native 3-field form. Stays hidden, and the Studio Ninja form below it stays the live one, until NATIVE_FORM_ENDPOINT is set to a
-   working address that creates the lead (see PR). On success it goes to /thanks, so the Lead event and the quiz unlock work as before. */
-(function(){
-  var NATIVE_FORM_ENDPOINT='';
-  var f=document.getElementById('nf');if(!f||!NATIVE_FORM_ENDPOINT)return;
-  document.getElementById('snwrap').hidden=true;f.hidden=false;
-  var msg=f.querySelector('.nf-msg'),btn=f.querySelector('button');
-  f.addEventListener('submit',function(e){
-    e.preventDefault();
-    if(f.website.value)return;
-    if(!f.name.value.trim()||!/^\S+@\S+\.\S+$/.test(f.email.value.trim())||!f.date.value){msg.textContent='Please add your name, email and wedding date.';return}
-    btn.disabled=true;msg.textContent='Sending…';
-    fetch(NATIVE_FORM_ENDPOINT,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({name:f.name.value.trim(),email:f.email.value.trim(),phone:f.phone.value.trim(),date:f.date.value,source:'golden_hour',page:location.href})})
-      .then(function(r){if(!r.ok)throw 0;location.href='https://www.chaarbhai.com/thanks'})
-      .catch(function(){btn.disabled=false;msg.textContent='That didn’t send. Please try again, or email info@chaarbhai.com.'});
-  });
 })();
 </script>
 <script defer src="analytics-events.js?v=20261111"></script>
