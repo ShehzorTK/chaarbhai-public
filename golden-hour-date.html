@@ -549,14 +549,14 @@ dialog.hl::backdrop{background:#140E08}
     <form class="nf" id="nf" hidden novalidate>
       <label>Your name<input name="name" type="text" autocomplete="name" required></label>
       <label>Your email<input name="email" type="email" inputmode="email" autocomplete="email" required></label>
-      <label>Phone <span class="opt">(optional)</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel"></label>
+      <label><span>Phone <span class="opt">(optional)</span></span><input name="phone" type="tel" inputmode="tel" autocomplete="tel"></label>
       <label>Wedding date<input name="date" type="date" required></label>
       <input class="hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="btn" type="submit">Check availability</button>
       <p class="small nf-msg" role="status" aria-live="polite"></p>
     </form>
     <div class="form-wrap" id="snwrap"><iframe id="sn-form-golden" title="Enquiry form" data-src="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" allowfullscreen></iframe></div>
-    <p class="small alt">No spam. No pressure. Just availability and pricing from me. Form not loading? <a class="inl" href="https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29" target="_blank" rel="noopener">Open it in a new tab</a>, message me on Instagram <a class="inl" href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">@chaarbhai</a>, or email <a class="inl" href="mailto:info@chaarbhai.com">info@chaarbhai.com</a>.</p>
+    <p class="small alt">No spam. No pressure. Just availability and pricing from me. Prefer to chat? Message me on Instagram <a class="inl" href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">@chaarbhai</a>, or email <a class="inl" href="mailto:info@chaarbhai.com">info@chaarbhai.com</a>.</p>
       </div>
       <div class="enq-steps" aria-labelledby="sh">
         <h3 id="sh">What happens next</h3>
@@ -1023,16 +1023,17 @@ dialog.hl::backdrop{background:#140E08}
 </script>
 
 <script>
-/* Native 3-field form. Stays hidden, and the Studio Ninja form below it stays the live one, until NATIVE_FORM_ENDPOINT is set to a
-   working address that creates the lead (see PR). On success it goes to /thanks, so the Lead event and the quiz unlock work as before. */
+/* Native 3-field form. Shown instead of the Studio Ninja form (kept in the page, hidden). Not wired up yet: until NATIVE_FORM_ENDPOINT is set to a
+   working address that creates the lead, submitting only shows a preview note. On success it goes to /thanks, so the Lead event and the quiz unlock work as before. */
 (function(){
   var NATIVE_FORM_ENDPOINT='';
-  var f=document.getElementById('nf');if(!f||!NATIVE_FORM_ENDPOINT)return;
+  var f=document.getElementById('nf');if(!f)return;
   document.getElementById('snwrap').hidden=true;f.hidden=false;
   var msg=f.querySelector('.nf-msg'),btn=f.querySelector('button');
   f.addEventListener('submit',function(e){
     e.preventDefault();
     if(f.website.value)return;
+    if(!NATIVE_FORM_ENDPOINT){msg.textContent='Preview only: this form isn’t connected yet, so nothing was sent. Please email info@chaarbhai.com.';return}
     if(!f.name.value.trim()||!/^\S+@\S+\.\S+$/.test(f.email.value.trim())||!f.date.value){msg.textContent='Please add your name, email and wedding date.';return}
     btn.disabled=true;msg.textContent='Sending…';
     fetch(NATIVE_FORM_ENDPOINT,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({name:f.name.value.trim(),email:f.email.value.trim(),phone:f.phone.value.trim(),date:f.date.value,source:'golden_hour',page:location.href})})
