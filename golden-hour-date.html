@@ -553,7 +553,7 @@ dialog.hl::backdrop{background:#140E08}
 
 /* ===== template match: parallax hero, full-photo testimonials, edge-to-edge grid, light/dark bands ===== */
 .btn{white-space:nowrap}
-.dk{background:#141015;color:#F2EBDE;--paper:#F2EBDE;--dim:rgba(242,235,222,.86);--soft:rgba(242,235,222,.75);--line:rgba(242,235,222,.22);--line-2:rgba(242,235,222,.4)}
+.dk{background:#2f0909;color:#F2EBDE;--paper:#F2EBDE;--dim:rgba(242,235,222,.86);--soft:rgba(242,235,222,.75);--line:rgba(242,235,222,.22);--line-2:rgba(242,235,222,.4)}
 .lt{background:#F2EBDE;color:#2A1D0F;--paper:#2A1D0F;--dim:rgba(42,29,15,.82);--soft:rgba(42,29,15,.72);--line:rgba(42,29,15,.16);--line-2:rgba(42,29,15,.3)}
 .dk,.lt{padding:clamp(56px,9vw,120px) var(--pad);text-align:center}
 .wrap{max-width:900px;margin-inline:auto}
@@ -574,10 +574,11 @@ dialog.hl::backdrop{background:#140E08}
 .cols{display:grid;gap:18px;text-align:left;max-width:760px;margin:0 auto 10px;font-size:16px;line-height:1.65}
 @media (min-width:820px){.cols{grid-template-columns:1fr 1fr;gap:36px}}
 /* hero: the photo stays put while the page scrolls over it (works on iPhone, where background-attachment:fixed does not) */
-.dhero{position:relative;min-height:100svh;display:grid;align-items:end;color:#F2EBDE;background:#141015}
-.dh-clip{position:absolute;inset:0;clip-path:inset(0)}
-.dh-bg{position:fixed;top:0;left:0;width:100%;height:100vh;height:100lvh;object-fit:cover;object-position:50% 25%}
-.dhero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,16,21,.55) 0%,rgba(20,16,21,.1) 35%,rgba(20,16,21,.8) 100%);pointer-events:none}
+.dh-pin{position:sticky;top:0;height:100vh;height:100svh;margin-bottom:-100vh;margin-bottom:-100svh;z-index:0;overflow:hidden;background:#2f0909}
+.dh-pin::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(47,9,9,.4) 0%,rgba(47,9,9,0) 32%,rgba(47,9,9,.7) 100%)}
+.dh-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% 40%}
+.dhero{position:relative;z-index:1;min-height:100vh;min-height:100svh;display:grid;align-items:end;color:#F2EBDE;background:transparent}
+main>section:not(.dhero){position:relative;z-index:1}
 .dh-logo{position:absolute;z-index:2;top:clamp(18px,3vw,36px);left:var(--pad);width:clamp(200px,34vw,420px);height:auto}
 .dh-in{position:relative;z-index:2;padding:clamp(150px,22vw,260px) var(--pad) clamp(40px,7vw,96px);max-width:1200px}
 .dh-in h1{font:700 clamp(36px,8.6vw,92px)/1 var(--f-display);text-transform:uppercase;letter-spacing:-.015em;margin:0 0 22px;color:#F2EBDE;text-wrap:balance}
@@ -586,16 +587,16 @@ dialog.hl::backdrop{background:#140E08}
 /* testimonial panels: full photo, quote over it */
 .tps{display:grid}
 @media (min-width:820px){.tps{grid-template-columns:1fr 1fr}}
-.tp{position:relative;margin:0;min-height:clamp(380px,62vw,560px);display:grid;place-content:center;gap:16px;padding:48px var(--pad);text-align:center;color:#F2EBDE;overflow:hidden;background:#141015}
+.tp{position:relative;margin:0;min-height:clamp(380px,62vw,560px);display:grid;place-content:center;gap:16px;padding:48px var(--pad);text-align:center;color:#F2EBDE;overflow:hidden;background:#2f0909}
 .tp-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.tp::after{content:"";position:absolute;inset:0;background:rgba(20,14,16,.5)}
+.tp::after{content:"";position:absolute;inset:0;background:rgba(47,9,9,.5)}
 .tp blockquote,.tp figcaption{position:relative;z-index:1;margin:0 auto}
 .tp blockquote{max-width:30em;font:italic 500 clamp(16px,1.7vw,21px)/1.55 var(--f-display)}
 .tp figcaption{font:600 13px/1.3 var(--f-text);letter-spacing:.12em;text-transform:uppercase}
 /* photo grid, edge to edge */
-.gi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:#141015}
+.gi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:#2f0909}
 @media (min-width:820px){.gi-grid{grid-template-columns:repeat(3,1fr)}}
-.gi{display:block;padding:0;border:0;background:#141015;cursor:zoom-in;aspect-ratio:3/2;overflow:hidden}
+.gi{display:block;padding:0;border:0;background:#2f0909;cursor:zoom-in;aspect-ratio:3/2;overflow:hidden}
 .gi img{display:block;width:100%;height:100%;object-fit:cover}
 .couldbe .sm{margin-bottom:22px}
 .person .pp{margin:24px auto 0}.person .pp img{display:block;width:min(280px,70vw);height:auto;aspect-ratio:4/5;object-fit:cover;margin-inline:auto}
@@ -609,7 +610,7 @@ dialog.hl::backdrop{background:#140E08}
 .enquire h2{text-align:left}
 .eq-steps{margin:0 0 20px;padding-left:20px;display:grid;gap:8px;font-size:16px;line-height:1.5}
 .enquire .sm{margin-left:0}
-.eq-card{background:#1B1722;color:#F2EBDE;padding:28px;--dim:rgba(242,235,222,.86);--soft:rgba(242,235,222,.75)}
+.eq-card{background:#2f0909;color:#F2EBDE;padding:28px;--dim:rgba(242,235,222,.86);--soft:rgba(242,235,222,.75)}
 .eq-card .nf label{font:600 12px/1.3 var(--f-text);letter-spacing:.12em;text-transform:uppercase;color:#F2EBDE}
 .eq-card .small{color:var(--dim);margin:16px 0 0;text-align:center}
 .eq-card .nf-msg{color:#F2EBDE}
@@ -625,16 +626,13 @@ dialog.hl::backdrop{background:#140E08}
 .lb figcaption{font:600 13px/1.3 var(--f-text);letter-spacing:.12em;text-transform:uppercase}
 .lb button{position:absolute;background:none;border:0;color:#F2EBDE;font-size:36px;line-height:1;cursor:pointer;padding:10px 16px}
 .lb-x{top:6px;right:6px}.lb-p{left:0;top:50%;transform:translateY(-50%)}.lb-n{right:0;top:50%;transform:translateY(-50%)}
-@media (prefers-reduced-motion:reduce){.dh-bg{position:absolute}}
 </style>
 </head>
 <body>
 
 <main>
+<div class="dh-pin"><img class="dh-bg" src="photos/navi-adam/ChaarBhai_NANE_0021-1280.webp" srcset="photos/navi-adam/ChaarBhai_NANE_0021-640.webp 640w, photos/navi-adam/ChaarBhai_NANE_0021-1280.webp 1280w" sizes="100vw" width="1280" height="854" fetchpriority="high" alt="Navi and Adam holding hands on a lawn"></div>
 <section class="dhero" aria-labelledby="h">
-  <div class="dh-clip"><picture>
-    <source media="(min-width:820px)" srcset="photos/navi-adam/ChaarBhai_NANE_0021-1280.webp">
-    <img class="dh-bg" src="photos/zainab-maaz/_FR_2497_resized-1280.webp" width="1280" height="1919" fetchpriority="high" alt="A bride and groom nose to nose, smiling"></picture></div>
   <img class="dh-logo" src="img/logo.png" alt="Chaar Bhai" width="320" height="156">
   <div class="dh-in">
     <h1 id="h">Your wedding, exactly as it felt.</h1>
@@ -645,10 +643,10 @@ dialog.hl::backdrop{background:#140E08}
 
 <section class="tps" aria-label="What couples say"><figure class="tp"><img class="tp-bg" src="photos/navi-adam/ChaarBhai_NANE_0084-1280.webp" srcset="photos/navi-adam/ChaarBhai_NANE_0084-640.webp 640w, photos/navi-adam/ChaarBhai_NANE_0084-1280.webp 1280w" sizes="(min-width:820px) 50vw, 100vw" width="1280" height="854" loading="lazy" decoding="async" alt="Navi on a park bench in her wedding dress"><blockquote>“They made my vision a dream come true and really gave me the best instructions when it came to posing, i needed the help!”</blockquote><figcaption>Navi &amp; Adam, Ottawa</figcaption></figure><figure class="tp"><img class="tp-bg" src="photos/zainab-maaz/1J4A2951_resized-1280.webp" srcset="photos/zainab-maaz/1J4A2951_resized-640.webp 640w, photos/zainab-maaz/1J4A2951_resized-1280.webp 1280w" sizes="(min-width:820px) 50vw, 100vw" width="1280" height="854" loading="lazy" decoding="async" alt="Zainab and Maaz at their ceremony"><blockquote>“Fahad and team makes you feel like a family throughout your wedding events and even after. … They turned my dream Bollywood wedding into a reality.”</blockquote><figcaption>Zainab &amp; Maaz, Toronto</figcaption></figure></section>
 
-<section class="gi-grid" aria-label="Wedding photos"><button class="gi" type="button" data-lb="0" data-full="photos/zahra-hussam/ChaarBhai_ZHNE_3753_resized-1280.webp" data-cap="Zahra &amp; Hussam, Brampton" aria-label="Enlarge photo: Zahra &amp; Hussam, Brampton"><img src="photos/zahra-hussam/ChaarBhai_ZHNE_3753_resized-640.webp" srcset="photos/zahra-hussam/ChaarBhai_ZHNE_3753_resized-640.webp 640w, photos/zahra-hussam/ChaarBhai_ZHNE_3753_resized-1280.webp 1280w" sizes="(min-width:820px) 33vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Zahra &amp; Hussam, Brampton"></button><button class="gi" type="button" data-lb="1" data-full="photos/haleema-hassaan/_FR_1574_resized-1280.webp" data-cap="Haleema &amp; Hassaan, Toronto" aria-label="Enlarge photo: Haleema &amp; Hassaan, Toronto"><img src="photos/haleema-hassaan/_FR_1574_resized-640.webp" srcset="photos/haleema-hassaan/_FR_1574_resized-640.webp 640w, photos/haleema-hassaan/_FR_1574_resized-1280.webp 1280w" sizes="(min-width:820px) 33vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Haleema &amp; Hassaan, Toronto"></button><button class="gi" type="button" data-lb="2" data-full="photos/rabia-eldad/ChaarBhai_RERE_4577_resized-1280.webp" data-cap="Rabia &amp; Eldad, Oakville" aria-label="Enlarge photo: Rabia &amp; Eldad, Oakville"><img src="photos/rabia-eldad/ChaarBhai_RERE_4577_resized-640.webp" srcset="photos/rabia-eldad/ChaarBhai_RERE_4577_resized-640.webp 640w, photos/rabia-eldad/ChaarBhai_RERE_4577_resized-1280.webp 1280w" sizes="(min-width:820px) 33vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Rabia &amp; Eldad, Oakville"></button><button class="gi" type="button" data-lb="3" data-full="photos/christel-sid/MFR_9880-1280.webp" data-cap="Christel &amp; Sid, Toronto" aria-label="Enlarge photo: Christel &amp; Sid, Toronto"><img src="photos/christel-sid/MFR_9880-640.webp" srcset="photos/christel-sid/MFR_9880-640.webp 640w, photos/christel-sid/MFR_9880-1280.webp 1280w" sizes="(min-width:820px) 33vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Christel &amp; Sid, Toronto"></button><button class="gi" type="button" data-lb="4" data-full="photos/zahra-hussam/ChaarBhai_ZHNE_3622_resized-1280.webp" data-cap="Zahra &amp; Hussam, Brampton" aria-label="Enlarge photo: Zahra &amp; Hussam, Brampton"><img src="photos/zahra-hussam/ChaarBhai_ZHNE_3622_resized-640.webp" srcset="photos/zahra-hussam/ChaarBhai_ZHNE_3622_resized-640.webp 640w, photos/zahra-hussam/ChaarBhai_ZHNE_3622_resized-1280.webp 1280w" sizes="(min-width:820px) 33vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Zahra &amp; Hussam, Brampton"></button><button class="gi" type="button" data-lb="5" data-full="photos/zainab-maaz/USA_6213_resized-1280.webp" data-cap="Zainab &amp; Maaz, Toronto" aria-label="Enlarge photo: Zainab &amp; Maaz, Toronto"><img src="photos/zainab-maaz/USA_6213_resized-640.webp" srcset="photos/zainab-maaz/USA_6213_resized-640.webp 640w, photos/zainab-maaz/USA_6213_resized-1280.webp 1280w" sizes="(min-width:820px) 33vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Zainab &amp; Maaz, Toronto"></button></section>
+<section class="gi-grid" aria-label="Wedding photos"><button class="gi" type="button" data-lb="0" data-full="photos/zainab-maaz/_FR_1907_resized-1280.webp" data-cap="Zainab &amp; Maaz, Toronto" aria-label="Enlarge photo: Zainab &amp; Maaz, Toronto"><img src="photos/zainab-maaz/_FR_1907_resized-640.webp" srcset="photos/zainab-maaz/_FR_1907_resized-640.webp 640w, photos/zainab-maaz/_FR_1907_resized-1280.webp 1280w" sizes="(min-width:820px) 33vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Zainab &amp; Maaz, Toronto"></button><button class="gi" type="button" data-lb="1" data-full="photos/haleema-hassaan/_FR_1574_resized-1280.webp" data-cap="Haleema &amp; Hassaan, Toronto" aria-label="Enlarge photo: Haleema &amp; Hassaan, Toronto"><img src="photos/haleema-hassaan/_FR_1574_resized-640.webp" srcset="photos/haleema-hassaan/_FR_1574_resized-640.webp 640w, photos/haleema-hassaan/_FR_1574_resized-1280.webp 1280w" sizes="(min-width:820px) 33vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Haleema &amp; Hassaan, Toronto"></button><button class="gi" type="button" data-lb="2" data-full="photos/rabia-eldad/ChaarBhai_RERE_4577_resized-1280.webp" data-cap="Rabia &amp; Eldad, Oakville" aria-label="Enlarge photo: Rabia &amp; Eldad, Oakville"><img src="photos/rabia-eldad/ChaarBhai_RERE_4577_resized-640.webp" srcset="photos/rabia-eldad/ChaarBhai_RERE_4577_resized-640.webp 640w, photos/rabia-eldad/ChaarBhai_RERE_4577_resized-1280.webp 1280w" sizes="(min-width:820px) 33vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Rabia &amp; Eldad, Oakville"></button><button class="gi" type="button" data-lb="3" data-full="photos/christel-sid/MFR_9880-1280.webp" data-cap="Christel &amp; Sid, Toronto" aria-label="Enlarge photo: Christel &amp; Sid, Toronto"><img src="photos/christel-sid/MFR_9880-640.webp" srcset="photos/christel-sid/MFR_9880-640.webp 640w, photos/christel-sid/MFR_9880-1280.webp 1280w" sizes="(min-width:820px) 33vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Christel &amp; Sid, Toronto"></button><button class="gi" type="button" data-lb="4" data-full="photos/zahra-hussam/ChaarBhai_ZHNE_3622_resized-1280.webp" data-cap="Zahra &amp; Hussam, Brampton" aria-label="Enlarge photo: Zahra &amp; Hussam, Brampton"><img src="photos/zahra-hussam/ChaarBhai_ZHNE_3622_resized-640.webp" srcset="photos/zahra-hussam/ChaarBhai_ZHNE_3622_resized-640.webp 640w, photos/zahra-hussam/ChaarBhai_ZHNE_3622_resized-1280.webp 1280w" sizes="(min-width:820px) 33vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Zahra &amp; Hussam, Brampton"></button><button class="gi" type="button" data-lb="5" data-full="photos/rabia-eldad/ChaarBhai_RERE_4857_resized-1280.webp" data-cap="Rabia &amp; Eldad, Oakville" aria-label="Enlarge photo: Rabia &amp; Eldad, Oakville"><img src="photos/rabia-eldad/ChaarBhai_RERE_4857_resized-640.webp" srcset="photos/rabia-eldad/ChaarBhai_RERE_4857_resized-640.webp 640w, photos/rabia-eldad/ChaarBhai_RERE_4857_resized-1280.webp 1280w" sizes="(min-width:820px) 33vw, 50vw" width="1280" height="854" loading="lazy" decoding="async" alt="Rabia &amp; Eldad, Oakville"></button></section>
 
 <section class="dk couldbe" aria-labelledby="gh">
-  <h2 id="gh">These could be <em>your photos</em></h2>
+  <h2 id="gh">These could be<br>your photos</h2>
   <p class="sm">Check if your date is still available. I’ll reply within 24 hours.</p>
   <a class="btn" href="#enquire">Check availability</a>
 </section>
@@ -657,9 +655,9 @@ dialog.hl::backdrop{background:#140E08}
   <div class="wrap">
     <p class="eb">The person behind the camera</p>
     <h2 id="mh">Hi, I’m Fahad.</h2>
-    <p class="caps">I’m probably the most relaxed person at your wedding.</p>
+    <p class="caps">The one face at your wedding you already know.</p>
     <figure class="pp"><img src="img/founder-fahad-raza-720.webp" srcset="img/founder-fahad-raza-480.webp 480w, img/founder-fahad-raza-720.webp 720w" sizes="280px" width="720" height="900" loading="lazy" decoding="async" alt="Fahad Raza, founder of Chaar Bhai, laughing as he shoots with his camera"></figure>
-    <p class="it">The best part of a great photo <em>doesn’t involve a camera at all.</em></p>
+    <p class="it">The best part of a great photo doesn’t involve a camera at all.</p>
     <div class="cols">
       <p>To get a photo that really feels like something, you need to be <b>having fun</b>, feel <b>at ease with me as a person</b>, and know me well enough that on your wedding day I’m just <b>another familiar face in the room</b>.</p>
       <p>That’s why I put as much effort into the conversations before your wedding as the photography itself. By the time the day arrives, you shouldn’t feel photographed. You should feel like you’re living it.</p>
@@ -673,7 +671,7 @@ dialog.hl::backdrop{background:#140E08}
 <section class="dk working" aria-labelledby="wmh">
   <div class="wrap">
     <p class="eb">What working with me looks like</p>
-    <h2 id="wmh">You should <em>enjoy</em> your wedding day. All of it.</h2>
+    <h2 id="wmh">You should enjoy<br>your wedding day.<br>All of it.</h2>
     <p class="mid">My job is to fit into your day, not the other way around. In the time you give me, I’ll make sure the photos feel fun, easy and completely yours.</p>
     <blockquote class="pull">The goal is simple: you walk away at the end of the night saying <em>“I can’t wait to see my photos.”</em></blockquote>
     <ul class="checks">
@@ -688,7 +686,7 @@ dialog.hl::backdrop{background:#140E08}
   <div class="wrap eq-grid">
     <div class="eq-tx">
       <p class="eb">Let’s talk</p>
-      <h2 id="eh">Send me your date, <em>I’ll take it from there.</em></h2>
+      <h2 id="eh">Send me your date,<br>I’ll take it from there.</h2>
       <p class="caps">I’ll personally reply within 24 hours. Pricing, availability, and nothing you didn’t ask for.</p>
       <ol class="eq-steps" aria-label="What happens next">
         <li>You send me your date</li>
@@ -716,28 +714,19 @@ dialog.hl::backdrop{background:#140E08}
 <section class="dk invest" id="offer" aria-labelledby="oh">
   <div class="wrap">
     <p class="eb">Investment</p>
-    <h2 id="oh">Photos and film you’ll have <em>for the rest of your life.</em></h2>
+    <h2 id="oh">Photos and film you’ll have<br>for the rest of your life.</h2>
     <p class="mid">This isn’t a line item on a spreadsheet. It’s the one thing from your wedding day that <b>gets better with time.</b> The flowers are gone. The food is gone. The photos and film stay.</p>
-    <p class="sm up">Most couples invest between</p>
-    <p class="price">$3,500 – $5,500 <span>CAD</span></p>
-    <p class="sm up">For full day coverage</p>
-    <p class="mid">No two weddings are the same, so send me your date and I’ll send the full pricing straight to your inbox. No strings attached.</p>
-    <details class="incl"><summary>What's included</summary>
-      <ul class="r">
-        <li>Ten hours with one photographer, one videographer or both, with lighting and support, from getting ready to the last dance.</li>
-        <li>With photo: every photo edited individually, never from a preset, in a private online gallery.</li>
-        <li>With video: your wedding film by private download link, with professional audio and on-camera interviews.</li>
-        <li>A get-ready session, and coverage of each event you choose: nikkah, baraat, anand karaj, mehndi or reception.</li>
-      </ul>
-      <p class="small fine">Prices are in Canadian dollars. Photo only and video only are the same ten hours with just that half. Extra hours are $550 each, whichever option you choose. A deposit holds your date and the rest is paid later, as set out in your contract. Planning a longer weekend? Ask us about our larger packages.</p>
-      </details>
+    <p class="sm up">Packages run from</p>
+    <p class="price">$2,100 – $12,600 <span>CAD</span></p>
+    <p class="sm up">First Light, six hours, to Till Sunrise, the whole weekend</p>
+    <p class="mid">The price depends on how many hours you need and whether you want photo, film or both. No two weddings are the same, so send me your date and I’ll send the full pricing straight to your inbox. No strings attached.</p>
   </div>
 </section>
 
 <section class="tps" aria-label="More from couples"><figure class="tp"><img class="tp-bg" src="photos/fathema-christian/ChaarBhai_FCNE_0420_resized-1280.webp" srcset="photos/fathema-christian/ChaarBhai_FCNE_0420_resized-640.webp 640w, photos/fathema-christian/ChaarBhai_FCNE_0420_resized-1280.webp 1280w" sizes="(min-width:820px) 50vw, 100vw" width="1280" height="854" loading="lazy" decoding="async" alt="Fathema and Christian in a wood-panelled room"><blockquote>“Fahad and his incredible team came all the way to Montreal to capture our wedding, and I honestly could not have found anyone better. … Looking back at the photos and videos feels like reliving the day all over again.”</blockquote><figcaption>Fathema &amp; Christian, Montreal</figcaption></figure><figure class="tp"><img class="tp-bg" src="photos/christel-sid/MFR_8704-1280.webp" srcset="photos/christel-sid/MFR_8704-640.webp 640w, photos/christel-sid/MFR_8704-1280.webp 1280w" sizes="(min-width:820px) 50vw, 100vw" width="1280" height="854" loading="lazy" decoding="async" alt="Christel and Sid by the lake"><blockquote>“Fahad was the photographer I had a good feeling about from the very beginning and I’m so happy my instincts were right! … Throughout our wedding week, he and his team made us feel so comfortable.”</blockquote><figcaption>Christel &amp; Sid, Toronto</figcaption></figure></section>
 
 <section class="dk finalcta" aria-labelledby="fch">
-  <h2 id="fch">If this feels like the right fit, <em>your date might still be free.</em></h2>
+  <h2 id="fch">If this feels like the right fit,<br>your date might still be free.</h2>
   <p class="sm">Fill in the form and I’ll reply with pricing and availability. No obligation, no spam, just the info you need.</p>
   <a class="btn" href="#enquire">Check availability</a>
 </section>
