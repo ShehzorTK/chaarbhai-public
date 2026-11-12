@@ -618,6 +618,14 @@ main>section:not(.dhero){position:relative;z-index:1}
 .invest .price span{font-size:.4em;letter-spacing:.1em}
 .invest .incl{text-align:left;max-width:640px;margin:24px auto 0}
 .finalcta .btn{margin-top:6px}
+
+/* buttons: high contrast on photos and dark bands (cream), dark red on light bands */
+.dhero .btn,.dk .btn,.tp .btn{background:#F2EBDE;color:#2f0909;font-weight:700}
+.dhero .btn:active,.dk .btn:active{background:#E4D8C2}
+.dhero .btn:focus-visible,.dk .btn:focus-visible{outline:2px solid #F2EBDE;outline-offset:3px}
+.lt .btn{background:#2f0909;color:#F2EBDE}
+.lt .btn:active{background:#4a1414}
+.eq-card .btn{background:#F2EBDE;color:#2f0909;font-weight:700}
 /* lightbox */
 .lb{border:0;padding:0;margin:auto;width:100vw;max-width:100vw;height:100svh;max-height:100svh;background:#0E0A0C;color:#F2EBDE}
 .lb::backdrop{background:#0E0A0C}
