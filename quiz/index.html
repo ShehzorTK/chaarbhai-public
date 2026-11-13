@@ -1,651 +1,177 @@
-<!doctype html>
-<html lang="en-CA">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>How Many Hours Does Your Wedding Need? · Chaar Bhai</title>
-<meta name="description" content="Two minutes of taps. Get the number of photo and film hours your wedding really needs, and what it costs.">
-<meta name="robots" content="noindex,nofollow">
-<link rel="canonical" href="https://quiz.chaarbhai.com/">
-<meta name="theme-color" content="#4A2530">
-<link rel="icon" href="/quiz/img/logo.png">
-<link rel="preload" href="/quiz/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/quiz/fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
-<style>
-/* Chaar Bhai Paper palette and grain, set in the current landing-page faces: Fraunces (display) and Instrument Sans (text). */
-@font-face{font-family:'Fraunces';font-weight:400 700;font-style:normal;font-display:swap;src:url(/quiz/fonts/fraunces.woff2) format('woff2')}
-@font-face{font-family:'Fraunces';font-weight:400 700;font-style:italic;font-display:swap;src:url(/quiz/fonts/fraunces-italic.woff2) format('woff2')}
-@font-face{font-family:'Instrument Sans';font-weight:400 600;font-style:normal;font-display:swap;src:url(/quiz/fonts/instrument-sans.woff2) format('woff2')}
-@font-face{font-family:'Instrument Sans';font-weight:400 600;font-style:italic;font-display:swap;src:url(/quiz/fonts/instrument-sans-italic.woff2) format('woff2')}
-:root{
-  --f-display:'Fraunces','Iowan Old Style',Georgia,serif;
-  --f-serif:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
-  --f-script:'Fraunces','Iowan Old Style',Georgia,serif;
-  --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .45  0 0 0 0 .4  0 0 0 .07 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  --pad:clamp(20px,5.5vw,48px);
-  --ease:cubic-bezier(.16,1,.3,1);
-  --tone:sepia(.1) saturate(.94) contrast(.96) brightness(1.02);
-  color-scheme:light;
-}
-/* A ground sets every role at once. */
-.g-cream{--ink:#F2EBDE;--ink-2:#EBE2D1;--paper:#2A1D0F;--dim:rgba(42,29,15,.8);--line:rgba(42,29,15,.16);--line-2:rgba(42,29,15,.34);--pick:#2B2530;--on-pick:#F2EBDE}
-.g-aub{--ink:#2B2530;--ink-2:#362F3C;--paper:#F2EBDE;--dim:rgba(242,235,222,.88);--line:rgba(242,235,222,.22);--line-2:rgba(242,235,222,.42);--pick:#F2EBDE;--on-pick:#2B2530}
-.g-maroon{--ink:#4A2530;--ink-2:#58313C;--paper:#F2EBDE;--dim:#E0CBB8;--line:rgba(210,182,161,.26);--line-2:rgba(210,182,161,.5);--pick:#F2EBDE;--on-pick:#4A2530}
-.g-brown{--ink:#2A1D0F;--ink-2:#34261A;--paper:#F2EBDE;--dim:#D2B6A1;--line:rgba(210,182,161,.24);--line-2:rgba(210,182,161,.46);--pick:#F2EBDE;--on-pick:#2A1D0F}
-*{box-sizing:border-box;margin:0}
-::selection{background:var(--paper,#2A1D0F);color:var(--ink,#F2EBDE)}
-html{-webkit-text-size-adjust:100%;background:#4A2530;caret-color:currentColor;accent-color:#2B2530;scrollbar-color:rgba(120,100,80,.5) transparent}
-body{min-height:100svh;background-color:var(--ink);background-image:var(--grain);background-size:400px;color:var(--paper);font:400 16px/1.5 var(--f-serif);letter-spacing:-.003em;-webkit-font-smoothing:antialiased;transition:background-color .7s var(--ease),color .7s var(--ease);overflow-x:hidden}
-img{display:block;max-width:100%}
-button,a{font:inherit;color:inherit}
-button{background:none;border:0;border-radius:0;cursor:pointer;-webkit-appearance:none;appearance:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-:focus-visible{outline:2px solid var(--paper);outline-offset:3px}
-h1,h2,h3{font:500 clamp(32px,8.6vw,48px)/1.04 var(--f-display);letter-spacing:-.015em;text-wrap:balance}
-.it{font-family:var(--f-display);font-style:italic;font-weight:400}
-p{text-wrap:pretty}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+<!doctype html><html lang="en-CA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#f2ebde"><title>Your wedding, your way · Chaar Bhai</title><style>@font-face{font-family:'Fraunces';font-style:normal;font-weight:400 700;font-display:swap;src:url(/quiz/approved/asset-1.woff2)}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:400 700;font-display:swap;src:url(/quiz/approved/asset-2.woff2)}
+@font-face{font-family:'Instrument';font-style:normal;font-weight:400 700;font-display:swap;src:url(/quiz/approved/asset-3.woff2)}
 
-/* link atom: tracked caps, italic + underline on hover/focus/press */
-.lk{display:inline-grid;align-content:end;min-height:44px;padding:12px 0 3px;border-bottom:1px solid transparent;text-decoration:none;font:500 15px/1.3 var(--f-serif);letter-spacing:0;cursor:pointer}
-.lk>span{grid-area:1/1}
-.lk:hover,.lk:focus-visible,.lk:active{border-bottom-color:currentColor}
-.lk.u{border-bottom-color:currentColor}
+:root{--cream:#f2ebde;--ink:#34232a;--maroon:#4a2530;--dim:#716461;--line:#d5cabc;--soft:#e9e0d2;font-family:Instrument,system-ui,sans-serif;color:var(--ink);background:var(--cream);font-size:16px;line-height:1.55}*{box-sizing:border-box}body{margin:0}button,input,select,textarea{font:inherit}button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}button{cursor:pointer}button:disabled{opacity:.42;cursor:default}button{color:inherit}a{color:inherit}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #a97558;outline-offset:4px}h1,h2,h3,p{margin:0}h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:450}h1{font-size:clamp(45px,5.8vw,82px);line-height:1.06;letter-spacing:-.04em}h2{font-size:clamp(34px,4vw,52px);line-height:1.12;letter-spacing:-.025em}h3{font-size:28px;line-height:1.2}.previewbar{font-size:11px;letter-spacing:.06em;text-align:center;padding:9px 15px;background:#e5dccd;color:#61534d}.previewbar button{border:0;background:none;text-decoration:underline;padding:0 0 0 10px;font-size:11px}.brand{width:95px;max-height:48px;object-fit:contain}.shell{max-width:1180px;margin:auto;padding:0 42px}.header{height:100px;display:flex;align-items:center;justify-content:space-between}.tiny{font-size:12px;color:var(--dim)}.link{background:none;border:0;padding:10px 0;text-decoration:underline;text-underline-offset:5px;font-size:13px}.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--dim);margin-bottom:19px}.hero{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;min-height:calc(100svh - 175px);padding:25px 0 60px}.hero h1 em{font-weight:400}.lead{font-size:17px;line-height:1.7;color:var(--dim);max-width:430px;margin:25px 0 30px}.hero-image{position:relative;padding:12px;background:#fffaf0;transform:rotate(2deg);box-shadow:0 20px 50px #34232a18}.hero-image img{display:block;width:100%;height:510px;object-fit:cover}.caption{font-family:Fraunces,Georgia,serif;font-style:italic;text-align:center;font-size:18px;padding:16px 8px 6px}.btn{border:1px solid var(--maroon);background:var(--maroon);color:var(--cream);display:inline-flex;align-items:center;justify-content:space-between;gap:30px;min-height:56px;padding:14px 25px;text-decoration:none;transition:background .2s}.btn:hover:not(:disabled){background:#613440}.btn.secondary{background:transparent;color:var(--ink);border-color:var(--line)}.btn.secondary:hover{background:var(--soft)}.fine{font-size:12px;color:var(--dim);margin-top:14px}.promise{display:flex;gap:17px;flex-wrap:wrap;font-size:12px;color:var(--dim);margin-top:30px}.promise span:before{content:'✓';margin-right:7px}.quiz-shell{max-width:760px;margin:auto;padding:0 25px 45px}.quiz-header{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;padding:20px 0}.quiz-header .brand{width:76px;height:39px}.back{border:0;background:none;justify-self:start;padding:10px 5px 10px 0;font-size:13px}.quiz-header .tiny{justify-self:end}.chapter-track{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:7px 0 9px}.chapter-step{border-top:2px solid var(--line);padding-top:9px;font-size:11px;color:var(--dim)}.chapter-step.current{border-color:var(--maroon);color:var(--maroon);font-weight:600}.chapter-step.done{border-color:#8c9a80}.progressnote{font-size:11px;color:var(--dim);margin-top:6px;min-height:18px}.question{padding-top:35px;animation:arrive .25s ease both}.question h2{max-width:680px}.hint{color:var(--dim);font-size:13px;margin:15px 0 24px}.options{display:grid;gap:9px}.option{width:100%;display:flex;align-items:center;gap:14px;min-height:62px;text-align:left;padding:15px 18px;border:1px solid var(--line);background:transparent;color:var(--ink);transition:background .18s,border-color .18s}.option:hover{border-color:#9a8378;background:#eee4d6}.option.checked{background:var(--maroon);color:var(--cream);border-color:var(--maroon)}.marker{height:19px;width:19px;border:1px solid currentColor;opacity:.65;flex-shrink:0;display:grid;place-items:center;font-size:12px}.single .marker{border-radius:50%}.checked .marker{opacity:1}.option-label{font-size:15px;line-height:1.4}.option small{font-size:12px;display:block;opacity:.75;margin-top:4px}.event-grid{grid-template-columns:1fr 1fr}.event-grid .option{min-height:55px;padding:13px 14px}.option-footer{margin:19px 0 0;display:flex;align-items:center;justify-content:space-between;gap:16px}.selection-count{font-size:12px;color:var(--dim)}.actions{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-top:27px;border-top:1px solid var(--line);padding-top:22px}.actions .btn{min-width:180px}.reaction{font-family:Fraunces,Georgia,serif;font-style:italic;font-size:clamp(23px,3vw,30px);line-height:1.35;padding:22px 0 0;min-height:69px;animation:arrive .2s ease}.reaction.hidden{display:none}.error{font-size:13px;color:#963f36;margin:14px 0 0}.field{display:block;width:100%;border:1px solid var(--line);background:#faf5ed;color:var(--ink);padding:13px 14px;border-radius:0;min-height:51px;margin:8px 0 0}.field-label{font-size:13px;display:block;margin:0 0 19px}.field-label span{color:var(--dim);font-size:12px}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:17px}.coverage-item{padding:20px 0;border-bottom:1px solid var(--line)}.coverage-item:first-child{padding-top:0}.coverage-item h3{font-size:23px;margin-bottom:15px}.coverage-item .field-label{margin-bottom:0}.small-note{font-size:12px;color:var(--dim);line-height:1.6;margin-top:14px}.image-options{display:grid;grid-template-columns:1fr 1fr;gap:15px}.image-choice{position:relative;border:2px solid transparent;background:#e9dfd0;padding:0;overflow:hidden;color:var(--ink);text-align:left}.image-choice img{width:100%;height:215px;display:block;object-fit:cover}.image-choice .img-label{display:flex;gap:10px;align-items:center;padding:12px;font-size:13px}.image-choice.checked{border-color:var(--maroon);background:var(--maroon);color:var(--cream)}.image-choice .marker{position:absolute;right:12px;top:12px;background:var(--cream);color:var(--maroon);opacity:1;border:1px solid #fff8}.transition-screen{min-height:70svh;display:flex;align-items:center;justify-content:center;text-align:center}.transition-screen .inner{max-width:570px}.transition-screen h2{font-size:clamp(40px,6vw,65px)}.transition-screen p{color:var(--dim);font-size:16px;margin:24px auto;max-width:400px}.chapter-number{font-family:Fraunces,Georgia,serif;font-style:italic;color:#9e8876;font-size:80px;line-height:1;margin-bottom:24px}.result{max-width:1020px;margin:auto;padding:25px 28px 70px}.result-intro{max-width:720px;margin:30px auto 45px;text-align:center}.result-intro p{font-size:17px;line-height:1.7;color:var(--dim);margin-top:23px}.result-tag{font-size:11px;text-transform:uppercase;letter-spacing:.13em;color:var(--dim);margin-bottom:17px}.package{background:var(--maroon);color:var(--cream);padding:35px;border-radius:0;margin-bottom:24px;display:grid;grid-template-columns:1fr auto;gap:25px;align-items:center}.package .eyebrow{color:#dac5b8;margin-bottom:10px}.package h2{font-size:40px}.package p{font-size:13px;color:#e0cfc3;margin-top:12px;max-width:580px}.price{font-family:Fraunces,Georgia,serif;font-size:42px;white-space:nowrap}.price small{font-family:Instrument,sans-serif;font-size:12px;display:block;text-align:right}.result-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:24px}.result-card{border:1px solid var(--line);padding:27px;margin-bottom:24px}.result-card h3{font-size:27px;margin-bottom:18px}.result-card p{color:var(--dim);font-size:14px;line-height:1.7}.result-card ul{list-style:none;padding:0;margin:0}.result-card li{border-top:1px solid var(--line);padding:13px 0;font-size:14px}.result-card li:first-child{border-top:0;padding-top:0}.result-card li strong{font-weight:600;display:block}.result-card li span{display:block;color:var(--dim);font-size:13px;margin-top:5px}.result-card .link{margin-top:10px}.result-work{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}.result-work img{height:245px;width:100%;object-fit:cover}.call-section{text-align:center;max-width:650px;margin:40px auto 0}.call-section h2{font-size:42px}.call-section p{color:var(--dim);margin:20px auto;max-width:500px}.result-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:23px}.notice{font-size:12px;background:#e9e0d2;padding:13px 16px;line-height:1.65;color:#65564e;margin-bottom:24px}.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--cream);padding:12px 18px;font-size:13px;max-width:90%;z-index:100}.modal-backdrop{position:fixed;inset:0;background:#25191b88;z-index:50;padding:25px;display:flex;align-items:center;justify-content:center;overflow:auto}.modal{background:var(--cream);padding:32px;max-width:540px;width:100%;max-height:90svh;overflow:auto;position:relative}.modal h2{font-size:35px;margin:10px 0 20px}.modal p{font-size:14px;color:var(--dim);margin-bottom:20px}.close{position:absolute;right:14px;top:10px;background:none;border:0;font-size:25px}.hide{display:none!important}.resume{border-top:1px solid var(--line);margin-top:25px;padding-top:17px;display:flex;gap:20px;align-items:center;font-size:13px}.answer-summary{font-size:11px;color:var(--dim);margin-top:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.finish-note{font-size:12px;color:var(--dim)}@keyframes arrive{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@media(min-width:1100px){.hero{gap:100px}}@media(max-width:760px){.shell{padding:0 23px}.header{height:80px}.hero{grid-template-columns:1fr;gap:35px;padding:25px 0 45px;min-height:auto}.hero-image{max-width:460px;order:-1;margin:0 auto;width:100%;transform:rotate(1deg)}.hero-image img{height:260px}.caption{font-size:16px;padding:9px 8px 3px}.hero h1{font-size:46px}.hero .lead{margin:20px 0 23px;font-size:16px}.hero .eyebrow{margin-bottom:14px}.hero .btn{width:100%}.promise{margin-top:23px;gap:10px 18px}.question{padding-top:25px}.quiz-header{padding:13px 0}.quiz-shell{padding:0 21px 35px}.chapter-step{font-size:10px}.image-choice img{height:185px}.result-grid{grid-template-columns:1fr;gap:0}.package{padding:26px;grid-template-columns:1fr;gap:18px}.price small{text-align:left}.result{padding:15px 21px 55px}.result-intro h1{font-size:43px}.result-card{padding:23px}.result-work{gap:8px}.result-work img{height:170px}.call-section h2{font-size:35px}.two-col{grid-template-columns:1fr;gap:15px}.coverage-item .two-col .field-label{margin-bottom:0}.previewbar{font-size:10px}.previewbar button{font-size:10px}.actions .btn{min-width:155px}.transition-screen{min-height:65svh}.modal{padding:28px 23px}.chapter-number{font-size:65px}}@media(max-width:390px){.event-grid{grid-template-columns:1fr}.image-choice img{height:150px}.image-choice .img-label{font-size:12px;padding:9px}}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}@media print{.previewbar,.header,.result-actions,.link,.call-section{display:none}.result{max-width:none}.package{background:white;color:#222;border:1px solid #aaa}.package p,.package .eyebrow{color:#444}.result-card{break-inside:avoid}.result-work img{height:160px}}
 
-/* primary button: cream slip on dark, aubergine slip on cream */
-.btn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;min-height:58px;padding:0 28px;background:var(--pick);color:var(--on-pick);font:600 16px/1.3 var(--f-serif);letter-spacing:0;text-decoration:none;transition:transform .25s var(--ease),opacity .25s}
-.btn svg{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:1.3}
-@media (hover:hover){.btn:hover{transform:translateY(-2px)}}
-.btn:active{transform:scale(.985)}
-.btn[disabled]{opacity:.35;pointer-events:none}
-.btn.ghost{background:transparent;color:var(--paper);border:1px solid var(--line-2)}
+/* Original quiz layout: generous space, one question, one response. */
+:root{--ease:cubic-bezier(.16,1,.3,1)}
+body{--surface:#f2ebde;transition:background-color .7s var(--ease),color .7s var(--ease);background:var(--surface);color:var(--ink);min-height:100svh;-webkit-font-smoothing:antialiased}
+body.tone-cream{--surface:#f2ebde;--ink:#2a1d0f;--dim:#716254;--line:#c8baaa;--soft:#e9dfd1}
+body.tone-maroon{--surface:#4a2530;--ink:#f2ebde;--dim:#e0cbb8;--line:#8e6c70;--soft:#58313c}
+body.tone-brown{--surface:#2a1d0f;--ink:#f2ebde;--dim:#d2b6a1;--line:#79634f;--soft:#34261a}
+.previewbar{display:none}h1,h2{letter-spacing:-.015em}.btn{background:var(--ink);color:var(--surface);border:1px solid var(--ink);border-radius:0;min-height:58px;font-size:16px;font-weight:600;transition:transform .25s var(--ease),opacity .25s,background-color .25s}.btn:hover:not(:disabled){background:var(--ink);transform:translateY(-2px)}.btn:active:not(:disabled){transform:scale(.985)}.btn.secondary{color:var(--ink);border-color:var(--line);background:transparent}.btn.secondary:hover{background:var(--soft)}.field{background:var(--soft);color:var(--ink);border-color:var(--line)}.modal{--ink:#34232a;--dim:#716461;--line:#d5cabc;--surface:#f2ebde;--soft:#e9e0d2;color:var(--ink)}
+.original-intro{max-width:1180px;padding:0 48px;min-height:100svh;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr;column-gap:clamp(40px,6vw,96px)}
+.intro-bar{grid-column:1/-1;padding:22px 0 12px}.intro-bar .brand{width:82px;height:40px}.intro-copy{grid-column:1;grid-row:2;align-self:center;padding-bottom:50px}.intro-copy h1{font-size:clamp(36px,4.6vw,52px);line-height:1.06;max-width:510px;text-wrap:balance}.intro-copy>p{font-size:16px;line-height:1.55;color:var(--dim);max-width:380px;margin:20px 0 25px}.intro-copy .btn{width:100%;max-width:360px}.intro-fine{font-size:12px;color:var(--dim);margin-top:14px}.intro-copy .link{margin-top:10px;color:var(--dim)}
+.intro-photo{grid-column:2;grid-row:2;align-self:center;margin:0 0 50px}.photo-frame{padding:9px;background:#f2ebde;transform:rotate(-1.2deg);box-shadow:0 26px 40px -22px #0009;animation:photo-in 1s var(--ease) both}.photo-frame img{width:100%;display:block;aspect-ratio:1.12;object-fit:cover;object-position:51% 56%;filter:none}.intro-copy{animation:original-enter .7s var(--ease) both;animation-delay:.08s}
+.quiz-shell{max-width:640px;padding:0 48px 35px}.quiz-header{gap:8px;padding:19px 0 9px}.quiz-header .brand{width:66px;height:32px}.quiz-header .tiny{font:italic 17px Fraunces,Georgia,serif;color:var(--dim)}.quiet-progress{grid-column:1/-1;display:flex;gap:5px;margin-top:8px}.quiet-progress i{height:2px;flex:1;background:var(--line);position:relative;overflow:hidden}.quiet-progress i:after{content:'';position:absolute;inset:0;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}.quiet-progress i.on:after{transform:scaleX(1)}.quiet-ledger{grid-column:1/-1;font:italic 15px/1.3 Fraunces,Georgia,serif;color:var(--dim);margin-top:2px}.back{font-size:14px;color:var(--ink);min-height:44px}.question{padding-top:clamp(24px,4svh,40px);animation:original-enter .55s var(--ease) both}.question h2{font-size:clamp(30px,4vw,44px);line-height:1.06;text-wrap:balance;max-width:560px}.hint{font:italic 18px/1.35 Fraunces,Georgia,serif;color:var(--dim);margin:13px 0 0}#choices{margin-top:28px}.options{gap:10px}.option{min-height:62px;padding:13px 16px;gap:12px;border-color:var(--line);font-size:18px;transition:background-color .25s var(--ease),color .25s var(--ease),border-color .25s,opacity .45s var(--ease),transform .3s var(--ease)}.option:hover{background:transparent;border-color:var(--ink)}.option.checked{background:var(--ink);color:var(--surface);border-color:var(--ink)}.option:active{transform:scale(.985)}.option-label{font-size:18px}.marker{width:20px;height:20px;font-size:12px;transition:background .2s,border-color .2s}.single .marker{border:0;border-radius:0;font:italic 24px/1 Fraunces,Georgia,serif;width:27px}.options.done .option:not(.checked){opacity:.38;pointer-events:none}.option.checked .marker{animation:tick-in .3s var(--ease) both}.actions{display:block;padding:17px 0 0;margin-top:20px;border:0}.actions .btn{width:100%}.selection-count{display:block;text-align:center;font:italic 16px/1.3 Fraunces,Georgia,serif;margin-bottom:10px}.selection-count:empty{display:none}.auto-actions{display:none}.reaction{font:italic 28px/1.2 Fraunces,Georgia,serif;padding-top:22px;min-height:3.2em;animation:reaction-in .5s var(--ease) both}.event-grid .option-label{font-size:16px}.event-grid .option{padding:12px;min-height:54px}.image-options{gap:12px}.image-choice{background:var(--soft);color:var(--ink)}.image-choice.checked{background:var(--ink);color:var(--surface);border-color:var(--ink)}.image-choice img{height:210px}.image-choice .marker{color:#4a2530}.image-choice .img-label{font-size:14px}.coverage-item h3{font-size:24px}.two-col{gap:15px}.small-note{font-size:12px}.transition-screen .inner{animation:original-enter .65s var(--ease) both}.transition-screen h2{font-size:clamp(36px,5vw,52px)}.transition-screen .btn{margin-top:32px}.transition-screen{min-height:73svh}.header .tiny{display:none}
+.result{max-width:700px;padding-top:10px}.result-intro{margin:30px auto 45px}.result-intro h1{font-size:clamp(36px,6vw,50px)}.result-intro p{font:italic 21px/1.4 Fraunces,Georgia,serif;max-width:480px;margin:20px auto 0}.result-tag{font-size:11px}.result>.notice{background:transparent;color:var(--dim);padding:0;text-align:center;margin-bottom:30px;font-size:11px}.result-grid{display:block}.result-card{border:0;border-top:1px solid var(--line);padding:30px 0;margin:0 0 25px}.result-card h3{font-size:32px}.result-card p,.result-card li{font-size:15px}.result-card li span{font-size:14px;color:var(--dim)}.result-card p{color:var(--dim)}.package{display:block;padding:30px;background:#f2ebde;color:#2a1d0f;box-shadow:0 22px 40px -24px #0008;border:1px solid #fff9;position:relative;margin-bottom:40px}.package:before{content:'';position:absolute;inset:6px;border:1px solid #2a1d0f44;pointer-events:none}.package .eyebrow{color:#5e5045}.package h2{font-size:48px}.package p{color:#57483e;max-width:490px}.price{font-size:48px;margin-top:22px;padding-top:16px;border-top:1px solid #2a1d0f33}.price small{text-align:left;color:#5e5045}.result-detail summary{font-family:Fraunces,Georgia,serif;font-size:26px;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:15px}.result-detail summary:after{content:'+';font:24px Instrument,sans-serif}.result-detail[open] summary:after{content:'−'}.result-detail[open] summary{margin-bottom:24px}.result-detail .link{color:var(--dim)}.result-work img{height:270px}.call-section{margin-top:65px}.call-section h2{font-size:40px}.call-section p{font-size:16px}.result .eyebrow{color:var(--dim)}.package .eyebrow{color:#5e5045}.result-actions .btn{font-size:14px;min-height:48px}.reveal{opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease),transform .9s var(--ease)}.reveal.seen{opacity:1;transform:none}
+@keyframes original-enter{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}@keyframes reaction-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}@keyframes photo-in{from{opacity:0;transform:translateY(20px) rotate(-2deg)}to{opacity:1;transform:rotate(-1.2deg)}}@keyframes tick-in{from{opacity:.4}to{opacity:1}}
+@media(max-width:859px){.original-intro{display:grid;grid-template-columns:1fr;grid-template-rows:auto auto 1fr;padding:0 24px;min-height:100svh;max-width:600px;gap:0}.intro-bar{grid-column:1;grid-row:1;display:flex;justify-content:center;padding:18px 0 20px}.intro-photo{grid-column:1;grid-row:2;margin:0}.photo-frame img{aspect-ratio:1.5;object-position:50% 55%}.intro-copy{grid-column:1;grid-row:3;padding:35px 0 30px}.intro-copy h1{font-size:clamp(32px,7vw,45px);max-width:500px}.intro-copy>p{margin:17px 0 22px;font-size:16px}.intro-copy .btn{max-width:none}.intro-fine{text-align:center}.intro-copy>.link{display:block;margin:10px auto 0}.quiz-shell{padding:0 24px 30px}.question h2{font-size:clamp(30px,6.5vw,44px)}.question{padding-top:26px}.image-choice img{height:190px}.result{padding:10px 24px 50px}.result-work img{height:200px}.result-card{padding:25px 0}.intro-copy .link{font-size:12px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
 
-/* shell */
-html,body{overflow-x:clip}
-#app{position:relative;min-height:100svh;display:flex;flex-direction:column;overflow-x:clip}
-.top{position:sticky;top:0;z-index:10;padding:calc(env(safe-area-inset-top) + 14px) var(--pad) 10px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;background:linear-gradient(var(--ink) 70%,transparent);transition:opacity .4s}
-.top[hidden]{display:none}
-@media (min-width:700px){.top{padding-left:calc((100vw - 640px)/2 + var(--pad));padding-right:calc((100vw - 640px)/2 + var(--pad))}}
-.top .logo{height:30px;width:auto;margin:0 auto}
-.back{justify-self:start;display:inline-flex;align-items:center;gap:4px;min-height:44px;margin-left:-10px;padding:0 12px 0 6px;font:500 15px/1 var(--f-serif);color:var(--paper)}
-.back svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.4;transition:transform .25s var(--ease)}
-@media (hover:hover){.back:hover svg{transform:translateX(-3px)}}
-.status{justify-self:end;font:italic 400 17px/1 var(--f-display);color:var(--dim);text-align:right;white-space:nowrap}
-.status.pop{animation:pop .7s var(--ease) both;color:var(--paper);font-weight:600}
-@keyframes pop{0%{transform:scale(.7);opacity:0}60%{transform:scale(1.12);opacity:1}100%{transform:scale(1)}}
-.prog{grid-column:1/-1;display:grid;grid-template-columns:repeat(9,1fr);gap:4px;margin-top:6px}
-.prog i{height:2px;background:var(--line-2);position:relative;overflow:hidden}
-.prog i::after{content:"";position:absolute;inset:0;background:var(--paper);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
-.prog i.on::after{transform:scaleX(1)}
-.ledger{grid-column:1/-1;font:italic 400 15px/1.3 var(--f-display);color:var(--dim);min-height:20px;margin-top:2px;text-wrap:balance}
+.resume-links{display:flex;gap:22px;align-items:center}.resume-links .link{font-size:12px;color:var(--dim)}
 
-main{flex:1;display:flex;flex-direction:column;position:relative}
-.scr{flex:1;display:flex;flex-direction:column;padding:8px var(--pad) calc(env(safe-area-inset-bottom) + 24px);max-width:640px;width:100%;margin:0 auto}
-.scr.enter{animation:enter .55s var(--ease) both}
-.scr.enter-back{animation:enterb .55s var(--ease) both}
-@keyframes enter{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}
-@keyframes enterb{from{opacity:0;transform:translateX(-28px)}to{opacity:1;transform:none}}
-.q{margin:clamp(14px,3.5svh,36px) 0 6px}
-.q h2{font-size:clamp(30px,8.4vw,44px);line-height:1.06;text-transform:none;letter-spacing:-.015em}
-.hint{margin-top:12px;font:italic 400 19px/1.35 var(--f-display);color:var(--dim)}
+/* Explicit light/dark control pairs: never light text on a native light popup. */
+.tone-cream .option.checked,.tone-cream .btn:not(.secondary){background-color:#2a1d0f;color:#f2ebde}
+.tone-maroon .option.checked,.tone-maroon .btn:not(.secondary){background-color:#f2ebde;color:#4a2530}
+.tone-brown .option.checked,.tone-brown .btn:not(.secondary){background-color:#f2ebde;color:#2a1d0f}
+.option.checked .option-label,.option.checked small,.btn>span{color:inherit}
+.modal .btn:not(.secondary){background-color:#34232a;color:#f2ebde}
+select.field{background-color:#f2ebde;color:#2a1d0f;color-scheme:light}
+select.field option{background-color:#f2ebde;color:#2a1d0f}
+.btn:disabled{opacity:.55}.fahad-portrait{display:block;width:112px;height:112px;border-radius:50%;object-fit:cover;object-position:62% 48%;padding:5px;border:1px solid var(--line);margin:0 auto 25px}
 
-/* answers */
-.opts{list-style:none;padding:0;margin:clamp(18px,3.4svh,30px) 0 0;display:grid;gap:10px}
-.opt{position:relative;display:grid;grid-template-columns:34px 1fr;align-items:center;gap:6px;width:100%;min-height:62px;padding:12px 16px 12px 14px;text-align:left;border:1px solid var(--line-2);background:transparent;font:500 clamp(17px,4.8vw,19px)/1.3 var(--f-serif);letter-spacing:-.015em;transition:background-color .25s var(--ease),color .25s var(--ease),border-color .25s,opacity .45s var(--ease),transform .3s var(--ease)}
-.opt .k{font:italic 400 24px/1 var(--f-display);opacity:.65;text-align:center}
-.opt small{display:block;font:400 13px/1.3 var(--f-serif);letter-spacing:0;color:inherit;opacity:.8;margin-top:4px}
-@media (hover:hover){.opt:hover{border-color:var(--paper)}}
-.opt:active{transform:scale(.985)}
-.opt.sel{background:var(--pick);color:var(--on-pick);border-color:var(--pick)}
-.opt.sel .k{opacity:1}
-.opts.done .opt:not(.sel){opacity:.38;pointer-events:none}
-/* multi-select tick */
-.opts.multi .opt{grid-template-columns:26px 1fr}
-.tick{width:20px;height:20px;border:1px solid var(--line-2);display:grid;place-items:center;transition:background-color .2s,border-color .2s}
-.tick svg{width:12px;height:12px;stroke:var(--on-pick);fill:none;stroke-width:2;stroke-dasharray:20;stroke-dashoffset:20;transition:stroke-dashoffset .3s var(--ease)}
-.opt.sel .tick{background:var(--on-pick);border-color:var(--on-pick)}
-.opt.sel .tick svg{stroke:var(--pick);stroke-dashoffset:0}
 
-.react{min-height:3.2em;margin-top:18px;font:italic 400 clamp(23px,6.4vw,28px)/1.2 var(--f-display);letter-spacing:-.015em;opacity:0;transform:translateY(8px);transition:opacity .4s var(--ease),transform .5s var(--ease)}
-.react.show{opacity:1;transform:none}
+/* Keep labels readable through selection: animate the tick, not opposing text/fill colors. */
+.option{transition:transform .3s var(--ease),border-color .25s var(--ease),opacity .45s var(--ease)}
+.btn{transition:transform .25s var(--ease),opacity .25s}
 
-.foot{margin-top:auto;padding-top:14px;position:sticky;bottom:0;background-color:var(--ink);background-image:var(--grain);background-size:400px;border-top:1px solid var(--line);margin-left:calc(var(--pad)*-1);margin-right:calc(var(--pad)*-1);padding-left:var(--pad);padding-right:var(--pad);padding-bottom:calc(env(safe-area-inset-bottom) + 6px)}
-.foot .count{text-align:center;font:italic 400 16px/1.3 var(--f-display);color:var(--dim);margin-bottom:10px}
-
-/* intro */
-.intro{padding:0;max-width:none;position:relative;min-height:100svh;display:grid;grid-template-rows:auto 1fr auto}
-.intro .bar{display:flex;justify-content:center;padding:calc(env(safe-area-inset-top) + 16px) var(--pad) 12px}
-.intro .bar img{height:38px}
-.hero{position:relative;margin:0 var(--pad);min-height:0;display:grid}
-.hero .frame{position:relative;padding:10px;background:#F2EBDE;background-image:var(--grain);background-size:400px;display:grid;transform:rotate(-1.2deg);box-shadow:0 26px 40px -22px rgba(0,0,0,.6),0 2px 4px rgba(0,0,0,.25)}
-.hero .frame img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;filter:var(--tone);min-height:200px;max-height:46svh}
-.hero .stamp{z-index:2;position:absolute;right:4px;bottom:-16px;width:112px;height:112px;border-radius:50%;background:var(--paper);color:var(--ink);display:grid;place-items:center;text-align:center;transform:rotate(8deg);box-shadow:0 10px 24px -10px rgba(0,0,0,.5);font:500 10px/1.25 var(--f-serif);letter-spacing:0;}
-.hero .stamp b{display:block;font:italic 400 30px/.9 var(--f-display);letter-spacing:0;text-transform:none;margin-bottom:3px}
-.intro .copy{padding:34px var(--pad) calc(env(safe-area-inset-bottom) + 22px);max-width:560px;margin:0 auto;width:100%}
-.intro h1{font-size:clamp(30px,8.4vw,52px);line-height:1.06;text-wrap:balance}
-.intro .sub{margin-top:16px;font-size:16px;line-height:1.5;color:var(--dim);max-width:30em}
-.intro .btn{margin-top:22px}
-.intro .fine{margin-top:12px;text-align:center;font-size:13px;color:var(--dim)}
-@media (min-width:860px){
-  .intro{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:clamp(40px,6vw,96px);padding:0 var(--pad);max-width:1180px;margin:0 auto}
-  .intro .bar{grid-column:1/-1;justify-content:flex-start;padding-left:0}
-  .hero{grid-column:2;grid-row:2;margin:0 0 40px;align-self:center;max-height:78vh}
-  .hero .frame img{object-position:50% 20%}
-  .intro .copy{grid-column:1;grid-row:2;align-self:center;padding:0 0 40px;margin:0}
-  .intro .btn{max-width:360px}
-  .intro .fine{text-align:left}
-}
-
-/* ============ RESULT ============ */
-.res{display:block}
-.res section{padding:clamp(40px,8vw,72px) var(--pad);background-color:var(--ink);background-image:var(--grain);background-size:400px;color:var(--paper)}
-.res .in{max-width:640px;margin:0 auto}
-.r-top{padding-top:calc(env(safe-area-inset-top) + 22px)!important;text-align:center}
-.r-top .logo{height:32px;margin:0 auto 34px}
-.script{font:italic 400 clamp(38px,11vw,56px)/1 var(--f-display);display:block;margin-bottom:6px;text-transform:none}
-.r-top h1{font-size:clamp(32px,9vw,50px);line-height:1.04}
-.r-top .play{margin:18px auto 0;font:italic 400 clamp(19px,5.2vw,23px)/1.35 var(--f-display);color:var(--dim);max-width:20em}
-.pkg{margin-top:34px;padding:clamp(26px,6vw,40px) clamp(20px,5vw,36px);background:#F2EBDE;background-image:var(--grain);background-size:400px;color:#2A1D0F;text-align:left;position:relative;border:1px solid rgba(242,235,222,.9);box-shadow:0 22px 40px -24px rgba(0,0,0,.65)}
-.pkg::before{content:"";position:absolute;inset:6px;border:1px solid rgba(42,29,15,.26);pointer-events:none}
-.pkg .tag{font:500 14px/1.4 var(--f-serif);letter-spacing:0;color:rgba(42,29,15,.78)}
-.pkg h2{font-size:clamp(40px,11.4vw,58px);line-height:1;margin:12px 0 0;color:#2A1D0F}
-.pkg .meta{margin-top:12px;font:italic 400 19px/1.3 var(--f-display);color:rgba(42,29,15,.84)}
-.pkg .price{display:flex;align-items:baseline;gap:10px;margin-top:20px;padding-top:18px;border-top:1px solid rgba(42,29,15,.2)}
-.pkg .price b{font:500 clamp(42px,11.5vw,58px)/1 var(--f-display);letter-spacing:-.015em}
-.pkg .price span{font-size:15px;color:rgba(42,29,15,.78)}
-.pkg .fit{margin-top:12px;font-size:16px;line-height:1.5;color:#2A1D0F}
-.pkg .alt{margin-top:16px;padding-top:14px;border-top:1px solid rgba(42,29,15,.2);font-size:16px;line-height:1.5;color:rgba(42,29,15,.88)}
-.urgent{margin-top:20px;font:italic 400 21px/1.3 var(--f-display);color:var(--dim);text-align:center}
-.incl{list-style:none;padding:0;margin:24px 0 0}
-.incl li{padding:13px 0 13px 28px;border-top:1px solid var(--line);position:relative;font-size:16px;line-height:1.45}
-.incl li:last-child{border-bottom:1px solid var(--line)}
-.incl li::before{content:"";position:absolute;left:0;top:25px;width:14px;height:1px;background:var(--paper)}
-.res h3{font-size:clamp(30px,8.2vw,42px);line-height:1.06;text-transform:none;letter-spacing:-.015em}
-.res .lead{margin-top:14px;font-size:16px;line-height:1.55;color:var(--dim)}
-.evs{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;list-style:none;padding:0}
-.evs li{padding:9px 14px 7px;border:1px solid var(--line-2);font:italic 400 18px/1.2 var(--f-display)}
-.rv{margin-top:22px}
-.rv blockquote{font:italic 400 clamp(20px,5.4vw,25px)/1.35 var(--f-display);text-wrap:pretty}
-.rv .nm{margin-top:16px;font-size:14px;font-weight:600;letter-spacing:0;color:var(--dim)}
-.rv .nm a{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
-.hook{font:500 clamp(30px,8.2vw,42px)/1.06 var(--f-display);letter-spacing:-.015em;margin-bottom:6px}
-.work{padding-left:0!important;padding-right:0!important}
-.work .in{padding:0 var(--pad)}
-.track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;padding:26px var(--pad) 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-.track::-webkit-scrollbar{display:none}
-.track figure{flex:none;scroll-snap-align:start;border:1px solid var(--line-2);padding:6px}
-.track img{height:clamp(300px,52svh,420px);width:auto;filter:var(--tone)}
-.stars{display:flex;gap:26px;flex-wrap:wrap;margin-top:22px;list-style:none;padding:0}
-.stars b{display:block;font:500 clamp(38px,10.4vw,50px)/1 var(--f-display)}
-.stars span{display:block;font-size:13px;color:var(--dim);margin-top:4px;max-width:11em;line-height:1.35}
-.call{text-align:center}
-.call .face{width:112px;height:112px;border-radius:50%;object-fit:cover;object-position:62% 48%;margin:0 auto 22px;border:1px solid var(--line-2);padding:5px;background:transparent;filter:var(--tone)}
-.call h3{margin-bottom:12px}
-.call .btn{margin-top:24px}
-.call .bring{margin-top:16px;font:italic 400 19px/1.35 var(--f-display);color:var(--dim)}
-.call .alt-lk{margin-top:10px}
-.book{text-align:center}
-.book .lead{margin-inline:auto;max-width:28em}
-.plan{margin:26px auto 0;padding:20px 20px 18px;border:1px solid var(--line-2);text-align:left;max-width:640px;background:var(--ink-2)}
-.plan b{display:block;font:500 22px/1.2 var(--f-display)}
-.plan span{display:block;margin-top:6px;font-size:15px;line-height:1.5;color:var(--dim)}
-.plan .lk{margin-top:8px}
-.copied{font:italic 400 17px/1 var(--f-display);margin-left:12px;opacity:0;transition:opacity .3s}
-.copied.on{opacity:1}
-.form-wrap{max-width:640px;margin:26px auto 0;text-align:left}
-.native-contact{display:grid;gap:18px;max-width:440px;margin:28px auto;text-align:left}
-.native-contact label{display:grid;gap:7px;font-size:17px}.native-contact input{width:100%;min-height:48px;border:1px solid currentColor;background:transparent;color:inherit;border-radius:0;padding:10px 12px;font:inherit}
-.native-contact input:focus-visible{outline:2px solid currentColor;outline-offset:3px}.native-contact .btn{width:100%;margin-top:8px}.native-contact [hidden]{display:none}.native-contact small{font-size:14px}.capture-status{font-size:16px;line-height:1.5}.capture-status:empty{display:none}.contact-success{max-width:30em;margin:24px auto}
-.small{font-size:14px;line-height:1.55;color:var(--dim)}
-.alt{margin-top:22px}
-.small a{text-decoration:underline;text-underline-offset:3px}
-[hidden]{display:none!important}
-.cookie-note{padding:16px var(--pad) 24px;text-align:center;font-size:13px;color:var(--dim);background-color:var(--ink);background-image:var(--grain);background-size:400px}
-.cookie-note a{text-decoration:underline;text-underline-offset:2px}
-.fine2{margin-top:30px;font-size:13px;color:var(--dim);text-align:center}
-.sticky{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:12px var(--pad) calc(env(safe-area-inset-bottom) + 12px);background:#4A2530;background-image:var(--grain);border-top:1px solid rgba(242,235,222,.3);display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;color:#F2EBDE;transform:translateY(110%);transition:transform .5s var(--ease)}
-.sticky.show{transform:none}
-.sticky .p1{font:500 14px/1.25 var(--f-serif)}
-.sticky .p2{font:italic 500 17px/1.2 var(--f-display)}
-.sticky .btn{width:auto;min-height:48px;padding:0 18px;font-size:15px;letter-spacing:0;background:#F2EBDE;color:#4A2530}
-@media (min-width:860px){.sticky{display:none}}
-.res{padding-bottom:84px}
-@media (min-width:860px){.res{padding-bottom:0}}
-
-/* reveal on scroll, only after JS marks it safe */
-.js .rv-in{opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease),transform .9s var(--ease)}
-.js .rv-in.seen{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
-  .js .rv-in{opacity:1;transform:none}
-  .scr.enter,.scr.enter-back{animation:none}
-}
-noscript p{padding:40px;text-align:center;color:#F2EBDE}
-</style>
-</head>
-<body class="g-maroon">
-<div id="app" aria-live="off">
-  <header class="top" id="top" hidden>
-    <button class="back" id="back" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Back</button>
-    <img class="logo" src="/quiz/img/logo.png" alt="Chaar Bhai" id="toplogo">
-    <span class="status" id="status" aria-hidden="true"></span>
-    <div class="prog" id="prog" role="progressbar" aria-valuemin="0" aria-valuemax="9" aria-valuenow="0" aria-label="Quiz progress"></div>
-    <p class="ledger" id="ledger"></p>
-  </header>
-  <main id="main" tabindex="-1"></main>
-</div>
-<noscript><p>This quiz needs JavaScript. You can also reach us at info@chaarbhai.com.</p></noscript>
-
+</style></head><body><div class="previewbar">Your wedding plan<button id="restart">Start over</button></div><main id="app"></main><div id="toast" class="toast hide" role="status"></div><div id="modal-root"></div><noscript>This quiz needs JavaScript enabled. Open this HTML in Safari or Chrome.</noscript>
 <script src="/quiz/capture.js"></script>
-<script>
-/* ---------- CONFIG ---------- */
-var CONFIG={
-  fallbackEmail:'info@chaarbhai.com',
-  packagesUrl:'https://chaarbhai.com/prices',
-  advanceMs:1500
-};
-document.documentElement.classList.add('js');
-
-/* ---------- DATA ---------- */
-var PKG=[
-  {id:'first-light',name:'First Light',hours:6,price:3300,line:'One event, start to finish.'},
-  {id:'golden-hour',name:'Golden Hour',hours:10,price:5500,line:'One full day, getting ready through the last dance.'},
-  {id:'till-dusk',name:'Till Dusk',hours:16,price:8800,line:'Two events, with the build-up included.'},
-  {id:'till-sunrise',name:'Till Sunrise',hours:24,price:12600,line:'The whole weekend, covered.'}
+<script id="quiz-engine">
+const opt=(id,label,reply='')=>({id,label,reply});
+const data=[
+{id:'q1',chapter:0,num:'Q1',title:'Where are we celebrating?',kind:'single',options:[opt('gta','Toronto / GTA','Home turf. We know the banquet halls.'),opt('ont','Elsewhere in Ontario','Worth the drive.'),opt('can','Elsewhere in Canada',"Let’s see where we’re headed."),opt('us','USA',"We’ll keep the currency and travel clear."),opt('other','Somewhere else','Tell us where the celebration takes us.')],why:'Sets the travel context and price currency. No assumption about their culture or ceremony.',effect:'Canada → CAD. USA → USD. Other destinations → confirm currency and travel on the call.'},
+{id:'city',chapter:0,num:'↳',title:'Which city?',kind:'text',parent:'q1',condition:'If the wedding is outside Toronto / GTA',trigger:a=>!!a.q1&&a.q1!=='gta',reply:'Noted. Travel will be separate from coverage.',why:'Ask only when a city is needed to discuss travel. “Not decided yet” is a valid answer.',effect:'Add city and unresolved travel details to the plan. Do not calculate an invented travel fee.'},
+{id:'q2',chapter:0,num:'Q2',title:'When’s the wedding?',kind:'single',options:[opt('soon','Within 3 months',"Soon, then. Let’s get the essentials sorted."),opt('mid','3–6 months','Plenty we can figure out together.'),opt('later','6–12 months','Time to make a plan that feels like you.'),opt('far','More than a year','Time to make a plan that feels like you.'),opt('none','No date yet','Dreaming counts as planning.')],why:'Reflects the buying window in the newer customer avatars. A close date is a planning detail, not a reason to invent scarcity.',effect:'Near date → prioritize confirming dates and the essentials. No date → exploratory guidance. Availability is always unconfirmed.'},
+{id:'q3',chapter:0,num:'Q3',title:'What have you figured out so far?',kind:'multi',options:[opt('date','Date'),opt('venue','Venue'),opt('schedule','Event schedule'),opt('planner','Planner'),opt('none','Still figuring it out')],exclusive:['none'],reply:a=>(a.q3||[]).includes('none')?'You don’t need all the answers yet.':'A few pieces in place. Let’s build around them.',why:'Avoid asking for details they don’t have. No extra question is triggered solely by planning stage.',effect:'List unknown details in the result as things to work through with Fahad.'},
+{id:'q4',chapter:0,num:'Q4',title:'Which events would you like covered?',kind:'multi',options:['E-shoot','Mehndi','Dholki','Maiyan','Jaggo','Sangeet','Haldi','Gaye holud','Nikkah','Anand Karaj','Pheras','Church ceremony','Baraat','Rukhsati / Vidaai','Walima','Reception','Other event','Help me decide'].map((x,i)=>opt('e'+i,x)),exclusive:['e17'],reply:a=>{let n=(a.q4||[]).length;return (a.q4||[]).includes('e17')?'We’ll start with what you know.':n===1?'One celebration. Let’s give it proper attention.':n===2?'Two chapters of the same story.':'A whole wedding season. Let’s map it out.'},why:'Use the couple’s actual event names. Do not infer a religion or label all ceremonies “Nikkah.” Help me decide is exclusive; Other event may be selected alongside named events.',effect:'These events populate the coverage screen, the memory follow-up, and the result. An e-shoot is a separate session, not automatically another wedding day.'},
+{id:'q5',chapter:0,num:'Q5',title:'How are your events spread out?',kind:'schedule',reply:'We’ll account for the moving around, too.',why:'Two compact fields on one screen. Number of days alone does not determine a package.',effect:'Record days and locations. Travel between venues, overlap, and unknown timings remain explicit planning assumptions.'},
+{id:'q6',chapter:0,num:'Q6',title:'How much of each event would you like captured?',kind:'coverage',reply:'We can shape the hours around what matters.',why:'Show only their selected events. For each: key moments, whole event, or help me decide; optional estimated duration. This is one screen with several rows, not one tap.',effect:'Build an event-by-event coverage brief. “Whole event” without a duration is not enough to issue a precise hours estimate. If no events are known, show one broad preference row.'},
+{id:'q7',chapter:0,num:'Q7',title:'How many guests at your biggest event?',kind:'single',options:[opt('small','Under 100','A smaller room, full of your people.'),opt('medium','100–250','A full room. Plenty of familiar faces.'),opt('large','250–400',"Let’s make room in the plan for your people."),opt('huge','400+',"Let’s make room in the plan for your people."),opt('unsure','Unsure','A rough idea is enough for now.')],why:'Ask about the biggest event, not a combined count across several events.',effect:'Informs family-photo logistics and planning questions. Guest count alone should not add arbitrary coverage hours.'},
+{id:'q8',chapter:1,num:'Q8',title:'How do you two feel about being photographed?',kind:'multi',options:[opt('ready','Ready for our magazine cover'),opt('direction','Fine with a little direction'),opt('hands','We forget what to do with our hands'),opt('partner','One of us needs convincing')],reply:a=>(a.q8||[]).some(x=>['hands','partner'].includes(x))?'That’s our department. You just bring yourselves.':'A little direction, room to be yourselves.',why:'Multiple answers can represent different comfort levels between partners.',effect:'Camera shyness affects the suggested approach and reassurance. It never automatically increases the package price.'},
+{id:'comfort',chapter:1,num:'↳',title:'What would make it easier?',kind:'multi',parent:'q8',condition:'If either partner is camera shy or needs convincing',trigger:a=>(a.q8||[]).some(x=>['hands','partner'].includes(x)),options:[opt('direct','Tell us what to do'),opt('private','Keep it private, away from guests'),opt('short','Keep portraits short'),opt('candid','Mostly candid moments'),opt('unsure','Help us figure it out')],exclusive:['unsure'],reply:'Noted. We’ll build that into your plan.',why:'One follow-up for both partners. No repeated comfort question later.',effect:'Private → suggest a quiet portrait location. Short → suggest a brief portrait block. Direction → gentle guidance. Candid → less interruption.'},
+{id:'q10',chapter:1,num:'Q10',title:'Years from now, what would you love to relive?',kind:'multi',options:[opt('people','Our people and their reactions'),opt('words','The words and emotion'),opt('party','The party and atmosphere'),opt('couple','The two of us together'),opt('unsure','Help us decide')],exclusive:['unsure'],reply:a=>(a.q10||[]).includes('unsure')?'That’s okay. Your examples will help us explore it.':'Let’s make room for those memories.',why:'Choose up to two. Both selections feed one combined follow-up, not two separate branches.',effect:'The priorities shape the personal opener, suggested coverage emphasis, and work shown.'},
+{id:'protect',chapter:1,num:'↳',title:'Which of these events or moments matter most to you?',kind:'multi',parent:'q10',condition:'If they chose a memory priority; skip “Help us decide”',trigger:a=>(a.q10||[]).some(x=>x!=='unsure'),optionsFor:a=>{let out=[];for(const p of a.q10||[]){if(p==='people')out.push(...['Parents','Grandparents','Siblings','Chosen family','Everyone together'].map((s,i)=>opt('people'+i,s)));if(p==='words')out.push(...['Vows','Speeches','Family messages','Ceremony'].map((s,i)=>opt('words'+i,s)));if(p==='party')out.push(...eventOpts(a).map(e=>opt('party_'+e.id,e.label)),opt('dancing','Late-night dancing'));if(p==='couple')out.push(...['A few beautiful photos','A relaxed session together','Time to make something special'].map((s,i)=>opt('couple'+i,s)));}return out;},reply:'Those are the moments we’ll plan around.',why:'Options are combined from the priorities above. Optional names belong in the real quiz; this tool avoids collecting personal details.',effect:'Create a must-have people / moments section. If their priorities conflict with short coverage, flag the trade-off rather than silently dropping something.'},
+{id:'q11',chapter:1,num:'Q11',title:'What’s been hardest about choosing a team?',kind:'multi',options:[opt('comfort','Feeling comfortable'),opt('people','Trusting them to capture our people'),opt('style','Finding our editing style'),opt('pricing','Understanding prices and extras'),opt('coverage','Knowing how much coverage we need'),opt('none','Nothing yet — we’re exploring')],exclusive:['none'],reply:a=>{let l=labels('q11',a);return l.length===1&&a.q11[0]==='none'?'A good place to start. Let’s make it clearer.':l.length>1?'A few things to get right. We’ve noted each one.':'Got it. Let’s make that clearer.'},why:'Select all that apply. Ask at most one unanswered concern follow-up. Everything selected still gets addressed in the result.',effect:'Check earlier answers first. For this draft, follow-up priority is: coverage → pricing → comfort → people → style. This rule is visible and can be revised.'},
+{id:'concern',chapter:1,num:'↳',title:'One concern, a little deeper',kind:'multi',parent:'q11',condition:'Only when a selected concern is still unexplained; at most one',trigger:a=>!!unresolved(a),optionsFor:a=>concernOptions(unresolved(a)),titleFor:a=>({coverage:'What would you regret missing?',pricing:'What feels unclear about the price?',comfort:'What would help you relax?',people:'Who needs special attention?',style:'What puts you off in wedding edits?'}[unresolved(a)]||'One concern, a little deeper'),reply:'Helpful. We’ll address that in your plan.',why:'Only one follow-up is chosen. Earlier comfort, people, and style answers suppress repeat questions. Other selected concerns stay in the consultation brief.',effect:'Add concrete reassurance and a useful next step. No unverified guarantees about turnaround, availability, team continuity, or capturing every person.'},
+{id:'q12',chapter:2,num:'Q12',title:'What budget feels comfortable for photo and film together?',kind:'single',options:[opt('low','Under $3,300'),opt('b1','$3,300–$4,500'),opt('b2','$4,500–$6,500'),opt('b3','$6,500–$9,000'),opt('b4','$9,000 or more'),opt('unsure','Not sure — help me understand the costs')],reply:'Got it. Let’s see how the coverage fits.',why:'Amounts are draft bands using the existing quiz as reference. Live package pricing, tax, currency and travel treatment must be verified before implementation.',effect:'A real coverage / pricing calculation determines budget fit. This review tool lets you simulate that decision below without pretending to quote a wedding.'},
+{id:'trade',chapter:2,num:'↳',title:'What would you rather protect?',kind:'single',parent:'q12',condition:'If requested coverage exceeds their budget',trigger:a=>!!a.q12&&a.q12!=='unsure'&&plan(a).fit==='gap',options:[opt('all','Key moments at every event',"We’ll explore shorter coverage across your events."),opt('priority','Fuller coverage at our most important event',"We’ll start there and show what stays outside coverage."),opt('full','Show the fuller plan and the price difference',"You’ll see the fuller option and the difference clearly."),opt('help','Help us decide together',"We’ll show the options to talk through with Fahad.")],why:'Ask which event on the same screen if they prioritize one event. Never claim the smaller package includes everything.',effect:'Show explicit included / excluded moments and any scheduling constraints. If no workable option fits, say so and keep the conversation open.'},
+{id:'result',chapter:2,num:'✓',title:'Your personalized starting plan',kind:'result',why:'A starting plan for a consultation, not a confirmed booking or final quote.',effect:'Explain coverage by event, why it fits, assumptions, trade-offs, relevant work, and the questions to resolve with Fahad.'}
 ];
-var INCL={
-  base:['One photographer and one videographer, working from the same plan','Every photo retouched by hand, no presets','A private online gallery of your edited photos','Your film, delivered by private download link','Family interviews with proper audio'],
-  'golden-hour':['A get-ready session'],
-  'till-dusk':['A get-ready session','Rehearsal dinner coverage','A pre-wedding e-shoot','One complimentary album and a set of framed prints'],
-  'till-sunrise':['A get-ready session','Rehearsal dinner coverage','A pre-wedding e-shoot','One complimentary album and a set of framed prints','A next-day edit of your film']
-};
-var EVENTS=[
-  {id:'eshoot',label:'Engagement or e-shoot',short:'e-shoot',pts:1},
-  {id:'mehndi',label:'Mehndi, dholki, maiyan or jaggo',short:'mehndi',pts:2},
-  {id:'haldi',label:'Haldi or gaye holud',short:'haldi',pts:1.5},
-  {id:'main',label:'Nikkah, Anand Karaj, pheras, church ceremony or other main ceremony',short:'main ceremony',pts:2},
-  {id:'baraat',label:'Baraat, rukhsati, vidaai or send-off',short:'send-off',pts:2},
-  {id:'walima',label:'Walima or reception',short:'reception',pts:2},
-  {id:'other',label:'Something else',sub:'No typing. We’ll ask on the call.',short:'something else',pts:2}
-];
-var Q=[
- {id:'where',q:'Where is your wedding?',opts:[
-  {v:'gta',l:'Toronto / GTA',s:'Toronto',r:'Home turf. We know the banquet halls.'},
-  {v:'ont',l:'Elsewhere in Ontario',s:'Ontario',r:'Worth the drive. We love a road trip.'},
-  {v:'can',l:'Elsewhere in Canada',s:'Canada',r:'Coast to coast, we get around.'},
-  {v:'usnear',l:'USA, near Ontario',sub:'Buffalo, Rochester, Detroit, Cleveland',s:'USA',r:'Close enough to drive down.'},
-  {v:'usfar',l:'USA, another city',s:'USA',r:'We’ll fly in. Travel is listed upfront.'},
-  {v:'else',l:'Somewhere else',s:'Abroad',r:'Now that is a destination wedding.'}]},
- {id:'when',q:'When is the wedding?',opts:[
-  {v:'lt4',l:'Within 4 months',s:'under 4 months',r:'Quick. Let’s move fast.'},
-  {v:'4-8',l:'4 to 8 months',s:'4 to 8 months',r:'Right in the sweet spot.'},
-  {v:'8-12',l:'8 to 12 months',s:'8 to 12 months',r:'Plenty of time to plan, and to panic a little.'},
-  {v:'12-18',l:'12 to 18 months',s:'12 to 18 months',r:'Early and organized. Respect.'},
-  {v:'gt18',l:'More than 18 months',s:'18+ months',r:'You’re ahead of everyone.'},
-  {v:'none',l:'No date yet',s:'no date yet',r:'No pressure. Dream first.'}]},
- {id:'events',q:'Which events do you want covered?',hint:'Pick every one that applies.',multi:true},
- {id:'days',q:'How many days do your events run?',opts:[
-  {v:1,l:'One day',s:'1 day',r:'One big day. Make it count.'},
-  {v:2,l:'Two days',s:'2 days',r:'A weekend of good food and bad dancing.'},
-  {v:3,l:'Three days',s:'3 days',r:'Pack comfortable shoes.'},
-  {v:4,l:'Four or more',s:'4+ days',r:'A full production. We love it.'}]},
- {id:'guests',q:'About how many guests?',opts:[
-  {v:'u100',l:'Under 100',s:'under 100 guests',r:'Intimate. Everyone gets proper attention.',bonus:0},
-  {v:'100',l:'100 to 250',s:'100 to 250 guests',r:'A full room, and a lot of aunties.',bonus:0},
-  {v:'250',l:'250 to 400',s:'250 to 400 guests',r:'Lots of people to find. Lots of hugs to catch.',bonus:1},
-  {v:'400',l:'400+',s:'400+ guests',r:'Every relative counts, and we’ll find them all.',bonus:2}]},
- {id:'matters',q:'What matters most?',opts:[
-  {v:'photo',l:'Photos I’ll print and frame',s:'photos first',r:'Frame-worthy. Noted.'},
-  {v:'film',l:'A film I’ll rewatch for years',s:'film first',r:'A film you’ll rewatch. Yes.'},
-  {v:'both',l:'Both equally',s:'photo and film',r:'Greedy. We like that.'}]},
- {id:'worry',q:'What worries you most about choosing a photographer?',opts:[
-  {v:'camera',l:'I hate being photographed',s:'camera shy',r:'Most of our brides did too. You’ll be fine.'},
-  {v:'dadi',l:'Missing someone important, like my dadi',s:'every relative',r:'Every important person. That’s a promise.'},
-  {v:'search',l:'Months of searching and not knowing who to trust',s:'tired of searching',r:'We’ve shot 1,800+ weddings. Rest your thumbs.'},
-  {v:'extras',l:'Hidden extras and surprise costs',s:'no surprises',r:'Every add-on is priced upfront.'},
-  {v:'edit',l:'Whether the edit style will suit us',s:'edit style',r:'You’ll see real films from couples like you.'}]},
- {id:'budget',q:'What budget feels comfortable for photo and film together?',hint:'So we don’t pitch something that doesn’t fit.',opts:[
-  {v:'u3',l:'Under $3,000',s:'under $3k',max:3000,r:'Thanks for being honest. We’ll find what works.'},
-  {v:'b1',l:'$3,300 to $4,500',s:'to $4.5k',max:4500,r:'Got it. We’ll keep it realistic.'},
-  {v:'b2',l:'$4,500 to $6,500',s:'to $6.5k',max:6500,r:'Got it. We’ll keep it realistic.'},
-  {v:'b3',l:'$6,500 to $9,000',s:'to $9k',max:9000,r:'Got it. We’ll keep it realistic.'},
-  {v:'b4',l:'$9,000 or more',s:'$9k+',max:Infinity,r:'Got it. We’ll keep it realistic.'},
-  {v:'unsure',l:'Not sure, show me what it usually costs',s:'budget open',max:null,r:'Totally fine. Nobody budgets for this the first time.'}]},
- {id:'decide',q:'Who is helping decide?',hint:'Optional. Skip if you’d rather not say.',skip:true,opts:[
-  {v:'me',l:'Just me',s:'just you',r:'Your call. We like that.'},
-  {v:'partner',l:'Me and my partner',s:'you and partner',r:'A team effort.'},
-  {v:'parents',l:'Me, and my parents are helping pay',s:'parents helping',r:'Bring them. We love a mom with opinions.'}]}
-];
-var GROUND=['cream','cream','cream','maroon','maroon','maroon','brown','brown','brown'];
 
-/* ---------- STATE ---------- */
-var A={};            // answers by id
-var step=-1;         // -1 intro, 0..8 questions, 9 result
-var busy=false,timer=null;
-var $=function(s,r){return(r||document).querySelector(s)};
-var main=$('#main'),topbar=$('#top'),prog=$('#prog'),ledger=$('#ledger');
-
-/* ---------- TRACKING (Meta Pixel / dataLayer when present) ---------- */
-function track(name,data,custom){
-  try{if(window.fbq){custom?fbq('trackCustom',name,data||{}):fbq('track',name,data||{})}}catch(e){}
-  try{(window.dataLayer=window.dataLayer||[]).push(Object.assign({event:'quiz_'+name.toLowerCase()},data||{}))}catch(e){}
-}
-
-/* ---------- HELPERS ---------- */
-function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e}
-function fmt(n){return '$'+n.toLocaleString('en-US')}
-function ground(g){document.body.className='g-'+g;var lg=document.getElementById('toplogo');if(lg)lg.src=g==='cream'?'/quiz/img/logo-dark.png':'/quiz/img/logo.png';var m=document.querySelector('meta[name=theme-color]');m.content={cream:'#F2EBDE',maroon:'#4A2530',brown:'#2A1D0F'}[g]}
-function optOf(qid){var q=Q.filter(function(x){return x.id===qid})[0];return q.opts.filter(function(o){return o.v===A[qid]})[0]}
-var TICK='<span class="tick"><svg viewBox="0 0 12 12"><path d="M2 6.4l2.6 2.6L10 3"/></svg></span>';
-
-/* ---------- RENDER: INTRO ---------- */
-function showIntro(){
-  step=-1;topbar.hidden=true;ground('maroon');window.scrollTo(0,0);
-  main.innerHTML='';
-  var s=el('section','scr intro enter');
-  s.innerHTML=
-   '<div class="bar"><img src="/quiz/img/logo.png" alt="Chaar Bhai"></div>'+
-   '<div class="hero"><div class="frame"><img src="/quiz/photos/saadman-maariyah/ChaarBhai_SMNE_0878_resized-1280.webp" alt="A bride in an ivory veil, looking down and smiling" fetchpriority="high"></div>'+
-   '<div class="stamp" aria-hidden="true"><div><b>2 min</b>just taps</div></div></div>'+
-   '<div class="copy"><h1>How many hours of photo and film does your wedding actually need?</h1>'+
-   '<p class="sub">Most couples guess, then pay for hours they don’t need or miss events they do. Two minutes of taps gives you a real number and a real price.</p>'+
-   '<button class="btn" id="start" type="button">Find out what I need <svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg></button>'+
-   '<p class="fine">Free, and just taps. Based on 1,800+ weddings shot since 2008.</p></div>';
-  main.appendChild(s);
-  $('#start').onclick=function(){track('QuizStart',{},true);go(0)};
-}
-
-/* ---------- RENDER: QUESTION ---------- */
-function go(n,back,fromPop){
-  if(!fromPop){try{history.pushState({s:n},'')}catch(e){}}
-  clearTimeout(timer);if(main._skip){main.removeEventListener('click',main._skip);main._skip=null}busy=false;step=n;
-  if(n>=Q.length){return showResult()}
-  topbar.hidden=false;ground(GROUND[n]);
-  window.scrollTo(0,0);
-  var q=Q[n];
-  main.innerHTML='';
-  var s=el('section','scr '+(back?'enter-back':'enter'));
-  s.setAttribute('aria-labelledby','qh');
-  var h=el('div','q');
-  h.innerHTML='<h2 id="qh" tabindex="-1">'+q.q+'</h2>'+(q.hint?'<p class="hint">'+q.hint+'</p>':'');
-  s.appendChild(h);
-  var ul=el('ul','opts'+(q.multi?' multi':''));
-  ul.setAttribute('role',q.multi?'group':'radiogroup');ul.setAttribute('aria-labelledby','qh');
-  var opts=q.multi?EVENTS.map(function(e){return{v:e.id,l:e.label,sub:e.sub}}):q.opts;
-  opts.forEach(function(o,i){
-    var li=el('li');
-    var b=el('button','opt');b.type='button';b.dataset.v=o.v;
-    var sel=q.multi?(A.events||[]).indexOf(o.v)>-1:A[q.id]===o.v;
-    if(sel)b.classList.add('sel');
-    b.setAttribute(q.multi?'aria-pressed':'aria-checked',sel);
-    if(!q.multi)b.setAttribute('role','radio');
-    b.innerHTML=(q.multi?TICK:'<span class="k" aria-hidden="true">'+String.fromCharCode(97+i)+'</span>')+'<span>'+o.l+(o.sub?'<small>'+o.sub+'</small>':'')+'</span>';
-    b.onclick=function(){q.multi?toggleEvent(b,o.v):choose(q,o,b,ul)};
-    li.appendChild(b);ul.appendChild(li);
-  });
-  s.appendChild(ul);
-  if(q.multi){
-    var f=el('div','foot');
-    f.innerHTML='<p class="count" id="count" aria-live="polite"></p><button class="btn" id="cont" type="button">Continue <svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg></button>';
-    s.appendChild(f);
-  }else{
-    var r=el('p','react');r.id='react';r.setAttribute('aria-live','polite');s.appendChild(r);
-    if(q.skip){var sk=el('div');sk.style.cssText='text-align:center;margin-top:8px';sk.innerHTML='<button class="lk u" type="button" id="skip" data-t="Skip this one"><span>Skip this one</span></button>';s.appendChild(sk)}
-  }
-  main.appendChild(s);
-  renderProg(n);renderLedger();
-  if(q.multi){syncEvents();$('#cont').onclick=function(){finishEvents()}}
-  if(q.skip)$('#skip').onclick=function(){delete A[q.id];track('QuizStep',{step:n+1,id:q.id,v:'skip'},true);go(n+1)};
-  var hd=$('#qh');if(hd&&n>0)hd.focus({preventScroll:true});
-  if(n===0)track('QuizStep',{step:0,id:'view'},true);
-}
-function renderProg(n){
-  if(!prog.children.length){for(var i=0;i<9;i++)prog.appendChild(el('i'))}
-  Array.prototype.forEach.call(prog.children,function(c,i){c.classList.toggle('on',i<n)});
-  prog.setAttribute('aria-valuenow',n);prog.setAttribute('aria-valuetext','Question '+(n+1)+' of 9');
-  var st=$('#status'),M={4:'Halfway there!',7:'Two to go!',8:'Last one!'};
-  var txt=M[n]||((n+1)+' of 9');
-  if(st.textContent!==txt){st.textContent=txt;st.classList.remove('pop');void st.offsetWidth;if(M[n])st.classList.add('pop')}
-}
-function renderLedger(){
-  var bits=[];
-  Q.forEach(function(q,i){
-    if(i>step)return;
-    if(q.multi){var n=(A.events||[]).length;if(n&&i<step)bits.push(n+(n===1?' event':' events'));return}
-    var o=A[q.id]!=null&&optOf(q.id);if(o)bits.push(o.s);
-  });
-  ledger.textContent=bits.length?bits.slice(-3).join(' · '):'Your plan starts here.';
-}
-
-/* ---------- INTERACTION ---------- */
-function buzz(){try{navigator.vibrate&&navigator.vibrate(8)}catch(e){}}
-function choose(q,o,btn,ul){
-  if(busy)return;busy=true;buzz();
-  A[q.id]=o.v;
-  Array.prototype.forEach.call(ul.querySelectorAll('.opt'),function(b){b.classList.remove('sel');b.setAttribute('aria-checked','false')});
-  btn.classList.add('sel');btn.setAttribute('aria-checked','true');
-  ul.classList.add('done');
-  var r=$('#react');r.innerHTML=o.r;r.classList.add('show');
-  renderLedger();
-  track('QuizStep',{step:step+1,id:q.id,v:o.v},true);
-  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-  var next=step+1;
-  var advance=function(){clearTimeout(timer);main.removeEventListener('click',skipper);if(step===next-1)go(next)};
-  var skipper=function(e){if(!e.target.closest('.opt'))advance()};
-  timer=setTimeout(advance,reduce?900:CONFIG.advanceMs);
-  /* tapping empty space skips the wait */
-  setTimeout(function(){if(step===next-1)main.addEventListener('click',skipper)},250);
-  main._skip=skipper;
-}
-function toggleEvent(b,id){
-  buzz();
-  A.events=A.events||[];
-  var i=A.events.indexOf(id);
-  if(i>-1)A.events.splice(i,1);else A.events.push(id);
-  b.classList.toggle('sel',i===-1);b.setAttribute('aria-pressed',i===-1);
-  syncEvents();renderLedger();
-}
-function syncEvents(){
-  var n=(A.events||[]).length;
-  $('#cont').disabled=!n;
-  $('#count').textContent=n?(n+(n===1?' event':' events')+' selected'):'Tap everything you’d like covered';
-}
-function finishEvents(){
-  var n=(A.events||[]).length;if(!n||busy)return;busy=true;
-  var line=n<=2?'Short and sweet.':n<=4?'A proper celebration.':'That’s a whole festival. We’re in.';
-  var f=$('.foot');f.innerHTML='<p class="react show" style="min-height:0;margin:0 0 14px;text-align:center;font-size:24px">'+line+'</p><button class="btn" type="button" disabled>Continue</button>';
-  document.querySelectorAll('.opt').forEach(function(b){b.style.pointerEvents='none'});
-  track('QuizStep',{step:3,id:'events',v:A.events.join(',')},true);
-  timer=setTimeout(function(){go(3)},CONFIG.advanceMs-200);
-}
-$('#back').onclick=function(){
-  clearTimeout(timer);
-  if(history.state&&history.state.s>-1)history.back();
-  else if(step<=0)showIntro();
-  else go(step-1,true,true);
-};
-addEventListener('popstate',function(e){
-  if(step===9){try{history.pushState({s:9},'')}catch(x){}return}
-  clearTimeout(timer);
-  var t=e.state&&typeof e.state.s==='number'?e.state.s:-1;
-  if(t<0||t>=Q.length)showIntro();else go(t,true,true);
-});
-try{history.replaceState({s:-1},'')}catch(e){}
-
-/* ---------- RESULT LOGIC ---------- */
-function compute(){
-  var pts=0;(A.events||[]).forEach(function(id){pts+=EVENTS.filter(function(e){return e.id===id})[0].pts});
-  var g=optOf('guests');pts+=g?g.bonus:0;
-  var idx=pts<=6?0:pts<=10?1:pts<=16?2:3;
-  var days=A.days||1;
-  if(days>=4)idx=3;else if(days>=3)idx=Math.max(idx,2);
-  var simple=(A.events||[]).every(function(id){return id==='main'||id==='walima'});
-  if(days===1&&simple&&A.guests!=='250'&&A.guests!=='400')idx=Math.min(idx,0)||0;
-  var rec=idx,b=optOf('budget'),max=b&&b.max,fit='open',alt=null,low=false;
-  if(A.budget==='u3'){low=true;fit='low';rec=0}
-  else if(max!=null){
-    var price=PKG[idx].price;
-    if(price<=max)fit='fits';
-    else if(price<=max*1.15){fit='stretch';alt=Math.max(0,idx-1)}
-    else{fit='gap';var j=0;PKG.forEach(function(p,i){if(p.price<=max*1.15)j=i});rec=Math.min(j,idx)}
-  }
-  var lowerOf=PKG[Math.max(0,rec-1)];
-  var usd=A.where==='usnear'||A.where==='usfar'||A.where==='else';
-  var dateOk=['lt4','4-8','8-12','12-18'].indexOf(A.when)>-1;
-  var tag;
-  if(A.budget==='u3'||(A.when==='none'&&fit==='gap'))tag='cool';
-  else if(dateOk&&(fit==='fits'||fit==='stretch'||fit==='open')&&A.where==='gta')tag='hot';
-  else tag='warm';
-  return{pts:pts,rec:rec,pkg:PKG[rec],idx:idx,fit:fit,alt:alt,lower:lowerOf,low:low,usd:usd,tag:tag,
-    travel:usd,travelNote:A.where&&A.where!=='gta',urgent:A.when==='lt4',early:A.when==='none'};
-}
-function playful(){
-  var d={1:'One day',2:'Two days',3:'Three days',4:'Four-plus days'}[A.days]||'Your day';
-  var g=optOf('guests'),gs=g?g.l.toLowerCase()+' guests':'a full guest list';
-  var w={camera:'a camera-shy bride',dadi:'a dadi who must be photographed',search:'a very long search history',extras:'a strict no-surprises policy',edit:'strong opinions about edits'}[A.worry]||'big plans';
-  return d+', '+gs+', and '+w+'. We’ve got this.';
-}
-var WORRY={
- camera:{hook:'You hate being photographed. Most of our brides did too.',q:'Was extremely nervous before my e-shoot as I never found myself photogenic or comfortable posing in front of a camera. Fahad totally changed that.',n:'Dis Chapo',u:'Google'},
- dadi:{hook:'Who’s photographing your dadi at the rukhsati?',q:'Fahad and team covered my brother’s wedding and they were just like family, making everyone smile and bringing great energy to the event. Loved the photos and videos they took, truly mesmerizing!',n:'Zohra Masudi',u:'Google'},
- search:{hook:'Done searching. 1,800+ weddings since 2008.',q:'Fahad was the photographer I had a good feeling about from the very beginning and I’m so happy my instincts were right!',n:'Christel Joyce',u:'Google'},
- extras:{hook:'No surprises. Every add-on is priced openly.',q:'I can definitely see that they don’t just do this for the money, but because they’re passionate about photography and delivering a great product to their clients.',n:'Faisal S',u:'Google'},
- edit:{hook:'See the edit style before you book.',q:'They captured every special moment beautifully, blending candid shots with stunning portraits that truly told the story of our big day.',n:'Amna Sohail',u:'Google'}
-};
-var PROMISE={photo:'A gallery of photos worth framing.',film:'A highlight film you’ll rewatch for years.',both:'Photos to frame and a film to rewatch.'};
-
-/* ---------- RENDER: RESULT ---------- */
-function showResult(){
-  var R=compute();step=9;try{history.pushState({s:9},'')}catch(x){}
-  topbar.hidden=true;ground('maroon');window.scrollTo(0,0);clearTimeout(timer);
-  var cur=R.usd?'USD':'CAD';
-  var evs=(A.events||[]).map(function(id){return EVENTS.filter(function(e){return e.id===id})[0]});
-  var w=WORRY[A.worry]||WORRY.search;
-  var incl=INCL.base.concat(INCL[R.pkg.id]||[]);
-  var fitTxt={
-    fits:'That sits inside the budget you picked.',
-    stretch:'A touch above your range, and worth it for what you described.',
-    gap:'Built around your top events, so the budget holds. The call is where we plan the rest.',
-    low:'Our packages start at '+fmt(3300)+'. Let’s see if a smaller plan works.',
-    open:'Most couples with weddings like yours land near this. Add-ons are priced openly.'
-  }[R.fit];
-  var altHtml='';
-  if(R.fit==='stretch'&&R.alt!=null&&R.alt<R.rec+1){var lo=PKG[Math.max(0,R.rec-1)];if(lo.id!==R.pkg.id)altHtml='<p class="alt">If you’d like to stay closer to your budget, we’d trim to <b>'+lo.name+'</b> ('+fmt(lo.price)+') and pick two key events. We’ll sort it together.</p>'}
-  var urg=R.urgent?'<p class="urgent">Dates this close are limited. Book a call this week.</p>':R.early?'<p class="urgent">Tell us your likely month and we’ll hold the conversation open.</p>':'';
-  var work=['/quiz/photos/saadman-maariyah/ChaarBhai_SMNE_1982_resized-1280.webp:Portrait','/quiz/photos/zahra-hussam/ChaarBhai_ZHNE_3706_resized-1280.webp:Landscape','/quiz/photos/haleema-hassaan/0A9A7798_resized-1280.webp:Portrait','/quiz/photos/darmant-harpal/_FR_1425-1280.webp:Landscape','/quiz/photos/zainab-maaz/USA_6322_resized-1280.webp:Portrait','/quiz/photos/saadman-maariyah/ChaarBhai_SMNE_1843_resized-1280.webp:Landscape','/quiz/photos/haleema-hassaan/0A9A7809_resized-1280.webp:Portrait','/quiz/photos/christel-sid/MFR_9391-1280.webp:Landscape','/quiz/photos/saadman-maariyah/ChaarBhai_SMNE_1573_resized-1280.webp:Portrait','/quiz/photos/rabia-eldad/ChaarBhai_RERE_4956_resized-1280.webp:Landscape'];
-  var alts={Portrait:'A couple from a Chaar Bhai wedding, portrait',Landscape:'A couple from a Chaar Bhai wedding, landscape'};
-  main.innerHTML='';
-  var s=el('div','res enter');
-  s.innerHTML=
-  '<section class="g-maroon r-top"><div class="in"><img class="logo" src="/quiz/img/logo.png" alt="Chaar Bhai">'+
-    '<span class="script" aria-hidden="true">Okay,</span><h1>Here’s the plan for your wedding.</h1>'+
-    '<p class="play">'+playful()+'</p>'+
-    '<div class="pkg"><p class="tag">Recommended for you</p><h2>'+R.pkg.name+'</h2>'+
-      '<p class="meta">'+R.pkg.hours+' hours · one photographer · one videographer</p>'+
-      '<div class="price"><b>'+fmt(R.pkg.price)+'</b><span>'+cur+(R.travel?', travel listed separately':'')+'</span></div>'+
-      '<p class="fit">'+fitTxt+'</p>'+altHtml+'</div>'+urg+'</div></section>'+
-  '<section class="g-cream rv-in"><div class="in"><h3>'+(PROMISE[A.matters]||PROMISE.both)+'</h3>'+
-    '<ul class="incl">'+incl.map(function(i){return'<li>'+i+'</li>'}).join('')+'</ul>'+
-    '<p class="lead">'+R.pkg.line+' Add-ons are priced openly, and you can <a class="lk u" style="display:inline;min-height:0;padding:0 0 1px" data-t="try the estimate builder" href="'+CONFIG.packagesUrl+'" target="_blank" rel="noopener"><span>try the estimate builder</span></a>.'+
-    (R.travel?' Crew travel and accommodation are billed separately and listed upfront.':'')+'</p></div></section>'+
-  '<section class="g-brown rv-in"><div class="in"><h3>Your events, covered</h3><ul class="evs">'+evs.map(function(e){return'<li>'+e.label.split(',')[0].replace(/ or .*$/,'')+'</li>'}).join('')+'</ul>'+
-    '<p class="lead">'+evs.length+(evs.length===1?' event':' events')+' across '+(A.days>=4?'four or more':({1:'one',2:'two',3:'three'}[A.days]||'your'))+(A.days===1?' day':' days')+', planned with you on the call so nobody is missed.'+(R.travelNote?' Travel details for your city are worked out on the call.':'')+'</p></div></section>'+
-  '<section class="g-maroon rv-in"><div class="in"><p class="hook">'+w.hook+'</p>'+
-    '<div class="rv"><blockquote>“'+w.q+'”</blockquote><p class="nm">'+w.n+' · '+w.u+'</p></div>'+
-    '<ul class="stars"><li><b>4.9</b><span>Google rating, 40 reviews</span></li><li><b>94%</b><span>of 344 Facebook reviewers recommend</span></li><li><b>1,800+</b><span>weddings since 2008</span></li></ul></div></section>'+
-  '<section class="g-cream work rv-in"><div class="in"><h3>Work from couples like you</h3></div><div class="track" tabindex="0" role="region" aria-label="Wedding photos, swipe sideways">'+
-    work.map(function(w2,i){var k=w2.lastIndexOf(':'),p=[w2.slice(0,k),w2.slice(k+1)];return'<figure><img src="'+p[0]+'" alt="'+alts[p[1]]+'" loading="lazy"></figure>'}).join('')+'</div></section>'+
-  '<section class="g-brown call rv-in" id="call"><div class="in"><img class="face" src="/quiz/img/fahad.webp" alt="Fahad, founder of Chaar Bhai, lying in the grass to get the shot" loading="lazy">'+
-    '<h3>Talk it through with Fahad</h3><p class="lead" style="max-width:26em;margin-left:auto;margin-right:auto">A free planning call. No pressure, no pitch deck. We’ll fit this plan to your actual weddings.</p>'+
-    '<button class="btn" type="button" id="book">Book a free planning call with Fahad <svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg></button>'+
-    (A.decide==='parents'?'<p class="bring">Your parents are welcome on the call too.</p>':'')+
-    '<button class="lk alt-lk" type="button" id="emailplan">Email me this plan</button><p class="capture-status" id="quiz-save" role="status" aria-live="polite"></p><button class="lk" type="button" id="retry-save" hidden>Try saving again</button>'+
-    '<a class="lk alt-lk" data-t="See the full packages" href="'+CONFIG.packagesUrl+'" target="_blank" rel="noopener"><span>See the full packages</span></a>'+
-    '<p class="fine2"><button class="lk" type="button" id="redo" data-t="Start over"><span>Start over</span></button></p></div></section>'+
-  '<section class="g-aub book" id="bookform" hidden aria-labelledby="bh"><div class="in"><h3 id="bh">Request a planning call</h3><p class="lead" id="contact-expectation">Send your details and I’ll email you within 24 hours to arrange a free planning call. Your quiz answers come with your request.</p>'+
-    '<form class="native-contact" id="quiz-contact">'+
-    '<label data-identity>Your name<input name="name" autocomplete="name" required></label>'+
-    '<label data-identity>Your email<input name="email" type="email" autocomplete="email" inputmode="email" required></label>'+
-    '<label data-identity>Phone <small>(optional)</small><input name="phone" type="tel" autocomplete="tel" inputmode="tel"></label>'+
-    '<button class="btn" type="submit" id="contact-send">Request a planning call</button>'+
-    '<p class="capture-status" id="contact-status" role="status" aria-live="polite"></p></form>'+
-    '<p class="small alt">Prefer email? <a href="mailto:'+CONFIG.fallbackEmail+'">'+CONFIG.fallbackEmail+'</a>.</p></div></section>'+
-  '<p class="cookie-note g-aub">We use cookies to measure our ads. <a href="https://chaarbhai.com/privacy">Privacy</a></p>'+
-  '<div class="sticky" id="sticky"><div><div class="p1">'+R.pkg.name+' · '+fmt(R.pkg.price)+'</div><div class="p2">Free call with Fahad</div></div><button class="btn" type="button" id="book2">Book a call</button></div>';
-  main.appendChild(s);
-  track('ViewContent',{content_name:R.pkg.name,value:R.pkg.price,currency:cur,lead_tag:R.tag});
-  track('QuizComplete',{content_name:R.pkg.name,value:R.pkg.price,currency:cur,lead_tag:R.tag},true);
-  quizCapture={submission_id:window.CBLeadCapture?CBLeadCapture.uuid():'',quiz:{answers:JSON.parse(JSON.stringify(A)),result:planFields(R)},response:null,promise:null};
-  saveQuiz(quizCapture);
-  var book=function(){bookCall(R,'consultation')};
-  $('#book').onclick=book;$('#book2').onclick=book;
-  $('#emailplan').onclick=function(){bookCall(R,'email_plan')};
-  $('#retry-save').onclick=function(){saveQuiz(quizCapture)};
-  $('#redo').onclick=function(){A={};prog.innerHTML='';showIntro()};
-  /* reveal + sticky bar */
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('seen');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.05});
-  document.querySelectorAll('.rv-in').forEach(function(n){io.observe(n)});
-  var st=$('#sticky'),callEl=$('#call');
-  var io2=new IntersectionObserver(function(es){st.classList.toggle('show',window.scrollY>400&&!es[0].isIntersecting)});
-  io2.observe(callEl);
-  addEventListener('scroll',function(){if(step!==9)return;var bf=$('#bookform');var onForm=bf&&!bf.hidden&&bf.getBoundingClientRect().top<innerHeight;st.classList.toggle('show',window.scrollY>400&&callEl.getBoundingClientRect().top>innerHeight&&!onForm)},{passive:true});
-}
-
-/* ---------- BOOKING ---------- */
-function planFields(R){
-  var ev=(A.events||[]).map(function(id){return EVENTS.filter(function(e){return e.id===id})[0].short}).join(', ');
-  var g=function(id){var o=A[id]!=null&&optOf(id);return o?o.l:''};
-  return{lead_tag:R.tag,package:R.pkg.name,hours:R.pkg.hours,price:R.pkg.price,currency:R.usd?'USD':'CAD',events:ev,days:A.days,guests:g('guests'),
-    location:g('where'),date_band:g('when'),priority:g('matters'),worry:g('worry'),budget:g('budget'),deciders:g('decide'),travel:R.travel?'yes':'no'};
-}
-var quizCapture=null;
-function saveQuiz(state){
-  var note=$('#quiz-save'),retry=$('#retry-save');
-  if(!window.CBLeadCapture){if(note)note.textContent='The inquiry service could not load. Please refresh or email us.';return Promise.resolve(null)}
-  if(retry)retry.hidden=true;
-  state.promise=CBLeadCapture.quiz({submission_id:state.submission_id,quiz:state.quiz}).then(function(r){
-    state.response=r;if(note)note.textContent=r.anonymous?'':'Your quiz answers have been added to your inquiry.';return r;
-  }).catch(function(e){if(note)note.textContent='Your plan is ready, but we couldn’t save your answers. Try again or send your details below.';if(retry)retry.hidden=false;return null});
-  return state.promise;
-}
-function bookCall(R,intent){
-  var bf=$('#bookform');if(!bf)return;
-  if(intent==='consultation')track('BookCallClick',{content_name:R.pkg.name,lead_tag:R.tag},true);
-  bf.hidden=false;
-  var title=$('#bh'),expectation=$('#contact-expectation'),button=$('#contact-send'),form=$('#quiz-contact');
-  title.textContent=intent==='consultation'?'Request a planning call':'Email me this plan';
-  expectation.textContent=intent==='consultation'?'I’ll review your quiz answers and email you within 24 hours to arrange a free planning call.':'I’ll review your quiz answers and email you your plan and relevant pricing within 24 hours.';
-  button.textContent=intent==='consultation'?'Request a planning call':'Send my request';
-  if(!window.CBLeadCapture){$('#contact-status').textContent='The inquiry service could not load. Please refresh or email us.';return}
-  if(form.dataset.sending==='1')return;
-  button.disabled=false;$('#contact-status').textContent='';form.querySelectorAll('input').forEach(function(input){input.disabled=false});
-  var state=quizCapture,submissionId=CBLeadCapture.uuid();
-  function identityMode(){
-    var known=state.response&&!state.response.anonymous;
-    form.querySelectorAll('[data-identity]').forEach(function(label){label.hidden=known;var input=label.querySelector('input');input.required=!known&&input.name!=='phone'});
-    return known;
-  }
-  identityMode();if(state.promise)state.promise.then(identityMode);
-  form.onsubmit=function(e){
-    e.preventDefault();if(button.disabled)return;
-    var msg=$('#contact-status'),known=identityMode(),field=function(n){return form.elements.namedItem(n).value.trim()};
-    if(!known&&(!field('name')||!/^\S+@\S+\.\S+$/.test(field('email')))){msg.textContent='Please add your name and a valid email address.';return}
-    button.disabled=true;form.dataset.sending='1';msg.textContent='Sending…';
-    Promise.resolve(state.promise).then(function(){
-      var payload={submission_id:submissionId,quiz:state.quiz,intent:intent};
-      if(!(state.response&&!state.response.anonymous))payload.contact={name:field('name'),email:field('email'),phone:field('phone')};
-      return CBLeadCapture.quiz(payload);
-    }).then(function(r){
-      state.response=r;delete form.dataset.sending;CBLeadCapture.recordLead(r);
-      form.querySelectorAll('input').forEach(function(input){input.disabled=true});
-      msg.textContent='We received your request and quiz answers. Fahad will email you within 24 hours.';button.textContent='Request received';
-    }).catch(function(){delete form.dataset.sending;button.disabled=false;msg.textContent='That didn’t send. Please try again, or email info@chaarbhai.com.'});
-  };
-  bf.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'});
-}
-
-showIntro();
+const chapters=[{title:'Your wedding',message:'We’ve got the wedding basics. Now, the two of you.',note:'A little about your people, your memories, and how you feel in front of the camera.'},{title:'Your people & memories',message:'Your plan is taking shape.',note:'One budget question next. We may ask one follow-up to help it fit.'},{title:'Your plan',message:'Here’s how your answers come together.',note:'A starting point for a conversation, shaped around your wedding.'}];
+const packages=[{name:'First Light',hours:6,price:3300},{name:'Golden Hour',hours:10,price:5500},{name:'Till Dusk',hours:16,price:8800},{name:'Till Sunrise',hours:24,price:12600}];
+function get(id){return data.find(q=>q.id===id)}
+function options(q,a){return q.optionsFor?q.optionsFor(a):q.options||[]}
+function labels(id,a){const q=get(id),v=a[id];if(!q)return [];return options(q,a).filter(o=>Array.isArray(v)?v.includes(o.id):v===o.id).map(o=>o.label)}
+function eventOpts(a){return get('q4').options.filter(o=>(a.q4||[]).includes(o.id)&&o.id!=='e17')}
+function unresolved(a){const s=a.q11||[];if(s.includes('coverage')&&!allHoursKnown(a))return'coverage';if(s.includes('pricing'))return'pricing';if(s.includes('comfort')&&!(a.comfort||[]).some(x=>x!=='unsure'))return'comfort';if(s.includes('people')&&!(a.protect||[]).some(x=>x.startsWith('people')))return'people';if(s.includes('style'))return'style';return null}
+function concernOptions(t){return ({coverage:['Getting ready','Ceremony','Family time','Portraits','Speeches','Late-night dancing','Not sure yet'],pricing:['What’s included','Tax and travel','Extra hours','Photo and film together','All of the above'],comfort:['Gentle direction','A private location','Short portraits','Mostly candid moments','Help us decide'],people:['Parents','Grandparents','Siblings','Chosen family','Everyone together'],style:['Heavy filters','Overly posed photos','Edits that feel dated','I’d like to talk it through']}[t]||[]).map((s,i)=>opt('c'+i,s))}
+function allHoursKnown(a){const ev=eventOpts(a);return ev.length>0&&ev.every(e=>!!duration(a.durations?.[e.id]))}
+function duration(s){return ({'Up to 2 hours':[1,2],'1–2 hours':[1,2],'3–4 hours':[3,4],'5–6 hours':[5,6],'7–8 hours':[7,8]})[s]||null}
+function plan(a){const ev=eventOpts(a);let lo=0,hi=0;for(const e of ev){let d=duration(a.durations?.[e.id]);if(d){lo+=d[0];hi+=d[1]}}const complete=allHoursKnown(a),pkg=complete?packages.find(p=>p.hours>=hi)||null:null;const ceiling=({low:3299,b1:4500,b2:6500,b3:9000})[a.q12];let fit='unknown';if(a.q12==='unsure')fit='open';else if(pkg&&ceiling!=null)fit=pkg.price>ceiling?'gap':'fits';else if(a.q12==='low')fit='gap';else if(a.q12==='b4'&&pkg)fit=pkg.price<=9000?'fits':'confirm';if(complete&&!pkg)fit='custom';return{complete,hoursMin:lo,hoursMax:hi,package:pkg,fit,events:ev,currency:a.q1==='us'?'USD':a.q1==='other'?'Confirm currency':'CAD',travel:a.q1!=='gta',ceiling}}
+function route(a){return data.filter(q=>!q.parent||q.trigger(a)).map(q=>q.id)}
+function prune(a){delete a.q9;for(const q of data.filter(x=>x.parent))if(!q.trigger(a))delete a[q.id];if(a.protect){let valid=options(get('protect'),a).map(x=>x.id);a.protect=a.protect.filter(x=>valid.includes(x));if(!a.protect.length)delete a.protect}const ev=eventOpts(a).map(e=>e.id);for(const key of ['q6','durations'])if(a[key])for(const id of Object.keys(a[key]))if(!ev.includes(id)&&id!=='unknown')delete a[key][id];if(a.priority&&!ev.includes(a.priority)&&a.priority!=='help')delete a.priority;const t=unresolved(a);if(a.concernType&&a.concernType!==t)delete a.concern;a.concernType=t;}
+function valid(q,a){const v=a[q.id];if(q.id==='city')return !!v?.trim();if(q.kind==='schedule')return !!v?.days&&!!v?.locations;if(q.kind==='coverage'){const ev=eventOpts(a);return ev.length?ev.every(e=>!!v?.[e.id]&&!!a.durations?.[e.id]):!!v?.unknown}if(q.kind==='result')return true;if(q.id==='trade'&&v==='priority'&&!a.priority)return false;return Array.isArray(v)?v.length>0:!!v}
+var QuizEngine={route,plan,prune,concern:unresolved,question:get};
 </script>
 <script>
+const ASSETS={"fahad":"/quiz/approved/asset-4.webp","candid": "/quiz/approved/asset-5.webp", "editorial": "/quiz/approved/asset-6.webp", "romantic": "/quiz/approved/asset-7.webp", "family": "/quiz/approved/asset-8.webp", "party": "/quiz/approved/asset-9.webp", "hero": "/quiz/approved/asset-10.jpg", "logo": "/quiz/approved/asset-11.png", "logolight": "/quiz/approved/asset-12.png"};
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let a={},current='intro',editing=false,editRoot=null,busy=false,transitionTo=null,reactionTimer;
+const storageKey='cb-quiz-plan-v2';
+try{const saved=JSON.parse(localStorage.getItem(storageKey)||'null');if(saved?.answers&&typeof saved.answers==='object'){a=saved.answers;prune(a)}}catch{}
+function save(){try{localStorage.setItem(storageKey,JSON.stringify({answers:a}))}catch{}}
+function title(q){return q.titleFor?q.titleFor(a):q.title}
+function currency(){return a.q1==='us'?'USD':a.q1==='other'?'currency to confirm':'CAD'}
+function logo(light=false){return `<img class="brand" src="${ASSETS[light?'logolight':'logo']}" alt="Chaar Bhai">`}
+function toast(s){$('#toast').textContent=s;$('#toast').classList.remove('hide');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>$('#toast').classList.add('hide'),2600)}
+function go(id){clearTimeout(reactionTimer);busy=false;current=id;render();window.scrollTo({top:0,behavior:'instant'});const heading=$('#heading');if(heading)heading.focus({preventScroll:true})}
+function header(){return `<div class="shell"><header class="header">${logo()}<span class="tiny">Wedding photo & film</span></header></div>`}
+function intro(){const has=Object.keys(a).some(k=>/^q\d/.test(k));$('#app').innerHTML=`<section class="original-intro"><div class="intro-bar">${logo(true)}</div><div class="intro-photo"><div class="photo-frame"><img src="${ASSETS.hero}" alt="Almirah and Ijaz smiling as they walk through their guests and sparklers" fetchpriority="high"></div></div><div class="intro-copy"><h1>How many hours of photo and film does your wedding actually need?</h1><p>Tell us about your wedding. We’ll put together a coverage plan that feels like you.</p><button class="btn" id="start">Find out what I need <span aria-hidden="true">→</span></button><div class="intro-fine">Free. Just taps. Made around your wedding.</div>${has?'<div class="resume-links"><button class="link" id="resume">Continue my plan →</button><button class="link" id="fresh">Start fresh</button></div>':''}</div></section>`;$('#start').onclick=()=>go('q1');if($('#resume'))$('#resume').onclick=()=>go(route(a).find(id=>id!=='result'&&!valid(get(id),a))||'result');if($('#fresh'))$('#fresh').onclick=restart}
+
+function progress(q){if(q.id==='trade')return'Last question — then your plan.';if(q.id==='q12')return'1–2 questions left. We’ll help with any trade-offs.';if(q.id==='concern'||q.id==='q11')return'Your plan is taking shape. Budget comes next.';return q.chapter===0?'Start with what you know. We’ll help with the rest.':'A little more about the two of you.'}
+function selected(q,id){let v=a[q.id];return Array.isArray(v)?v.includes(id):v===id}
+function optionsHTML(q){return `<div class="options ${q.id==='q4'?'event-grid':''} ${q.kind==='single'?'single':''}" role="group" aria-label="${esc(title(q))}">${options(q,a).map((o,i)=>`<button class="option ${selected(q,o.id)?'checked':''}" data-option="${o.id}" type="button" aria-pressed="${selected(q,o.id)}"><span class="marker" aria-hidden="true">${q.kind==='single'?String.fromCharCode(97+i):selected(q,o.id)?'✓':''}</span><span class="option-label">${esc(o.label)}</span></button>`).join('')}</div>`}
+function dropdown(name,label,list,value){return `<label class="field-label">${label}<select class="field" data-field="${name}"><option value="">Choose…</option>${list.map(x=>`<option value="${esc(x)}" ${x===value?'selected':''}>${esc(x)}</option>`).join('')}</select></label>`}
+function questionHTML(q){if(q.id==='city')return `<label class="field-label">Wedding city<input class="field" id="city" placeholder="e.g. Chicago" autocomplete="address-level2" value="${esc(a.city==='Not decided yet'?'':a.city||'')}"></label><button class="option ${a.city==='Not decided yet'?'checked':''}" id="city-unsure" aria-pressed="${a.city==='Not decided yet'}"><span class="marker">${a.city==='Not decided yet'?'✓':''}</span>Not decided yet</button>`;
+if(q.kind==='schedule')return `<div class="two-col">${dropdown('days','How many days?',['One day','Two days','Three days','Four or more days','Unsure'],a.q5?.days)}${dropdown('locations','How many locations?',['One location','Several locations','Undecided'],a.q5?.locations)}</div>`;
+if(q.kind==='coverage'){const ev=eventOpts(a);if(!ev.length)return dropdown('unknown','We’re still deciding on events. We’d like…',['Key moments','Fuller coverage','Help me decide'],a.q6?.unknown);return ev.map(e=>`<section class="coverage-item"><h3>${esc(e.label)}</h3><div class="two-col">${dropdown('scope:'+e.id,'What would you like covered?',['Key moments','Whole event','Help me decide'],a.q6?.[e.id])}${dropdown('duration:'+e.id,'How long would you like us there?',['Up to 2 hours','3–4 hours','5–6 hours','7–8 hours','More than 8 hours','Not sure yet'],a.durations?.[e.id])}</div></section>`).join('')}
+
+let html=optionsHTML(q);if(q.id==='q4'&&(a.q4||[]).includes('e16'))html+=`<label class="field-label" style="margin-top:20px">What do you call your other event? <span>Optional</span><input class="field" id="otherEvent" value="${esc(a.otherEvent||'')}" placeholder="Your event name" maxlength="80"></label>`;
+if(q.id==='trade'&&a.trade==='priority')html+=dropdown('priority','Which event would you protect?',[...eventOpts(a).map(e=>e.label),'Help us choose on the call'],a.priorityLabel);
+if(q.id==='q12')html+=`<p class="small-note">Travel, if needed, is quoted separately.</p>`;return html}
+function hint(q){if(q.kind==='multi')return q.max?'Pick up to '+q.max+'. Choose what feels like you.':'Select all that apply. More than one is welcome.';if(q.kind==='coverage')return'Choose a starting point for each event. “Not sure yet” is always okay.';if(q.kind==='schedule')return'Even a rough idea helps.';if(q.id==='city')return'It helps us plan the getting-there part.';if(q.id==='q12')return'So the plan starts with what feels comfortable for you.';return'Tap the answer that fits best.'}
+function renderQuestion(q){const rt=route(a),ix=rt.indexOf(q.id),status=q.id==='trade'?'Last one!':q.id==='q12'?'Almost there':q.id==='q11'||q.id==='concern'?'Nearly there':(q.chapter+1)+' / 3';const help=q.kind==='multi'?(q.max?'Pick up to '+q.max+'.':'Pick every one that applies.'):q.kind==='coverage'?'A rough idea is fine.':q.id==='q12'?'For photo and film together · '+currency():'';const auto=q.kind==='single'&&!(q.id==='trade'&&a.trade==='priority');$('#app').innerHTML=`<div class="quiz-shell"><header class="quiz-header"><button class="back" id="back">← Back</button>${logo(q.chapter>0)}<span class="tiny" id="status">${status}</span><div class="quiet-progress" role="progressbar" aria-label="${esc(chapters[q.chapter].title)}" aria-valuemin="0" aria-valuemax="3" aria-valuenow="${q.chapter+1}">${chapters.map((c,i)=>`<i class="${i<=q.chapter?'on':''}"></i>`).join('')}</div><p class="quiet-ledger">${esc(chapters[q.chapter].title)}</p></header><section class="question"><h2 id="heading" tabindex="-1">${esc(title(q))}</h2>${help?`<p class="hint">${help}</p>`:''}<div id="choices">${questionHTML(q)}</div><p class="error hide" id="error" role="alert"></p><div class="reaction hidden" id="reaction" role="status" aria-live="polite"></div><div class="actions ${auto?'auto-actions':''}"><span class="selection-count" id="selectionCount">${q.kind==='multi'?selectionText(q):''}</span><button class="btn" id="continue" ${valid(q,a)?'':'disabled'}>${editing?'Update my plan':'Continue'} <span aria-hidden="true">→</span></button></div></section></div>`;
+$('#back').onclick=()=>{if(editing){editing=false;go('result')}else go(ix>0?rt[ix-1]:'intro')};bindQuestion(q);$('#continue').onclick=()=>advance(q)}
+
+function selectionText(q){if(q.kind==='multi'){let n=(a[q.id]||[]).length;return q.max?n+' of '+q.max+' selected':n?n+' selected':'Choose what applies'}return q.id==='trade'?'One decision, then your plan.':'No perfect answers needed.'}
+function sync(q){$('#continue').disabled=!valid(q,a);$('#selectionCount').textContent=q.kind==='multi'?selectionText(q):'';$('#error').classList.add('hide');save()}
+function bindQuestion(q){$('#choices').querySelectorAll('[data-option]').forEach(btn=>btn.onclick=()=>{if(busy)return;const id=btn.dataset.option;if(q.id==='concern'){q.exclusive=options(q,a).filter(o=>['All of the above','Not sure yet','Help us decide'].includes(o.label)).map(o=>o.id)}if(q.kind==='multi'){let v=a[q.id]||[];if(v.includes(id))v=v.filter(x=>x!==id);else if(q.exclusive?.includes(id))v=[id];else{v=v.filter(x=>!q.exclusive?.includes(x));if(q.max&&v.length>=q.max){toast('Pick up to '+q.max+'. Unselect one to choose another.');return}v.push(id)}a[q.id]=v}else a[q.id]=id;prune(a);save();const y=window.scrollY;renderQuestion(q);$('.question').style.animation='none';window.scrollTo(0,y);if(q.kind==='single'&&valid(q,a))advance(q)});
+$('#choices').querySelectorAll('[data-field]').forEach(el=>el.onchange=()=>{let key=el.dataset.field;if(key==='days'||key==='locations')a.q5={...a.q5,[key]:el.value};else if(key.startsWith('scope:'))a.q6={...a.q6,[key.slice(6)]:el.value};else if(key.startsWith('duration:'))a.durations={...a.durations,[key.slice(9)]:el.value};else if(key==='unknown')a.q6={unknown:el.value};else if(key==='priority'){a.priorityLabel=el.value;a.priority=eventOpts(a).find(e=>e.label===el.value)?.id||'help'}prune(a);sync(q)});
+if($('#city'))$('#city').oninput=e=>{a.city=e.target.value;$('#city-unsure').classList.remove('checked');$('#city-unsure').setAttribute('aria-pressed','false');$('#city-unsure .marker').textContent='';sync(q)};if($('#city-unsure'))$('#city-unsure').onclick=()=>{a.city='Not decided yet';save();renderQuestion(q)};if($('#otherEvent'))$('#otherEvent').oninput=e=>{a.otherEvent=e.target.value;save()};}
+function reaction(q){if(typeof q.reply==='function')return q.reply(a);if(q.reply)return q.reply;return options(q,a).find(o=>o.id===a[q.id])?.reply||'Noted. Let’s keep going.'}
+function advance(q){if(busy)return;if(!valid(q,a)){toast('Choose an answer to keep going.');return}prune(a);save();busy=true;$('#choices .options')?.classList.add('done');const r=$('#reaction');r.textContent=reaction(q);r.classList.remove('hidden');$('#continue').textContent='Next →';$('#continue').disabled=false;const finish=()=>{clearTimeout(reactionTimer);if(!busy)return;busy=false;const rt=route(a),next=rt[rt.indexOf(q.id)+1]||'result';if(editing){const section=({q1:['q1','city','q2'],q4:['q4','q6'],q5:['q5','q6'],q8:['q8','comfort'],q10:['q10','protect'],q11:['q11','concern'],q12:['q12','trade']})[editRoot]||[q.id];const remaining=section.filter(id=>rt.includes(id));const pos=remaining.indexOf(q.id);if(pos>=0&&pos<remaining.length-1){go(remaining[pos+1]);return}const missing=rt.find(id=>id!=='result'&&!valid(get(id),a));if(missing){go(missing)}else{editing=false;editRoot=null;go('result')}return}if(next==='result'){go(next);return}if(get(next).chapter!==q.chapter){transitionTo=next;go('transition')}else go(next)};$('#continue').onclick=finish;reactionTimer=setTimeout(finish,1500);r.scrollIntoView({block:'nearest',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'})}
+function transition(){const q=get(transitionTo),c=chapters[q.chapter-1];$('#app').innerHTML=`<div class="quiz-shell"><header class="quiz-header"><span></span>${logo(true)}<span class="tiny">${q.chapter+1} / 3</span></header><section class="transition-screen"><div class="inner"><h2 id="heading" tabindex="-1">${c.message}</h2><button class="btn" id="chapterNext">${q.chapter===1?'Tell you about us':'Let’s make it fit'} <span>→</span></button></div></section></div>`;$('#chapterNext').onclick=()=>go(transitionTo)}
+
+function budgetText(p){if(p.fit==='fits')return'Within the budget range you selected. Final timings, tax, and any travel still need confirming.';if(p.fit==='gap')return'The fuller coverage is above your selected budget. Your choices below show how we could prioritize it.';if(p.fit==='confirm')return'Your range starts at $9,000. We’ll confirm your comfortable ceiling before treating this as a fit.';return'A starting option based on your selected hours. Final timings, tax, and travel still need confirming.'}
+function resultIntro(){const m=a.q10||[],c=a.comfort||[];let heading=m.includes('people')?'Your people come first.':m.includes('words')?'Keep the words. Keep the feeling.':m.includes('party')?'A wedding worth reliving.':'A little more you, in every frame.';let text=m.includes('people')?'You want your people and their reactions to be part of the story.':m.includes('words')?'You want to hear the words and feel those moments again.':m.includes('party')?'You want to remember the energy as much as the way it all looked.':'You want memories that feel like the two of you.';if(c.includes('private'))text+=' We’d suggest a quiet space for portraits, away from the crowd.';if(c.includes('short'))text+=' Keep portraits short, with more time back at the celebration.';if(c.includes('direct'))text+=' A little gentle direction can help you settle in.';if(c.includes('candid'))text+=' Leave room for the unscripted moments.';return{heading,text}}
+function eventName(e){return e.id==='e16'&&a.otherEvent?a.otherEvent:e.label}
+function result(){const missing=route(a).find(id=>id!=='result'&&!valid(get(id),a));if(missing){current=missing;renderQuestion(get(missing));return}const p=plan(a),intro=resultIntro(),ev=p.events;let pkg=p.package;let chosen=packages.find(x=>p.ceiling!=null&&x.price<=p.ceiling&&x.hours>=(a.trade==='priority'?duration(a.durations?.[a.priority])?.[1]||0:0));const lowOptions=packages.filter(x=>p.ceiling!=null&&x.price<=p.ceiling);if(a.trade==='all')chosen=lowOptions.at(-1);let full=pkg?`<section class="package"><div><p class="eyebrow">${p.fit==='gap'?'Fuller coverage option':'Your starting coverage option'}</p><h2>${pkg.name}</h2><p>${pkg.hours} total coverage hours · One photographer + one videographer</p><p>${budgetText(p)}</p></div><div class="price">$${pkg.price.toLocaleString()}<small>${esc(p.currency)} · starting package price</small></div></section>`:`<section class="package"><div><p class="eyebrow">A plan to finish together</p><h2>${p.complete?'Let’s build a custom plan.':'Let’s pin down the timings.'}</h2><p>${p.complete?'Your requested coverage is beyond the listed package hours. Fahad can help put together the right scope.':'You don’t need to guess the hours. Here’s your coverage brief, with the details we’ll work through together.'}</p></div></section>`;
+let trade='';if(a.trade){const chosenLabel=labels('trade',a)[0];trade=`<section class="result-card"><h3>Making the budget work</h3><p><strong>${esc(chosenLabel)}</strong></p><p style="margin-top:12px">${a.trade==='all'?(chosen?`A smaller starting option is ${chosen.name}: ${chosen.hours} total hours at $${chosen.price.toLocaleString()} ${p.currency}. These hours would need to be distributed between events; this does not include full coverage of every event.`:'The listed packages start above your budget. We’ll need to discuss whether a smaller scope is possible.'):a.trade==='priority'?`Start with ${esc(a.priorityLabel||'your priority event')}. Other events are outside this smaller starting scope unless coverage is explicitly added. ${chosen?chosen.name+' may be a starting option at $'+chosen.price.toLocaleString()+' '+p.currency+'.':'The current package list does not establish an option within your budget.'}`:a.trade==='full'?'Compare the fuller coverage above with a shorter scope. No events or hours will be silently removed.':'We’ll bring both your coverage wishes and your budget to the conversation, with the trade-offs still open.'}</p><button class="link" data-edit="q12">Adjust budget or priorities →</button></section>`}
+const concerns=(a.q11||[]).filter(x=>x!=='none').map(x=>({comfort:['Feeling comfortable','Your comfort preferences become part of the planning brief. We’ll talk through how much direction and portrait time you’d like.'],people:['Your important people','Bring a list of the people and group photographs that matter. Plan time for those alongside candid moments.'],style:['An editing style you love','Look through full galleries and films together so the finished work feels right for you.'],pricing:['Clear pricing','Confirm included hours, deliverables, taxes, overtime, and any travel costs in the written quote.'],coverage:['Enough coverage','Check each event’s actual timings, venue changes, and overlapping moments before settling the hours.']}[x]));
+$('#app').innerHTML=`${header()}<div class="result"><section class="result-intro"><p class="result-tag">Your wedding plan · All three chapters complete</p><h1 id="heading" tabindex="-1">${intro.heading}</h1><p>${intro.text}</p></section><div class="notice">A starting plan, subject to availability. Timings, tax and travel need confirming.</div>${full}${trade}<div class="result-grid"><div><section class="result-card"><h3>Your requested event coverage.</h3><ul>${ev.length?ev.map(e=>`<li><strong>${esc(eventName(e))}</strong><span>${esc(a.q6?.[e.id]||'Scope to discuss')} · ${esc(a.durations?.[e.id]||'Timing to discuss')}</span></li>`).join(''):'<li>Your events are still to be decided. We’ll work out which moments need coverage together.</li>'}</ul><p style="margin-top:17px">${p.complete?`You selected approximately ${p.hoursMin}–${p.hoursMax} total hours of coverage. These are shared across your selected events, not hours per day.`:'We won’t assign precise total hours until the undecided event timings are clearer.'}</p><button class="link" data-edit="q4">Adjust events and coverage →</button></section><section class="result-card"><h3>The moments to protect.</h3><ul>${(a.protect||[]).length?labels('protect',a).map(x=>`<li>${esc(x)}</li>`).join(''):'<li>We’ll discover your must-have moments together.</li>'}</ul><button class="link" data-edit="q10">Change what matters most →</button></section></div><div><section class="result-card"><h3>Why this feels like you.</h3><ul><li><strong>Your comfort</strong><span>${esc(labels('comfort',a).join(' · ')||labels('q8',a).join(' · '))}</span></li><li><strong>Your priorities</strong><span>${esc(labels('q10',a).join(' · '))}</span></li></ul><button class="link" data-edit="q8">Adjust portrait comfort →</button></section><section class="result-card"><h3>Let’s make these clearer.</h3><ul>${concerns.length?concerns.map(c=>`<li><strong>${c[0]}</strong><span>${c[1]}</span></li>`).join(''):'<li>You’re exploring. We’ll explain the coverage options and what each includes.</li>'}${a.concern?`<li><strong>A little more detail</strong><span>${esc(labels('concern',a).join(' · '))}</span></li>`:''}</ul></section></div></div><section class="result-card"><h3>A few things to work through.</h3><p>${a.q2==='none'?'Your date is still open. ':a.q2==='soon'?'Your wedding is soon; confirming availability is the next practical step. ':''}${a.q5?.days==='Unsure'?'The number of coverage days is still undecided. ':esc(a.q5?.days||'')+'. '}${a.q5?.locations==='Several locations'?'Allow for moving between venues and check whether any events overlap. ':a.q5?.locations==='Undecided'?'Venue locations still need confirming. ':''}${p.travel?'Travel'+(a.city&&a.city!=='Not decided yet'?' to '+esc(a.city):' to your wedding city')+' is quoted separately. ':''}${!p.complete?'Some coverage windows are still unknown. ':''}A single photographer and videographer cannot cover two places at the same time; the schedule needs checking.</p><button class="link" data-edit="q5">Adjust the schedule →</button></section><section class="call-section"><img id="fahadPortrait" class="fahad-portrait" src="${ASSETS.fahad}" alt="Fahad, founder of Chaar Bhai, getting low to capture a wedding photo"><p class="eyebrow">Your plan is a conversation starter.</p><h2>Talk it through with Fahad.</h2><p>Bring the plan, the questions, and anything still undecided. We’ll work out a shortlist of coverage options together.</p><button class="btn" id="book">Talk through my wedding plan <span>→</span></button><div class="result-actions"><button class="btn secondary" id="adjust">Adjust my plan</button><button class="btn secondary" id="download">Save my plan</button><button class="link" id="startAgain">Start over</button></div><button class="link" id="emailplan">Email me this plan</button><p class="fine">We’ll email you within 24 hours to discuss your plan. No appointment is booked yet.</p><p id="quiz-save" role="status" aria-live="polite"></p><button class="link" id="retry-save" hidden>Try saving again</button><p class="fine"><a href="https://www.chaarbhai.com/privacy">Privacy</a></p></section></div>`;
+$('#app').querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>{editing=true;editRoot=b.dataset.edit;go(b.dataset.edit)});$('#adjust').onclick=()=>openAdjust();$('#book').onclick=()=>booking('consultation');$('#emailplan').onclick=()=>booking('email_plan');ensureCapture();$('#retry-save').onclick=()=>saveQuiz(quizCapture);$('#download').onclick=download;$('#startAgain').onclick=restart;}
+let quizCapture=null;
+function planFields(){
+ const p=plan(a),brief={};
+ for(const q of data.filter(q=>q.kind!=='result'&&(!q.parent||q.trigger(a)))){
+ brief[title(q)]=q.kind==='schedule'?Object.values(a.q5||{}).join(', '):q.kind==='coverage'?eventOpts(a).map(e=>eventName(e)+': '+(a.q6?.[e.id]||'To discuss')+', '+(a.durations?.[e.id]||'Timing to discuss')).join('; '):q.kind==='text'?a[q.id]:labels(q.id,a).join(', ');
+ }
+ return {summary:resultIntro().text,package:p.package?.name||'Timings and coverage to discuss',hours:p.complete?p.hoursMax:null,price:p.package?.price||null,currency:p.currency,budget_fit:p.fit,location:labels('q1',a).join(', ')+(a.city?' · '+a.city:''),date_band:labels('q2',a).join(', '),events:eventOpts(a).map(eventName).join(', '),days:a.q5?.days,guests:labels('q7',a).join(', '),budget:labels('q12',a).join(', '),priority:labels('q10',a).join(', '),worry:labels('q11',a).join(', '),coverage_brief:Object.entries(brief).map(([q,v])=>q+'\n'+(v||'To discuss')).join('\n\n'),assumptions:'Starting plan only. Availability, timings, overlap, tax and travel must be confirmed.'};
+}
+function ensureCapture(){
+ const quiz={answers:JSON.parse(JSON.stringify(a)),result:planFields()},key=JSON.stringify(quiz);
+ if(quizCapture?.key===key)return;
+ if(/(^|\.)chaarbhai\.com$/.test(window.location?.hostname||'')){try{window.fbq?.('trackCustom','QuizComplete',{content_name:quiz.result.package});(window.dataLayer=window.dataLayer||[]).push({event:'quiz_quizcomplete',content_name:quiz.result.package})}catch{}}
+ quizCapture={key,quiz,submission_id:window.CBLeadCapture?.uuid(),response:null,promise:null};saveQuiz(quizCapture);
+}
+function saveQuiz(state){
+ const note=$('#quiz-save'),retry=$('#retry-save');if(retry)retry.hidden=true;
+ if(!window.CBLeadCapture){if(note)note.textContent='The inquiry service could not load. Refresh or email us.';return}
+ state.promise=CBLeadCapture.quiz({submission_id:state.submission_id,quiz:state.quiz}).then(r=>{state.response=r;if(note)note.textContent=r.anonymous?'':'Your quiz answers have been added to your inquiry.';return r}).catch(()=>{if(note)note.textContent='Your plan is ready, but we couldn’t save your answers. Try again or send your details.';if(retry)retry.hidden=false;return null});
+}
+let modalFocus;
+function openModal(html){modalFocus=document.activeElement;$('#modal-root').innerHTML=`<div class="modal-backdrop"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="close" aria-label="Close">×</button>${html}</section></div>`;$('#modal-root .close').onclick=closeModal;$('#modal-root .modal-backdrop').onclick=e=>{if(e.target.classList.contains('modal-backdrop'))closeModal()};$('#modal-root').querySelector('button,input,select')?.focus();document.body.style.overflow='hidden'}
+function closeModal(){$('#modal-root').innerHTML='';document.body.style.overflow='';modalFocus?.focus()}
+function openAdjust(){openModal(`<p class="eyebrow">Keep the parts you love.</p><h2 id="modalTitle">What would you like to adjust?</h2><div class="options">${[['q1','Location and date'],['q4','Events and coverage'],['q8','Portrait comfort'],['q10','People and memories'],['q11','Questions and concerns'],['q12','Budget and priorities']].map(([id,l])=>`<button class="option" data-adjust="${id}">${l}<span style="margin-left:auto">→</span></button>`).join('')}</div>`);$('#modal-root').querySelectorAll('[data-adjust]').forEach(b=>b.onclick=()=>{let id=b.dataset.adjust;closeModal();editing=true;editRoot=id;go(id)})}
+function booking(intent='consultation'){
+ ensureCapture();
+ openModal(`<p class="eyebrow">Your wedding plan</p><h2 id="modalTitle">${intent==='consultation'?'Request a planning call.':'Email me this plan.'}</h2><p>Fahad will review your answers and email you within 24 hours. ${intent==='consultation'?'We’ll arrange a free planning call; no appointment is reserved yet.':'Your plan and relevant pricing will come by email.'}</p><form id="bookingForm"><label class="field-label">Your name<input class="field" name="name" autocomplete="name" required maxlength="160"></label><label class="field-label">Email<input name="email" type="email" class="field" autocomplete="email" required maxlength="254"></label><label class="field-label">Phone <span>Optional</span><input name="phone" type="tel" class="field" autocomplete="tel" maxlength="80"></label><button class="btn" type="submit">Send my request <span>→</span></button><p id="contact-status" role="status" aria-live="polite"></p></form><p class="fine">Prefer email? <a href="mailto:info@chaarbhai.com">info@chaarbhai.com</a></p>`);
+ const form=$('#bookingForm'),button=form.querySelector('[type=submit]'),msg=$('#contact-status'),state=quizCapture;
+ let request=null;
+ form.onsubmit=async e=>{e.preventDefault();if(button.disabled)return;
+ if(!window.CBLeadCapture){msg.textContent='The inquiry service could not load. Refresh or email info@chaarbhai.com.';return}
+ button.disabled=true;msg.textContent='Sending…';
+ try{
+  await state.promise;
+  if(!request)request={submission_id:CBLeadCapture.uuid(),quiz:state.quiz,intent,contact:{name:form.elements.name.value.trim(),email:form.elements.email.value.trim(),phone:form.elements.phone.value.trim()},receipt:CBLeadCapture.receipt()};
+  const response=await CBLeadCapture.quiz(request);state.response=response;CBLeadCapture.recordLead(response);
+  msg.textContent='We received your request and quiz answers. Fahad will email you within 24 hours.';button.textContent='Request received';form.querySelectorAll('input').forEach(x=>x.disabled=true);
+ }catch{button.disabled=false;msg.textContent='That didn’t send. Please try again, or email info@chaarbhai.com.'}
+ };
+}
+function download(){let p=plan(a);let text='CHAAR BHAI — YOUR WEDDING STARTING PLAN\nStarting plan. Not a final quote or booking.\n\n';for(const q of data.filter(q=>q.kind!=='result'&&(!q.parent||q.trigger(a)))){let value=q.kind==='schedule'?Object.values(a.q5||{}).join(', '):q.kind==='coverage'?eventOpts(a).map(e=>eventName(e)+': '+(a.q6?.[e.id]||'undecided')+', '+(a.durations?.[e.id]||'hours undecided')).join('\n'):q.kind==='text'?a[q.id]:labels(q.id,a).join(', ');text+=title(q)+'\n'+(value||'To discuss')+'\n\n'}if(p.package)text+='Fuller coverage starting option: '+p.package.name+' — '+p.package.hours+' total hours — $'+p.package.price+' '+p.currency+' (starting package price)\n';text+='\nTravel, tax, availability, event timings and inclusions need confirming.\n';const url=URL.createObjectURL(new Blob([text],{type:'text/plain;charset=utf-8'}));let link=document.createElement('a');link.href=url;link.download='my-wedding-starting-plan.txt';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+function restart(){openModal(`<h2 id="modalTitle">Start a fresh plan?</h2><p>This clears the answers saved in this browser for this quiz.</p><div class="result-actions"><button class="btn" id="confirmReset">Start fresh →</button><button class="btn secondary" id="cancelReset">Keep my plan</button></div>`);$('#cancelReset').onclick=closeModal;$('#confirmReset').onclick=()=>{a={};editing=false;save();closeModal();go('intro')}}
+document.addEventListener('keydown',e=>{const modal=$('#modal-root .modal');if(!modal)return;if(e.key==='Escape'){closeModal();return}if(e.key==='Tab'){const els=[...modal.querySelectorAll('button,input,select,textarea,a[href]')].filter(x=>!x.disabled);const first=els[0],last=els.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
+function render(){const chapter=current==='transition'?get(transitionTo).chapter:current==='intro'||current==='result'?1:get(current).chapter;document.body.className=chapter===0?'tone-cream':chapter===1?'tone-maroon':'tone-brown';if(current==='intro')intro();else if(current==='transition')transition();else if(current==='result'){result();simplifyResult()}else renderQuestion(get(current))}
+function simplifyResult(){const root=$('.result');if(!root)return;const notice=root.querySelector('.notice');if(notice)notice.textContent='Starting plan · Dates, timings, tax and travel to confirm.';root.querySelectorAll('.result-card').forEach(card=>{const h=card.querySelector('h3');if(h&&['Why this feels like you.','Let’s make these clearer.','A few things to work through.'].includes(h.textContent)){const d=document.createElement('details');d.className='result-card result-detail';const sum=document.createElement('summary');sum.textContent=h.textContent;d.appendChild(sum);h.remove();while(card.firstChild)d.appendChild(card.firstChild);card.replaceWith(d)}});root.querySelectorAll('.result-card,.package,.result-work,.call-section').forEach(el=>{el.classList.add('reveal');const ob=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('seen');ob.unobserve(e.target)}}),{threshold:.05});ob.observe(el)});const hdr=$('.header');if(hdr){const old=hdr.querySelector('.tiny');if(old)old.remove();const img=hdr.querySelector('.brand');if(img)img.src=ASSETS.logolight}}
+
+$('#restart').onclick=restart;render();
+
+</script><script>
 /* Meta Pixel: QuizComplete is separate from Lead. Native capture records Lead only after a newly contactable inquiry is saved. */
 (function(){
   if(!/^(www\.|goldenhour\.|links\.|quiz\.)?chaarbhai\.com$/.test(location.hostname))return;
@@ -655,5 +181,4 @@ showIntro();
   try{var q=new URLSearchParams(location.search).get('fbclid');if(q)document.cookie='cb_fbclid='+encodeURIComponent(q)+'; Domain=.chaarbhai.com; Path=/; Max-Age=604800; SameSite=Lax; Secure'}catch(e){}
 })();
 </script>
-</body>
-</html>
+</body></html>
