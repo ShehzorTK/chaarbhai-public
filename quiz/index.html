@@ -192,7 +192,9 @@ main{flex:1;display:flex;flex-direction:column;position:relative}
 .copied{font:italic 400 17px/1 var(--f-display);margin-left:12px;opacity:0;transition:opacity .3s}
 .copied.on{opacity:1}
 .form-wrap{max-width:640px;margin:26px auto 0;text-align:left}
-.form-wrap iframe{display:block;width:1px;min-width:100%;height:1363px;border:0;background:transparent;color-scheme:light}
+.native-contact{display:grid;gap:18px;max-width:440px;margin:28px auto;text-align:left}
+.native-contact label{display:grid;gap:7px;font-size:17px}.native-contact input{width:100%;min-height:48px;border:1px solid currentColor;background:transparent;color:inherit;border-radius:0;padding:10px 12px;font:inherit}
+.native-contact input:focus-visible{outline:2px solid currentColor;outline-offset:3px}.native-contact .btn{width:100%;margin-top:8px}.native-contact [hidden]{display:none}.native-contact small{font-size:14px}.capture-status{font-size:16px;line-height:1.5}.capture-status:empty{display:none}.contact-success{max-width:30em;margin:24px auto}
 .small{font-size:14px;line-height:1.55;color:var(--dim)}
 .alt{margin-top:22px}
 .small a{text-decoration:underline;text-underline-offset:3px}
@@ -233,11 +235,10 @@ noscript p{padding:40px;text-align:center;color:#F2EBDE}
 </div>
 <noscript><p>This quiz needs JavaScript. You can also reach us at info@chaarbhai.com.</p></noscript>
 
+<script src="/quiz/capture.js"></script>
 <script>
 /* ---------- CONFIG ---------- */
 var CONFIG={
-  /* The same Studio Ninja enquiry form as the Golden Hour landing page. It redirects to /thanks, where the Meta Lead event fires. */
-  formUrl:'https://app.studioninja.co/contactform/parser/0a800fc8-7cc8-186f-817c-e0d40ca12ec6/0a800fc8-86e5-1a1e-8186-ee1ec0214c29',
   fallbackEmail:'info@chaarbhai.com',
   packagesUrl:'https://chaarbhai.com/prices',
   advanceMs:1500
@@ -557,21 +558,28 @@ function showResult(){
     '<h3>Talk it through with Fahad</h3><p class="lead" style="max-width:26em;margin-left:auto;margin-right:auto">A free planning call. No pressure, no pitch deck. We’ll fit this plan to your actual weddings.</p>'+
     '<button class="btn" type="button" id="book">Book a free planning call with Fahad <svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg></button>'+
     (A.decide==='parents'?'<p class="bring">Your parents are welcome on the call too.</p>':'')+
+    '<button class="lk alt-lk" type="button" id="emailplan">Email me this plan</button><p class="capture-status" id="quiz-save" role="status" aria-live="polite"></p><button class="lk" type="button" id="retry-save" hidden>Try saving again</button>'+
     '<a class="lk alt-lk" data-t="See the full packages" href="'+CONFIG.packagesUrl+'" target="_blank" rel="noopener"><span>See the full packages</span></a>'+
     '<p class="fine2"><button class="lk" type="button" id="redo" data-t="Start over"><span>Start over</span></button></p></div></section>'+
-  '<section class="g-aub book" id="bookform" hidden aria-labelledby="bh"><div class="in"><h3 id="bh">Pick a time with Fahad</h3><p class="lead">Fill in the form and we’ll set up your free planning call.</p>'+
-    '<div class="plan"><b>'+R.pkg.name+' · '+fmt(R.pkg.price)+' '+cur+'</b><span>'+evs.length+(evs.length===1?' event':' events')+', '+(optOf('guests')?optOf('guests').l.toLowerCase()+' guests':'')+'</span>'+
-    '<button class="lk u" type="button" id="copyplan" data-t="Copy my plan"><span>Copy my plan</span></button><em class="copied" id="copied" aria-live="polite">Copied</em>'+
-    '<span>Paste it into the message box so Fahad starts with your answers.</span></div>'+
-    '<div class="form-wrap"><iframe id="sn-form-quiz" title="Enquiry form" data-src="'+CONFIG.formUrl+'" allowfullscreen></iframe></div>'+
-    '<p class="small alt">Form not loading? <a href="'+CONFIG.formUrl+'" target="_blank" rel="noopener">Open it in a new tab</a>, message us on Instagram <a href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">@chaarbhai</a>, or email <a href="mailto:'+CONFIG.fallbackEmail+'">'+CONFIG.fallbackEmail+'</a>.</p></div></section>'+
+  '<section class="g-aub book" id="bookform" hidden aria-labelledby="bh"><div class="in"><h3 id="bh">Request a planning call</h3><p class="lead" id="contact-expectation">Send your details and I’ll email you within 24 hours to arrange a free planning call. Your quiz answers come with your request.</p>'+
+    '<form class="native-contact" id="quiz-contact">'+
+    '<label data-identity>Your name<input name="name" autocomplete="name" required></label>'+
+    '<label data-identity>Your email<input name="email" type="email" autocomplete="email" inputmode="email" required></label>'+
+    '<label data-identity>Phone <small>(optional)</small><input name="phone" type="tel" autocomplete="tel" inputmode="tel"></label>'+
+    '<button class="btn" type="submit" id="contact-send">Request a planning call</button>'+
+    '<p class="capture-status" id="contact-status" role="status" aria-live="polite"></p></form>'+
+    '<p class="small alt">Prefer email? <a href="mailto:'+CONFIG.fallbackEmail+'">'+CONFIG.fallbackEmail+'</a>.</p></div></section>'+
   '<p class="cookie-note g-aub">We use cookies to measure our ads. <a href="https://chaarbhai.com/privacy">Privacy</a></p>'+
   '<div class="sticky" id="sticky"><div><div class="p1">'+R.pkg.name+' · '+fmt(R.pkg.price)+'</div><div class="p2">Free call with Fahad</div></div><button class="btn" type="button" id="book2">Book a call</button></div>';
   main.appendChild(s);
   track('ViewContent',{content_name:R.pkg.name,value:R.pkg.price,currency:cur,lead_tag:R.tag});
   track('QuizComplete',{content_name:R.pkg.name,value:R.pkg.price,currency:cur,lead_tag:R.tag},true);
-  var book=function(){bookCall(R)};
+  quizCapture={submission_id:window.CBLeadCapture?CBLeadCapture.uuid():'',quiz:{answers:JSON.parse(JSON.stringify(A)),result:planFields(R)},response:null,promise:null};
+  saveQuiz(quizCapture);
+  var book=function(){bookCall(R,'consultation')};
   $('#book').onclick=book;$('#book2').onclick=book;
+  $('#emailplan').onclick=function(){bookCall(R,'email_plan')};
+  $('#retry-save').onclick=function(){saveQuiz(quizCapture)};
   $('#redo').onclick=function(){A={};prog.innerHTML='';showIntro()};
   /* reveal + sticky bar */
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('seen');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.05});
@@ -589,38 +597,56 @@ function planFields(R){
   return{lead_tag:R.tag,package:R.pkg.name,hours:R.pkg.hours,price:R.pkg.price,currency:R.usd?'USD':'CAD',events:ev,days:A.days,guests:g('guests'),
     location:g('where'),date_band:g('when'),priority:g('matters'),worry:g('worry'),budget:g('budget'),deciders:g('decide'),travel:R.travel?'yes':'no'};
 }
-var formOn=false;
-function loadForm(){
-  var fr=document.getElementById('sn-form-quiz');
-  if(formOn||!fr)return;formOn=true;
-  var link=document.createElement('link');link.rel='preconnect';link.href='https://app.studioninja.co';link.crossOrigin='';document.head.appendChild(link);
-  fr.src=fr.getAttribute('data-src');
-  var sc=document.createElement('script');sc.async=true;
-  sc.src='https://app.studioninja.co/client-assets/form-render/assets/scripts/iframeResizer.js';
-  sc.onload=function(){if(window.iFrameResize)iFrameResize({log:false,minHeight:320},fr)};
-  document.head.appendChild(sc);
+var quizCapture=null;
+function saveQuiz(state){
+  var note=$('#quiz-save'),retry=$('#retry-save');
+  if(!window.CBLeadCapture){if(note)note.textContent='The inquiry service could not load. Please refresh or email us.';return Promise.resolve(null)}
+  if(retry)retry.hidden=true;
+  state.promise=CBLeadCapture.quiz({submission_id:state.submission_id,quiz:state.quiz}).then(function(r){
+    state.response=r;if(note)note.textContent=r.anonymous?'':'Your quiz answers have been added to your inquiry.';return r;
+  }).catch(function(e){if(note)note.textContent='Your plan is ready, but we couldn’t save your answers. Try again or send your details below.';if(retry)retry.hidden=false;return null});
+  return state.promise;
 }
-function bookCall(R){
+function bookCall(R,intent){
   var bf=$('#bookform');if(!bf)return;
-  track('BookCallClick',{content_name:R.pkg.name,lead_tag:R.tag},true);
-  /* Marks this visitor as a quiz lead for 2 hours, so /thanks (Studio Ninja's redirect) counts the Lead. */
-  try{if(/(^|\.)chaarbhai\.com$/.test(location.hostname))document.cookie='cb_gh=1; Domain=.chaarbhai.com; Path=/; Max-Age=7200; SameSite=Lax; Secure'}catch(e){}
-  bf.hidden=false;loadForm();
-  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-  bf.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
-  var cp=$('#copyplan');
-  if(cp&&!cp._on){cp._on=true;cp.onclick=function(){
-    var f=planFields(R),t='Quiz plan: '+f.package+', '+f.hours+' hours, '+fmt(f.price)+' '+f.currency+'\nEvents: '+f.events+'\nDays: '+f.days+'\nGuests: '+f.guests+'\nWhere: '+f.location+'\nWhen: '+f.date_band+'\nMost important: '+f.priority+'\nBiggest worry: '+f.worry+'\nBudget: '+f.budget+(f.deciders?'\nDeciding: '+f.deciders:'');
-    var done=function(){var c=$('#copied');c.classList.add('on');setTimeout(function(){c.classList.remove('on')},1800)};
-    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(done,function(){fallback(t,done)});else fallback(t,done);
-  }}
+  if(intent==='consultation')track('BookCallClick',{content_name:R.pkg.name,lead_tag:R.tag},true);
+  bf.hidden=false;
+  var title=$('#bh'),expectation=$('#contact-expectation'),button=$('#contact-send'),form=$('#quiz-contact');
+  title.textContent=intent==='consultation'?'Request a planning call':'Email me this plan';
+  expectation.textContent=intent==='consultation'?'I’ll review your quiz answers and email you within 24 hours to arrange a free planning call.':'I’ll review your quiz answers and email you your plan and relevant pricing within 24 hours.';
+  button.textContent=intent==='consultation'?'Request a planning call':'Send my request';
+  if(!window.CBLeadCapture){$('#contact-status').textContent='The inquiry service could not load. Please refresh or email us.';return}
+  if(form.dataset.sending==='1')return;
+  button.disabled=false;$('#contact-status').textContent='';form.querySelectorAll('input').forEach(function(input){input.disabled=false});
+  var state=quizCapture,submissionId=CBLeadCapture.uuid();
+  function identityMode(){
+    var known=state.response&&!state.response.anonymous;
+    form.querySelectorAll('[data-identity]').forEach(function(label){label.hidden=known;var input=label.querySelector('input');input.required=!known&&input.name!=='phone'});
+    return known;
+  }
+  identityMode();if(state.promise)state.promise.then(identityMode);
+  form.onsubmit=function(e){
+    e.preventDefault();if(button.disabled)return;
+    var msg=$('#contact-status'),known=identityMode(),field=function(n){return form.elements.namedItem(n).value.trim()};
+    if(!known&&(!field('name')||!/^\S+@\S+\.\S+$/.test(field('email')))){msg.textContent='Please add your name and a valid email address.';return}
+    button.disabled=true;form.dataset.sending='1';msg.textContent='Sending…';
+    Promise.resolve(state.promise).then(function(){
+      var payload={submission_id:submissionId,quiz:state.quiz,intent:intent};
+      if(!(state.response&&!state.response.anonymous))payload.contact={name:field('name'),email:field('email'),phone:field('phone')};
+      return CBLeadCapture.quiz(payload);
+    }).then(function(r){
+      state.response=r;delete form.dataset.sending;CBLeadCapture.recordLead(r);
+      form.querySelectorAll('input').forEach(function(input){input.disabled=true});
+      msg.textContent='We received your request and quiz answers. Fahad will email you within 24 hours.';button.textContent='Request received';
+    }).catch(function(){delete form.dataset.sending;button.disabled=false;msg.textContent='That didn’t send. Please try again, or email info@chaarbhai.com.'});
+  };
+  bf.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'});
 }
-function fallback(t,done){var ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done()}catch(e){}ta.remove()}
 
 showIntro();
 </script>
 <script>
-/* Meta Pixel (ad campaigns), same pixel as the Golden Hour landing page. Live hosts only. The Lead fires on /thanks, after Studio Ninja's redirect, only when cb_gh is set (see bookCall). */
+/* Meta Pixel: QuizComplete is separate from Lead. Native capture records Lead only after a newly contactable inquiry is saved. */
 (function(){
   if(!/^(www\.|goldenhour\.|links\.|quiz\.)?chaarbhai\.com$/.test(location.hostname))return;
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');

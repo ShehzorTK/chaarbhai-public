@@ -348,14 +348,14 @@ ul.r li::before{content:"";position:absolute;left:0;top:25px;width:10px;height:1
 </script>
 <script>
 /* Meta Pixel (ad campaigns). No consent gate on this landing page by decision; the footer carries a cookie notice. Live hosts only.
-   Lead fires on /thanks (Studio Ninja redirects every enquiry there), and only when the cb_gh cookie set below is present. */
+   Lead fires only after the native inquiry endpoint confirms a successful save. */
 (function(){
   if(!/^(www\.|goldenhour\.|links\.)?chaarbhai\.com$/.test(location.hostname))return;
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init','2227226818091802');
   fbq('track','PageView');
   /* Marks this visitor as a landing-page lead for 2 hours, so /thanks (a different subdomain) counts the Lead. Other pages with the form clear it. */
-  document.cookie='cb_gh=1; Domain=.chaarbhai.com; Path=/; Max-Age=7200; SameSite=Lax; Secure';
+  document.cookie='cb_gh=; Domain=.chaarbhai.com; Path=/; Max-Age=0; SameSite=Lax; Secure';
   document.cookie='cb_q=1; Domain=.chaarbhai.com; Path=/; Max-Age=7200; SameSite=Lax; Secure';   /* shows the quiz unlock on /thanks (this page only) */
   try{var q=new URLSearchParams(location.search).get('fbclid');if(q)document.cookie='cb_fbclid='+encodeURIComponent(q)+'; Domain=.chaarbhai.com; Path=/; Max-Age=604800; SameSite=Lax; Secure'}catch(e){}   /* for the server-side Lead on /thanks */
   document.addEventListener('click',function(e){
@@ -748,22 +748,27 @@ main>section:not(.dhero){position:relative;z-index:1}
 
 
 
+<script src="/quiz/capture.js"></script>
 <script>
-/* Native 3-field form. Shown instead of the Studio Ninja form (kept in the page, hidden). Not wired up yet: until NATIVE_FORM_ENDPOINT is set to a
-   working address that creates the lead, submitting only shows a preview note. On success it goes to /thanks, so the Lead event and the quiz unlock work as before. */
+/* Native inquiry saves before success, acknowledgment and conversion tracking. */
 (function(){
-  var NATIVE_FORM_ENDPOINT='';
   var f=document.getElementById('nf');if(!f)return;
   f.hidden=false;
-  var msg=f.querySelector('.nf-msg'),btn=f.querySelector('button');
+  var capture=window.CBLeadCapture,msg=f.querySelector('.nf-msg'),btn=f.querySelector('button'),submissionId=capture&&capture.uuid();
   f.addEventListener('submit',function(e){
-    e.preventDefault();
-    if(f.website.value)return;
-    if(!NATIVE_FORM_ENDPOINT){msg.textContent='Preview only: this form isn’t connected yet, so nothing was sent. Please email info@chaarbhai.com.';return}
-    if(!f.name.value.trim()||!/^\S+@\S+\.\S+$/.test(f.email.value.trim())||!f.date.value){msg.textContent='Please add your name, email and wedding date.';return}
+    e.preventDefault();if(btn.disabled)return;
+    var field=function(n){return f.elements.namedItem(n).value.trim()};
+    if(field('website'))return;
+    if(!capture){msg.textContent='The form could not load. Please refresh or email info@chaarbhai.com.';return}
+    if(!field('name')||!/^\S+@\S+\.\S+$/.test(field('email'))||!field('date')){msg.textContent='Please add your name, email and wedding date.';return}
     btn.disabled=true;msg.textContent='Sending…';
-    fetch(NATIVE_FORM_ENDPOINT,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({name:f.name.value.trim(),email:f.email.value.trim(),phone:f.phone.value.trim(),date:f.date.value,source:'golden_hour',page:location.href})})
-      .then(function(r){if(!r.ok)throw 0;location.href='https://www.chaarbhai.com/thanks'})
+    capture.shortForm({submission_id:submissionId,name:field('name'),email:field('email'),phone:field('phone'),date:field('date'),website:field('website')})
+      .then(function(r){
+        capture.recordLead(r);
+        capture.writeCookie('cb_native_received','short_form',600);
+        capture.writeCookie('cb_gh','',0);capture.writeCookie('cb_ga_enquiry','',0);
+        location.href='https://www.chaarbhai.com/thanks#native';
+      })
       .catch(function(){btn.disabled=false;msg.textContent='That didn’t send. Please try again, or email info@chaarbhai.com.'});
   });
 })();

@@ -40,6 +40,7 @@ h1{font:500 clamp(40px,9vw,64px)/1.05 var(--f-display);letter-spacing:.02em;text
    Golden Hour landing page counts for the ads: it sets the cb_gh cookie (on .chaarbhai.com, 2 hours), every other page that
    shows the form clears it. No cookie, no Meta events. The cookie is cleared after the Lead so a refresh can't count twice. */
 (function(){
+  if(location.hash==='#native')return;
   var live=/^(www\.|goldenhour\.|links\.)?chaarbhai\.com$/.test(location.hostname);
   var ck=function(n){var m=document.cookie.match('(?:^|; )'+n+'=([^;]*)');return m?m[1]:undefined};
   if(!live||ck('cb_gh')!=='1')return;
@@ -59,6 +60,7 @@ h1{font:500 clamp(40px,9vw,64px)/1.05 var(--f-display);letter-spacing:.02em;text
 <script>
 /* Studio Ninja's successful-submit redirect. A short-lived marker prevents direct visits and reloads from counting as leads. */
 (function(){
+  if(location.hash==='#native')return;
   if(!/^(www\.|goldenhour\.|links\.)?chaarbhai\.com$/.test(location.hostname))return;
   var m=document.cookie.match('(?:^|; )cb_ga_enquiry=([^;]*)');
   if(!m||! /^(golden_hour|golden_hour_[ab]|main_site)$/.test(m[1]))return;
@@ -81,7 +83,7 @@ h1{font:500 clamp(40px,9vw,64px)/1.05 var(--f-display);letter-spacing:.02em;text
   <img class="logo" src="img/logo.png" alt="Chaar Bhai" width="320" height="156">
   <p class="eyebrow">Enquiry received</p>
   <h1>Thank you</h1>
-  <p class="lead">We have your details. We will message you within a day or two to set up your consult.</p>
+  <p class="lead" id="receipt-copy">We have your details. We will message you within a day or two to set up your consult.</p>
   <section class="next" id="quiz-next" hidden aria-labelledby="qh">
     <h2 id="qh">While you wait: your free planning quiz</h2>
     <p class="lead" style="margin-top:12px">Two minutes of taps shows what to expect for your kind of wedding, including a rough price. It helps me prepare for my first message to you.</p>
@@ -89,7 +91,7 @@ h1{font:500 clamp(40px,9vw,64px)/1.05 var(--f-display);letter-spacing:.02em;text
   </section>
   <section class="next" aria-labelledby="nh">
     <h2 id="nh">What happens next</h2>
-    <ol>
+    <ol id="next-steps">
       <li>We check that your date is free.</li>
       <li>We message you with the details and a time to talk through your day.</li>
       <li>A deposit holds your date, and we plan the rest together.</li>
@@ -101,5 +103,17 @@ h1{font:500 clamp(40px,9vw,64px)/1.05 var(--f-display);letter-spacing:.02em;text
   </div>
   <p class="small">Need us sooner? Email <a href="mailto:info@chaarbhai.com">info@chaarbhai.com</a>.</p>
 </main>
+<script src="/quiz/capture.js"></script>
+<script>
+(function(){
+  if(location.hash!=='#native')return;
+  var capture=window.CBLeadCapture;
+  if(!capture||!capture.receipt())return;
+  capture.writeCookie('cb_native_received','',0);
+  document.getElementById('receipt-copy').textContent='We have your inquiry. I’ll review your details and email you about availability and pricing within 24 hours.';
+  document.getElementById('next-steps').innerHTML='<li>Check your email for an acknowledgment of your inquiry.</li><li>I’ll review your date and send availability and pricing within 24 hours.</li><li>Your date is reserved only after we confirm the booking and deposit.</li>';
+  document.getElementById('quiz-next').hidden=false;
+})();
+</script>
 </body>
 </html>
