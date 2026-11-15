@@ -502,6 +502,7 @@ dialog.hl::backdrop{background:#140E08}
 .nf[hidden]{display:none}
 .nf label{display:grid;gap:6px;font-size:14px;color:var(--dim)}
 .nf .opt{opacity:.8}
+.nf .ph-help{font:400 13px/1.4 var(--f-text);letter-spacing:0;text-transform:none;color:#F2EBDE;opacity:.85}
 .nf input{font:16px/1.3 var(--f-text);min-height:50px;padding:0 14px;border:1px solid var(--line-2);border-radius:0;background:#F2EBDE;color:#2A1D0F;-webkit-appearance:none;appearance:none;width:100%}
 .nf input:focus-visible{outline:2px solid #F2EBDE;outline-offset:2px}
 .nf .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
@@ -712,7 +713,7 @@ main>section:not(.dhero){position:relative;z-index:1}
       <form class="nf" id="nf" hidden novalidate>
       <label>Your name<input name="name" type="text" autocomplete="name" required></label>
       <label>Your email<input name="email" type="email" inputmode="email" autocomplete="email" required></label>
-      <label><span>Phone <span class="opt">(optional)</span></span><input name="phone" type="tel" inputmode="tel" autocomplete="tel"></label>
+      <label><span>Phone <span class="opt" id="ph-opt">(optional)</span></span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" aria-describedby="ph-help"><span class="ph-help" id="ph-help" hidden>Add a phone number so Fahad can reach you in case email doesn’t.</span></label>
       <label>Wedding date<input name="date" type="date" required></label>
       <input class="hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="btn" type="submit">Check availability</button>
@@ -754,6 +755,13 @@ main>section:not(.dhero){position:relative;z-index:1}
 (function(){
   var f=document.getElementById('nf');if(!f)return;
   f.hidden=false;
+  /* Phone is optional only for providers known to deliver our reply reliably (list mirrors the server rule). */
+  var OPTIONAL_PHONE_DOMAINS=['gmail.com','googlemail.com','proton.me','protonmail.com','pm.me','zoho.com','zohomail.*','gmx.*','icloud.com','me.com','mac.com'];
+  function phoneRequired(e){e=String(e||'').trim().toLowerCase();var at=e.lastIndexOf('@');if(at<1)return false;var d=e.slice(at+1);if(d.indexOf('.')<1)return false;return !OPTIONAL_PHONE_DOMAINS.some(function(x){return x.slice(-2)==='.*'?(d.indexOf(x.slice(0,-1))===0&&/^[a-z]{2,10}$/.test(d.slice(x.length-1))):d===x})}
+  function plausiblePhone(v){v=String(v||'').trim();var n=v.replace(/\D/g,'').length;return /^[\d\s()+.\-]+$/.test(v)&&n>=7&&n<=15}
+  var emailIn=f.elements.namedItem('email'),phoneIn=f.elements.namedItem('phone'),phOpt=document.getElementById('ph-opt'),phHelp=document.getElementById('ph-help');
+  function syncPhone(){var req=phoneRequired(emailIn.value);phoneIn.required=req;phOpt.hidden=req;phHelp.hidden=!req}
+  emailIn.addEventListener('input',syncPhone);emailIn.addEventListener('change',syncPhone);syncPhone();
   var capture=window.CBLeadCapture,msg=f.querySelector('.nf-msg'),btn=f.querySelector('button'),submissionId=capture&&capture.uuid();
   f.addEventListener('submit',function(e){
     e.preventDefault();if(btn.disabled)return;
@@ -761,6 +769,7 @@ main>section:not(.dhero){position:relative;z-index:1}
     if(field('website'))return;
     if(!capture){msg.textContent='The form could not load. Please refresh or email info@chaarbhai.com.';return}
     if(!field('name')||!/^\S+@\S+\.\S+$/.test(field('email'))||!field('date')){msg.textContent='Please add your name, email and wedding date.';return}
+    if(phoneRequired(field('email'))&&!plausiblePhone(field('phone'))){msg.textContent='Please add a phone number so Fahad can reach you in case email doesn’t.';phoneIn.focus();return}
     btn.disabled=true;msg.textContent='Sending…';
     capture.shortForm({submission_id:submissionId,name:field('name'),email:field('email'),phone:field('phone'),date:field('date'),website:field('website')})
       .then(function(r){
