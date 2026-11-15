@@ -138,7 +138,7 @@ h2.q{font-size:clamp(32px,8.4vw,48px);line-height:1.1;letter-spacing:-.025em;tex
 .modal .btn{background:#34232a;color:#f2ebde;border:1px solid #34232a;width:100%;min-height:54px;margin-top:6px}.modal .btn:disabled{opacity:.55}
 .close{position:absolute;right:14px;top:10px;background:none;border:0;font-size:25px;color:#34232a;width:44px;height:44px}
 </style></head><body class="t0"><div class="shell"><main id="app"></main></div><div class="toast" id="toast" hidden></div><div id="modal-root"></div><noscript>This quiz needs JavaScript enabled. Or email info@chaarbhai.com.</noscript>
-<script src="/quiz/capture.js"></script>
+<script src="/quiz/capture.js?v=native-inquiry-1"></script>
 <script>
 const $=s=>document.querySelector(s),app=$('#app');
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -367,7 +367,7 @@ document.addEventListener('keydown',e=>{const modal=$('#modal-root .modal');if(!
 intro();
 </script>
 <script>
-/* Meta Pixel: QuizComplete is separate from Lead. Native capture records Lead only after a newly contactable inquiry is saved. */
+/* Meta Pixel: QuizComplete is separate from NativeInquiry. Native capture records NativeInquiry only after a newly contactable inquiry is saved; Lead is reserved for Studio Ninja. */
 (function(){
   if(!/^(www\.|goldenhour\.|links\.|quiz\.)?chaarbhai\.com$/.test(location.hostname))return;
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');

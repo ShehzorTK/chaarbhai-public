@@ -20,9 +20,10 @@
     var key='cb-counted-'+r.inquiry_id;
     try{if(w.sessionStorage.getItem(key))return;w.sessionStorage.setItem(key,'1')}catch(e){}
     var id='lead-'+r.inquiry_id;
-    try{if(w.fbq)w.fbq('track','Lead',{content_name:'Wedding inquiry'},{eventID:id})}catch(e){}
+    // Lead is reserved for the Studio Ninja /thanks flow used by Golden Hour ads.
+    try{if(w.fbq)w.fbq('trackCustom','NativeInquiry',{content_name:'Native wedding inquiry'},{eventID:id})}catch(e){}
     try{if(w.gtag)w.gtag('event','generate_lead',{method:'native_form',event_id:id});else(w.dataLayer=w.dataLayer||[]).push({event:'generate_lead',method:'native_form',event_id:id})}catch(e){}
-    try{w.fetch('https://capi.chaarbhai.com/lead',{method:'POST',keepalive:true,headers:{'content-type':'application/json'},body:JSON.stringify({event_id:id,fbp:cookie('_fbp'),fbc:cookie('_fbc'),url:w.location.origin+w.location.pathname})}).catch(function(){})}catch(e){}
+    try{w.fetch('https://capi.chaarbhai.com/native-inquiry',{method:'POST',keepalive:true,headers:{'content-type':'application/json'},body:JSON.stringify({event_id:id,fbp:cookie('_fbp'),fbc:cookie('_fbc'),url:w.location.origin+w.location.pathname})}).catch(function(){})}catch(e){}
   }
   w.CBLeadCapture={uuid:uuid,receipt:function(){return cookie('cb_lead_receipt')},remember:remember,cookie:cookie,writeCookie:write,
     shortForm:function(payload){var p=Object.assign({},payload);if(!p.receipt)p.receipt=cookie('cb_lead_receipt');return post('short-form',p)},
