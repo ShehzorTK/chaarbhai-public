@@ -6,33 +6,28 @@
 <meta name="robots" content="noindex">
 <title>Thank you | Chaar Bhai</title>
 <style>
-@font-face{font-family:'Cormorant Garamond';font-weight:500;font-style:normal;font-display:swap;src:url(fonts/cormorant-garamond.woff2) format('woff2')}
-@font-face{font-family:'EB Garamond';font-weight:400;font-style:normal;font-display:swap;src:url(fonts/eb-garamond.woff2) format('woff2')}
-@font-face{font-family:'EB Garamond';font-weight:400;font-style:italic;font-display:swap;src:url(fonts/eb-garamond-italic.woff2) format('woff2')}
-:root{--ink:#2B2530;--ink-2:#362F3C;--paper:#F2EBDE;--dim:rgba(242,235,222,.86);--line:rgba(242,235,222,.26);--f-display:'Cormorant Garamond','Cochin',Georgia,serif;--f-serif:'EB Garamond','Sirenne',Georgia,serif;
---grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n' x='0' y='0'><feTurbulence type='fractalNoise' baseFrequency='.8 .55' numOctaves='4' seed='4'/><feColorMatrix values='0 0 0 0 .16  0 0 0 0 .11  0 0 0 0 .06  0 0 0 .4 -.14'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
-*{box-sizing:border-box}
-html,body{margin:0;min-height:100%}
-body{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--ink) var(--grain);background-size:auto,400px;color:var(--paper);font:400 18px/1.6 var(--f-serif);font-variant-numeric:lining-nums;letter-spacing:.025em;-webkit-font-smoothing:antialiased;padding:clamp(32px,6vw,72px) 24px calc(32px + env(safe-area-inset-bottom));text-align:center}
+@font-face{font-family:'Fraunces';font-weight:400 700;font-style:normal;font-display:swap;src:url(fonts/fraunces.woff2) format('woff2')}
+@font-face{font-family:'Fraunces';font-weight:400 700;font-style:italic;font-display:swap;src:url(fonts/fraunces-italic.woff2) format('woff2')}
+@font-face{font-family:'Instrument Sans';font-weight:400 600;font-style:normal;font-display:swap;src:url(fonts/instrument-sans.woff2) format('woff2')}
+:root{--ink:#2A1D0F;--paper:#F2EBDE;--dim:#D2B6A1;--line:rgba(210,182,161,.28);--card:#34261A;--f-display:'Fraunces','Iowan Old Style',Georgia,serif;--f-text:'Instrument Sans',system-ui,-apple-system,sans-serif}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%}
+body{min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--ink);color:var(--paper);font:400 17px/1.55 var(--f-text);text-align:center;padding:clamp(28px,6vw,64px) 20px}
 main{width:100%;max-width:34em;animation:in .6s cubic-bezier(.22,1,.36,1) both}
 @keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){main{animation:none}}
-.logo{width:132px;height:auto;margin:0 auto clamp(36px,7vw,64px)}
-.eyebrow{font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin:0 0 18px}
-h1{font:500 clamp(40px,9vw,64px)/1.05 var(--f-display);letter-spacing:.02em;text-transform:uppercase;margin:0;text-wrap:balance}
-.lead{margin:22px auto 0;color:var(--dim);font-size:clamp(18px,2.6vw,20px);line-height:1.55;max-width:28em;text-wrap:pretty}
-.next{margin:clamp(32px,6vw,48px) auto 0;padding:clamp(22px,4vw,32px);border:1px solid var(--line);background:var(--ink-2);text-align:left}
-.next h2{font:500 14px/1.3 var(--f-serif);letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px;color:var(--paper)}
-.next ol{margin:0;padding:0;list-style:none;counter-reset:s}
-.next li{counter-increment:s;display:flex;gap:14px;padding:10px 0;border-top:1px solid var(--line);color:var(--dim);font-size:17px;line-height:1.5}
-.next li:first-child{border-top:0;padding-top:0}.next li:last-child{padding-bottom:0}
-.next li::before{content:"0" counter(s);font:500 18px/1.3 var(--f-display);color:var(--paper);flex:none;width:1.6em}
-.links{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 14px;margin-top:clamp(28px,5vw,40px)}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 26px;background:var(--paper);color:var(--ink);font:400 15px/1 var(--f-serif);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:background-color .2s ease}
-.btn.ghost{background:transparent;color:var(--paper);border:1px solid var(--line)}
-@media (hover:hover){.btn:hover{background:#fff}.btn.ghost:hover{background:rgba(242,235,222,.08)}}
+.logo{width:120px;height:auto;margin:0 auto clamp(32px,6vw,52px)}
+h1{font:500 clamp(34px,8vw,56px)/1.05 var(--f-display);letter-spacing:-.01em;margin:0;text-wrap:balance}
+.lead{margin:20px auto 0;color:var(--dim);font:italic 400 clamp(18px,2.6vw,21px)/1.5 var(--f-display);max-width:28em;text-wrap:pretty}
+.mail-note{margin:28px auto 0;background:var(--card);border:1px solid var(--line);padding:16px 20px;color:var(--paper);font:400 16px/1.5 var(--f-text);max-width:28em;text-wrap:pretty}
+.next{margin:clamp(32px,6vw,48px) auto 0;padding:clamp(22px,4vw,30px) 0 0;border-top:1px solid var(--line)}
+.next h2{font:500 clamp(24px,3vw,30px)/1.2 var(--f-display);margin:0}
+.next p{margin:12px auto 0;color:var(--dim);font-size:16px;line-height:1.5;max-width:28em;text-wrap:pretty}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 30px;background:#5A6430;color:var(--paper);font:600 16px/1.3 var(--f-text);text-decoration:none;margin-top:22px}
+.links{display:flex;flex-wrap:wrap;justify-content:center;gap:0 14px}
+.btn.ghost{background:transparent;border:1px solid var(--line)}
+@media (hover:hover){.btn:hover{background:#4A5327}.btn.ghost:hover{background:rgba(242,235,222,.08)}}
 .btn:focus-visible{outline:2px solid var(--paper);outline-offset:3px}
-.small{margin-top:28px;font-size:14px;color:var(--dim)}
+.small{margin-top:32px;font-size:14px;color:var(--dim)}
 .small a{color:inherit;text-underline-offset:2px}
 </style>
 <script>
@@ -81,27 +76,23 @@ h1{font:500 clamp(40px,9vw,64px)/1.05 var(--f-display);letter-spacing:.02em;text
 <body>
 <main>
   <img class="logo" src="img/logo.png" alt="Chaar Bhai" width="320" height="156">
-  <p class="eyebrow">Enquiry received</p>
-  <h1>Thank you</h1>
-  <p class="lead" id="receipt-copy">We have your details. We will message you within a day or two to set up your consult.</p>
+  <h1>Thank you for sharing your details.</h1>
+  <p class="lead" id="receipt-copy">I’ll personally check availability and reply within 24 hours with pricing. No pressure.</p>
+  <p class="mail-note">You should have an acknowledgement email from me already. If it isn’t in your inbox, please check your spam and junk folders too.</p>
   <section class="next" id="quiz-next" hidden aria-labelledby="qh">
-    <h2 id="qh">While you wait: your free planning quiz</h2>
-    <p class="lead" style="margin-top:12px">Two minutes of taps shows what to expect for your kind of wedding, including a rough price. It helps me prepare for my first message to you.</p>
+    <h2 id="qh">While you wait: the free 2‑minute planning quiz</h2>
+    <p>It shows what to expect for your kind of wedding, including a rough price, and helps me prepare my first message to you.</p>
     <a class="btn" href="/quiz/">Take the quiz</a>
   </section>
-  <section class="next" aria-labelledby="nh">
-    <h2 id="nh">What happens next</h2>
-    <ol id="next-steps">
-      <li>We check that your date is free.</li>
-      <li>We message you with the details and a time to talk through your day.</li>
-      <li>A deposit holds your date, and we plan the rest together.</li>
-    </ol>
+  <section class="next" aria-labelledby="ig">
+    <h2 id="ig">Want a look at our work?</h2>
+    <p>Browse our photos and films, or follow along on Instagram while you wait.</p>
+    <div class="links">
+      <a class="btn ghost" href="https://www.chaarbhai.com/work">See our work</a>
+      <a class="btn ghost" href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">Instagram</a>
+    </div>
   </section>
-  <div class="links">
-    <a class="btn" href="https://www.chaarbhai.com/work">See our work</a>
-    <a class="btn ghost" href="https://instagram.com/chaarbhai" target="_blank" rel="noopener">Instagram</a>
-  </div>
-  <p class="small">Need us sooner? Email <a href="mailto:info@chaarbhai.com">info@chaarbhai.com</a>.</p>
+  <p class="small">Need me sooner? Email <a href="mailto:info@chaarbhai.com">info@chaarbhai.com</a>.</p>
 </main>
 <script src="/quiz/capture.js"></script>
 <script>
@@ -110,8 +101,6 @@ h1{font:500 clamp(40px,9vw,64px)/1.05 var(--f-display);letter-spacing:.02em;text
   var capture=window.CBLeadCapture;
   if(!capture||!capture.receipt())return;
   capture.writeCookie('cb_native_received','',0);
-  document.getElementById('receipt-copy').textContent='We have your inquiry. I’ll review your details and email you about availability and pricing within 24 hours.';
-  document.getElementById('next-steps').innerHTML='<li>Check your email for an acknowledgment of your inquiry.</li><li>I’ll review your date and send availability and pricing within 24 hours.</li><li>Your date is reserved only after we confirm the booking and deposit.</li>';
   document.getElementById('quiz-next').hidden=false;
 })();
 </script>
