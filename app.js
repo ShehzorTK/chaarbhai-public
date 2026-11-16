@@ -342,7 +342,7 @@ P['/portfolio']=()=>`
 `;
 
 P['/about']=()=>`
-<section class="hero" style="min-height:70svh;justify-content:flex-end">
+<section class="hero ab-hero">
   <h1 class="d1 rv" data-d="1">Chaar Bhai is Urdu<br>for four brothers</h1>
   <div class="hero-foot mono"><span>Since 2008</span><span>Photo and film</span><span>We travel</span></div>
 </section>

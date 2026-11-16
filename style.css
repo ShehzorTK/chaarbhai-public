@@ -1389,3 +1389,13 @@ header .brand img.cb-brand-in-flight{visibility:hidden}
 @media (hover:hover) and (pointer:fine){
   html[data-theme="paper"] .seq-strip{scroll-snap-type:none}
 }
+
+/* About, phone: the 70svh hero and the stacked 74px section paddings left big empty bands. Desktop unchanged. */
+.ab-hero{min-height:70svh;justify-content:flex-end}
+@media(max-width:700px){
+  .on-about .ab-hero{min-height:0;padding-top:calc(var(--hh,88px) + 28px)}
+  .on-about section:not(.hero):not(.cta){padding-block:36px}
+  .on-about .ab-story{padding-block:36px 8px}
+  .on-about .work-founder{padding-top:20px}
+  .on-about .cta{padding-block:56px}
+}
