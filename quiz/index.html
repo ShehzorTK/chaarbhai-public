@@ -144,11 +144,10 @@ const $=s=>document.querySelector(s),app=$('#app');
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const list=a=>a.length<2?a.join(''):a.slice(0,-1).join(', ')+' and '+a.at(-1);
-const PKG=[{n:'First Light',h:6,p:3300},{n:'Golden Hour',h:10,p:5500},{n:'Till Dusk',h:16,p:8800},{n:'Till Sunrise',h:24,p:12600}];
 const HRS={h:{l:'Highlights',s:'about 2 hrs',v:2},m:{l:'Most of it',s:'about 5 hrs',v:5},w:{l:'The whole thing',s:'about 8 hrs',v:8}};
 
 /* Event knowledge. SESS = separate sessions (not counted in coverage hours). FIX = standard length, nothing to ask. */
-const SESS={'E-shoot':{h:2,tier:3,price:950},'Getting ready':{h:2,tier:2,price:500},'Rehearsal dinner':{h:2,tier:3,price:600}};
+const SESS={'E-shoot':{h:2,tier:3},'Getting ready':{h:2,tier:2},'Rehearsal dinner':{h:2,tier:3}};
 const FIXH={'Rukhsati / Vidaai':1,'Vidaai':1,'Cocktail hour':1,'Civil ceremony':1,'Milni':1,'Zaffe':1,'Bedeken (veiling)':1};
 const FIX=Object.assign(Object.fromEntries(Object.entries(SESS).map(([k,v])=>[k,v.h])),FIXH);
 const TIER={'Mehndi':[2,4,6],'Dholki':[2,3,4],'Maiyan':[2,3,4],'Jaggo':[2,3,4],'Sangeet':[2,4,6],'Haldi':[1,2,3],'Gaye holud':[2,4,6],'Nikkah':[1,2,3],'Anand Karaj':[1,2,3],'Pheras':[1,2,3],'Church ceremony':[1,2,3],'Baraat':[1,2,3],'Walima':[2,4,5],'Reception':[3,5,8],'Engagement party':[2,3,5],'Roka / Sagai':[1,2,3],'Garba / Dandiya':[2,3,4],'Khastegari':[1,2,3],'Shirini Khori':[2,3,4],'Henna night':[2,4,5],'Aroosi (wedding party)':[3,5,8],'Katb al-Kitab':[1,2,3],'Tea ceremony':[1,2,3],'Betrothal ceremony':[1,2,3],'Procession & gate games':[1,2,3],'Wedding banquet':[3,4,6],'Chuppah ceremony':[1,2,3],'Wedding ceremony':[1,2,3],'Elopement':[2,3,5],'First look & portraits':[1,2,3],'Bou bhaat':[2,3,4],'Biye ceremony':[1,2,3],'Muhurtham':[1,2,3],'Nischayathartham':[1,2,3],'Another event':[2,4,6],'Something else':[2,4,6]};
@@ -172,14 +171,8 @@ const H=e=>{const t=TIER[e]||TIER['Something else'];return Object.fromEntries(['
 const hrsOf=e=>FIX[e]?FIX[e]:(A.hours&&A.hours[e]?H(e)[A.hours[e]].v:0);
 const askable=()=>(A.events||[]).filter(e=>!FIX[e]);
 const RE=()=>(A.events||[]).filter(e=>!NOCROWD.includes(e));
-const RATE={both:550,photo:350,film:450,video:450,help:550};
-const CUR=()=>A.where==='us'?'USD':A.where==='else'?'currency to confirm':'CAD';
-const SHORT_RATE=()=>(A.svc==='photo'||A.svc==='film')?450:900;
-const shortPkg=h=>({n:'Short booking',h,short:true});
-const priceOf=p=>{if(p.sess)return sessSum();if(p.short)return p.h*SHORT_RATE();const sv=A.svc||'both';return (p.h===24&&(sv==='both'||sv==='help'))?12600:p.h*RATE[sv]};
 /* E-shoot is a separate session, included with Till Dusk and Till Sunrise on the main site, so it is not counted in coverage hours. */
 const total=()=>(A.events||[]).filter(e=>!SESS[e]).reduce((n,e)=>n+hrsOf(e),0);
-const sessSum=()=>(A.events||[]).filter(e=>SESS[e]).reduce((n,e)=>n+SESS[e].price,0);
 /* second shooter: how busy each event usually is (0 one thing at a time, 1 depends, 2 lots at once) */
 const LV={one:0,few:1,all:2};
 const busyDef=e=>(BUSY[e]||0)>=2?'all':(BUSY[e]||0)>=1?'few':'one';
@@ -203,9 +196,6 @@ const opt=a=>a.map(x=>[x,x]);
 const big=()=>RE().length>1?(A.biggest||RE()[0]):(RE()[0]||'your wedding');
 const shy=()=>(A.camera||[]).some(x=>x==='hands'||x==='conv');
 const rel=k=>(A.relive||[]).includes(k);
-const cap=()=>({low:3299,b1:4500,b2:6500,b3:9000,b4:1e9})[A.budget];
-const pkgFor=t=>t<=0?((A.events||[]).some(e=>SESS[e])?{n:'Sessions only',h:0,sess:true}:null):t<6?shortPkg(t):PKG.find(p=>p.h>=t);
-const gap=()=>{const p=pkgFor(total());return !!A.budget&&A.budget!=='unsure'&&(!p||priceOf(p)>cap())&&A.budget!=='b4'};
 /* The route changes with the answers: questions appear, skip, or name what you already told us. */
 const S=[
 {id:'where',ch:0,lead:'Let’s start simple',q:'Where are we celebrating?',kind:'one',opts:[['gta','Toronto / GTA'],['ont','Elsewhere in Ontario'],['can','Elsewhere in Canada'],['us','USA'],['else','Somewhere else']],
@@ -238,10 +228,7 @@ const S=[
 {id:'dance',ch:1,when:()=>(A.events||[]).some(e=>['Mehndi','Dholki','Maiyan','Jaggo','Sangeet','Gaye holud','Baraat','Reception','Walima'].includes(e)),lead:'Another one for fun',q:'Who’s the best dancer in the family?',kind:'one',opts:[['one','One of us'],['both','Both of us'],['cousins','The cousins'],['uncle','An uncle, somehow'],['none','Nobody. We’re here for the food']],
  react:v=>({one:'<b>Noted.</b> Watching closely.',both:'<b>A show.</b>',cousins:'The cousins <b>always</b> win.',uncle:'<b>Uncle gets a close-up.</b>',none:'<b>Fair.</b>'}[v])},
 {id:'cry',ch:1,lead:'One just for fun',q:()=>{const c=A.events.find(e=>CER.includes(e));return c?`Who cries first at the ${esc(c)}?`:'Who cries first?'},kind:'one',opts:[['one','One of us'],['both','Both of us, instantly'],['parent','A parent. Always.'],['none','Nobody. We’re stone.']],
- react:v=>({one:'<b>I’ll be ready.</b>',both:'<b>Second lens.</b>',parent:'<b>Close-up for the parents.</b>',none:'<b>We’ll see.</b>'}[v])},
-{id:'budget',ch:2,lead:'Nearly there',q:()=>A.svc==='photo'?'What budget feels comfortable for photos?':A.svc==='film'?'What budget feels comfortable for film?':'What budget feels comfortable for photo and film?',kind:'one',opts:[['low','Under $3,300'],['b1','$3,300 to $4,500'],['b2','$4,500 to $6,500'],['b3','$6,500 to $9,000'],['b4','$9,000 or more'],['unsure','Not sure. Help me understand.']],
- react:v=>v==='unsure'?'<b>I’ll explain.</b>':'Got it.'},
-{id:'trade',ch:2,when:gap,lead:'One thing',q:'That’s above your range. What do we protect?',kind:'one',opts:[['key','Key moments at every event'],['big',()=>`Full coverage of ${esc(nm(big()))}`],['full','Show me the full plan anyway']],react:()=>'<b>Good call.</b>'}
+ react:v=>({one:'<b>I’ll be ready.</b>',both:'<b>Second lens.</b>',parent:'<b>Close-up for the parents.</b>',none:'<b>We’ll see.</b>'}[v])}
 ];
 const route=()=>S.filter(s=>!s.when||s.when());
 const val=(x)=>typeof x==='function'?x():x;
@@ -293,11 +280,8 @@ async function build(){setTone(2);window.scrollTo(0,0);const ev=A.events;
   for(let k=0;k<lines.length;k++){b.querySelectorAll('p').forEach(p=>p.classList.add('old'));b.insertAdjacentHTML('beforeend',`<p>${lines[k]}</p>`);await new Promise(r=>setTimeout(r,reduce?30:850))}
   result()}
 
-function result(){const t=total(),ev=A.events,r=A.relive[0],c=cap();
-  let pkg=pkgFor(t),note='';
-  if(gap()){if(A.trade==='key'){const fit=Math.floor(c/SHORT_RATE());const small=PKG.filter(p=>priceOf(p)<=c).at(-1)||(fit>=1?shortPkg(Math.min(fit,5)):null);pkg=small||pkg;note=small?(small.short?`Your budget fits about ${small.h} hour${small.h>1?'s':''} of coverage, out of the ${t} you’d like. We’d focus on key moments.`:'Trimmed to key moments at every event.'):'Fahad will find the right trim.'}else if(A.trade==='big'){note=`Full coverage of ${big()}. The rest is outside this plan.`}else note='Above your range. Fahad can show where to trim.'}
-  else note=!pkg?'Bigger than our biggest package. Fahad will build a custom plan.':A.budget==='unsure'?`${pkg.n} covers your ${t} hours.`:priceOf(pkg)<=c?'Inside your range.':'Above your range.';
-  if(A.when==='soon')note+=' Your date is close, so we’ll confirm availability first.';
+function result(){const t=total(),ev=A.events,r=A.relive[0];
+
   const name={people:'A wedding built around your people.',party:'A wedding made for the dance floor.',words:'A wedding you’ll want to hear again.',couple:'A wedding that’s quietly about the two of you.'}[r];
   const crew={photo:'A photographer',film:'A videographer'}[A.svc]||'A photographer and a videographer, together';
   const extra=addOns(),extraEv=extraEvents(),extraTotal=extra.reduce((n,a)=>n+a.h*120,0);
@@ -307,28 +291,18 @@ function result(){const t=total(),ev=A.events,r=A.relive[0],c=cap();
   own.push({people:rel('people')?'In the frame: '+list(A.people||[]).toLowerCase()+'.':'',words:rel('words')?'Clean audio for '+list(A.words||[]).toLowerCase()+'.':'',party:rel('party')?(()=>{const d=(A.party&&A.party.length?A.party:RE().filter(isDance));return d.length?'We stay for the dancing at the '+list(d).toLowerCase()+'.':'We stay for the dancing.'})():'',couple:'Time set aside for just the two of you.'}[r]||'');
   own.push(A.dance==='cousins'?'Eyes on the cousins on the dance floor.':A.dance==='uncle'?'A lens for the dancing uncle.':A.cry==='parent'?'A lens for the parents’ reactions.':A.cry==='both'?'A second lens for the tears.':A.cry==='one'?'Ready for the first tears.':'');
   Object.values(A.oth||{}).filter(Boolean).forEach(t=>own.push('You asked us to keep in mind: “'+esc(t)+'”.'));
-  const sv=A.svc||'both',T=pkg?PKG.indexOf(pkg)+1:0;
-  const ph=sv!=='film',vd=sv!=='photo';
-  const inc2=[...(ph?['Professional retouching','Online gallery of fully edited photos']:[]),...(vd?['Film via private download link','Audio equipment and on-camera interviews']:[])];
-  const adds=[];
-  const opt2=(n,ok,price)=>ok?inc2.push(n):adds.push([n,'$'+price]);
-  opt2('Get-ready session',T>=2,500);opt2('Rehearsal dinner coverage',T>=3,600);opt2('Pre-wedding E-shoot',T>=3,950);
-  if(T>=3&&ph)inc2.push('One complimentary album of your choice','A set of framed prints');
-  if(T===4&&vd)inc2.push('Next-day edit');
-  adds.push(['Extra hour of coverage','$550']);
-  const hi=[ph?'Edited photo gallery':'',vd?'Film by private link':'',vd?'Audio on camera':''].filter(Boolean);
-  const pkgDetails=pkg&&pkg.sess?'':pkg&&pkg.short?`<p class="fine2" style="margin-top:10px">${pkg.h} hour${pkg.h>1?'s':''} · ${esc({photo:'1 photographer',film:'1 videographer'}[sv]||'1 photographer + 1 videographer')} · $${SHORT_RATE()} an hour</p><details class="more"><summary>See what’s included</summary><div class="mb"><b>Included</b><ul><li>Coverage for ${pkg.h} hour${pkg.h>1?'s':''}</li></ul><b>Not included</b><ul><li>E-shoot, get-ready session, album or prints</li></ul><b>Available as add-ons</b><ul><li>Extra hour of coverage<span>$${SHORT_RATE()}</span></li><li>Pre-wedding E-shoot<span>$950</span></li><li>Get-ready session<span>$500</span></li></ul></div></details>`:pkg?`<p class="fine2" style="margin-top:10px">${pkg.h} hours · ${esc({photo:'1 photographer',film:'1 videographer'}[sv]||'1 photographer + 1 videographer')}</p><p class="fine2">${hi.join(' · ')}</p><details class="more"><summary>See everything in ${pkg.n}</summary><div class="mb"><b>Included</b><ul>${inc2.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><b>Available as add-ons</b><ul>${adds.map(x=>`<li>${esc(x[0])}<span>${x[1]}</span></li>`).join('')}</ul></div></details>`:'';
-  const eshootNote=ev.filter(e=>SESS[e]).map(e=>`${e}: ${pkg&&!pkg.short&&!pkg.sess&&PKG.indexOf(pkg)+1>=SESS[e].tier?'included':'$'+SESS[e].price+' add-on'}`).join(' · ');
+  const sv=A.svc||'both';
+  const eshootNote=ev.filter(e=>SESS[e]).map(e=>`${e}: about ${hr(SESS[e].h)}, a separate session`).join(' · ');
   if(A.sep==='yes')own.push('A female photographer and videographer, arranged for the spaces that need them.');
 
   const L=id=>{const st=S.find(x=>x.id===id),v=A[id];if(v==null||v==='')return'';try{return Array.isArray(v)?v.join(', '):String(label(st,v))}catch{return String(v)}};
   const coverage=ev.map(e=>e+': '+(FIX[e]?'about ':'')+hr(hrsOf(e))+(extraEv.includes(e)?' + extra crew':'')).join('\n');
-  quizResult={summary:name+' '+(ev.length>1?ev.length+' events':'One event')+(t?', about '+t+' hours of coverage':'')+'.',package:pkg?pkg.n:'Custom plan to discuss',hours:t||null,price:pkg?priceOf(pkg):null,currency:CUR(),budget_fit:note,location:L('where'),date_band:L('when'),services:L('svc'),events:ev.join(', '),days:L('days'),guests:L('guests'),budget:L('budget'),priority:L('relive'),separate_spaces:A.sep==='yes'?'Yes, female crew requested':'',extra_crew:extra.length?extra.map(a=>a.k).join(' and ')+' for '+list(extraEv):'',notes:Object.values(A.oth||{}).filter(Boolean).join(' | '),coverage_brief:coverage,assumptions:'Starting plan only. Availability, timings, overlap, tax and travel must be confirmed.'};
+  quizResult={summary:name+' '+(ev.length>1?ev.length+' events':'One event')+(t?', about '+t+' hours of coverage':'')+'.',hours:t||null,photo_hours:sv!=='film'?t:0,video_hours:sv!=='photo'?t:0,location:L('where'),date_band:L('when'),services:L('svc'),events:ev.join(', '),days:L('days'),guests:L('guests'),priority:L('relive'),separate_spaces:A.sep==='yes'?'Yes, female crew requested':'',extra_crew:extra.length?extra.map(a=>a.k).join(' and ')+' for '+list(extraEv):'',notes:Object.values(A.oth||{}).filter(Boolean).join(' | '),coverage_brief:coverage,assumptions:'Starting plan only. Availability, timings, overlap, tax and travel must be confirmed.'};
   app.innerHTML=`<section class="res"><div class="span"><div class="eyebrow" style="margin:20px 0 0;color:var(--gold)">What your wedding needs</div><h1>${name}</h1><p class="lede">${ev.length>1?ev.length+' events':'One event'}${t?', about '+t+' hours of coverage':''}.</p></div>
   <div class="cols span">
    <div class="card"><h3>Your events</h3><ul class="erows">${rows}</ul><div class="sum"><span>${esc(crew)}.</span>${t?`<b>${t} hours</b>`:""}</div>${eshootNote?`<p class="fine2" style="margin-top:8px">${eshootNote}</p>`:''}</div>
    <div class="card"><h3>Made for you two</h3><ul class="heard inc">${own.filter(Boolean).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
-   <div class="card price-card"><div class="eyebrow" style="margin:0 0 8px">What this usually looks like</div>${pkg?`<div class="pr"><b>${pkg.n}</b><span>from $${priceOf(pkg).toLocaleString()} ${CUR()}</span></div>`:''}<p class="fine2" style="margin-top:8px">${note} Final price depends on your dates, timings${A.where&&A.where!=='gta'?'. Travel is quoted separately':' and travel'}.</p>${pkgDetails}${extra.length?`<div class="addon"><b>Suggested for ${esc(list(extraEv))}</b><p class="fine2">${esc('A '+extra.map(a=>a.k.toLowerCase()).join(' and a '))}${extra.some(a=>a.k==='Second videographer')?', with drone footage':''}. $${extraTotal.toLocaleString()} ${CUR()} in total at $120 an hour each. Optional.</p></div>`:''}</div>
+   <div class="card price-card"><div class="eyebrow" style="margin:0 0 8px">Your coverage</div><div class="pr"><b>${t} hours</b><span>${sv==='photo'?'photo':sv==='film'?'film':'photo + film'}</span></div><p class="fine2" style="margin-top:8px">${sv==='both'||sv==='help'?`Photo ${t} hrs · Film ${t} hrs, shot together.`:sv==='photo'?`Photo ${t} hrs.`:`Film ${t} hrs.`} Timings depend on your dates, overlap${A.where&&A.where!=='gta'?'. Travel is confirmed separately':' and travel'}.</p>${extra.length?`<div class="addon"><b>Suggested for ${esc(list(extraEv))}</b><p class="fine2">${esc('A '+extra.map(a=>a.k.toLowerCase()).join(' and a '))}${extra.some(a=>a.k==='Second videographer')?', with drone footage':''}, about ${extra.reduce((n,a)=>Math.max(n,a.h),0)} extra hours. Optional.</p></div>`:''}</div>
   </div>
   <div class="fahad span"><img class="fp" src="${IMG.fahad}" alt="Fahad, founder of Chaar Bhai, getting low to capture a wedding photo"><div class="eyebrow" style="margin:0">Your answers are a conversation starter</div><h3>Talk it through with Fahad.</h3><p>You told us about ${esc(list(ev.slice(0,3)))}${ev.length>3?' and more':''}. Bring that and anything still undecided. We’ll shape a shortlist of coverage options together.</p><button class="btn" id="send" type="button">Talk through my wedding</button><div class="row"><button class="btn line" id="img" type="button">Email me my plan</button><button class="btn line" id="again" type="button">Change my answers</button></div><p class="fine2">Fahad emails you within 24 hours. No call is booked yet. Starting point only: availability, tax and travel to confirm.</p></div></section>`;
   $('#send').onclick=()=>booking('consultation');$('#img').onclick=()=>booking('email_plan');ensureCapture();$('#again').onclick=()=>go(0);window.scrollTo(0,0)}
@@ -339,7 +313,7 @@ function closeModal(){$('#modal-root').innerHTML='';document.body.style.overflow
 function ensureCapture(){
  const quiz={answers:JSON.parse(JSON.stringify(A)),result:quizResult},key=JSON.stringify(quiz);
  if(quizCapture?.key===key)return;
- if(/(^|\.)chaarbhai\.com$/.test(window.location?.hostname||'')){try{window.fbq?.('trackCustom','QuizComplete',{content_name:quiz.result.package});(window.dataLayer=window.dataLayer||[]).push({event:'quiz_quizcomplete',content_name:quiz.result.package})}catch{}}
+ if(/(^|\.)chaarbhai\.com$/.test(window.location?.hostname||'')){try{window.fbq?.('trackCustom','QuizComplete',{content_name:(quiz.result.hours||0)+' hours'});(window.dataLayer=window.dataLayer||[]).push({event:'quiz_quizcomplete',content_name:(quiz.result.hours||0)+' hours'})}catch{}}
  quizCapture={key,quiz,submission_id:window.CBLeadCapture?.uuid(),response:null,promise:null};saveQuiz(quizCapture);
 }
 function saveQuiz(state){
@@ -348,7 +322,7 @@ function saveQuiz(state){
 }
 function booking(intent='consultation'){
  ensureCapture();
- openModal(`<p class="eyebrow">Your wedding plan</p><h2 id="modalTitle">${intent==='consultation'?'Request a planning call.':'Email me this plan.'}</h2><p>Fahad will review your answers and email you within 24 hours. ${intent==='consultation'?'We’ll arrange a free planning call; no appointment is reserved yet.':'Your plan and relevant pricing will come by email.'}</p><form id="bookingForm"><label class="field-label">Your name<input class="field" name="name" autocomplete="name" required maxlength="160"></label><label class="field-label">Email<input name="email" type="email" class="field" autocomplete="email" required maxlength="254"></label><label class="field-label">Phone <span>Optional</span><input name="phone" type="tel" class="field" autocomplete="tel" maxlength="80"></label><button class="btn" type="submit">Send my request <span>→</span></button><p id="contact-status" role="status" aria-live="polite"></p></form><p class="fine">Prefer email? <a href="mailto:info@chaarbhai.com">info@chaarbhai.com</a></p>`);
+ openModal(`<p class="eyebrow">Your wedding plan</p><h2 id="modalTitle">${intent==='consultation'?'Request a planning call.':'Email me this plan.'}</h2><p>Fahad will review your answers and email you within 24 hours. ${intent==='consultation'?'We’ll arrange a free planning call; no appointment is reserved yet.':'Your coverage plan will come by email.'}</p><form id="bookingForm"><label class="field-label">Your name<input class="field" name="name" autocomplete="name" required maxlength="160"></label><label class="field-label">Email<input name="email" type="email" class="field" autocomplete="email" required maxlength="254"></label><label class="field-label">Phone <span>Optional</span><input name="phone" type="tel" class="field" autocomplete="tel" maxlength="80"></label><button class="btn" type="submit">Send my request <span>→</span></button><p id="contact-status" role="status" aria-live="polite"></p></form><p class="fine">Prefer email? <a href="mailto:info@chaarbhai.com">info@chaarbhai.com</a></p>`);
  const form=$('#bookingForm'),button=form.querySelector('[type=submit]'),msg=$('#contact-status'),state=quizCapture;
  let request=null;
  form.onsubmit=async e=>{e.preventDefault();if(button.disabled)return;
